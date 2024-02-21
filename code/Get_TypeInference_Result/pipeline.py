@@ -60,8 +60,7 @@ def get_result_pipline(datasets,libs,sum:bool, ans:bool, with_comments:bool,orig
 
         for lib in libs:
             res_lib_folder = f'{res_folder}/{dataset}/{lib}'
-            if not os.path.exists(res_lib_folder):
-                os.makedirs(res_lib_folder)
+            if not os.path.exists(res_lib_folder): os.makedirs(res_lib_folder)
             model_acs.refresh_conversation()
             input_folder_path = f'{dataset_code_folder}/{dataset}/{lib}'
             code_snippets = os.listdir(input_folder_path)

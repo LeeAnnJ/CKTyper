@@ -19,15 +19,16 @@ import utils
 
 # extract ngrams' frequencies from SO code corpus, and save the frequency counter of each xml to a pickle file
 def extract_ngrams_frequencies_per_xml(so_code_dir,frequency_counter_save_dir):
+    logger = logging.getLogger(__name__)
 
     if not frequency_counter_save_dir.exists():
         frequency_counter_save_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"Extracting trivially shared n-grams from SO code corpus...")
-    print(f"==>> so_code_dir: {so_code_dir}")
+    logger.info(f"Extracting trivially shared n-grams from SO code corpus...")
+    logger.info(f"==>> so_code_dir: {so_code_dir}")
     # <tokenized_corpus> is a list of strings
     for file in so_code_dir.iterdir():        
-        print(f"==>> file: {file}")
+        logger.info(f"==>> file: {file}")
         file_tokenized_corpus = []
         with open(file, 'r', encoding='utf-8') as f:
             tree = ET.parse(f)
@@ -51,6 +52,7 @@ def extract_ngrams_frequencies_per_xml(so_code_dir,frequency_counter_save_dir):
 
 # combine all frequency counters and calculate trivially shared ngrams
 def calculate_trivially_shared_ngrams(frequency_counter_save_dir,middle_execution_progress_save_dir,save_file,topk):
+    logger = logging.getLogger(__name__)
 
     if not middle_execution_progress_save_dir.exists():
         middle_execution_progress_save_dir.mkdir(parents=True, exist_ok=True)
@@ -72,19 +74,19 @@ def calculate_trivially_shared_ngrams(frequency_counter_save_dir,middle_executio
         else:
             break
     if last_freq_file is not None:
-        print(f"==>> Loading middle execution progress freq_file: {last_freq_file}")
+        logger.info(f"==>> Loading middle execution progress freq_file: {last_freq_file}")
         with open(last_freq_file, 'rb') as f:
             all_ngram_frequencies = pickle.load(f)
 
     # Continue from the last calculated pkl_file
     for pkl_file in pkl_files[start_index:]: 
-        print(f"==>> Loading pkl_file: {pkl_file}")  
+        logger.info(f"==>> Loading pkl_file: {pkl_file}")  
         with open(pkl_file, 'rb') as f:  # Load the pkl_file and update all_ngram_frequencies
             all_ngram_frequencies += pickle.load(f)
 
         # Save all_ngram_frequencies to the _freq.pkl file
         freq_file = middle_execution_progress_save_dir / f'{pkl_file.stem}_freq.pkl'
-        print(f"==>> Saving middle execution progress freq_file: {freq_file}")
+        logger.info(f"==>> Saving middle execution progress freq_file: {freq_file}")
         with open(freq_file, 'wb') as f:
             pickle.dump(all_ngram_frequencies, f)
   
@@ -94,7 +96,7 @@ def calculate_trivially_shared_ngrams(frequency_counter_save_dir,middle_executio
     # save to pickle file
     script_path = Path(__file__).parent.absolute()
     file_path = script_path / save_file
-    print(f"==>> Trivially shared ngrams has been saved to: {file_path}")
+    logger.info(f"==>> Trivially shared ngrams has been saved to: {file_path}")
     
     with open(file_path, 'wb') as f:
         pickle.dump(trivially_shared_ngrams, f)
@@ -130,6 +132,7 @@ class SimilarityCalculator(object):
 
 # Preprocess
 def similarity_preprocess():
+    logger = logging.getLogger(__name__)
     config = configparser.ConfigParser()
     config.read('./config/file_structure.ini')
 
@@ -143,7 +146,7 @@ def similarity_preprocess():
     start_time = time.process_time()   
     extract_ngrams_frequencies_per_xml(so_code_dir,frequency_counter_save_dir)
     end_time = time.process_time()
-    print ('Corpus ngrams\' frequency counting time:', end_time - start_time) # 3504.90625s (58.4min), server:4918.986504939s (81.97min)
+    logger.info ('Corpus ngrams\' frequency counting time:', end_time - start_time) # 3504.90625s (58.4min), server:4918.986504939s (81.97min)
 
     # 2. Calculate trivially shared n-grams
     middle_execution_progress_save_dir = script_path / 'Code_Similarity_Calculate/ngram_freq_sum_middle_execution_progress'
@@ -152,8 +155,8 @@ def similarity_preprocess():
     start_time = time.process_time()    
     trivially_shared_ngrams = calculate_trivially_shared_ngrams(frequency_counter_save_dir,middle_execution_progress_save_dir,ngram_file,k)
     end_time = time.process_time()
-    print ('Combine counters and calculate trivially shared ngrams time:',end_time - start_time) # 21762.626509856997s (6h)
-    print(f"==>> trivially_shared_ngrams: {trivially_shared_ngrams}")
+    logger.info ('Combine counters and calculate trivially shared ngrams time:',end_time - start_time) # 21762.626509856997s (6h)
+    logger.info(f"==>> trivially_shared_ngrams: {trivially_shared_ngrams}")
     pass
 
 
@@ -161,10 +164,10 @@ def similarity_preprocess():
 def cal_similarity_singal(code_path:str, lucene_topk_paths,calculator:SimilarityCalculator, sim_topk):
     input_code_snippet = utils.load_text(code_path)
     # 6. Calculate CrystalBLEU for input code and each lucene code
-    start_time = time.process_time()
+    # start_time = time.process_time()
     file_score_dict = calculator.cal_crystalBLEU_similarity(input_code_snippet, lucene_topk_paths)
-    end_time = time.process_time()
-    print ('Calculate CrystalBLEU time:',end_time - start_time)
+    # end_time = time.process_time()
+    # print ('Calculate CrystalBLEU time:',end_time - start_time)
 
     # 7. Sort the file_score_dict by value, and print the postid of the top-k similar code snippet
     sorted_file_score_dict = sorted(file_score_dict.items(), key=lambda x: x[1], reverse=True)
@@ -205,6 +208,7 @@ def cal_similarity_pipeline(datasets,libs,lucene_topk,similarity_topk):
     dataset_code_folder = config['resource']['DATASET_CODE_FOLDER']
     eval_path = config['result']['EVAL_PATH']
     sim_post_result_folder = config['intermediate']['SIM_POST_RESULT_FOLDER']
+    if not os.path.exists(sim_post_result_folder): os.makedirs(sim_post_result_folder)
     similarity_calculator = SimilarityCalculator()
     sim_result = []
 
@@ -220,7 +224,7 @@ def cal_similarity_pipeline(datasets,libs,lucene_topk,similarity_topk):
             for cs in code_snippets:
                 input_code_snippet_path = f'{input_folder_path}/{cs}'
                 cs_name = cs.replace('.java','')
-                print(f"==>> input code snippet: {input_code_snippet_path}")
+                logger.info(f"calculate similarity for: {input_code_snippet_path}")
 
                 # 5. Get Lucene top-k code snippets
                 lucene_topk_dir = f'{eval_path}/Lucene_top{lucene_topk}/{dataset}/{lib}/{cs_name}'

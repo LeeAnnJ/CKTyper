@@ -44,7 +44,6 @@ def set_arg_parser():
 # evaluation:
 # . calculate precision for each code snippet, each lib and each dataset
 
-# todo: fix: if folder not exist, create it
 def online_operation_pipline(sum, ans, with_comments, original):
     logger = logging.getLogger(__name__)
     datasets = TS.DATASETS

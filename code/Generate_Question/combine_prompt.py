@@ -64,7 +64,7 @@ class PromptCombiner(object):
         prompt_list = []
         post_list = os.listdir(base_folder)
         for post_name in post_list:
-            post_file = f'{base_folder}/{post_name}' # todo: reconsider file path
+            post_file = f'{base_folder}/{post_name}'
             post = utils.load_json(post_file)
             self.logger.info(f"generate prompt for post: {post_name}")
             prompt = self.generate_prompt_singal_post(post,sum,ans,with_comments)

@@ -1,10 +1,10 @@
 # todo: add lucene index searching
 import os
 import jpype
+import logging
 import configparser
 
 # todo: modify configuration reading
-# todo: add logging
 # rertieve posts form SO dataset by lucene index
 def lucene_search_pipline(datasets,libs,lucene_top_k):
     config = configparser.ConfigParser()
@@ -17,13 +17,16 @@ def lucene_search_pipline(datasets,libs,lucene_top_k):
 
     jpype.startJVM(jpype.getDefaultJVMPath(), "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
     CodeIndexer = jpype.JClass("LuceneCodeIndexer")
+    logger = logging.getLogger(__name__)
 
     for dataset in datasets:
         for lib in libs:
             input_folder_path = f'{dataset_code_folder}/{dataset}/{lib}'
             code_snippets = os.listdir(input_folder_path)
             res_folder = f'{lucene_folder}/{dataset}/{lib}'
+            if not os.path.exists(res_folder): os.makedirs(res_folder)
             for cs in code_snippets:
+                logger.info(f'search similar code snippets for {cs}...')
                 cs_path = f'{input_folder_path}/{cs}'
                 res_path = f'{res_folder}/{cs.replace(".java","")}'
                 CodeIndexer.main(['-online',cs_path,f'{lucene_top_k}',res_path])
