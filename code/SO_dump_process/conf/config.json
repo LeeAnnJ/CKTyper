@@ -1,0 +1,10 @@
+{
+  "so_url": "https://stackoverflow.com",
+  "so_dir": "D://ZhangNeng//codesearch4typeinference//stackoverflow",
+  "experiment_dir": "D://ZhangNeng//codesearch4typeinference//SOdata",
+  "posts_xml": "Posts.xml",
+  "comments_xml": "Comments.xml",
+  "posthistory_xml": "PostHistory.xml",
+  "tags_xml": "Tags.xml",
+  "interested_tags": ["java"]
+}

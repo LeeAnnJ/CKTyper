@@ -1,0 +1,161 @@
+Original:
+
+Please infer the fully qualified names (FQNs) of the given API elements. Given a code snippet, you should provide an answer in Json format, such as  {'API element': '<FQN>' , 'API element': '<FQN>' , ...}.
+Java Code:
+
+{code snippet}
+
+API elements:
+[]
+
+
+Prompted:
+
+Please infer the fully qualified names (FQNs) of the given API elements. Given a code snippet, you should provide an answer in Json format, such as  {'API element': '<FQN>' , 'API element': '<FQN>' , ...}.
+Java Code:
+
+{put your code here}
+
+API elements:
+['XStream', 'new XStream()', 'XStreamAlias']
+
+and here are some textual descriptions related to this code snippet, you can use these informations to infer the FQN of the given API elements:
+[
+    
+]
+
+
+
+
+Please infer the fully qualified names (FQNs) of the given API elements. Given a code snippet, you should provide an answer in Json format, such as  {'API element': '<FQN>' , 'API element': '<FQN>' , ...}.
+Java Code:
+
+public class hibernate_class_1{
+	public class HibernateUserDAO implements
+	UserDAO {
+
+	   private SessionFactory sessionFactory;
+
+	   public HibernateUserDAO() {
+	    AnnotationConfiguration annotConf = new AnnotationConfiguration();
+	    annotConf.addAnnotatedClass(User.class);
+	    annotConf.configure();
+	    // The line below generates the exception!
+	    sessionFactory = annotConf.buildSessionFactory();
+	   }
+
+	   public void store(User user) {
+	    Session session = sessionFactory.openSession();
+	    Transaction tx = session.getTransaction();
+	    try {
+	     tx.begin();
+	     session.saveOrUpdate(user);
+	     tx.commit();
+	    } catch (RuntimeException e) {
+	     tx.rollback();
+	     throw e;
+	    } finally {
+	     session.close();
+	    }
+	   }
+
+	@Override
+	public User getUser(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User getUserByFirstLastName(String arg0, String arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User getUserByUsername(String arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int saveUser(User arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	}
+}
+
+API elements:
+['XStream', 'new XStream()', 'XStreamAlias']
+
+{
+"XStream": "com.thoughtworks.xstream.XStream",
+"new XStream()": "new com.thoughtworks.xstream.XStream()",
+"XStreamAlias": "com.thoughtworks.xstream.annotations.XStreamAlias"
+}
+
+
+Please infer the fully qualified names (FQNs) of the given API elements. Given a code snippet, you should provide an answer in Json format, such as  {'API element': '<FQN>' , 'API element': '<FQN>' , ...}.
+Java Code:
+
+public class hibernate_class_1{
+	public class HibernateUserDAO implements
+	UserDAO {
+
+	   private SessionFactory sessionFactory;
+
+	   public HibernateUserDAO() {
+	    AnnotationConfiguration annotConf = new AnnotationConfiguration();
+	    annotConf.addAnnotatedClass(User.class);
+	    annotConf.configure();
+	    // The line below generates the exception!
+	    sessionFactory = annotConf.buildSessionFactory();
+	   }
+
+	   public void store(User user) {
+	    Session session = sessionFactory.openSession();
+	    Transaction tx = session.getTransaction();
+	    try {
+	     tx.begin();
+	     session.saveOrUpdate(user);
+	     tx.commit();
+	    } catch (RuntimeException e) {
+	     tx.rollback();
+	     throw e;
+	    } finally {
+	     session.close();
+	    }
+	   }
+
+	@Override
+	public User getUser(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User getUserByFirstLastName(String arg0, String arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User getUserByUsername(String arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int saveUser(User arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	}
+}
+
+API elements:
+['UserDAO','SessionFactory','AnnotationConfiguration','new AnnotationConfiguration()','User','Session','Transaction']
+
+and here are some corresponding textual descriptions, you can use these information to infer the FQN of the given API elements:
+
+[I'm trying to find out why my Core + skims test project doesn't work.I'm working on a test project for hibernate and I'm getting an exception when I try to run it.I'm trying to set the dependencies of the hibernate-core server on the ibiblio archive.How do I get a copy of my birth certificate?]
