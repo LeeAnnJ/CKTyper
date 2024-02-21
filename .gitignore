@@ -1,6 +1,6 @@
 data/*
 Evaluation/*
-# code/config/chatgpt_conf.py
+code/config/chatgpt_conf.py
 .vscode
 
 # Byte-compiled / optimized / DLL files
