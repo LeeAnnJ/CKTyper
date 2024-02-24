@@ -237,8 +237,7 @@ def cal_similarity_pipeline(datasets,libs,lucene_topk,similarity_topk):
     # 8. Save the result to file
     result_file_str = f'{sim_post_result_folder}/sim_result_top_{similarity_topk}.json'
     logger.info(f'Finish code similarity calculation, start save result to file:{result_file_str}')
-    with open(result_file_str, 'w') as rf:
-        json.dump(sim_result, rf)
+    utils.write_json(result_file_str,sim_result)
     logger.info(f'Finish save result to file:{result_file_str}')
     return result_file_str
 

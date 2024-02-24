@@ -20,6 +20,10 @@ def read_csv(filename, with_title=False):
         if not with_title: data = data[1:]
     return data
 
+def write_json(file,data):
+    with open(file, 'w') as f:
+        json.dump(data, f, indent=2)
+    return
 
 def write_csv(file,data,header:list|None):
     with open(file, 'w', newline='') as f:

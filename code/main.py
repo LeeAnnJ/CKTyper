@@ -1,5 +1,6 @@
 import sys
 import time
+import jpype
 import logging
 import argparse
 
@@ -50,22 +51,29 @@ def online_operation_pipline(sum, ans, with_comments, original):
     libs = TS.LIBS
     lucene_top_k = TS.LUCENE_TOP_K
     sim_top_k = TS.SIMILARITY_TOP_K
-    # 1 & 2
-    # todo: decrease the times of loading code snippets
-    logger.info('Start to search similar code snippets...')
-    CodeSearch.lucene_search_pipline(datasets, libs, lucene_top_k)
-    sim_result_file = SimCal.cal_similarity_pipeline(datasets, libs, lucene_top_k, sim_top_k)
+    jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
+    # # 1 & 2
+    # # laptop processing time: 140.890625s
+    # # todo: decrease the times of loading code snippets
+    # logger.info('Start to search similar code snippets...')
+    # CodeSearch.lucene_search_pipline(datasets, libs, lucene_top_k)
+    # sim_result_file = SimCal.cal_similarity_pipeline(datasets, libs, lucene_top_k, sim_top_k)
     # 3
+    sim_result_file = '../Evaluation/Sim_post_results//sim_result_top_3.json'
     logger.info('Start to retrieve posts from SO...')
     GetResPip.retrieve_posts_pipeline(sim_result_file)
-    # 4 ~ 5
-    logger.info('Start to get type infrence result...')
-    GetResPip.get_result_pipline(datasets, libs, sum, ans, with_comments, original)
-    logger.info('Finish online operation pipline!')
+    # # 4 ~ 5
+    # logger.info('Start to generate questions...')
+    # GetResPip.generate_question_pipeline(datasets, libs, sum, ans, with_comments, original)
+    # # 6 ~ 7
+    # logger.info('Start to get type infrence result...')
+    # GetResPip.get_result_pipline(datasets, original)
+    # logger.info('Finish online operation pipline!')
+    jpype.shutdownJVM()
     pass
 
 
-# exp: python main.py --mode online --pattern singal --sum --ans --with_comments --original
+# exp: python main.py --mode online --pattern singal --sum --ans --with_comments
 if __name__ == '__main__':
     parser = set_arg_parser()
     args = parser.parse_args()

@@ -17,7 +17,6 @@ def retrieve_posts_pipeline(result_file):
     config.read('./config/file_structure.ini')
     searched_post_folder = config['intermediate']['SEARCHED_POST_FOLDER']
 
-    jpype.startJVM(jpype.getDefaultJVMPath(), "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
     PostIndexer = jpype.JClass("LucenePostIndexer")
 
     result_json = utils.load_json(result_file)
@@ -36,32 +35,81 @@ def retrieve_posts_pipeline(result_file):
                 for id in topk_sim_postIds:
                     PostIndexer.main(['-online',id,cs_folder])
     
-    jpype.shutdownJVM()
     pass
 
 
-def get_result_pipline(datasets,libs,sum:bool, ans:bool, with_comments:bool,original:bool):
+def get_result_pipline(datasets, original:bool):
+    logger = logging.getLogger(__name__)
+    config = configparser.ConfigParser()
+    api_elements_folder = config['resource']['API_ELEMENTS_FOLDER']
+    generated_question_folder = config['intermediate']['GENERATED_QUESTOIN_FOLDER']
+    if original: res_folder = config['result']['RESULT_ORIGINAL_FOLDER']
+    else: res_folder = config['result']['RESULT_PROMPTED_FOLDER']
+    model_acs = ModelAccesser()
+    res_head = ["Node","ChatGPT Answer","Truth"]
+    oflag = 'original' if original else 'prompted'
+
+    for dataset in datasets:
+        api_file = f'{api_elements_folder}/API_elements_{dataset}.json'
+        api_dict = utils.load_json(api_file)
+        question_file = f'{generated_question_folder}/{oflag}_{dataset}.json'
+        question_data = utils.load_json(question_file)
+
+        for lib_question in question_data:
+            lib = lib_question['lib']
+            res_lib_folder = f'{res_folder}/{dataset}/{lib}'
+            if not os.path.exists(res_lib_folder): os.makedirs(res_lib_folder)
+            cs_questions = lib_question['code_snippets']
+            model_acs.refresh_conversation()
+
+            for cs_question in cs_questions:
+                cs_name = cs_question['cs_name']
+                question = cs_question['question']
+                cs_api_dict = api_dict[cs_name]
+                logger.info(f"get result for: {cs_name}")
+                res_json = model_acs.get_result(question)
+                # handle & save result
+                result_file = f'{res_lib_folder}/{cs_name}.csv'
+                res_data = combine_res_data(cs_api_dict,res_json)
+                logger.info(f"save result to: {result_file}")
+                utils.write_csv(result_file,res_data,res_head)
+    pass
+
+# question:
+# [
+#   { "lib": "xxx",
+#     "code_snippets": [
+#       { "cs_name": "xxx",
+#         "question": "xxx"
+#       },
+#       {...}
+#     ]
+#   },
+#   {xxx}
+# ]
+def generate_question_pipeline(datasets, libs, sum:bool, ans:bool, with_comments:bool, original:bool):
     logger = logging.getLogger(__name__)
     config = configparser.ConfigParser()
     config.read('./config/file_structure.ini')
     dataset_code_folder = config['resource']['DATASET_CODE_FOLDER']
     api_elements_folder = config['resource']['API_ELEMENTS_FOLDER']
     searched_post_folder = config['intermediate']['SEARCHED_POST_FOLDER']
-    if original: res_folder = config['result']['RESULT_ORIGINAL_FOLDER']
-    else: res_folder = config['result']['RESULT_PROMPTED_FOLDER']
+    res_folder = config['intermediate']['GENERATED_QUESTOIN_FOLDER']
+    if not os.path.exists(res_folder): os.makedirs(res_folder)
+    
     prmp_com = PromptCombiner()
     ques_gen = QuestionGenerator()
-    model_acs = ModelAccesser()
-    res_head = ["Node","ChatGPT Answer","Truth"]
+    oflag = 'original' if original else 'prompted'
 
     for dataset in datasets:
+        res_file = f'{res_folder}/{oflag}_{dataset}.json'
         api_file = f'{api_elements_folder}/API_elements_{dataset}.json'
         api_dict = utils.load_json(api_file)
+        question_res = []
 
         for lib in libs:
-            res_lib_folder = f'{res_folder}/{dataset}/{lib}'
-            if not os.path.exists(res_lib_folder): os.makedirs(res_lib_folder)
-            model_acs.refresh_conversation()
+            question_res.append({"lib": lib, "code_snippets": []})
+            lib_res = question_res[-1]["code_snippets"]
             input_folder_path = f'{dataset_code_folder}/{dataset}/{lib}'
             code_snippets = os.listdir(input_folder_path)
 
@@ -69,7 +117,7 @@ def get_result_pipline(datasets,libs,sum:bool, ans:bool, with_comments:bool,orig
                 cs_name = cs.replace('.java','')
                 # load code snippet
                 input_code_snippet_path = f'{input_folder_path}/{cs}'
-                logger.info(f"==>> input code snippet: {input_code_snippet_path}")
+                logger.info(f"generate question for: {cs_name}")
                 code = utils.load_text(input_code_snippet_path)
                 # load api elements
                 cs_api_dict = api_dict[cs_name]
@@ -80,17 +128,11 @@ def get_result_pipline(datasets,libs,sum:bool, ans:bool, with_comments:bool,orig
                     prompt_list = None
                 else:
                     prompt_list = prmp_com.generate_prompt_multiple_posts(post_folder, sum, ans, with_comments)
-                    pass
-                
-                # generate question & get resulta
+                # generate question
                 question = ques_gen.generate_question(code, api_elems, prompt_list, original)
-                logger.info("finish generate question.")
-                res_json = model_acs.get_result(question)
+                lib_res.append({"cs_name": cs_name, "question": question})
 
-                # handle & save result
-                result_file = f'{res_lib_folder}/{cs_name}.csv'
-                res_data = combine_res_data(cs_api_dict,res_json)
-                logger.info(f"==>>save result to: {result_file}")
-                utils.write_csv(result_file,res_data,res_head)
+        logger.info(f'finish generate question for dataset {dataset},save to: {res_file}')
+        utils.write_json(res_file,question_res)
 
     pass
