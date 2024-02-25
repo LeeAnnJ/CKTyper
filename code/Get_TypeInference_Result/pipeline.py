@@ -38,7 +38,7 @@ def retrieve_posts_pipeline(result_file):
     pass
 
 
-def get_result_pipline(datasets, original:bool):
+def get_result_pipline(datasets,libs,original:bool):
     logger = logging.getLogger(__name__)
     config = configparser.ConfigParser()
     api_elements_folder = config['resource']['API_ELEMENTS_FOLDER']
@@ -52,17 +52,15 @@ def get_result_pipline(datasets, original:bool):
     for dataset in datasets:
         api_file = f'{api_elements_folder}/API_elements_{dataset}.json'
         api_dict = utils.load_json(api_file)
-        question_file = f'{generated_question_folder}/{oflag}_{dataset}.json'
-        question_data = utils.load_json(question_file)
-
-        for lib_question in question_data:
-            lib = lib_question['lib']
+        
+        for lib in libs:
+            question_file = f'{generated_question_folder}/{dataset}/{oflag}_{lib}.json'
+            question_data = utils.load_json(question_file)
             res_lib_folder = f'{res_folder}/{dataset}/{lib}'
             if not os.path.exists(res_lib_folder): os.makedirs(res_lib_folder)
-            cs_questions = lib_question['code_snippets']
             model_acs.refresh_conversation()
 
-            for cs_question in cs_questions:
+            for cs_question in question_data:
                 cs_name = cs_question['cs_name']
                 question = cs_question['question']
                 cs_api_dict = api_dict[cs_name]
@@ -77,15 +75,10 @@ def get_result_pipline(datasets, original:bool):
 
 # question:
 # [
-#   { "lib": "xxx",
-#     "code_snippets": [
-#       { "cs_name": "xxx",
-#         "question": "xxx"
-#       },
-#       {...}
-#     ]
+#   { "cs_name": "xxx",
+#     "question": "xxx"
 #   },
-#   {xxx}
+#   {...}
 # ]
 def generate_question_pipeline(datasets, libs, sum:bool, ans:bool, with_comments:bool, original:bool):
     logger = logging.getLogger(__name__)
@@ -102,14 +95,12 @@ def generate_question_pipeline(datasets, libs, sum:bool, ans:bool, with_comments
     oflag = 'original' if original else 'prompted'
 
     for dataset in datasets:
-        res_file = f'{res_folder}/{oflag}_{dataset}.json'
         api_file = f'{api_elements_folder}/API_elements_{dataset}.json'
         api_dict = utils.load_json(api_file)
-        question_res = []
-
+        
         for lib in libs:
-            question_res.append({"lib": lib, "code_snippets": []})
-            lib_res = question_res[-1]["code_snippets"]
+            question_res = []
+            res_file = f'{res_folder}/{dataset}/{oflag}_{lib}.json'
             input_folder_path = f'{dataset_code_folder}/{dataset}/{lib}'
             code_snippets = os.listdir(input_folder_path)
 
@@ -130,9 +121,9 @@ def generate_question_pipeline(datasets, libs, sum:bool, ans:bool, with_comments
                     prompt_list = prmp_com.generate_prompt_multiple_posts(post_folder, sum, ans, with_comments)
                 # generate question
                 question = ques_gen.generate_question(code, api_elems, prompt_list, original)
-                lib_res.append({"cs_name": cs_name, "question": question})
+                question_res.append({"cs_name": cs_name, "question": question})
 
-        logger.info(f'finish generate question for dataset {dataset},save to: {res_file}')
-        utils.write_json(res_file,question_res)
-
+            logger.info(f'finish generate question for lib {lib},save to: {res_file}')
+            utils.write_json(res_file,question_res)
+        logger.info(f'finish generate question for dataset {dataset}')
     pass

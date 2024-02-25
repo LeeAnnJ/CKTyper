@@ -6,14 +6,20 @@ python main.py --mode online --pattern pipeline --sum
 
 for server: ../../Python-3.11.0/python main.py --mode online --pattern pipeline --sum
 
-note: java version: openjdk 17.0.2
+## note: 
+java version: openjdk 17.0.2
 server java version openjdk 11.0.19
 
 java -cp LuceneIndexer/LuceneIndexer.jar LuceneCodeIndexer -online ../data/Dataset_without_wrapperclasses/StatType-SO/hibernate/hibernate_class_1.java 10 ../Evaluation/Lucene_top10/
 
 ./python -m pip install re_gpt
 
+gpu info: nvidia-smi
+
+screen: https://zhuanlan.zhihu.com/p/622993407
+
 ## 错误日志：
+### 2-24
 StatType-SO jdk Class_16 Lucene index searching fault:
 ```
 org.apache.lucene.queryparser.classic.ParseException: Cannot parse code: too many boolean clauses

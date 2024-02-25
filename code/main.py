@@ -58,16 +58,17 @@ def online_operation_pipline(sum, ans, with_comments, original):
     # logger.info('Start to search similar code snippets...')
     # CodeSearch.lucene_search_pipline(datasets, libs, lucene_top_k)
     # sim_result_file = SimCal.cal_similarity_pipeline(datasets, libs, lucene_top_k, sim_top_k)
-    # 3
-    sim_result_file = '../Evaluation/Sim_post_results//sim_result_top_3.json'
-    logger.info('Start to retrieve posts from SO...')
-    GetResPip.retrieve_posts_pipeline(sim_result_file)
+    # # 3 
+    # # laptop: 4481.0625s
+    # sim_result_file = '../Evaluation/Sim_post_results//sim_result_top_3.json'
+    # logger.info('Start to retrieve posts from SO...')
+    # GetResPip.retrieve_posts_pipeline(sim_result_file)
     # # 4 ~ 5
     # logger.info('Start to generate questions...')
     # GetResPip.generate_question_pipeline(datasets, libs, sum, ans, with_comments, original)
     # # 6 ~ 7
     # logger.info('Start to get type infrence result...')
-    # GetResPip.get_result_pipline(datasets, original)
+    # GetResPip.get_result_pipline(datasets, libs, original)
     # logger.info('Finish online operation pipline!')
     jpype.shutdownJVM()
     pass
@@ -89,7 +90,7 @@ if __name__ == '__main__':
             start_time = time.process_time()
             online_operation_pipline(args.sum, args.ans, args.with_comments, args.original)
             end_time = time.process_time()
-            print ('Online pipeline processing time:', end_time - start_time) # ?
+            print ('Online pipeline processing time:', end_time - start_time)
             pass
         else:
             print('Invalid online_pattern: {}'.format(pattern))

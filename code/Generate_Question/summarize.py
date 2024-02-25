@@ -1,7 +1,8 @@
 import re
-from transformers import PegasusForConditionalGeneration, PegasusTokenizer
-import sys
 import os
+import sys
+import torch
+from transformers import PegasusForConditionalGeneration, PegasusTokenizer
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import config.text_summarizer_env as ENV
@@ -14,6 +15,9 @@ class TextSummarizer(object):
     def __init__(self) -> None:
         self.model = PegasusForConditionalGeneration.from_pretrained(self.model_name)
         self.tokenizer = PegasusTokenizer.from_pretrained(self.model_name)
+        # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        device = torch.device(f'cuda:{ENV.CUDADEVICE}')
+        self.model.to(device)
         pass
     
     # remove code and tags from body
@@ -37,7 +41,15 @@ class TextSummarizer(object):
         splited_text = self.split_text(text)
         for input in splited_text:
             input_ids = self.tokenizer.encode(input, return_tensors="pt", max_length=512, truncation=True)
+            input_ids = input_ids.to(self.model.device)
             summary_ids = self.model.generate(input_ids, max_length=512, length_penalty=1.0, num_beams=4, early_stopping=True)
             summary += self.tokenizer.decode(summary_ids[0], skip_special_tokens=True)
         return summary
+    pass
+
+if __name__ == '__main__':
+    text = ''''''
+    summarizer = TextSummarizer()
+    summary = summarizer.generate_summary_pegasus(text)
+    print(summary)
     pass

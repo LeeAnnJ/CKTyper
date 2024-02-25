@@ -3,7 +3,7 @@ import json
 
 # todo: utilize the function to other places
 def load_json(json_file):
-    with open(json_file,'r') as jf:
+    with open(json_file,'r',errors='ignore') as jf:
         data = json.load(jf)
     return data
 
