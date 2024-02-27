@@ -1,12 +1,13 @@
 import os
 import sys
+import time
 import jpype
 import logging
 import configparser
 from Get_TypeInference_Result.singal import combine_res_data
 from Generate_Question.combine_prompt import PromptCombiner
 from Generate_Question.generate_question import QuestionGenerator
-from Get_TypeInference_Result.call_chatgpt import ModelAccesser
+from Get_TypeInference_Result.call_chatgpt import ModelAccesser_V2 as ModelAccesser
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import utils
@@ -41,6 +42,7 @@ def retrieve_posts_pipeline(result_file):
 def get_result_pipline(datasets,libs,original:bool):
     logger = logging.getLogger(__name__)
     config = configparser.ConfigParser()
+    config.read('./config/file_structure.ini')
     api_elements_folder = config['resource']['API_ELEMENTS_FOLDER']
     generated_question_folder = config['intermediate']['GENERATED_QUESTOIN_FOLDER']
     if original: res_folder = config['result']['RESULT_ORIGINAL_FOLDER']
@@ -48,6 +50,9 @@ def get_result_pipline(datasets,libs,original:bool):
     model_acs = ModelAccesser()
     res_head = ["Node","ChatGPT Answer","Truth"]
     oflag = 'original' if original else 'prompted'
+    # todo: add error handling 
+    finished = [],
+    not_finished = []
 
     for dataset in datasets:
         api_file = f'{api_elements_folder}/API_elements_{dataset}.json'
@@ -58,19 +63,27 @@ def get_result_pipline(datasets,libs,original:bool):
             question_data = utils.load_json(question_file)
             res_lib_folder = f'{res_folder}/{dataset}/{lib}'
             if not os.path.exists(res_lib_folder): os.makedirs(res_lib_folder)
-            model_acs.refresh_conversation()
+            # model_acs.refresh_conversation()
 
             for cs_question in question_data:
                 cs_name = cs_question['cs_name']
+                if cs_name in finished: continue
                 question = cs_question['question']
                 cs_api_dict = api_dict[cs_name]
                 logger.info(f"get result for: {cs_name}")
-                res_json = model_acs.get_result(question)
+                try:
+                    res_json = model_acs.get_result(question)
+                except:
+                    not_finished.append(cs_name)
+                    continue
                 # handle & save result
                 result_file = f'{res_lib_folder}/{cs_name}.csv'
                 res_data = combine_res_data(cs_api_dict,res_json)
                 logger.info(f"save result to: {result_file}")
                 utils.write_csv(result_file,res_data,res_head)
+                time.sleep(0.5) # avoid sending qustions too frequently
+
+    logger.info(f'not finished code snippets: {not_finished}')
     pass
 
 # question:
@@ -87,9 +100,8 @@ def generate_question_pipeline(datasets, libs, sum:bool, ans:bool, with_comments
     dataset_code_folder = config['resource']['DATASET_CODE_FOLDER']
     api_elements_folder = config['resource']['API_ELEMENTS_FOLDER']
     searched_post_folder = config['intermediate']['SEARCHED_POST_FOLDER']
-    res_folder = config['intermediate']['GENERATED_QUESTOIN_FOLDER']
-    if not os.path.exists(res_folder): os.makedirs(res_folder)
-    
+    generated_question_folder = config['intermediate']['GENERATED_QUESTOIN_FOLDER']
+
     prmp_com = PromptCombiner()
     ques_gen = QuestionGenerator()
     oflag = 'original' if original else 'prompted'
@@ -97,10 +109,12 @@ def generate_question_pipeline(datasets, libs, sum:bool, ans:bool, with_comments
     for dataset in datasets:
         api_file = f'{api_elements_folder}/API_elements_{dataset}.json'
         api_dict = utils.load_json(api_file)
-        
+        res_folder = f'{generated_question_folder}/{dataset}'
+        if not os.path.exists(res_folder): os.makedirs(res_folder)
+
         for lib in libs:
             question_res = []
-            res_file = f'{res_folder}/{dataset}/{oflag}_{lib}.json'
+            res_file = f'{res_folder}/{oflag}_{lib}.json'
             input_folder_path = f'{dataset_code_folder}/{dataset}/{lib}'
             code_snippets = os.listdir(input_folder_path)
 

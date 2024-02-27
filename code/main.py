@@ -8,6 +8,7 @@ import config.task_setting as TS
 import Code_Similarity_Calculate.Calculate_Code_Similarity as SimCal
 import Code_Similarity_Calculate.Lucene_Index_Search as CodeSearch
 import Get_TypeInference_Result.pipeline as GetResPip
+from Evaluation_Result import precision_recall as CalPR
 logging.basicConfig(level = logging.INFO,format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 def set_arg_parser():
@@ -45,6 +46,7 @@ def set_arg_parser():
 # evaluation:
 # . calculate precision for each code snippet, each lib and each dataset
 
+# todo: improving error handling
 def online_operation_pipline(sum, ans, with_comments, original):
     logger = logging.getLogger(__name__)
     datasets = TS.DATASETS
@@ -64,15 +66,24 @@ def online_operation_pipline(sum, ans, with_comments, original):
     # logger.info('Start to retrieve posts from SO...')
     # GetResPip.retrieve_posts_pipeline(sim_result_file)
     # # 4 ~ 5
+    # # server: 1895.362702536s (StatType-SO) + 482.33577335499996s(Short-SO)
     # logger.info('Start to generate questions...')
     # GetResPip.generate_question_pipeline(datasets, libs, sum, ans, with_comments, original)
-    # # 6 ~ 7
-    # logger.info('Start to get type infrence result...')
-    # GetResPip.get_result_pipline(datasets, libs, original)
-    # logger.info('Finish online operation pipline!')
+    # 6 ~ 7
+    # laptop: 1057.409625s(StatTypeSO)
+    logger.info('Start to get type infrence result...')
+    GetResPip.get_result_pipline(datasets, libs, original)
+    logger.info('Finish online operation pipline!')
     jpype.shutdownJVM()
     pass
 
+def evaluation_operation(original:bool):
+    logger = logging.getLogger(__name__)
+    datasets = TS.DATASETS
+    libs = TS.LIBS
+    logger.info('Start to calculate precision and recall...')
+    CalPR.cal_precision_recall_pipline(datasets, libs, original)
+    pass
 
 # exp: python main.py --mode online --pattern singal --sum --ans --with_comments
 if __name__ == '__main__':
@@ -95,6 +106,13 @@ if __name__ == '__main__':
         else:
             print('Invalid online_pattern: {}'.format(pattern))
             sys.exit(1)
+        pass
+    elif mode == 'evaluation':
+        print("start evaluation mode...")
+        start_time = time.process_time()
+        evaluation_operation(args.original)
+        end_time = time.process_time()
+        print ('Evaluation pipeline processing time:', end_time - start_time)
         pass
     else:
         print('Invalid mode: {}'.format(mode))

@@ -1,7 +1,14 @@
 **quick start:**
 ```
-cd CK4TI/code
+cd CK4TI
+pip install -r requirements.txt
+cd code
 python main.py --mode online --pattern pipeline --sum
+```
+
+**evaluation**:
+```
+python main.py --mode evaluation
 ```
 
 for server: ../../Python-3.11.0/python main.py --mode online --pattern pipeline --sum
@@ -39,4 +46,18 @@ Caused by: org.apache.lucene.search.IndexSearcher$TooManyClauses: maxClauseCount
         at org.apache.lucene.queryparser.classic.QueryParser.Query(QueryParser.java:233)
         at org.apache.lucene.queryparser.classic.QueryParser.TopLevelQuery(QueryParser.java:223)
         at org.apache.lucene.queryparser.classic.QueryParserBase.parse(QueryParserBase.java:137)
+```
+### 2-25
+no API elements
+- StatType-SO
+  - JDK Class_8
+- Short-SO 
+  - Android ad 11
+  - GWT gt 19
+  - JDK jdk 11 12 13 19
+  
+### 2-27:
+StatType-SO Android50: too long question
+```
+openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 16385 tokens. However, your messages resulted in 17295 tokens. Please reduce the length of the messages. (request id: 20240227155401419432838jVf7oGXJ)", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
 ```
