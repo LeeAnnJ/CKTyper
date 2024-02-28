@@ -4,7 +4,7 @@ import time
 import jpype
 import logging
 import configparser
-from Get_TypeInference_Result.singal import combine_res_data
+from Get_TypeInference_Result.singal import combine_res_data, handle_remain_api
 from Generate_Question.combine_prompt import PromptCombiner
 from Generate_Question.generate_question import QuestionGenerator
 from Get_TypeInference_Result.call_chatgpt import ModelAccesser_V2 as ModelAccesser
@@ -13,14 +13,11 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 import utils
 
 # rertieve posts form SO dataset by lucene index
-def retrieve_posts_pipeline(result_file):
-    config = configparser.ConfigParser()
-    config.read('./config/file_structure.ini')
-    searched_post_folder = config['intermediate']['SEARCHED_POST_FOLDER']
-
+def retrieve_posts_pipeline(fs_config, result_file):
+    searched_post_folder = fs_config['SEARCHED_POST_FOLDER']
     PostIndexer = jpype.JClass("LucenePostIndexer")
-
     result_json = utils.load_json(result_file)
+    
     for ds_res in result_json:
         dataset = ds_res['dataset']
         dataset_folder = f'{searched_post_folder}/{dataset}'
@@ -35,23 +32,18 @@ def retrieve_posts_pipeline(result_file):
                 topk_sim_postIds = cs_res['topk_sim_postIds']
                 for id in topk_sim_postIds:
                     PostIndexer.main(['-online',id,cs_folder])
-    
     pass
 
 
-def get_result_pipline(datasets,libs,original:bool):
+def get_result_pipline(fs_config, datasets, libs, finished, original:bool):
     logger = logging.getLogger(__name__)
-    config = configparser.ConfigParser()
-    config.read('./config/file_structure.ini')
-    api_elements_folder = config['resource']['API_ELEMENTS_FOLDER']
-    generated_question_folder = config['intermediate']['GENERATED_QUESTOIN_FOLDER']
-    if original: res_folder = config['result']['RESULT_ORIGINAL_FOLDER']
-    else: res_folder = config['result']['RESULT_PROMPTED_FOLDER']
+    api_elements_folder = fs_config['API_ELEMENTS_FOLDER']
+    generated_question_folder = fs_config['GENERATED_QUESTOIN_FOLDER']
+    if original: res_folder = fs_config['RESULT_ORIGINAL_FOLDER']
+    else: res_folder = fs_config['RESULT_PROMPTED_FOLDER']
     model_acs = ModelAccesser()
     res_head = ["Node","ChatGPT Answer","Truth"]
     oflag = 'original' if original else 'prompted'
-    # todo: add error handling 
-    finished = [],
     not_finished = []
 
     for dataset in datasets:
@@ -59,6 +51,7 @@ def get_result_pipline(datasets,libs,original:bool):
         api_dict = utils.load_json(api_file)
         
         for lib in libs:
+            start_time = time.time()
             question_file = f'{generated_question_folder}/{dataset}/{oflag}_{lib}.json'
             question_data = utils.load_json(question_file)
             res_lib_folder = f'{res_folder}/{dataset}/{lib}'
@@ -70,21 +63,39 @@ def get_result_pipline(datasets,libs,original:bool):
                 if cs_name in finished: continue
                 question = cs_question['question']
                 cs_api_dict = api_dict[cs_name]
+
                 logger.info(f"get result for: {cs_name}")
-                try:
-                    res_json = model_acs.get_result(question)
-                except:
+                result_file = f'{res_lib_folder}/{cs_name}.csv'
+                res_data = []
+                remain_len = len(cs_api_dict)
+                prev_num = remain_len+1
+                remain_api = None
+                while remain_len>0 and remain_len<prev_num:
+                    try: res_json = model_acs.get_result(question)
+                    except: break
+                    # handle result
+                    remain_api = combine_res_data(cs_api_dict,res_json,res_data)
+                    prev_num = remain_len
+                    remain_len = len(remain_api)
+
+                if len(res_data)==0 and remain_api is None:
                     not_finished.append(cs_name)
                     continue
-                # handle & save result
-                result_file = f'{res_lib_folder}/{cs_name}.csv'
-                res_data = combine_res_data(cs_api_dict,res_json)
-                logger.info(f"save result to: {result_file}")
-                utils.write_csv(result_file,res_data,res_head)
-                time.sleep(0.5) # avoid sending qustions too frequently
+                else:
+                    handle_remain_api(remain_api,res_data)
+                    #save result
+                    finished.append(cs_name)
+                    logger.info(f"save result to: {result_file}")
+                    utils.write_csv(result_file,res_data,res_head)
+                    time.sleep(0.5) # avoid sending qustions too frequently
+            
+            end_time = time.time()
+            logger.info(f'get result time for lib {lib}: {end_time - start_time}' )
 
+    logger.info(f'finished code snippets: {finished}, {len(finished)} altogether.')
     logger.info(f'not finished code snippets: {not_finished}')
     pass
+
 
 # question:
 # [
@@ -93,14 +104,12 @@ def get_result_pipline(datasets,libs,original:bool):
 #   },
 #   {...}
 # ]
-def generate_question_pipeline(datasets, libs, sum:bool, ans:bool, with_comments:bool, original:bool):
+def generate_question_pipeline(fs_config, datasets, libs, sum:bool, ans:bool, with_comments:bool, original:bool):
     logger = logging.getLogger(__name__)
-    config = configparser.ConfigParser()
-    config.read('./config/file_structure.ini')
-    dataset_code_folder = config['resource']['DATASET_CODE_FOLDER']
-    api_elements_folder = config['resource']['API_ELEMENTS_FOLDER']
-    searched_post_folder = config['intermediate']['SEARCHED_POST_FOLDER']
-    generated_question_folder = config['intermediate']['GENERATED_QUESTOIN_FOLDER']
+    dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
+    api_elements_folder = fs_config['API_ELEMENTS_FOLDER']
+    searched_post_folder = fs_config['SEARCHED_POST_FOLDER']
+    generated_question_folder = fs_config['GENERATED_QUESTOIN_FOLDER']
 
     prmp_com = PromptCombiner()
     ques_gen = QuestionGenerator()

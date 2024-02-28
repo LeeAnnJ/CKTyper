@@ -201,13 +201,11 @@ def cal_similarity_singal(code_path:str, lucene_topk_paths,calculator:Similarity
 #   },
 #   {...}
 # ]
-def cal_similarity_pipeline(datasets,libs,lucene_topk,similarity_topk):
+def cal_similarity_pipeline(fs_config, datasets,libs,lucene_topk,similarity_topk):
     logger = logging.getLogger(__name__)
-    config = configparser.ConfigParser()
-    config.read('./config/file_structure.ini')
-    dataset_code_folder = config['resource']['DATASET_CODE_FOLDER']
-    eval_path = config['result']['EVAL_PATH']
-    sim_post_result_folder = config['intermediate']['SIM_POST_RESULT_FOLDER']
+    dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
+    eval_path = fs_config['EVAL_PATH']
+    sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
     if not os.path.exists(sim_post_result_folder): os.makedirs(sim_post_result_folder)
     similarity_calculator = SimilarityCalculator()
     sim_result = []

@@ -125,14 +125,12 @@ class ModelAccesser_V2(object):
             return
         self.cur_account_num = (self.cur_account_num+1)%self.account_num
         account = self.accounts[self.cur_account_num]
-        del self.gpt
         self.gpt = openai.OpenAI(api_key=account["api_key"],base_url=account["base_url"])
         self.logger.info(f"Change api_key successfully.")
-        pass
-
+        return
 
     def ask_question(self, question:str):
-        messages = self.base_message
+        messages = self.base_message.copy()
         messages.append({"role": "user", "content": question})
         time = 0
         while(True):
@@ -144,27 +142,44 @@ class ModelAccesser_V2(object):
                 response = complication.choices[0].message.content
                 # self.logger.info(f"model accesser recieved a response.")
                 return response
-            except:
+            except Exception as e:
+                time += 1
+                print(e)
                 if time%3==0:
                     self.logger.error("Failed to get response, try switching account.")
-                    self.sleep(5)
-                    self.change_account()
+                    return ""
                 else:
                     self.logger.error(f"Failed to get response, try again in 60 seconds.")
                     sleep(60)
-                time += 1
 
+
+    def extract_keys_and_values(self, data):
+        res = {}
+        # keys = []
+        # values = []
+        def extract(obj):
+            if isinstance(obj, dict):
+                for key, value in obj.items():                   
+                    if isinstance(value, (dict, list)):
+                        extract(value)
+                    else:
+                        res[key] = value
+            elif isinstance(obj, list):
+                for item in obj:
+                    extract(item)
+        extract(data)
+        return res
+    
     # split json object from response
-    # todo: json object is virable, be careful
     def handle_response(self,response):
-        result_string = re.findall(r'\{([^{}]*)\}', response)
+        result_string = re.findall(r'\{[\w\W]*\}', response)
         result_obj = None
         for result in result_string:
             result = re.sub(r'//.*', '', result)
-            json_str = "{" + result + "}"
+            json_str = result.replace("\'", '\"')
             try: 
                 obj = json.loads(json_str)
-                result_obj = obj
+                result_obj = self.extract_keys_and_values(obj)
                 break
             except:
                 continue
@@ -176,7 +191,7 @@ class ModelAccesser_V2(object):
         response = self.ask_question(prompt)
         result_json = self.handle_response(response)
         while result_json is None:
-            if time > self.account_num:
+            if time >= self.account_num:
                 raise Exception('failed to get result for prompt, please check your question and configuration.')
             self.logger.warn(f'no json object found in response: "{response}", try switching account...')
             sleep(10)

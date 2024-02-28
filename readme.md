@@ -25,6 +25,19 @@ gpu info: nvidia-smi
 
 screen: https://zhuanlan.zhihu.com/p/622993407
 
+### 2.28
+call gpt time:
+
+StatType-SO
+|lib|Android|gwt|hibernate|joda_time|jdk|xstream|
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+|time(s)|68.46875|71.46875|44.15625|132.41888|35.58990|258.1625015|
+
+Short-SO
+|lib|Android|gwt|hibernate|joda_time|jdk|xstream|
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+|time(s)|||||52.236428976059||
+
 ## 错误日志：
 ### 2-24
 StatType-SO jdk Class_16 Lucene index searching fault:
@@ -55,9 +68,3 @@ no API elements
   - Android ad 11
   - GWT gt 19
   - JDK jdk 11 12 13 19
-  
-### 2-27:
-StatType-SO Android50: too long question
-```
-openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 16385 tokens. However, your messages resulted in 17295 tokens. Please reduce the length of the messages. (request id: 20240227155401419432838jVf7oGXJ)", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
-```

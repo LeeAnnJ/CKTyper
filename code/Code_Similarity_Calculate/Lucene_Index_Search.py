@@ -1,16 +1,12 @@
-# todo: add lucene index searching
 import os
 import jpype
 import logging
 import configparser
 
-# todo: modify configuration reading
 # rertieve posts form SO dataset by lucene index
-def lucene_search_pipline(datasets,libs,lucene_top_k):
-    config = configparser.ConfigParser()
-    config.read('./config/file_structure.ini')
-    dataset_code_folder = config['resource']['DATASET_CODE_FOLDER']
-    eval_path = config['result']['EVAL_PATH']
+def lucene_search_pipline(fs_config, datasets,libs,lucene_top_k):
+    dataset_code_folder = fs_config['resource']['DATASET_CODE_FOLDER']
+    eval_path = fs_config['result']['EVAL_PATH']
     lucene_folder = f'{eval_path}/Lucene_top{lucene_top_k}'
     if not os.path.exists(lucene_folder):
         os.makedirs(lucene_folder)

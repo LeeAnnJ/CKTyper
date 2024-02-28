@@ -6,7 +6,7 @@ import configparser
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import utils
 
-miss_info = "\"<FQN not provided, as it seems to be a custom interface or not present in the code snippet>\""
+miss_info = "<FQN not provided, as it seems to be a custom interface or not present in the code snippet>"
 
 
 # return: [total,correct,wrong,precision,recall]
@@ -18,7 +18,7 @@ def cal_precision_recall_singal(result_file):
     wrong = 0
     res_data = []
     for line in data:
-        if line[0].startswith('Total'):
+        if line[0].startswith('Total:'):
             break
         res_line = line[:3]
         ans = line[1]
@@ -76,8 +76,9 @@ def cal_precision_recall_pipline(datasets,libs,original:bool):
                 lib_correct += int(cs_statistic[1])
                 lib_wrong += int(cs_statistic[2])
                 lib_statistic.append([cs_name]+cs_statistic)
-            
-            lib_precision = lib_correct / (lib_correct + lib_wrong)
+
+            if (lib_correct+lib_wrong)==0: lib_precision = 0
+            else: lib_precision = lib_correct / (lib_correct + lib_wrong)
             lib_recall = lib_correct / lib_total
             lib_info = [lib_total, lib_correct,lib_wrong, lib_precision, lib_recall]
             lib_statistic.append(["Sum"]+lib_info)
