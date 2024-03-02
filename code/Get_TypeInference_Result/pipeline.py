@@ -17,7 +17,7 @@ def retrieve_posts_pipeline(fs_config, result_file):
     searched_post_folder = fs_config['SEARCHED_POST_FOLDER']
     PostIndexer = jpype.JClass("LucenePostIndexer")
     result_json = utils.load_json(result_file)
-    
+
     for ds_res in result_json:
         dataset = ds_res['dataset']
         dataset_folder = f'{searched_post_folder}/{dataset}'
@@ -60,29 +60,33 @@ def get_result_pipline(fs_config, datasets, libs, finished, original:bool):
 
             for cs_question in question_data:
                 cs_name = cs_question['cs_name']
-                if cs_name in finished: continue
+                if cs_name not in finished: continue
                 question = cs_question['question']
                 cs_api_dict = api_dict[cs_name]
 
                 logger.info(f"get result for: {cs_name}")
                 result_file = f'{res_lib_folder}/{cs_name}.csv'
                 res_data = []
-                remain_len = len(cs_api_dict)
+                remain_len = len(cs_api_dict)+1
                 prev_num = remain_len+1
                 remain_api = None
                 while remain_len>0 and remain_len<prev_num:
                     try: res_json = model_acs.get_result(question)
                     except: break
                     # handle result
-                    remain_api = combine_res_data(cs_api_dict,res_json,res_data)
+                    remain_api,res_data = combine_res_data(cs_api_dict,res_json,res_data)
                     prev_num = remain_len
                     remain_len = len(remain_api)
+                    # print("res_data len: ",len(res_data),"remain_api_len: ",remain_len,"prev_num: ",prev_num)
+                    # print("res_json len",len(res_json))
+                    time.sleep(0.5)
 
                 if len(res_data)==0 and remain_api is None:
                     not_finished.append(cs_name)
                     continue
                 else:
-                    handle_remain_api(remain_api,res_data)
+                    print("res_data len: ",len(res_data))
+                    res_data = handle_remain_api(remain_api,res_data)
                     #save result
                     finished.append(cs_name)
                     logger.info(f"save result to: {result_file}")

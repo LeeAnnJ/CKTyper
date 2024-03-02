@@ -8,7 +8,7 @@ def combine_res_data(api_dict,json_res,prev_data):
             prev_data.append([node,ans,truth])
         else:
             remain_api.append(dic)
-    return remain_api
+    return remain_api,prev_data
 
 def handle_remain_api(remain_dic,prev_data):
     ans = "<FQN not provided, as it seems to be a custom interface or not present in the code snippet>"
@@ -16,7 +16,7 @@ def handle_remain_api(remain_dic,prev_data):
         node = dic["Node"]
         truth = dic["Truth"]
         prev_data.append([node,ans,truth])
-
+    return prev_data
 
 if __name__ == '__main__':
     api_dict = [

@@ -1,9 +1,12 @@
 DATASETS = ["StatType-SO"] # ["StatType-SO","Short-SO"]
-# need rerun: Short-SO jdk
 LIBS = ["android", "gwt", "hibernate", "joda_time", "jdk", "xstream"] # ["android", "gwt", "hibernate", "joda_time", "jdk", "xstream"]
 LUCENE_TOP_K = 10
 SIMILARITY_TOP_K = 3
 
-# FINISHED = []
+# for StatType-SO
+# FINISHED = ["Android39","JodaTime21","JodaTime25","hibernate_class_13","hibernate_class_14","hibernate_class_2","hibernate_class_39","hibernate_class_48","hibernate_class_50","hibernate_class_8","gwt_class_19","gwt_class_29"]
+FINISHED = ["hibernate_class_1"]
 
-FINISHED = ["Android02","Android05","Android06","Android14","Android16","Android17","Android18","Android24","Android26","Android28","Android30","Android44","Android45","Android46","gwt_class_6","gwt_class_9","gwt_class_14","gwt_class_15","gwt_class_20","gwt_class_22","gwt_class_28","gwt_class_30","gwt_class_32","gwt_class_34","gwt_class_35","gwt_class_36","gwt_class_39","gwt_class_47","gwt_class_48","hibernate_class_2","hibernate_class_3","hibernate_class_4","hibernate_class_5","hibernate_class_6","hibernate_class_8","hibernate_class_9","hibernate_class_11","hibernate_class_12","hibernate_class_13","hibernate_class_16","hibernate_class_17","hibernate_class_19","hibernate_class_20","hibernate_class_21","hibernate_class_23","hibernate_class_24","hibernate_class_25","hibernate_class_26","hibernate_class_27","hibernate_class_28","hibernate_class_29","hibernate_class_30","hibernate_class_31","hibernate_class_32","hibernate_class_33","hibernate_class_34","hibernate_class_35","hibernate_class_36","hibernate_class_38","hibernate_class_39","hibernate_class_40","hibernate_class_41","hibernate_class_44","hibernate_class_45","hibernate_class_46","hibernate_class_47","hibernate_class_49","Class_4","Class_13","Class_14","Class_19","Class_21","JodaTime02","JodaTime06","JodaTime08","JodaTime10","JodaTime12","JodaTime14","JodaTime15","JodaTime19","JodaTime21","JodaTime23","JodaTime26","JodaTime27","JodaTime34","JodaTime35","JodaTime36","JodaTime37","JodaTime42","JodaTime43","JodaTime47","xstream_class_1","xstream_class_2","xstream_class_4","xstream_class_5","xstream_class_9","xstream_class_10","xstream_class_11","xstream_class_13","xstream_class_14","xstream_class_15","xstream_class_20","xstream_class_24","xstream_class_25","xstream_class_31","xstream_class_43"]
+# for Short-SO prompted
+# FINISHED = ["ad1","xt2","xt8"]
+# FINISHED = []

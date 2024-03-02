@@ -15,8 +15,8 @@ class TextSummarizer(object):
     def __init__(self) -> None:
         self.model = PegasusForConditionalGeneration.from_pretrained(self.model_name)
         self.tokenizer = PegasusTokenizer.from_pretrained(self.model_name)
-        # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        device = torch.device(f'cuda:{ENV.CUDADEVICE}')
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        # device = torch.device(f'cuda:{ENV.CUDADEVICE}')
         self.model.to(device)
         pass
     

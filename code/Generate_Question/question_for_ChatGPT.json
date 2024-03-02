@@ -1,5 +1,5 @@
 {
-    "head": "Please infer the fully qualified names (FQNs) of the given API elements. Given a code snippet, you should provide an answer in Json format, such as  {'API element': '<FQN>' , 'API element': '<FQN>' , ...}.\nJava Code:\n\n",
+    "head": "Please infer the fully qualified names (FQNs) of the given API elements. Given a code snippet, you should provide an answer in Json format, such as  {\"<API element>\": \"<FQN>\" , \"<API element>\": \"<FQN>\" , ...}.\nJava Code:\n\n",
     "code": null,
     "api_text":"\n\nAPI elements:",
     "api":null,

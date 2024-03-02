@@ -140,7 +140,7 @@ class ModelAccesser_V2(object):
                     messages=messages
                 )
                 response = complication.choices[0].message.content
-                # self.logger.info(f"model accesser recieved a response.")
+                self.logger.debug(f"recieved a response:{response}")
                 return response
             except Exception as e:
                 time += 1
@@ -149,8 +149,8 @@ class ModelAccesser_V2(object):
                     self.logger.error("Failed to get response, try switching account.")
                     return ""
                 else:
-                    self.logger.error(f"Failed to get response, try again in 60 seconds.")
-                    sleep(60)
+                    self.logger.error(f"Failed to get response, try again in 30 seconds.")
+                    sleep(30)
 
 
     def extract_keys_and_values(self, data):
@@ -173,17 +173,17 @@ class ModelAccesser_V2(object):
     # split json object from response
     def handle_response(self,response):
         result_string = re.findall(r'\{[\w\W]*\}', response)
-        result_obj = None
+        res_obj = {}
         for result in result_string:
             result = re.sub(r'//.*', '', result)
             json_str = result.replace("\'", '\"')
             try: 
                 obj = json.loads(json_str)
-                result_obj = self.extract_keys_and_values(obj)
-                break
+                extracted_obj = self.extract_keys_and_values(obj)
+                res_obj.update(extracted_obj)
             except:
                 continue
-        return result_obj
+        return res_obj
 
 
     def get_result(self,prompt:str):

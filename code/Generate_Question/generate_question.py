@@ -19,10 +19,10 @@ class QuestionGenerator:
 
 
 if __name__ == '__main__':
-    code = "here's code"
-    apis = ["api1","api2"]
-    prompt = ["prompt1","prompt2"]
-    qg = QuestionGenerator()
-    question = qg.generate_question(code,apis,prompt)
-    print(question)
+    # code = "here's code"
+    # apis = ['api1', 'api', 'api']
+    # prompt = ['xx', "xx", 'xx']
+    # qg = QuestionGenerator()
+    # question = qg.generate_question(code,apis,prompt)
+    # print(question)
     pass

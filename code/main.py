@@ -89,10 +89,11 @@ def online_operation_pipline(fs_config, sum, ans, with_comments, original):
     # GetResPip.retrieve_posts_pipeline(fs_config, sim_result_file)
     # # 4 ~ 5
     # # server: 1895.362702536s (StatType-SO) + 482.33577335499996s(Short-SO)
+    # # original laptop: 26.609375(StatType-SO) + 12.21875(Short-SO)
     # logger.info('Start to generate questions...')
     # GetResPip.generate_question_pipeline(fs_config, datasets, libs, sum, ans, with_comments, original)
     # 6 ~ 7
-    # laptop: 1120.809625s(StatTypeSO) + 4.890625 s(ShortSO)
+    # laptop:  8.171875s(StatTypeSO) + 4.890625 s(ShortSO)
     logger.info('Start to get type infrence result...')
     GetResPip.get_result_pipline(fs_config, datasets, libs, finished, original)
     logger.info('Finish online operation pipline!')

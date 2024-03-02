@@ -73,14 +73,9 @@ class PromptCombiner(object):
 
 
 if __name__ == '__main__':
-    # with open(file_name, 'r') as tf:
-    #     data = json.load(tf)
-    # print(type(data["Answers"][0]["Body"])
-    # with open(code_file, 'r') as cf:
-    #     code = cf.read()
-    # print(type(code))
     # combinber = PromptCombiner()
-    # prompt = combinber.generate_singal_prompt(code,data,True,True)
+    # base_folder = "..\Evaluation\SearchContentByPostId\StatType-SO\gwt\gwt_class_2"
+    # prompt = combinber.generate_prompt_multiple_posts(base_folder,True,False,False)
     # print(prompt)
     # with open('./test.json', 'w') as jf:
     #     json.dump(prompt, jf)
