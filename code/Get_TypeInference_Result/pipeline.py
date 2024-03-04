@@ -60,7 +60,7 @@ def get_result_pipline(fs_config, datasets, libs, finished, original:bool):
 
             for cs_question in question_data:
                 cs_name = cs_question['cs_name']
-                if cs_name not in finished: continue
+                if cs_name in finished: continue
                 question = cs_question['question']
                 cs_api_dict = api_dict[cs_name]
 
@@ -69,29 +69,31 @@ def get_result_pipline(fs_config, datasets, libs, finished, original:bool):
                 res_data = []
                 remain_len = len(cs_api_dict)+1
                 prev_num = remain_len+1
-                remain_api = None
+                remain_api = cs_api_dict.copy()
+                get_response = True
                 while remain_len>0 and remain_len<prev_num:
-                    try: res_json = model_acs.get_result(question)
-                    except: break
+                    try: 
+                        res_json = model_acs.get_result(question)
+                    except:
+                        get_response = False 
+                        break
                     # handle result
-                    remain_api,res_data = combine_res_data(cs_api_dict,res_json,res_data)
+                    remain_api,res_data = combine_res_data(remain_api,res_json,res_data)
                     prev_num = remain_len
                     remain_len = len(remain_api)
-                    # print("res_data len: ",len(res_data),"remain_api_len: ",remain_len,"prev_num: ",prev_num)
-                    # print("res_json len",len(res_json))
-                    time.sleep(0.5)
+                    # logger.debug("res_data len: ",len(res_data),"remain_api_len: ",remain_len,"prev_num: ",prev_num)
+                    time.sleep(0.5) # avoid sending qustions too frequently
 
-                if len(res_data)==0 and remain_api is None:
+                if len(res_data)==0 or not get_response:
                     not_finished.append(cs_name)
                     continue
                 else:
-                    print("res_data len: ",len(res_data))
+                    logger.debug("res_data len: ",len(res_data))
                     res_data = handle_remain_api(remain_api,res_data)
                     #save result
                     finished.append(cs_name)
                     logger.info(f"save result to: {result_file}")
                     utils.write_csv(result_file,res_data,res_head)
-                    time.sleep(0.5) # avoid sending qustions too frequently
             
             end_time = time.time()
             logger.info(f'get result time for lib {lib}: {end_time - start_time}' )

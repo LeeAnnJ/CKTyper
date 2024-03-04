@@ -79,7 +79,6 @@ def online_operation_pipline(fs_config, sum, ans, with_comments, original):
     jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
     # # 1 & 2
     # # laptop processing time: 140.890625s
-    # # todo: decrease the times of loading code snippets
     # logger.info('Start to search similar code snippets...')
     # CodeSearch.lucene_search_pipline(fs_config, datasets, libs, lucene_top_k)
     # sim_result_file = SimCal.cal_similarity_pipeline(fs_config, datasets, libs, lucene_top_k, sim_top_k)

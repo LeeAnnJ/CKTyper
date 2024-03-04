@@ -1,4 +1,4 @@
-def combine_res_data(api_dict,json_res,prev_data):
+def combine_res_data(api_dict, json_res, prev_data):
     remain_api = []
     for dic in api_dict:
         node = dic["Node"]
@@ -10,13 +10,15 @@ def combine_res_data(api_dict,json_res,prev_data):
             remain_api.append(dic)
     return remain_api,prev_data
 
-def handle_remain_api(remain_dic,prev_data):
+
+def handle_remain_api(remain_dic, prev_data):
     ans = "<FQN not provided, as it seems to be a custom interface or not present in the code snippet>"
     for dic in remain_dic:
         node = dic["Node"]
         truth = dic["Truth"]
         prev_data.append([node,ans,truth])
     return prev_data
+
 
 if __name__ == '__main__':
     api_dict = [
