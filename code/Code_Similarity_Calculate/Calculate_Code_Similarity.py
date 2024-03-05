@@ -150,7 +150,7 @@ def similarity_preprocess(config):
     pass
 
 
-# output: a list of top-k similar postIds, e.g. ['122','123']
+# output: a list of top-k similar postIds & similarity, e.g. ['122','123'],[1.0,0.9,0.9]
 def cal_similarity_singal(code_path:str, lucene_topk_paths,calculator:SimilarityCalculator, sim_topk):
     input_code_snippet = utils.load_text(code_path)
     # 6. Calculate CrystalBLEU for input code and each lucene code
@@ -162,7 +162,9 @@ def cal_similarity_singal(code_path:str, lucene_topk_paths,calculator:Similarity
     # 7. Sort the file_score_dict by value, and print the postid of the top-k similar code snippet
     sorted_file_score_dict = sorted(file_score_dict.items(), key=lambda x: x[1], reverse=True)
     topk_sim_files = [item[0] for item in list(islice(sorted_file_score_dict, sim_topk))]
+    sim_score = [item[1] for item in list(islice(sorted_file_score_dict, sim_topk))]
     topk_sim_postIds = [file.stem.split('_')[1] for file in topk_sim_files]
+    
     
     # most_similar_code_snippet_path = sorted_file_score_dict[0][0]
     # most_similar_CrystalBLEU_score = sorted_file_score_dict[0][1]
@@ -171,25 +173,21 @@ def cal_similarity_singal(code_path:str, lucene_topk_paths,calculator:Similarity
     # print(f"==>> The most similar code snippet's CrystalBLEU score is: {most_similar_CrystalBLEU_score}")
     # print(f"==>> The most similar code snippet's postId is: {most_similar_postId}")
 
-    return topk_sim_postIds
+    return topk_sim_postIds, sim_score
 
 
 # sim_result:
 # [
-#   { "dataset": "xxx",
-#     "libs": [
-#       { "lib": "xxx",
-#         "code_snippets": [
-#           { "cs_name": "xxx",
-#             "topk_sim_postIds": ["xxx","xxx","xxx"]
-#           },
-#           {...}
-#         ]
+#   { "lib": "xxx",
+#     "code_snippets": [
+#       { "cs_name": "xxx",
+#         "topk_sim_postIds": ["xxx","xxx","xxx"],
+#         "sim_scores": [0.9,0.8,0.7]
 #       },
-#       {xxx}
+#       {...}
 #     ]
 #   },
-#   {...}
+#   {xxx}
 # ]
 def cal_similarity_pipeline(fs_config, datasets,libs,lucene_topk,similarity_topk):
     logger = logging.getLogger(__name__)
@@ -198,15 +196,13 @@ def cal_similarity_pipeline(fs_config, datasets,libs,lucene_topk,similarity_topk
     sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
     if not os.path.exists(sim_post_result_folder): os.makedirs(sim_post_result_folder)
     similarity_calculator = SimilarityCalculator()
-    sim_result = []
 
     # 4. Load input code snippet
     for dataset in datasets:
-        sim_result.append({"dataset": dataset, "libs": []})
-        lib_result = sim_result[-1]["libs"]
+        sim_result = []
         for lib in libs:
-            lib_result.append({"lib": lib, "code_snippets": []})
-            code_snippets_result = lib_result[-1]["code_snippets"]
+            sim_result.append({"lib": lib, "code_snippets": []})
+            code_snippets_result = sim_result[-1]["code_snippets"]
             input_folder_path = f'{dataset_code_folder}/{dataset}/{lib}'
             code_snippets = os.listdir(input_folder_path)
             for cs in code_snippets:
@@ -219,14 +215,14 @@ def cal_similarity_pipeline(fs_config, datasets,libs,lucene_topk,similarity_topk
                 # print(f"==>> lucene_topk_dir: {lucene_topk_dir}")
                 lucene_topk_paths = Path(lucene_topk_dir).iterdir()
                 # 6. Calculate CrystalBLEU for input code and each lucene code
-                topk_sim_postIds = cal_similarity_singal(input_code_snippet_path,lucene_topk_paths,similarity_calculator,similarity_topk)
-                code_snippets_result.append({"cs_name": cs_name, "topk_sim_postIds": topk_sim_postIds})
+                topk_sim_postIds,sim_score = cal_similarity_singal(input_code_snippet_path,lucene_topk_paths,similarity_calculator,similarity_topk)
+                code_snippets_result.append({"cs_name": cs_name, "topk_sim_postIds": topk_sim_postIds, "sim_scores": sim_score})
     
-    # 8. Save the result to file
-    result_file_str = f'{sim_post_result_folder}/sim_result_top_{similarity_topk}.json'
-    logger.info(f'Finish code similarity calculation, start save result to file:{result_file_str}')
-    utils.write_json(result_file_str,sim_result)
-    logger.info(f'Finish save result to file:{result_file_str}')
+        # 8. Save the result to file
+        result_file_str = f'{sim_post_result_folder}/sim_top_{similarity_topk}_{dataset}.json'
+        logger.info(f'Finish code similarity calculation for dataset {dataset}, start save result...')
+        utils.write_json(result_file_str,sim_result)
+        logger.info(f'Finish save result to file:{result_file_str}')
     return result_file_str
 
 

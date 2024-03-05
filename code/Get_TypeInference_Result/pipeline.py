@@ -13,16 +13,14 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 import utils
 
 # rertieve posts form SO dataset by lucene index
-def retrieve_posts_pipeline(fs_config, result_file):
+def retrieve_posts_pipeline(fs_config, datasets, sim_top_k):
     searched_post_folder = fs_config['SEARCHED_POST_FOLDER']
     PostIndexer = jpype.JClass("LucenePostIndexer")
-    result_json = utils.load_json(result_file)
-
-    for ds_res in result_json:
-        dataset = ds_res['dataset']
+    for dataset in datasets:
+        sim_res_file = f'{searched_post_folder}/sim_top_{sim_top_k}_{dataset}.json'
+        result_json = utils.load_json(sim_res_file)
         dataset_folder = f'{searched_post_folder}/{dataset}'
-        lib_results = ds_res['libs']
-        for lib_res in lib_results:
+        for lib_res in result_json:
             lib = lib_res['lib']
             lib_folder = f'{dataset_folder}/{lib}'
             cs_results = lib_res['code_snippets']
@@ -61,6 +59,7 @@ def get_result_pipline(fs_config, datasets, libs, finished, original:bool):
             for cs_question in question_data:
                 cs_name = cs_question['cs_name']
                 if cs_name in finished: continue
+                # if cs_name not in finished: continue
                 question = cs_question['question']
                 cs_api_dict = api_dict[cs_name]
 

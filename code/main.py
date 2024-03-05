@@ -85,7 +85,7 @@ def online_operation_pipline(fs_config, sum, ans, with_comments, original):
     # # 3 
     # # laptop: 4481.0625s
     # logger.info('Start to retrieve posts from SO...')
-    # GetResPip.retrieve_posts_pipeline(fs_config, sim_result_file)
+    # GetResPip.retrieve_posts_pipeline(fs_config, datasets, sim_top_k)
     # # 4 ~ 5
     # # server: 1895.362702536s (StatType-SO) + 482.33577335499996s(Short-SO)
     # # original laptop: 26.609375(StatType-SO) + 12.21875(Short-SO)
