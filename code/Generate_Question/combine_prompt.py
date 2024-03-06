@@ -30,6 +30,7 @@ class PromptCombiner(object):
     def generate_prompt_singal_post(self, post, sum:bool,ans:bool, with_comments:bool):
         # get question text
         question = post["Question"]
+        ques_title = question["Title"]
         ques_text = self.summarizer.preprocess_body(question["Body"])
         if(sum):
             ques_text = self.summarizer.generate_summary_pegasus(ques_text)
@@ -54,7 +55,7 @@ class PromptCombiner(object):
                 ans_texts += ans_text
             prompt = ques_text + ans_texts
         else:
-            prompt = ques_text
+            prompt = ques_title + ques_text
         return prompt
     
     # generate context from related posts
