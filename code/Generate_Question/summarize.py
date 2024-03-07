@@ -15,20 +15,22 @@ class TextSummarizer(object):
     def __init__(self) -> None:
         self.model = PegasusForConditionalGeneration.from_pretrained(self.model_name)
         self.tokenizer = PegasusTokenizer.from_pretrained(self.model_name)
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        # device = torch.device(f'cuda:{ENV.CUDADEVICE}')
+        device = torch.device("cuda:{ENV.CUDADEVICE}" if torch.cuda.is_available() else "cpu")
         self.model.to(device)
         pass
     
     # remove code and tags from body
-    def preprocess_body(self,body):
-        # codes = re.findall(r'<code>(.*?)</code>',body,re.DOTALL)
-        # for code in codes: # remove codes from body
-        #     if '\n' not in code:
-        #         continue
-        #     # deleted = "<pre><code>"+code+"</code></pre>"
-        #     body = body.replace(code, '')
+    def preprocess_body(self,body,level=0):
+        if level > 0: # remove code from body
+            codes = re.findall(r'<code>(.*?)</code>',body,re.DOTALL)
+            for code in codes: # remove codes from body
+                if '\n' not in code: continue
+                # deleted = "<pre><code>"+code+"</code></pre>"
+                body = body.replace(code, '')
         body = re.sub(r'<.*?>','',body,flags=re.DOTALL) # remove tags from body, e.g <p>, <strong>
+        if level > 1: # keep sentences containing API elements
+            # 什么样的单词是api元素?
+            pass
         return body
     
     def split_text(self,text): # ensure text's length is less than model's max length
@@ -37,7 +39,6 @@ class TextSummarizer(object):
     # input: unprocessed body; output: summary of text
     def generate_summary_pegasus(self, text): 
         summary = ""
-        # text = self.preprocess_body(body)
         splited_text = self.split_text(text)
         for input in splited_text:
             input_ids = self.tokenizer.encode(input, return_tensors="pt", max_length=512, truncation=True)

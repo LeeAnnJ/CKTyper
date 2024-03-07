@@ -13,19 +13,23 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 import utils
 
 # rertieve posts form SO dataset by lucene index
-def retrieve_posts_pipeline(fs_config, datasets, sim_top_k):
+def retrieve_posts_pipeline(fs_config, datasets, libs):
     searched_post_folder = fs_config['SEARCHED_POST_FOLDER']
+    sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
     PostIndexer = jpype.JClass("LucenePostIndexer")
+
     for dataset in datasets:
-        sim_res_file = f'{searched_post_folder}/sim_top_{sim_top_k}_{dataset}.json'
+        sim_res_file = f'{sim_post_result_folder}/sim_res_{dataset}.json'
         result_json = utils.load_json(sim_res_file)
         dataset_folder = f'{searched_post_folder}/{dataset}'
-        for lib_res in result_json:
-            lib = lib_res['lib']
+        for lib in libs:
+        # for lib_res in result_json:
+            lib_res = result_json[lib]
             lib_folder = f'{dataset_folder}/{lib}'
             cs_results = lib_res['code_snippets']
-            for cs_res in cs_results:
-                cs_name = cs_res['cs_name']
+            code_snippets = cs_results.keys()
+            for cs_name in code_snippets:
+                cs_res = cs_results[cs_name]
                 cs_folder = f'{lib_folder}/{cs_name}'
                 topk_sim_postIds = cs_res['topk_sim_postIds']
                 for id in topk_sim_postIds:
@@ -109,20 +113,28 @@ def get_result_pipline(fs_config, datasets, libs, finished, original:bool):
 #   },
 #   {...}
 # ]
-def generate_question_pipeline(fs_config, datasets, libs, sum:bool, ans:bool, with_comments:bool, original:bool):
+def generate_question_pipeline(fs_config, datasets, libs,  original:bool, sim_top_k:int|None, prompt_conf:dict|None, level:int|None):
     logger = logging.getLogger(__name__)
     dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
     api_elements_folder = fs_config['API_ELEMENTS_FOLDER']
-    searched_post_folder = fs_config['SEARCHED_POST_FOLDER']
     generated_question_folder = fs_config['GENERATED_QUESTOIN_FOLDER']
-
-    prmp_com = PromptCombiner()
-    ques_gen = QuestionGenerator()
     oflag = 'original' if original else 'prompted'
+    ques_gen = QuestionGenerator()
+    prompt_list = None
+
+    if not original:
+        searched_post_folder = fs_config['SEARCHED_POST_FOLDER']
+        sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
+        prmp_com = PromptCombiner()
+        summarize = prompt_conf['summarize']
+        ans = prompt_conf['with_ans']
+        with_comments = prompt_conf['with_comments']
 
     for dataset in datasets:
         api_file = f'{api_elements_folder}/API_elements_{dataset}.json'
         api_dict = utils.load_json(api_file)
+        sim_post_file = f'{sim_post_result_folder}/sim_res_{dataset}.json'
+        sim_post_dict = utils.load_json(sim_post_file)
         res_folder = f'{generated_question_folder}/{dataset}'
         if not os.path.exists(res_folder): os.makedirs(res_folder)
 
@@ -135,18 +147,17 @@ def generate_question_pipeline(fs_config, datasets, libs, sum:bool, ans:bool, wi
             for cs in code_snippets:
                 cs_name = cs.replace('.java','')
                 # load code snippet
-                input_code_snippet_path = f'{input_folder_path}/{cs}'
                 logger.info(f"generate question for: {cs_name}")
-                code = utils.load_text(input_code_snippet_path)
+                code = utils.load_text(f'{input_folder_path}/{cs}')
                 # load api elements
                 cs_api_dict = api_dict[cs_name]
                 api_elems = [elem["Node"] for elem in cs_api_dict]
                 # process posts' body & summarize
-                post_folder = f'{searched_post_folder}/{dataset}/{lib}/{cs_name}'
-                if original: 
-                    prompt_list = None
-                else:
-                    prompt_list = prmp_com.generate_prompt_multiple_posts(post_folder, sum, ans, with_comments)
+                if not original:
+                    sim_post_ids = sim_post_dict[lib][cs_name]['topk_sim_postIds'][0:sim_top_k]
+                    post_folder = f'{searched_post_folder}/{dataset}/{lib}/{cs_name}'
+                    post_list = [f'{post_folder}/{id}.json' for id in sim_post_ids]
+                    prompt_list = prmp_com.generate_prompt_multiple_posts(post_list, summarize, ans, with_comments, level)
                 # generate question
                 question = ques_gen.generate_question(code, api_elems, prompt_list, original)
                 question_res.append({"cs_name": cs_name, "question": question})

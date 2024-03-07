@@ -10,7 +10,6 @@ import Code_Similarity_Calculate.Calculate_Code_Similarity as SimCal
 import Code_Similarity_Calculate.Lucene_Index_Search as CodeSearch
 import Get_TypeInference_Result.pipeline as GetResPip
 from Evaluation_Result import precision_recall as CalPR
-logging.basicConfig(level = logging.INFO,format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
 def set_arg_parser():
@@ -18,9 +17,6 @@ def set_arg_parser():
     parser.add_argument('--mode', type=str, help='offline, online, preparation or evaluation')
     # online mode
     parser.add_argument('--pattern', type=str, help='singal or pipeline')
-    parser.add_argument('--sum', action='store_true', help='summarize the posts')
-    parser.add_argument('--ans', action='store_true', help='with posts\'answer')
-    parser.add_argument('--with_comments', action='store_true', help='with comments')
     parser.add_argument('--original', action='store_true', help='original or prompted')
     return parser
 
@@ -69,32 +65,31 @@ def read_file_structure():
 # evaluation:
 # . calculate precision for each code snippet, each lib and each dataset
 
-def online_operation_pipline(fs_config, sum, ans, with_comments, original):
+def online_operation_pipline(fs_config, original):
     logger = logging.getLogger(__name__)
     datasets = TS.DATASETS
     libs = TS.LIBS
     lucene_top_k = TS.LUCENE_TOP_K
     sim_top_k = TS.SIMILARITY_TOP_K
+    text_level = TS.TEXT_FILTER_LEVEL
+    prompt_conf = TS.PROMPT_CONF
     finished = TS.FINISHED
     jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
-    # # 1 & 2
-    # # laptop processing time: 140.890625s
-    # logger.info('Start to search similar code snippets...')
-    # CodeSearch.lucene_search_pipline(fs_config, datasets, libs, lucene_top_k)
-    # sim_result_file = SimCal.cal_similarity_pipeline(fs_config, datasets, libs, lucene_top_k, sim_top_k)
+    
+    # 1 & 2
+    logger.info('Start to search similar code snippets...')
+    CodeSearch.lucene_search_pipline(fs_config, datasets, libs, lucene_top_k)
+    SimCal.cal_similarity_pipeline(fs_config, datasets, libs, lucene_top_k, sim_top_k)
     # # 3 
-    # # laptop: 4481.0625s
     # logger.info('Start to retrieve posts from SO...')
-    # GetResPip.retrieve_posts_pipeline(fs_config, datasets, sim_top_k)
+    GetResPip.retrieve_posts_pipeline(fs_config, datasets, libs)
     # # 4 ~ 5
-    # # server: 1895.362702536s (StatType-SO) + 482.33577335499996s(Short-SO)
-    # # original laptop: 26.609375(StatType-SO) + 12.21875(Short-SO)
     # logger.info('Start to generate questions...')
-    # GetResPip.generate_question_pipeline(fs_config, datasets, libs, sum, ans, with_comments, original)
-    # 6 ~ 7
-    # laptop:  8.171875s(StatTypeSO) + 4.890625 s(ShortSO)
-    logger.info('Start to get type infrence result...')
-    GetResPip.get_result_pipline(fs_config, datasets, libs, finished, original)
+    GetResPip.generate_question_pipeline(fs_config, datasets, libs, original, sim_top_k, prompt_conf, text_level)
+    # # 6 ~ 7
+    # logger.info('Start to get type infrence result...')
+    # GetResPip.get_result_pipline(fs_config, datasets, libs, finished, original)
+
     logger.info('Finish online operation pipline!')
     jpype.shutdownJVM()
     pass
@@ -109,11 +104,13 @@ def evaluation_operation(original:bool):
     pass
 
 
-# exp: python main.py --mode online --pattern singal --sum --ans --with_comments
+# exp: python main.py --mode online --pattern singal --original
 if __name__ == '__main__':
+    logging.basicConfig(level = logging.INFO,format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     parser = set_arg_parser()
     args = parser.parse_args()
     fs_config = read_file_structure()
+
     mode = args.mode
     if mode == 'offline':
         pass
@@ -124,7 +121,7 @@ if __name__ == '__main__':
         elif pattern == 'pipeline':
             print("start online mode, pattern: pipeline...")
             start_time = time.process_time()
-            online_operation_pipline(fs_config, args.sum, args.ans, args.with_comments, args.original)
+            online_operation_pipline(fs_config, args.original)
             end_time = time.process_time()
             print ('Online pipeline processing time:', end_time - start_time)
             pass

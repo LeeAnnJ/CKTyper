@@ -1,12 +1,11 @@
-DATASETS = ["StatType-SO"] # ["StatType-SO","Short-SO"]
+DATASETS = ["StatType-SO","Short-SO"] # ["StatType-SO","Short-SO"]
 LIBS = ["android", "gwt", "hibernate", "joda_time", "jdk", "xstream"] # ["android", "gwt", "hibernate", "joda_time", "jdk", "xstream"]
-LUCENE_TOP_K = 10
+LUCENE_TOP_K = 15
 SIMILARITY_TOP_K = 3
-
-# for StatType-SO
-# FINISHED = ["Android39","JodaTime21","JodaTime25","hibernate_class_13","hibernate_class_14","hibernate_class_2","hibernate_class_39","hibernate_class_48","hibernate_class_50","hibernate_class_8","gwt_class_19","gwt_class_29"]
-FINISHED = ["hibernate_class_1"]
-
-# for Short-SO prompted
-# FINISHED = ["ad1","xt2","xt8"]
-# FINISHED = []
+TEXT_FILTER_LEVEL = 1 # 0-ALL, 1-TEXT or 2-API
+PROMPT_CONF = {
+    "summarize": True, # summarize text
+    "with_ans": False, # with post's answer
+    "with_comments": False # with comments
+}
+FINISHED = []

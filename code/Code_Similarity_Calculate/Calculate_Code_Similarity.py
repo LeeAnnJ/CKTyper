@@ -177,19 +177,17 @@ def cal_similarity_singal(code_path:str, lucene_topk_paths,calculator:Similarity
 
 
 # sim_result:
-# [
-#   { "lib": "xxx",
-#     "code_snippets": [
-#       { "cs_name": "xxx",
-#         "topk_sim_postIds": ["xxx","xxx","xxx"],
-#         "sim_scores": [0.9,0.8,0.7]
-#       },
-#       {...}
-#     ]
+# {
+#   "<lib>": {
+#     "<cs_name>": {
+#       "topk_sim_postIds": ["xxx","xxx","xxx"],
+#       "sim_scores": [0.9,0.8,0.7]
+#     },
+#     "<cs_name>": {...}
 #   },
-#   {xxx}
-# ]
-def cal_similarity_pipeline(fs_config, datasets,libs,lucene_topk,similarity_topk):
+#   "<lib>": {...}
+# }
+def cal_similarity_pipeline(fs_config, datasets, libs, lucene_topk,similarity_topk):
     logger = logging.getLogger(__name__)
     dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
     eval_path = fs_config['EVAL_PATH']
@@ -199,38 +197,35 @@ def cal_similarity_pipeline(fs_config, datasets,libs,lucene_topk,similarity_topk
 
     # 4. Load input code snippet
     for dataset in datasets:
-        sim_result = []
+        sim_result = {}
         for lib in libs:
-            sim_result.append({"lib": lib, "code_snippets": []})
-            code_snippets_result = sim_result[-1]["code_snippets"]
+            code_snippets_result = {}
             input_folder_path = f'{dataset_code_folder}/{dataset}/{lib}'
             code_snippets = os.listdir(input_folder_path)
             for cs in code_snippets:
                 input_code_snippet_path = f'{input_folder_path}/{cs}'
                 cs_name = cs.replace('.java','')
                 logger.info(f"calculate similarity for: {input_code_snippet_path}")
-
                 # 5. Get Lucene top-k code snippets
                 lucene_topk_dir = f'{eval_path}/Lucene_top{lucene_topk}/{dataset}/{lib}/{cs_name}'
                 # print(f"==>> lucene_topk_dir: {lucene_topk_dir}")
                 lucene_topk_paths = Path(lucene_topk_dir).iterdir()
                 # 6. Calculate CrystalBLEU for input code and each lucene code
                 topk_sim_postIds,sim_score = cal_similarity_singal(input_code_snippet_path,lucene_topk_paths,similarity_calculator,similarity_topk)
-                code_snippets_result.append({"cs_name": cs_name, "topk_sim_postIds": topk_sim_postIds, "sim_scores": sim_score})
-    
+                code_snippets_result[cs_name] = {"topk_sim_postIds": topk_sim_postIds, "sim_scores": sim_score}
+            sim_result[lib] = code_snippets_result
         # 8. Save the result to file
-        result_file_str = f'{sim_post_result_folder}/sim_top_{similarity_topk}_{dataset}.json'
+        result_file_str = f'{sim_post_result_folder}/sim_res_{dataset}.json'
         logger.info(f'Finish code similarity calculation for dataset {dataset}, start save result...')
         utils.write_json(result_file_str,sim_result)
         logger.info(f'Finish save result to file:{result_file_str}')
-    return result_file_str
+    return
 
 
 if __name__ == '__main__':
     script_path = Path(__file__).parent.absolute()
     print(script_path)
     # similarity_preprocess()
-
     # 4. Load input code snippet
     datasets = TS.DATASETS
     libs = TS.LIBS

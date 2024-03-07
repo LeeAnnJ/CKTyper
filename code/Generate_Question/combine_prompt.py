@@ -17,58 +17,53 @@ class PromptCombiner(object):
         pass
 
     # attach comments after question and answers
-    def add_comments(self,text,comments,sum:bool):
+    def add_comments(self, text, comments, sum, level):
         for com in comments:
-            com_text = self.summarizer.preprocess_body(com["Body"])
-            if(sum):
+            com_text = self.summarizer.preprocess_body(com["Body"], level)
+            if sum and len(com_text)>200:
                 com_text = self.summarizer.generate_summary_pegasus(com_text)
-            text += com_text
+            if len(com_text)>0: text += com_text
         return text
 
 
     # combine code snippet,text in question, answer and comments
-    def generate_prompt_singal_post(self, post, sum:bool,ans:bool, with_comments:bool):
+    def generate_prompt_singal_post(self, post, sum:bool, with_ans:bool, with_comments:bool, level:int):
         # get question text
         question = post["Question"]
         ques_title = question["Title"]
-        ques_text = self.summarizer.preprocess_body(question["Body"])
-        if(sum):
+        ques_body = question["Body"]
+        ques_text = self.summarizer.preprocess_body(ques_body,level)
+        if sum and len(ques_text)>200:
             ques_text = self.summarizer.generate_summary_pegasus(ques_text)
-        if(with_comments): # add comments text
+        if with_comments: # add comments text
             ques_comments = question["Comments"]
             ques_text = self.add_comments(ques_text,ques_comments,sum)
 
-        if (ans):# get answer texts
+        if with_ans: # get answer texts
             answers = post["Answers"]
-            # ans_texts = []
             ans_texts = ""
-            for ans in answers:
-                ans_body = ans["Body"]
-                ans_text = self.summarizer.preprocess_body(ans_body)
-                if(sum):
+            for answer in answers:
+                ans_body = answer["Body"]
+                ans_text = self.summarizer.preprocess_body(ans_body,level)
+                if sum and len(ans_text)>200:
                     ans_text = self.summarizer.generate_summary_pegasus(ans_text)
-                
-                if(with_comments): # add comments text
-                    ans_comments = ans["Comments"]
+                if with_comments: # add comments text
+                    ans_comments = answer["Comments"]
                     ans_text = self.add_comments(ans_text,ans_comments,sum)
-                # ans_texts.append(ans_text)
                 ans_texts += ans_text
-            prompt = ques_text + ans_texts
+            prompt = ques_title + ques_text + ans_texts
         else:
             prompt = ques_title + ques_text
         return prompt
     
     # generate context from related posts
-    # base_folder: related posts' folder
-    # post_ids: list of post ids, e.g. ['122','123']
-    def generate_prompt_multiple_posts(self, base_folder:str, sum:bool, ans:bool, with_comments:bool):
+    # post_list: list of post file paths
+    def generate_prompt_multiple_posts(self, post_list:list, summarize, ans, with_comments, level):
         prompt_list = []
-        post_list = os.listdir(base_folder)
-        for post_name in post_list:
-            post_file = f'{base_folder}/{post_name}'
+        for post_file in post_list:
             post = utils.load_json(post_file)
-            self.logger.info(f"generate prompt for post: {post_name}")
-            prompt = self.generate_prompt_singal_post(post,sum,ans,with_comments)
+            self.logger.info(f"generate prompt for post: {post_file}")
+            prompt = self.generate_prompt_singal_post(post, summarize, ans, with_comments, level)
             prompt_list.append(prompt)
         return prompt_list
 
