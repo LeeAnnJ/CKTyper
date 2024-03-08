@@ -3,14 +3,13 @@ import sys
 import time
 import jpype
 import logging
-import configparser
-from Get_TypeInference_Result.singal import combine_res_data, handle_remain_api
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+import utils
 from Generate_Question.combine_prompt import PromptCombiner
 from Generate_Question.generate_question import QuestionGenerator
 from Get_TypeInference_Result.call_chatgpt import ModelAccesser_V2 as ModelAccesser
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-import utils
 
 # rertieve posts form SO dataset by lucene index
 def retrieve_posts_pipeline(fs_config, datasets, libs):
@@ -35,6 +34,90 @@ def retrieve_posts_pipeline(fs_config, datasets, libs):
                 for id in topk_sim_postIds:
                     PostIndexer.main(['-online',id,cs_folder])
     pass
+
+
+# question:
+# [
+#   { "cs_name": "xxx",
+#     "question": "xxx"
+#   },
+#   {...}
+# ]
+def generate_question_pipeline(fs_config, datasets, libs, original:bool, sim_top_k:int|None, prompt_conf:dict|None, level:int|None):
+    logger = logging.getLogger(__name__)
+    dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
+    api_elements_folder = fs_config['API_ELEMENTS_FOLDER']
+    generated_question_folder = fs_config['GENERATED_QUESTOIN_FOLDER']
+    oflag = 'original' if original else 'prompted'
+    ques_gen = QuestionGenerator()
+    prompt_list = None
+
+    if not original:
+        searched_post_folder = fs_config['SEARCHED_POST_FOLDER']
+        sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
+        prmp_com = PromptCombiner()
+        summarize = prompt_conf['summarize']
+        ans = prompt_conf['with_ans']
+        with_comments = prompt_conf['with_comments']
+
+    for dataset in datasets:
+        api_file = f'{api_elements_folder}/API_elements_{dataset}.json'
+        api_dict = utils.load_json(api_file)
+        sim_post_file = f'{sim_post_result_folder}/sim_res_{dataset}.json'
+        sim_post_dict = utils.load_json(sim_post_file)
+        res_folder = f'{generated_question_folder}/{dataset}'
+        if not os.path.exists(res_folder): os.makedirs(res_folder)
+
+        for lib in libs:
+            question_res = []
+            res_file = f'{res_folder}/{oflag}_{lib}.json'
+            input_folder_path = f'{dataset_code_folder}/{dataset}/{lib}'
+            code_snippets = os.listdir(input_folder_path)
+
+            for cs in code_snippets:
+                cs_name = cs.replace('.java','')
+                # load code snippet
+                logger.info(f"generate question for: {cs_name}")
+                code = utils.load_text(f'{input_folder_path}/{cs}')
+                # load api elements
+                cs_api_dict = api_dict[cs_name]
+                api_elems = [elem["Node"] for elem in cs_api_dict]
+                # process posts' body & summarize
+                if not original:
+                    sim_post_ids = sim_post_dict[lib][cs_name]['topk_sim_postIds'][0:sim_top_k]
+                    post_folder = f'{searched_post_folder}/{dataset}/{lib}/{cs_name}'
+                    post_list = [f'{post_folder}/{id}.json' for id in sim_post_ids]
+                    prompt_list = prmp_com.generate_prompt_multiple_posts(post_list, summarize, ans, with_comments, level)
+                # generate question
+                question = ques_gen.generate_question(code, api_elems, prompt_list, original)
+                question_res.append({"cs_name": cs_name, "question": question})
+
+            logger.info(f'finish generate question for lib {lib},save to: {res_file}')
+            utils.write_json(res_file,question_res)
+        logger.info(f'finish generate question for dataset {dataset}')
+    pass
+
+
+def combine_res_data(api_dict, json_res, prev_data):
+    remain_api = []
+    for dic in api_dict:
+        node = dic["Node"]
+        truth = dic["Truth"]
+        if node in json_res.keys():
+            ans = json_res[node]
+            prev_data.append([node,ans,truth])
+        else:
+            remain_api.append(dic)
+    return remain_api,prev_data
+
+
+def handle_remain_api(remain_dic, prev_data):
+    ans = "<FQN not provided, as it seems to be a custom interface or not present in the code snippet>"
+    for dic in remain_dic:
+        node = dic["Node"]
+        truth = dic["Truth"]
+        prev_data.append([node,ans,truth])
+    return prev_data
 
 
 def get_result_pipline(fs_config, datasets, libs, finished, original:bool):
@@ -103,66 +186,4 @@ def get_result_pipline(fs_config, datasets, libs, finished, original:bool):
 
     logger.info(f'finished code snippets: {finished}, {len(finished)} altogether.')
     logger.info(f'not finished code snippets: {not_finished}')
-    pass
-
-
-# question:
-# [
-#   { "cs_name": "xxx",
-#     "question": "xxx"
-#   },
-#   {...}
-# ]
-def generate_question_pipeline(fs_config, datasets, libs,  original:bool, sim_top_k:int|None, prompt_conf:dict|None, level:int|None):
-    logger = logging.getLogger(__name__)
-    dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
-    api_elements_folder = fs_config['API_ELEMENTS_FOLDER']
-    generated_question_folder = fs_config['GENERATED_QUESTOIN_FOLDER']
-    oflag = 'original' if original else 'prompted'
-    ques_gen = QuestionGenerator()
-    prompt_list = None
-
-    if not original:
-        searched_post_folder = fs_config['SEARCHED_POST_FOLDER']
-        sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
-        prmp_com = PromptCombiner()
-        summarize = prompt_conf['summarize']
-        ans = prompt_conf['with_ans']
-        with_comments = prompt_conf['with_comments']
-
-    for dataset in datasets:
-        api_file = f'{api_elements_folder}/API_elements_{dataset}.json'
-        api_dict = utils.load_json(api_file)
-        sim_post_file = f'{sim_post_result_folder}/sim_res_{dataset}.json'
-        sim_post_dict = utils.load_json(sim_post_file)
-        res_folder = f'{generated_question_folder}/{dataset}'
-        if not os.path.exists(res_folder): os.makedirs(res_folder)
-
-        for lib in libs:
-            question_res = []
-            res_file = f'{res_folder}/{oflag}_{lib}.json'
-            input_folder_path = f'{dataset_code_folder}/{dataset}/{lib}'
-            code_snippets = os.listdir(input_folder_path)
-
-            for cs in code_snippets:
-                cs_name = cs.replace('.java','')
-                # load code snippet
-                logger.info(f"generate question for: {cs_name}")
-                code = utils.load_text(f'{input_folder_path}/{cs}')
-                # load api elements
-                cs_api_dict = api_dict[cs_name]
-                api_elems = [elem["Node"] for elem in cs_api_dict]
-                # process posts' body & summarize
-                if not original:
-                    sim_post_ids = sim_post_dict[lib][cs_name]['topk_sim_postIds'][0:sim_top_k]
-                    post_folder = f'{searched_post_folder}/{dataset}/{lib}/{cs_name}'
-                    post_list = [f'{post_folder}/{id}.json' for id in sim_post_ids]
-                    prompt_list = prmp_com.generate_prompt_multiple_posts(post_list, summarize, ans, with_comments, level)
-                # generate question
-                question = ques_gen.generate_question(code, api_elems, prompt_list, original)
-                question_res.append({"cs_name": cs_name, "question": question})
-
-            logger.info(f'finish generate question for lib {lib},save to: {res_file}')
-            utils.write_json(res_file,question_res)
-        logger.info(f'finish generate question for dataset {dataset}')
     pass

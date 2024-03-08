@@ -150,12 +150,13 @@ def similarity_preprocess(config):
     pass
 
 
+# lucene_topk_dic: the folder path of lucene top-k code snippets
 # output: a list of top-k similar postIds & similarity, e.g. ['122','123'],[1.0,0.9,0.9]
-def cal_similarity_singal(code_path:str, lucene_topk_paths,calculator:SimilarityCalculator, sim_topk):
-    input_code_snippet = utils.load_text(code_path)
+def cal_similarity_singal(code_snippet:str, lucene_topk_dic, calculator:SimilarityCalculator, sim_topk):
     # 6. Calculate CrystalBLEU for input code and each lucene code
     # start_time = time.process_time()
-    file_score_dict = calculator.cal_crystalBLEU_similarity(input_code_snippet, lucene_topk_paths)
+    lucene_topk_paths = Path(lucene_topk_dic).iterdir()
+    file_score_dict = calculator.cal_crystalBLEU_similarity(code_snippet, lucene_topk_paths)
     # end_time = time.process_time()
     # print ('Calculate CrystalBLEU time:',end_time - start_time)
 
@@ -164,7 +165,6 @@ def cal_similarity_singal(code_path:str, lucene_topk_paths,calculator:Similarity
     topk_sim_files = [item[0] for item in list(islice(sorted_file_score_dict, sim_topk))]
     sim_score = [item[1] for item in list(islice(sorted_file_score_dict, sim_topk))]
     topk_sim_postIds = [file.stem.split('_')[1] for file in topk_sim_files]
-    
     
     # most_similar_code_snippet_path = sorted_file_score_dict[0][0]
     # most_similar_CrystalBLEU_score = sorted_file_score_dict[0][1]
@@ -207,11 +207,11 @@ def cal_similarity_pipeline(fs_config, datasets, libs, lucene_topk,similarity_to
                 cs_name = cs.replace('.java','')
                 logger.info(f"calculate similarity for: {input_code_snippet_path}")
                 # 5. Get Lucene top-k code snippets
-                lucene_topk_dir = f'{eval_path}/Lucene_top{lucene_topk}/{dataset}/{lib}/{cs_name}'
-                # print(f"==>> lucene_topk_dir: {lucene_topk_dir}")
-                lucene_topk_paths = Path(lucene_topk_dir).iterdir()
+                lucene_topk_dic = f'{eval_path}/Lucene_top{lucene_topk}/{dataset}/{lib}/{cs_name}'
+                # logger.debug(f" lucene_topk_dir: {lucene_topk_dic}")
                 # 6. Calculate CrystalBLEU for input code and each lucene code
-                topk_sim_postIds,sim_score = cal_similarity_singal(input_code_snippet_path,lucene_topk_paths,similarity_calculator,similarity_topk)
+                input_code_snippet = utils.load_text(input_code_snippet_path)
+                topk_sim_postIds,sim_score = cal_similarity_singal(input_code_snippet,lucene_topk_dic,similarity_calculator,similarity_topk)
                 code_snippets_result[cs_name] = {"topk_sim_postIds": topk_sim_postIds, "sim_scores": sim_score}
             sim_result[lib] = code_snippets_result
         # 8. Save the result to file

@@ -5,10 +5,12 @@ import logging
 import argparse
 import configparser
 
+import utils
 import config.task_setting as TS
 import Code_Similarity_Calculate.Calculate_Code_Similarity as SimCal
 import Code_Similarity_Calculate.Lucene_Index_Search as CodeSearch
 import Get_TypeInference_Result.pipeline as GetResPip
+import Get_TypeInference_Result.singal as GetResSin
 from Evaluation_Result import precision_recall as CalPR
 
 
@@ -18,6 +20,7 @@ def set_arg_parser():
     # online mode
     parser.add_argument('--pattern', type=str, help='singal or pipeline')
     parser.add_argument('--original', action='store_true', help='original or prompted')
+    parser.add_argument('--source_path', type=str, help='code snippet path')
     return parser
 
 
@@ -39,6 +42,7 @@ def read_file_structure():
     fs_config['EVAL_PATH'] = config['result']['EVAL_PATH']
     fs_config['RESULT_ORIGINAL_FOLDER'] = config['result']['RESULT_ORIGINAL_FOLDER']
     fs_config['RESULT_PROMPTED_FOLDER'] = config['result']['RESULT_PROMPTED_FOLDER']
+    fs_config['RESULT_SINGAL'] = config['result']['RESULT_SINGAL']
     return fs_config
 
 
@@ -53,7 +57,9 @@ def read_file_structure():
 
 # online mode:
 # 1. load given code snippet
-# 2. search similar snippets by lucene index & similarity, get corresponding post ids
+# 2. search similar snippets, get corresponding post ids
+#   2.1 by lucene index similarity
+#   2.2 calculate code similarity
 # 3. retrieve posts from SO posts dataset
 # 4. process posts' body & summarize
 # 5. generate question for given post
@@ -90,8 +96,60 @@ def online_operation_pipline(fs_config, original):
     # logger.info('Start to get type infrence result...')
     # GetResPip.get_result_pipline(fs_config, datasets, libs, finished, original)
 
-    logger.info('Finish online operation pipline!')
+    logger.info('Finish online pipline operation!')
     jpype.shutdownJVM()
+    pass
+
+
+# online mode for a single code snippet
+# source_path: the json file contains the code snippet and api elments
+def online_mode_singal(fs_config, source_path, original:bool=False):
+    logger = logging.getLogger(__name__)
+    lucene_top_k = TS.LUCENE_TOP_K
+    sim_top_k = TS.SIMILARITY_TOP_K
+    jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
+
+    logger.info(f'Processing code snippet: {source_path}')
+    # 1. load given code snippet
+    cs_name = source_path.split('/')[-1].replace('.java','')
+    source_data = utils.load_json(source_path)
+    code_snippet = source_data['code']
+    api_elements = source_data['api_elements']
+    res_folder = f'{fs_config['RESULT_SINGAL']}/{cs_name}'
+    res_data = {
+        'code_path': source_path,
+        'api_elements': api_elements,
+        'original': original
+    }
+
+    if original:
+        # 5. generate question for given post
+        question = GetResSin.generate_question_pipeline(code_snippet, api_elements, original)
+    else:
+        text_level = TS.TEXT_FILTER_LEVEL
+        prompt_conf = TS.PROMPT_CONF
+        res_data['prompt_conf'] = prompt_conf
+        res_data['prompt_conf']['text_level'] = text_level
+        sim_post_folder,sim_posts_ids,sim_score = GetResSin.get_sim_posts_singal(source_path, code_snippet, lucene_top_k, sim_top_k, res_folder)
+        # 4. process posts' body & summarize
+        logger.info(f'process posts and summarize...')
+        post_list = [f'{sim_post_folder}/{id}.json' for id in sim_posts_ids]
+        res_data['sim_code_info'] = {
+            'post_id': sim_posts_ids,
+            'sim_score': sim_score,
+        }
+        # 5. generate question for given post
+        question = GetResSin.generate_question_pipeline(code_snippet, api_elements, original, post_list, prompt_conf, text_level)
+
+    res_data['question'] = question
+    logger.info('Start to get type infrence result...')
+    infere_result = GetResSin.get_result_singal(question,api_elements)
+    res_data['inference_result'] = infere_result
+    res_file = f'{res_folder}/result.json'
+    logger.info(f'save result to:{res_file}')
+    utils.write_json(res_file,res_data)
+    jpype.shutdownJVM()
+    logger.info('Finish online operation for singal code snippet!')
     pass
 
 
@@ -104,7 +162,7 @@ def evaluation_operation(original:bool):
     pass
 
 
-# exp: python main.py --mode online --pattern singal --original
+# e.p. python main.py --mode online --pattern singal --original
 if __name__ == '__main__':
     logging.basicConfig(level = logging.INFO,format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     parser = set_arg_parser()
@@ -117,6 +175,11 @@ if __name__ == '__main__':
     elif mode == 'online':
         pattern = args.pattern
         if pattern == 'singal':
+            print("start online mode, pattern: singal...")
+            start_time = time.process_time()
+            online_mode_singal(fs_config, args.source_path, args.original)
+            end_time = time.process_time()
+            print ('Online singal processing time:', end_time - start_time)
             pass
         elif pattern == 'pipeline':
             print("start online mode, pattern: pipeline...")
