@@ -85,13 +85,13 @@ def online_operation_pipline(fs_config, original):
     # 1 & 2
     logger.info('Start to search similar code snippets...')
     CodeSearch.lucene_search_pipline(fs_config, datasets, libs, lucene_top_k)
-    SimCal.cal_similarity_pipeline(fs_config, datasets, libs, lucene_top_k, sim_top_k)
+    # SimCal.cal_similarity_pipeline(fs_config, datasets, libs, lucene_top_k, sim_top_k)
     # # 3 
     # logger.info('Start to retrieve posts from SO...')
-    GetResPip.retrieve_posts_pipeline(fs_config, datasets, libs)
+    # GetResPip.retrieve_posts_pipeline(fs_config, datasets, libs)
     # # 4 ~ 5
     # logger.info('Start to generate questions...')
-    GetResPip.generate_question_pipeline(fs_config, datasets, libs, original, sim_top_k, prompt_conf, text_level)
+    # GetResPip.generate_question_pipeline(fs_config, datasets, libs, original, sim_top_k, prompt_conf, text_level)
     # # 6 ~ 7
     # logger.info('Start to get type infrence result...')
     # GetResPip.get_result_pipline(fs_config, datasets, libs, finished, original)
@@ -115,7 +115,8 @@ def online_mode_singal(fs_config, source_path, original:bool=False):
     source_data = utils.load_json(source_path)
     code_snippet = source_data['code']
     api_elements = source_data['api_elements']
-    res_folder = f'{fs_config['RESULT_SINGAL']}/{cs_name}'
+    result_singal = fs_config['RESULT_SINGAL']
+    res_folder = f'{result_singal}/{cs_name}'
     res_data = {
         'code_path': source_path,
         'api_elements': api_elements,

@@ -6,7 +6,6 @@ import logging
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import utils
 from Code_Similarity_Calculate.Calculate_Code_Similarity import cal_similarity_singal,SimilarityCalculator
-from Get_TypeInference_Result.singal import combine_res_data, handle_remain_api
 from Generate_Question.combine_prompt import PromptCombiner
 from Generate_Question.generate_question import QuestionGenerator
 from Get_TypeInference_Result.call_chatgpt import ModelAccesser_V2 as ModelAccesser

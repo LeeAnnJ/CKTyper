@@ -4,4 +4,8 @@ re_gpt
 JPype1
 tensorflow
 torch
+# torchvision
+# torchaudio
 sentencepiece
+openai
+transformers

@@ -22,13 +22,11 @@ def retrieve_posts_pipeline(fs_config, datasets, libs):
         result_json = utils.load_json(sim_res_file)
         dataset_folder = f'{searched_post_folder}/{dataset}'
         for lib in libs:
-        # for lib_res in result_json:
             lib_res = result_json[lib]
             lib_folder = f'{dataset_folder}/{lib}'
-            cs_results = lib_res['code_snippets']
-            code_snippets = cs_results.keys()
+            code_snippets = lib_res.keys()
             for cs_name in code_snippets:
-                cs_res = cs_results[cs_name]
+                cs_res = lib_res[cs_name]
                 cs_folder = f'{lib_folder}/{cs_name}'
                 topk_sim_postIds = cs_res['topk_sim_postIds']
                 for id in topk_sim_postIds:
