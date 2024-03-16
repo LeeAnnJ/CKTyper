@@ -110,6 +110,7 @@ class ModelAccesser_V2(object):
         if Conf.PROXY_URL: # Set the http_proxy and https_proxy environment variable
             os.environ['http_proxy'] = Conf.PROXY_URL
             os.environ['https_proxy'] = Conf.PROXY_URL
+        self.model = Conf.MODEL
         self.accounts = Conf.ACCOUNTS
         self.account_num = len(Conf.ACCOUNTS)
         account = self.accounts[self.cur_account_num]
@@ -136,7 +137,7 @@ class ModelAccesser_V2(object):
         while(True):
             try:
                 complication = self.gpt.chat.completions.create(
-                    model="gpt-3.5-turbo-0125",
+                    model=self.model,
                     messages=messages
                 )
                 response = complication.choices[0].message.content

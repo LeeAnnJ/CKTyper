@@ -8,4 +8,4 @@ PROMPT_CONF = {
     "with_ans": False, # with post's answer
     "with_comments": False # with comments
 }
-FINISHED = []
+NOT_FINISHED = []

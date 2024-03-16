@@ -79,22 +79,22 @@ def online_operation_pipline(fs_config, original):
     sim_top_k = TS.SIMILARITY_TOP_K
     text_level = TS.TEXT_FILTER_LEVEL
     prompt_conf = TS.PROMPT_CONF
-    finished = TS.FINISHED
+    not_finished = TS.NOT_FINISHED
     jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
     
     # 1 & 2
     logger.info('Start to search similar code snippets...')
-    CodeSearch.lucene_search_pipline(fs_config, datasets, libs, lucene_top_k)
-    # SimCal.cal_similarity_pipeline(fs_config, datasets, libs, lucene_top_k, sim_top_k)
-    # # 3 
-    # logger.info('Start to retrieve posts from SO...')
-    # GetResPip.retrieve_posts_pipeline(fs_config, datasets, libs)
-    # # 4 ~ 5
-    # logger.info('Start to generate questions...')
-    # GetResPip.generate_question_pipeline(fs_config, datasets, libs, original, sim_top_k, prompt_conf, text_level)
-    # # 6 ~ 7
-    # logger.info('Start to get type infrence result...')
-    # GetResPip.get_result_pipline(fs_config, datasets, libs, finished, original)
+    CodeSearch.lucene_search_pipline(fs_config, datasets, libs, lucene_top_k, not_finished)
+    SimCal.cal_similarity_pipeline(fs_config, datasets, libs, lucene_top_k, sim_top_k, not_finished)
+    # 3 
+    logger.info('Start to retrieve posts from SO...')
+    GetResPip.retrieve_posts_pipeline(fs_config, datasets, libs, not_finished)
+    # 4 ~ 5
+    logger.info('Start to generate questions...')
+    GetResPip.generate_question_pipeline(fs_config, datasets, libs, original, not_finished, sim_top_k, prompt_conf, text_level)
+    # 6 ~ 7
+    logger.info('Start to get type infrence result...')
+    GetResPip.get_result_pipline(fs_config, datasets, libs, not_finished, original)
 
     logger.info('Finish online pipline operation!')
     jpype.shutdownJVM()

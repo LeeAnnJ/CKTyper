@@ -187,24 +187,31 @@ def cal_similarity_singal(code_snippet:str, lucene_topk_dic, calculator:Similari
 #   },
 #   "<lib>": {...}
 # }
-def cal_similarity_pipeline(fs_config, datasets, libs, lucene_topk,similarity_topk):
+def cal_similarity_pipeline(fs_config, datasets, libs, lucene_topk,similarity_topk, not_finished):
     logger = logging.getLogger(__name__)
     dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
     eval_path = fs_config['EVAL_PATH']
     sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
     if not os.path.exists(sim_post_result_folder): os.makedirs(sim_post_result_folder)
     similarity_calculator = SimilarityCalculator()
+    reflag = False
+    if len(not_finished)>0: reflag = True
 
     # 4. Load input code snippet
     for dataset in datasets:
-        sim_result = {}
+        result_file_str = f'{sim_post_result_folder}/sim_res_{dataset}.json'
+        if reflag: sim_result = utils.load_json(result_file_str)
+        else: sim_result = {}
         for lib in libs:
-            code_snippets_result = {}
+            if reflag: code_snippets_result = sim_result[lib]
+            else: code_snippets_result = {}
             input_folder_path = f'{dataset_code_folder}/{dataset}/{lib}'
             code_snippets = os.listdir(input_folder_path)
+
             for cs in code_snippets:
-                input_code_snippet_path = f'{input_folder_path}/{cs}'
                 cs_name = cs.replace('.java','')
+                if reflag and cs_name not in not_finished: continue
+                input_code_snippet_path = f'{input_folder_path}/{cs}'
                 logger.info(f"calculate similarity for: {input_code_snippet_path}")
                 # 5. Get Lucene top-k code snippets
                 lucene_topk_dic = f'{eval_path}/Lucene_top{lucene_topk}/{dataset}/{lib}/{cs_name}'
@@ -215,7 +222,6 @@ def cal_similarity_pipeline(fs_config, datasets, libs, lucene_topk,similarity_to
                 code_snippets_result[cs_name] = {"topk_sim_postIds": topk_sim_postIds, "sim_scores": sim_score}
             sim_result[lib] = code_snippets_result
         # 8. Save the result to file
-        result_file_str = f'{sim_post_result_folder}/sim_res_{dataset}.json'
         logger.info(f'Finish code similarity calculation for dataset {dataset}, start save result...')
         utils.write_json(result_file_str,sim_result)
         logger.info(f'Finish save result to file:{result_file_str}')
