@@ -154,12 +154,12 @@ def online_mode_singal(fs_config, source_path, original:bool=False):
     pass
 
 
-def evaluation_operation(original:bool):
+def evaluation_operation(fs_config, original:bool):
     logger = logging.getLogger(__name__)
     datasets = TS.DATASETS
     libs = TS.LIBS
     logger.info('Start to calculate precision and recall...')
-    CalPR.cal_precision_recall_pipline(datasets, libs, original)
+    CalPR.cal_precision_recall_pipline(fs_config, datasets, libs, original)
     pass
 
 
@@ -196,7 +196,7 @@ if __name__ == '__main__':
     elif mode == 'evaluation':
         print("start evaluation mode...")
         start_time = time.process_time()
-        evaluation_operation(args.original)
+        evaluation_operation(fs_config, args.original)
         end_time = time.process_time()
         print ('Evaluation pipeline processing time:', end_time - start_time)
         pass

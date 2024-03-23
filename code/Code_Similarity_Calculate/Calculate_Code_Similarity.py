@@ -194,8 +194,7 @@ def cal_similarity_pipeline(fs_config, datasets, libs, lucene_topk,similarity_to
     sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
     if not os.path.exists(sim_post_result_folder): os.makedirs(sim_post_result_folder)
     similarity_calculator = SimilarityCalculator()
-    reflag = False
-    if len(not_finished)>0: reflag = True
+    reflag = True if len(not_finished)>0 else False
 
     # 4. Load input code snippet
     for dataset in datasets:

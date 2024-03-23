@@ -16,8 +16,7 @@ def retrieve_posts_pipeline(fs_config, datasets, libs, not_finished):
     searched_post_folder = fs_config['SEARCHED_POST_FOLDER']
     sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
     PostIndexer = jpype.JClass("LucenePostIndexer")
-    reflag = False
-    if len(not_finished)>0: reflag = True
+    reflag = True if len(not_finished)>0 else False
 
     for dataset in datasets:
         sim_res_file = f'{sim_post_result_folder}/sim_res_{dataset}.json'
@@ -49,8 +48,7 @@ def generate_question_pipeline(fs_config, datasets, libs, original:bool, not_fin
     generated_question_folder = fs_config['GENERATED_QUESTOIN_FOLDER']
     oflag = 'original' if original else 'prompted'
     ques_gen = QuestionGenerator()
-    reflag = False
-    if len(not_finished)>0: reflag = True
+    reflag = True if len(not_finished)>0 else False
     prompt_list = None
 
     if not original:
@@ -64,10 +62,11 @@ def generate_question_pipeline(fs_config, datasets, libs, original:bool, not_fin
     for dataset in datasets:
         api_file = f'{api_elements_folder}/API_elements_{dataset}.json'
         api_dict = utils.load_json(api_file)
-        sim_post_file = f'{sim_post_result_folder}/sim_res_{dataset}.json'
-        sim_post_dict = utils.load_json(sim_post_file)
         res_folder = f'{generated_question_folder}/{dataset}'
         if not os.path.exists(res_folder): os.makedirs(res_folder)
+        if not original:
+            sim_post_file = f'{sim_post_result_folder}/sim_res_{dataset}.json'
+            sim_post_dict = utils.load_json(sim_post_file)
 
         for lib in libs:
             res_file = f'{res_folder}/{oflag}_{lib}.json'
@@ -132,8 +131,7 @@ def get_result_pipline(fs_config, datasets, libs, not_finished, original:bool):
     model_acs = ModelAccesser()
     res_head = ["Node","ChatGPT Answer","Truth"]
     otag = 'original' if original else 'prompted'
-    reflag = False
-    if len(not_finished)>0: reflag = True
+    reflag = True if len(not_finished)>0 else False
     finished = []
     error_list = []
 

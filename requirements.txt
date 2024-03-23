@@ -2,7 +2,6 @@ nltk
 crystalbleu
 re_gpt
 JPype1
-tensorflow
 sentencepiece
 openai
 transformers

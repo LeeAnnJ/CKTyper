@@ -1,7 +1,6 @@
 import os
 import sys
 import logging
-import configparser
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import utils
@@ -42,12 +41,10 @@ def cal_precision_recall_singal(result_file):
 
 
 # save total data for every lib & dataset
-def cal_precision_recall_pipline(datasets,libs,original:bool):
-    config = configparser.ConfigParser()
-    config.read('./config/file_structure.ini')
-    if original: res_folder = config['result']['RESULT_ORIGINAL_FOLDER']
-    else: res_folder = config['result']['RESULT_PROMPTED_FOLDER']
+def cal_precision_recall_pipline(fs_config, datasets, libs, original:bool):
     logger = logging.getLogger(__name__)
+    if original: res_folder = fs_config['RESULT_ORIGINAL_FOLDER']
+    else: res_folder = fs_config['RESULT_PROMPTED_FOLDER']
     header = ["name","total", "correct", "wrong", "precision", "recall"]
     infos = []
     for dataset in datasets:

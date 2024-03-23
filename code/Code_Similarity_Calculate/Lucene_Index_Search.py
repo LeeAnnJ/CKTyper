@@ -11,8 +11,7 @@ def lucene_search_pipline(fs_config, datasets, libs, lucene_top_k, not_finished)
     if not os.path.exists(lucene_folder):
         os.makedirs(lucene_folder)
     CodeIndexer = jpype.JClass("LuceneCodeIndexer")
-    reflag = False
-    if len(not_finished)>0: reflag = True
+    reflag = True if len(not_finished)>0 else False
     
     for dataset in datasets:
         for lib in libs:
