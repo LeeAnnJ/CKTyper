@@ -20,7 +20,7 @@ class PromptCombiner(object):
     def add_comments(self, text, comments, sum, level):
         for com in comments:
             com_text = self.summarizer.preprocess_body(com["Body"], level)
-            if sum and len(com_text[0])>200:
+            if sum:
                 com_text = self.summarizer.generate_summary_pegasus(com_text)
             else:
                 com_text = "".join(com_text)
@@ -31,7 +31,7 @@ class PromptCombiner(object):
     def gen_prompt_single_part(self, part, sum:bool, with_comments:bool, level):
         body = part["Body"]
         text = self.summarizer.preprocess_body(body,level)
-        if sum and len(text[0])>200:
+        if sum:
             text = self.summarizer.generate_summary_pegasus(text)
         else:
             text = "".join(text)

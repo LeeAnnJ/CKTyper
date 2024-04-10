@@ -17,6 +17,8 @@ class TextSummarizer(object):
         self.model = PegasusForConditionalGeneration.from_pretrained(self.model_name)
         self.tokenizer = PegasusTokenizer.from_pretrained(self.model_name)
         device = torch.device(f'cuda:{ENV.CUDADEVICE}' if torch.cuda.is_available() else "cpu")
+        # device = torch.device(f'cuda' if torch.cuda.is_available() else "cpu")
+        print(device)
         self.model.to(device)
         pass
     
@@ -31,7 +33,7 @@ class TextSummarizer(object):
         body = re.sub(r'<.*?>','',body,flags=re.DOTALL) # remove tags from body, e.g <p>, <strong>
         # split text into small pieces
         splited_body = []
-        sentences = sent_tokenize(text)
+        sentences = sent_tokenize(body)
         part = ""
         part_len = 0
         for sentence in sentences:
@@ -58,10 +60,13 @@ class TextSummarizer(object):
         summary = ""
         # splited_text = self.split_text(text)
         for input in splited_text:
-            input_ids = self.tokenizer.encode(input, return_tensors="pt", max_length=512, truncation=True)
-            input_ids = input_ids.to(self.model.device)
-            summary_ids = self.model.generate(input_ids, max_length=512, length_penalty=1.0, num_beams=4, early_stopping=True)
-            summary += self.tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+            if len(input) > 200:
+                input_ids = self.tokenizer.encode(input, return_tensors="pt", max_length=512, truncation=True)
+                input_ids = input_ids.to(self.model.device)
+                summary_ids = self.model.generate(input_ids, max_length=512, length_penalty=1.0, num_beams=4, early_stopping=True)
+                summary += self.tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+            else:
+                summary += input
         return summary
     pass
 
