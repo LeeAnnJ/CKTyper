@@ -1,5 +1,7 @@
 import csv
 import json
+import pickle
+import xml.etree.ElementTree as ET
 
 def load_json(json_file):
     with open(json_file,'r',errors='ignore') as jf:
@@ -14,9 +16,8 @@ def load_text(file):
 def read_csv(filename, with_title=False):
     with open(filename, 'r') as file:
         reader = csv.reader(file)
-        data = list(reader)
-        # Skip the first row
-        if not with_title: data = data[1:]
+        if with_title: data = list(reader)
+        else: data = list(reader)[1:] # Skip the first row
     return data
 
 def write_json(file,data):
@@ -29,4 +30,19 @@ def write_csv(file,data,header:list|None):
         writer = csv.writer(f)
         if header: writer.writerow(header)
         writer.writerows(data)
+    return
+
+def read_XML(file):
+    with open(file,'r',encoding='utf-8') as f:
+        tree = ET.parse(f)
+    return tree
+
+def read_pickle(file):
+    with open(file, 'rb') as f:
+        data = pickle.load(f)
+    return data
+
+def write_pickle(file,data):
+    with open(file, 'wb') as f:
+        pickle.dump(data, f)
     return

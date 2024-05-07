@@ -12,7 +12,7 @@ import Code_Similarity_Calculate.Lucene_Index_Search as CodeSearch
 import Get_TypeInference_Result.pipeline as GetResPip
 import Get_TypeInference_Result.singal as GetResSin
 from Evaluation_Result import precision_recall as CalPR
-
+from Preprocess import create_corpus as CreateCorpus
 
 def set_arg_parser():
     parser = argparse.ArgumentParser()
@@ -39,6 +39,7 @@ def read_file_structure():
     fs_config['NGRAM_FILE'] = config['intermediate']['NGRAM_FILE']
     fs_config['SIM_POST_RESULT_FOLDER'] = config['intermediate']['SIM_POST_RESULT_FOLDER']
     fs_config['GENERATED_QUESTOIN_FOLDER'] = config['intermediate']['GENERATED_QUESTOIN_FOLDER']
+    fs_config['CORPUS_FOLDER'] = config['intermediate']['CORPUS_FOLDER']
     fs_config['EVAL_PATH'] = config['result']['EVAL_PATH']
     fs_config['RESULT_ORIGINAL_FOLDER'] = config['result']['RESULT_ORIGINAL_FOLDER']
     fs_config['RESULT_PROMPTED_FOLDER'] = config['result']['RESULT_PROMPTED_FOLDER']
@@ -46,14 +47,13 @@ def read_file_structure():
     return fs_config
 
 
-# preparation:
-# . dump SO posts
-# . preprocess SO posts with 'java' tag
-# . extract code snippets from posts
-
 # offline mode:
-# . build lucene index (post+code)
-# . biud n-gram for SO code snippets
+# 1. dump SO posts
+# 2. preprocess SO posts with 'java' tag
+# 3. extract code snippets from posts
+# 4. build lucene index (post+code)
+# 5. build n-gram for SO code snippets
+# 6. build corpus for posts & code snippets
 
 # online mode:
 # 1. load given code snippet
@@ -71,13 +71,33 @@ def read_file_structure():
 # evaluation:
 # . calculate precision for each code snippet, each lib and each dataset
 
+def offline_operation(fs_config):
+    logger = logging.getLogger(__name__)
+    post_folder = fs_config['POST_DUMP_DIC']
+    corpus_folder = fs_config['CORPUS_FOLDER']
+    jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
+
+    # # 4. biuld lucene index (986.121735216s)
+    # CodeIndexer = jpype.JClass("LuceneCodeIndexer")
+    # CodeIndexer.main(['-offline'])
+    # PostIndexer = jpype.JClass("LucenePostIndexer")
+    # PostIndexer.main(['-offline'])
+
+    # 6. build corpus for posts & code snippets (121.614301435)
+    logger.info('Start to create corpus...')
+    CreateCorpus.create_corpus(post_folder, corpus_folder)
+
+    jpype.shutdownJVM()
+    logger.info('Finish offline operation!')
+    return
+
+
 def online_operation_pipline(fs_config, original):
     logger = logging.getLogger(__name__)
     datasets = TS.DATASETS
     libs = TS.LIBS
     lucene_top_k = TS.LUCENE_TOP_K
     sim_top_k = TS.SIMILARITY_TOP_K
-    text_level = TS.TEXT_FILTER_LEVEL
     prompt_conf = TS.PROMPT_CONF
     not_finished = TS.NOT_FINISHED
     jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
@@ -91,19 +111,19 @@ def online_operation_pipline(fs_config, original):
     GetResPip.retrieve_posts_pipeline(fs_config, datasets, libs, not_finished)
     # 4 ~ 5
     logger.info('Start to generate questions...')
-    GetResPip.generate_question_pipeline(fs_config, datasets, libs, original, not_finished, sim_top_k, prompt_conf, text_level)
+    GetResPip.generate_question_pipeline(fs_config, datasets, libs, original, not_finished, sim_top_k, prompt_conf)
     # 6 ~ 7
     logger.info('Start to get type infrence result...')
     GetResPip.get_result_pipline(fs_config, datasets, libs, not_finished, original)
 
     logger.info('Finish online pipline operation!')
     jpype.shutdownJVM()
-    pass
+    return
 
 
 # online mode for a single code snippet
 # source_path: the json file contains the code snippet and api elments
-def online_mode_singal(fs_config, source_path, original:bool=False):
+def online_operation_singal(fs_config, source_path, original:bool=False):
     logger = logging.getLogger(__name__)
     lucene_top_k = TS.LUCENE_TOP_K
     sim_top_k = TS.SIMILARITY_TOP_K
@@ -151,7 +171,7 @@ def online_mode_singal(fs_config, source_path, original:bool=False):
     utils.write_json(res_file,res_data)
     jpype.shutdownJVM()
     logger.info('Finish online operation for singal code snippet!')
-    pass
+    return
 
 
 def evaluation_operation(fs_config, original:bool):
@@ -160,7 +180,7 @@ def evaluation_operation(fs_config, original:bool):
     libs = TS.LIBS
     logger.info('Start to calculate precision and recall...')
     CalPR.cal_precision_recall_pipline(fs_config, datasets, libs, original)
-    pass
+    return
 
 
 # e.p. python main.py --mode online --pattern singal --original
@@ -172,34 +192,35 @@ if __name__ == '__main__':
 
     mode = args.mode
     if mode == 'offline':
+        print("start offline mode...")
+        start_time = time.process_time()
+        offline_operation(fs_config)
+        end_time = time.process_time()
+        print ('offline mode processing time:', end_time - start_time)
         pass
     elif mode == 'online':
         pattern = args.pattern
         if pattern == 'singal':
             print("start online mode, pattern: singal...")
             start_time = time.process_time()
-            online_mode_singal(fs_config, args.source_path, args.original)
+            online_operation_singal(fs_config, args.source_path, args.original)
             end_time = time.process_time()
             print ('Online singal processing time:', end_time - start_time)
-            pass
         elif pattern == 'pipeline':
             print("start online mode, pattern: pipeline...")
             start_time = time.process_time()
             online_operation_pipline(fs_config, args.original)
             end_time = time.process_time()
             print ('Online pipeline processing time:', end_time - start_time)
-            pass
         else:
             print('Invalid online_pattern: {}'.format(pattern))
             sys.exit(1)
-        pass
     elif mode == 'evaluation':
         print("start evaluation mode...")
         start_time = time.process_time()
         evaluation_operation(fs_config, args.original)
         end_time = time.process_time()
-        print ('Evaluation pipeline processing time:', end_time - start_time)
-        pass
+        print ('Evaluation processing time:', end_time - start_time)
     else:
         print('Invalid mode: {}'.format(mode))
         sys.exit(1)

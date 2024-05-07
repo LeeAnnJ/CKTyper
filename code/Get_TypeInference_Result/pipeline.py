@@ -41,7 +41,7 @@ def retrieve_posts_pipeline(fs_config, datasets, libs, not_finished):
 #   "<cs_name>":"<question>",
 #   "<cs_name>": "xxx"
 # }
-def generate_question_pipeline(fs_config, datasets, libs, original:bool, not_finished, sim_top_k:int|None, prompt_conf:dict|None, level:int|None):
+def generate_question_pipeline(fs_config, datasets, libs, original:bool, not_finished, sim_top_k:int|None, prompt_conf:dict|None):
     logger = logging.getLogger(__name__)
     dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
     api_elements_folder = fs_config['API_ELEMENTS_FOLDER']
@@ -54,10 +54,12 @@ def generate_question_pipeline(fs_config, datasets, libs, original:bool, not_fin
     if not original:
         searched_post_folder = fs_config['SEARCHED_POST_FOLDER']
         sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
-        prmp_com = PromptCombiner()
+        corpus_folder = fs_config['CORPUS_FOLDER']
+        prmp_com = PromptCombiner(corpus_folder)
         summarize = prompt_conf['summarize']
         ans = prompt_conf['with_ans']
         with_comments = prompt_conf['with_comments']
+        level = prompt_conf['text_filter_level']
 
     for dataset in datasets:
         api_file = f'{api_elements_folder}/API_elements_{dataset}.json'
@@ -89,7 +91,7 @@ def generate_question_pipeline(fs_config, datasets, libs, original:bool, not_fin
                     sim_post_ids = sim_post_dict[lib][cs_name]['topk_sim_postIds'][0:sim_top_k]
                     post_folder = f'{searched_post_folder}/{dataset}/{lib}/{cs_name}'
                     post_list = [f'{post_folder}/{id}.json' for id in sim_post_ids]
-                    prompt_list = prmp_com.generate_prompt_multiple_posts(post_list, summarize, ans, with_comments, level)
+                    prompt_list = prmp_com.generate_prompt_multiple_posts(post_list, summarize, ans, with_comments, level, api_elems)
                 # generate question
                 question = ques_gen.generate_question(code, api_elems, prompt_list, original)
                 question_res[cs_name]= question

@@ -65,7 +65,7 @@ def calculate_trivially_shared_ngrams(frequency_counter_save_dir,middle_executio
     start_index = 0
     for i, pkl_file in enumerate(pkl_files):
         freq_file = f'{middle_execution_progress_save_dir}/{pkl_file.stem}_freq.pkl'
-        if freq_file.exists():          # the result has been calculated before
+        if freq_file.exists(): # the result has been calculated before
             last_freq_file = freq_file
             start_index = i + 1
         else:
@@ -140,7 +140,7 @@ def similarity_preprocess(config):
 
     # 2. Calculate trivially shared n-grams
     middle_execution_progress_save_dir = f'../data/Code_Similarity_Calculate/ngram_freq_sum_middle_execution_progress'
-    k = 500
+    k = 500 # number of trivially shared n-grams
     ngram_file = config['intermediate']['NGRAM_FILE']
     start_time = time.process_time()    
     trivially_shared_ngrams = calculate_trivially_shared_ngrams(frequency_counter_save_dir,middle_execution_progress_save_dir,ngram_file,k)
