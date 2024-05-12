@@ -8,6 +8,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 import utils
 from Generate_Question.combine_prompt import PromptCombiner
 from Generate_Question.generate_question import QuestionGenerator
+from Get_TypeInference_Result.handle_result import ResHandler
 from Get_TypeInference_Result.call_chatgpt import ModelAccesser_V2 as ModelAccesser
 
 
@@ -41,13 +42,13 @@ def retrieve_posts_pipeline(fs_config, datasets, libs, not_finished):
 #   "<cs_name>":"<question>",
 #   "<cs_name>": "xxx"
 # }
-def generate_question_pipeline(fs_config, datasets, libs, original:bool, not_finished, sim_top_k:int|None, prompt_conf:dict|None):
+def generate_question_pipeline(fs_config, datasets, libs, not_finished, original:bool, sim_top_k:int|None, rcm_top_k:int, prompt_conf:dict|None):
     logger = logging.getLogger(__name__)
     dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
     api_elements_folder = fs_config['API_ELEMENTS_FOLDER']
     generated_question_folder = fs_config['GENERATED_QUESTOIN_FOLDER']
     oflag = 'original' if original else 'prompted'
-    ques_gen = QuestionGenerator()
+    ques_gen = QuestionGenerator(rcm_top_k)
     reflag = True if len(not_finished)>0 else False
     prompt_list = None
 
@@ -102,35 +103,15 @@ def generate_question_pipeline(fs_config, datasets, libs, original:bool, not_fin
     pass
 
 
-def combine_res_data(api_dict, json_res, prev_data):
-    remain_api = []
-    for dic in api_dict:
-        node = dic["Node"]
-        truth = dic["Truth"]
-        if node in json_res.keys():
-            ans = json_res[node]
-            prev_data.append([node,ans,truth])
-        else:
-            remain_api.append(dic)
-    return remain_api,prev_data
-
-
-def handle_remain_api(remain_dic, prev_data):
-    ans = "<FQN not provided, as it seems to be a custom interface or not present in the code snippet>"
-    for dic in remain_dic:
-        node = dic["Node"]
-        truth = dic["Truth"]
-        prev_data.append([node,ans,truth])
-    return prev_data
-
-
 def get_result_pipline(fs_config, datasets, libs, not_finished, original:bool):
     logger = logging.getLogger(__name__)
     api_elements_folder = fs_config['API_ELEMENTS_FOLDER']
     generated_question_folder = fs_config['GENERATED_QUESTOIN_FOLDER']
+    fqn_file = fs_config['FQN_FILE']
     if original: res_folder = fs_config['RESULT_ORIGINAL_FOLDER']
     else: res_folder = fs_config['RESULT_PROMPTED_FOLDER']
     model_acs = ModelAccesser()
+    res_handler = ResHandler(fqn_file)
     res_head = ["Node","ChatGPT Answer","Truth"]
     otag = 'original' if original else 'prompted'
     reflag = True if len(not_finished)>0 else False
@@ -168,7 +149,7 @@ def get_result_pipline(fs_config, datasets, libs, not_finished, original:bool):
                         get_response = False 
                         break
                     # handle result
-                    remain_api,res_data = combine_res_data(remain_api,res_json,res_data)
+                    remain_api,res_data = res_handler.combine_res_data(remain_api,res_json,res_data)
                     prev_num = remain_len
                     remain_len = len(remain_api)
                     # logger.debug("res_data len: ",len(res_data),"remain_api_len: ",remain_len,"prev_num: ",prev_num)
@@ -179,7 +160,7 @@ def get_result_pipline(fs_config, datasets, libs, not_finished, original:bool):
                     continue
                 else:
                     logger.debug("res_data len: ",len(res_data))
-                    res_data = handle_remain_api(remain_api,res_data)
+                    res_data = res_handler.handle_remain_api(remain_api,res_data)
                     #save result
                     finished.append(cs_name)
                     logger.info(f"save result to: {result_file}")

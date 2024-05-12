@@ -53,6 +53,7 @@ class PromptCombiner(object):
             prompt = ques_title + ques_text + ans_texts
         else:
             prompt = ques_title + ques_text
+        self.logger.debug(f'\nsummarize:\n {prompt}\n')
         return prompt
     
     # generate context from related posts

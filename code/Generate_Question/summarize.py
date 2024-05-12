@@ -113,6 +113,7 @@ class TextSummarizer(object):
                 if '\n' not in pre_code: continue
                 if level >=2: codes.append(pre_code) # save codes for calculating important api
                 body = body.replace(pre_code, '') # remove codes from body
+        selected = body
         if level >=2:
             imp_tokens = self.cal_import_tokens(codes, api_elems)
             print(imp_tokens)

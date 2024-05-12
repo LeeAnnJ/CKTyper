@@ -154,15 +154,29 @@ class ModelAccesser_V2(object):
                     sleep(30)
 
 
+    # def extract_keys_and_values(self, data):
+    #     res = {}
+    #     def extract(obj):
+    #         if isinstance(obj, dict):
+    #             for key, value in obj.items():                   
+    #                 if isinstance(value, (dict, list)):
+    #                     extract(value)
+    #                 else:
+    #                     res[key] = value
+    #         elif isinstance(obj, list):
+    #             for item in obj:
+    #                 extract(item)
+    #     extract(data)
+    #     return res
     def extract_keys_and_values(self, data):
         res = {}
-        # keys = []
-        # values = []
         def extract(obj):
             if isinstance(obj, dict):
                 for key, value in obj.items():                   
-                    if isinstance(value, (dict, list)):
+                    if isinstance(value, dict):
                         extract(value)
+                    elif not isinstance (value, list):
+                        res[key] = [value]
                     else:
                         res[key] = value
             elif isinstance(obj, list):
@@ -180,7 +194,9 @@ class ModelAccesser_V2(object):
             json_str = result.replace("\'", '\"')
             try: 
                 obj = json.loads(json_str)
+                self.logger.debug(f"extracted json object: {obj}")
                 extracted_obj = self.extract_keys_and_values(obj)
+                self.logger.debug(f"after handle: {extracted_obj}")
                 res_obj.update(extracted_obj)
             except:
                 continue

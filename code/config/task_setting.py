@@ -2,6 +2,7 @@ DATASETS = ["StatType-SO","Short-SO"] # ["StatType-SO","Short-SO"]
 LIBS = ["android", "gwt", "hibernate", "joda_time", "jdk", "xstream"] # ["android", "gwt", "hibernate", "joda_time", "jdk", "xstream"]
 LUCENE_TOP_K = 15
 SIMILARITY_TOP_K = 5
+RECOMMEND_TOP_K = 5
 PROMPT_CONF = {
     "summarize": True, # summarize text
     "with_ans": False, # with post's answer

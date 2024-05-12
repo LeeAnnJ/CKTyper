@@ -3,10 +3,10 @@ import json
 class QuestionGenerator:
     frame_file = "./Generate_Question/question_for_ChatGPT.json"
 
-    def __init__(self) -> None:
+    def __init__(self, rcm_top_k) -> None:
         with open(self.frame_file, 'r') as qf:
             question_frame = json.load(qf)
-        self.head = question_frame["head"]
+        self.head = question_frame["head"].replace("[k]", str(rcm_top_k))
         self.api_text = question_frame["api_text"]
         self.prompt_text = question_frame["prompt_text"]
         pass

@@ -1,8 +1,5 @@
 {
-    "head": "Please infer the fully qualified names (FQNs) of the given API elements. Given a code snippet, you should provide an answer in Json format, such as  {\"<API element>\": \"<FQN>\" , \"<API element>\": \"<FQN>\" , ...}.\nJava Code:\n\n",
-    "code": null,
-    "api_text":"\n\nAPI elements:",
-    "api":null,
-    "prompt_text":"\n\nand here are some textual descriptions related to this code snippet, you can use these informations to infer the FQN of the given API elements:\n",
-    "prompt":null
+    "head": "Please infer the fully qualified names (FQNs) of the given API elements. Given a code snippet, you should recommand [k] most possible FQNs for each API in Json format, and the most possible ones rank first, such as  {'API element': ['<FQN1>','<FQN2>',...], 'API element': ['<FQN1>','<FQN2>', ... ], ...}.\nJava Code:\n",
+    "api_text": "\nAPI elements:",
+    "prompt_text":"\nand here are some textual descriptions related to this code snippet, you can use these informations to infer the FQN of the given API elements:\n"
 }
