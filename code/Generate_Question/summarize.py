@@ -2,6 +2,7 @@ import re
 import os
 import sys
 import torch
+import logging
 from nltk import sent_tokenize
 from transformers import PegasusForConditionalGeneration, PegasusTokenizer
 
@@ -11,13 +12,14 @@ import config.text_summarizer_env as ENV
 import Preprocess.code_tokenizer as Tokenizer
 
 class TextSummarizer(object):
+    logger = logging.getLogger(__name__)
     model_name = ENV.SUM_MODEL_NAME
     size = ENV.MAX_BATCH_SIZE
     max_text_len = ENV.AVERAGE_WORD_LENGTH*size
     code_token_number = ENV.CODE_TOKEN_NUMBER
     sentence_number = ENV.SENTENCE_NUMBER
 
-    def __init__(self, corpus_folder) -> None:
+    def __init__(self, level, corpus_folder, fqn_file) -> None:
         # load model and tokenizer
         self.model = PegasusForConditionalGeneration.from_pretrained(self.model_name)
         self.tokenizer = PegasusTokenizer.from_pretrained(self.model_name)
@@ -28,6 +30,8 @@ class TextSummarizer(object):
         # load corpus
         self.code_corpus = utils.read_pickle(f'{corpus_folder}/code_corpus.pkl')
         self.post_corpus = utils.read_pickle(f'{corpus_folder}/post_corpus.pkl')
+        self.fqn_set = utils.read_pickle(fqn_file)['simple_list']
+        self.text_level = level
         pass
     
 
@@ -52,19 +56,19 @@ class TextSummarizer(object):
 
     def cal_import_tokens(self, codes, api_elems)->list[str]:
         imp_tokens = api_elems.copy()
-        code_tokens = []
-        # calculate tf-idf for each token in code
-        for code in codes:
-            tokens = Tokenizer.tokenize(code)
-            code_tokens.extend([[token, self.code_corpus.tf_idf(token,code)] for token in tokens])
-        code_tokens = sorted(code_tokens, key=lambda x:x[1], reverse=True)
-        # add most important tokens to imp_tokens
-        count = 0
-        for token in code_tokens:
-            if token[0] not in imp_tokens:
-                imp_tokens.append(token[0])
-                count += 1
-            if count >= self.code_token_number: break
+        # code_tokens = []
+        # # calculate tf-idf for each token in code
+        # for code in codes:
+        #     tokens = Tokenizer.tokenize(code)
+        #     code_tokens.extend([[token, self.code_corpus.tf_idf(token,code)] for token in tokens])
+        # code_tokens = sorted(code_tokens, key=lambda x:x[1], reverse=True)
+        # # add most important tokens to imp_tokens
+        # count = 0
+        # for token in code_tokens:
+        #     if token[0] not in imp_tokens:
+        #         imp_tokens.append(token[0])
+        #         count += 1
+        #     if count >= self.code_token_number: break
         return imp_tokens
 
     def judge_api(self, token)->bool:
@@ -73,50 +77,50 @@ class TextSummarizer(object):
         else: return False
 
     def select_sentences(self, body, imp_tokens)->str:
-        # if any(word in sentence for word in word_list):
         selected = ""
         sentences = sent_tokenize(body)
         body_tokens = []
         # print(len(sentences))
         for sentence in sentences:
             sen_tokens = Tokenizer.tokenize(sentence)
-            if any(word in sentence for word in imp_tokens) or any(self.judge_api(token) for token in sen_tokens) or len(re.findall(r'<code>(.*?)</code>', sentence))>0:
+            # if any(word in sentence for word in imp_tokens) or any(self.judge_api(token) for token in sen_tokens) or len(re.findall(r'<code>(.*?)</code>', sentence))>0:
+            if any(word in sentence for word in imp_tokens) or any (token in self.fqn_set for token in sen_tokens):
                 selected += sentence + " "
             body_tokens.append(sen_tokens)
 
-        if len(selected)==0:
-            token_tf_idf = []
-            for i in range(len(body_tokens)):
-                sen_token = body_tokens[i]
-                token_tf_idf.extend( [[token,i,self.post_corpus.tf_idf(token,body)] for token in sen_token])
-            token_tf_idf = sorted(token_tf_idf, key=lambda x:x[2], reverse=True)
-            count = 0
-            selected_idx = []
-            for token in token_tf_idf:
-                if token[1] not in selected_idx:
-                    # print(token)
-                    selected_idx.append(token[1])
-                    count += 1
-                if count >= self.sentence_number: break
-            for idx in sorted(selected_idx):
-                selected += sentences[idx]
-            # print(selected)
+        # if len(selected)==0:
+        #     token_tf_idf = []
+        #     for i in range(len(body_tokens)):
+        #         sen_token = body_tokens[i]
+        #         token_tf_idf.extend( [[token,i,self.post_corpus.tf_idf(token,body)] for token in sen_token])
+        #     token_tf_idf = sorted(token_tf_idf, key=lambda x:x[2], reverse=True)
+        #     count = 0
+        #     selected_idx = []
+        #     for token in token_tf_idf:
+        #         if token[1] not in selected_idx:
+        #             # print(token)
+        #             selected_idx.append(token[1])
+        #             count += 1
+        #         if count >= self.sentence_number: break
+        #     for idx in sorted(selected_idx):
+        #         selected += sentences[idx]
+        # self.logger.debug(f"selected sentences: {selected}")
         return selected
 
     # remove code and tags from body, and split text into small pieces
-    def preprocess_body(self, body, level, api_elems)->list[str]:
+    def preprocess_body(self, body, api_elems)->list[str]:
         selected = ""
         codes = []
-        if level >=1:
+        if self.text_level >=1:
             pre_codes = re.findall(r'<pre><code>(.*?)</code></pre>',body,re.DOTALL)
             for pre_code in pre_codes: 
                 if '\n' not in pre_code: continue
-                if level >=2: codes.append(pre_code) # save codes for calculating important api
+                if self.text_level >=2: codes.append(pre_code) # save codes for calculating important api
                 body = body.replace(pre_code, '') # remove codes from body
         selected = body
-        if level >=2:
+        if self.text_level >=2:
             imp_tokens = self.cal_import_tokens(codes, api_elems)
-            print(imp_tokens)
+            self.logger.debug(f'imp_tokens:{imp_tokens}')
             selected = self.select_sentences(body, imp_tokens)
         selected = re.sub(r'<.*?>','',selected,flags=re.DOTALL) # remove tags from body, e.g <p>, <strong>
         splited_body = self.split_text(selected)

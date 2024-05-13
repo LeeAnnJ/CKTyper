@@ -8,6 +8,8 @@ def extract_fqn(fs_config):
     res_file = fs_config['FQN_FILE']
     logger = logging.getLogger(__name__)
     fqn_list = set()
+    simple_list = set()
+    # count = dict()
 
     for csv_file in csv_files:
         data = utils.read_csv(csv_file)
@@ -15,21 +17,20 @@ def extract_fqn(fs_config):
             fqn = row[2].replace('/','.').replace('$','.')
             logger.debug(f"Extracted FQN: {fqn}")
             fqn_list.add(fqn)
+            simple = fqn.split('.')
+            simple_list.update(simple)
+            # for s in simple:
+            #     if s not in count: count[s] = 1
+            #     else: count[s] += 1
 
-    logger.info(f"Extracted {len(fqn_list)} FQNs,save to: {res_file}")
-    utils.write_pickle(res_file,fqn_list)
-    return
-
-# def read_csv_column(csv_file, column_name):
-#     column_content = []
-#     with open(csv_file, 'r') as file:
-#         reader = csv.DictReader(file)
-#         for row in reader:
-#             column_content.append(row[column_name])
-#     return column_content
-
-# # Example usage
-# csv_file = '/path/to/your/csv/file.csv'
-# column_name = 'column_name'
-# column_content = read_csv_column(csv_file, column_name)
-# print(column_content)
+    # top_keys = sorted(count.keys(), key=lambda x:count[x], reverse=True)
+    # print("top keys:", top_keys[:30])
+    freq_simple = ['com','google','internal','apache','xml','client','api','core','common','security']
+    simple_list.difference_update(freq_simple)
+    fqn_dict = {
+        'fqn_list':fqn_list,
+        'simple_list':simple_list
+    }
+    logger.info(f"Extracted {len(fqn_list)} FQNs, {len(simple_list)} simple name, save to: {res_file}")
+    utils.write_pickle(res_file,fqn_dict)
+    return 

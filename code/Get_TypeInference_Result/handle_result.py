@@ -3,7 +3,7 @@ import utils
 class ResHandler():
     empty_ans = "<FQN not provided, as it seems to be a custom interface or not present in the code snippet>"
     def __init__(self, fqn_file):
-        self.fqn_set = utils.read_pickle(fqn_file)
+        self.fqn_set = utils.read_pickle(fqn_file)['fqn_list']
         pass
 
     def combine_res_data(self,api_dict, json_res, prev_data):
