@@ -91,15 +91,15 @@ def offline_operation(fs_config):
     corpus_folder = fs_config['CORPUS_FOLDER']
     jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
 
-    # # 4. biuld lucene index (986.121735216s)
-    # CodeIndexer = jpype.JClass("LuceneCodeIndexer")
-    # CodeIndexer.main(['-offline'])
-    # PostIndexer = jpype.JClass("LucenePostIndexer")
-    # PostIndexer.main(['-offline'])
+    # 4. biuld lucene index (986.121735216s)
+    CodeIndexer = jpype.JClass("LuceneCodeIndexer")
+    CodeIndexer.main(['-offline'])
+    PostIndexer = jpype.JClass("LucenePostIndexer")
+    PostIndexer.main(['-offline'])
 
-    # # 6. build corpus for posts & code snippets (121.614301435)
-    # logger.info('Start to create corpus...')
-    # CreateCorpus.create_corpus(post_folder, corpus_folder)
+    # 6. build corpus for posts & code snippets (121.614301435)
+    logger.info('Start to create corpus...')
+    CreateCorpus.create_corpus(post_folder, corpus_folder)
 
     # 7. extract fqn from library
     logger.info('Start to extract FQN from library...')

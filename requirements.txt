@@ -5,3 +5,6 @@ JPype1
 sentencepiece
 openai
 transformers
+torch
+torchvision
+torchaudio 
