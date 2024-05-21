@@ -7,7 +7,6 @@ import utils
 
 miss_info = "<FQN not provided, as it seems to be a custom interface or not present in the code snippet>"
 
-
 # return: [total,correct,wrong,precision,recall]
 def cal_precision_recall_singal(result_file):
     data = utils.read_csv(result_file)

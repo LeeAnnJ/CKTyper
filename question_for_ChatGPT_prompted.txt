@@ -42,25 +42,30 @@ and here are some textual descriptions related to this code snippet, you can use
 Please infer the fully qualified names (FQNs) of the given API elements. Given a code snippet, you should recommand 5 most possible FQNs for each API in Json format, and the most possible ones rank first, such as  {'API element': ['<FQN1>','<FQN2>',...], 'API element': ['<FQN1>','<FQN2>', ... ], ...}.
 Java Code:
 
-public class hibernate_class_1{
-	public class HibernateUserDAO implements
-	UserDAO {
-
-	   private SessionFactory sessionFactory;
-
-	   public HibernateUserDAO() {
-	    AnnotationConfiguration annotConf = new AnnotationConfiguration();
-	    annotConf.addAnnotatedClass(User.class);
-	    annotConf.configure();
-	    // The line below generates the exception!
-	    sessionFactory = annotConf.buildSessionFactory();
-	   }
-	}
+public abstract class hibernate_class_48 {
+    private static final long serialVersionUID = 1L;
+    private HibernateUtil gileadHibernateUtil = new HibernateUtil();
+    public hibernate_class_48() {
+        SessionFactory session = null;
+        gileadHibernateUtil.setSessionFactory(session);
+        PersistentBeanManager persistentBeanManager = new PersistentBeanManager();
+        persistentBeanManager.setPersistenceUtil(gileadHibernateUtil);
+        persistentBeanManager.setProxyStore(new StatelessProxyStore());
+    }
+    public String greetServer(String S) {
+        Session session = gileadHibernateUtil.getSessionFactory().openSession();
+        Transaction tr = session.beginTransaction();
+        session.save(S);
+        tr.commit();
+        session.close();
+        return S;
+    }
 }
 
+
 API elements:
-['UserDAO','SessionFactory','AnnotationConfiguration','new AnnotationConfiguration()','User']
+['SessionFactory','Session','HibernateUtil','PersistentBeanManager','StatelessProxyStore']
 
 and here are some corresponding textual descriptions, you can use these information to infer the FQN of the given API elements:
 
-[I'm trying to find out why my Core + skims test project doesn't work.I'm working on a test project for hibernate and I'm getting an exception when I try to run it.I'm trying to set the dependencies of the hibernate-core server on the ibiblio archive.How do I get a copy of my birth certificate?]
+["I followed this tutorial and decided to use Gilead to avoid writing DTO boilerplate.But with no success yet. I did as tutorial advices:1.Made my POJO on server side extend net.sf.gilead.pojo.java5.LightEntity. public class Attachment extends LightEntity implements Serializable { ... } 2.Made my server-side service implementation extend net.sf.gilead.gwt.PersistentRemoteService. public class LoginServiceImpl extends PersistentRemoteService implements LoginService { ...} 3.Configured beanManager exactly as in tutorial.When I tried to use server-side class, that extends Gilead's LightEntity, I get error as If there were no Gilead, just restricted server code."]

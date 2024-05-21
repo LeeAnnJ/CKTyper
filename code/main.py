@@ -213,15 +213,15 @@ def evaluation_operation(fs_config, original:bool):
     datasets = TS.DATASETS
     libs = TS.LIBS
     
-    # # calculate precision and recall 
-    # logger.info('Start to calculate precision and recall...')
-    # CalPR.cal_precision_recall_pipline(fs_config, datasets, libs, original)
+    # calculate precision and recall 
+    logger.info('Start to calculate precision and recall...')
+    CalPR.cal_precision_recall_pipline(fs_config, datasets, libs, original)
 
-    # list wrong answer
-    CheckAnswer.list_wrong_answer_pipline(fs_config, datasets, libs, original)
+    # # list wrong answer
+    # CheckAnswer.list_wrong_answer_pipline(fs_config, datasets, libs, original)
     
-    # list not perfect file
-    CheckAnswer.list_not_perfect_file(fs_config, datasets)
+    # # list not perfect file
+    # CheckAnswer.list_not_perfect_file(fs_config, datasets)
     return
 
 
