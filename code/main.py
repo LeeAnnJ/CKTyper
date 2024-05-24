@@ -61,13 +61,12 @@ def read_file_structure():
 
 
 # offline mode:
-# 1. dump SO posts
-# 2. preprocess SO posts with 'java' tag
-# 3. extract code snippets from posts
-# 4. build lucene index (post+code)
-# 5. build n-gram for SO code snippets
-# 6. build corpus for posts & code snippets
-# 7. extract fqn from library
+# 1. dump SO posts & preprocess SO posts with 'java' tag
+# 2. extract code snippets from posts
+# 3. build lucene index (post+code)
+# 4. build n-gram for SO code snippets
+# 5. build corpus for posts & code snippets
+# 6. extract fqn from library
 
 # online mode:
 # 1. load given code snippet
@@ -89,19 +88,23 @@ def offline_operation(fs_config):
     logger = logging.getLogger(__name__)
     post_folder = fs_config['POST_DUMP_DIC']
     corpus_folder = fs_config['CORPUS_FOLDER']
+    post_dump_dic = fs_config['POST_DUMP_DIC']
     jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
+    
+    # 2
+    logger.info('Start to extract code snippets from SO posts...')
+    
+    # # 3. biuld lucene index (986.121735216s)
+    # CodeIndexer = jpype.JClass("LuceneCodeIndexer")
+    # CodeIndexer.main(['-offline'])
+    # # PostIndexer = jpype.JClass("LucenePostIndexer")
+    # # PostIndexer.main(['-offline'])
 
-    # 4. biuld lucene index (986.121735216s)
-    CodeIndexer = jpype.JClass("LuceneCodeIndexer")
-    CodeIndexer.main(['-offline'])
-    PostIndexer = jpype.JClass("LucenePostIndexer")
-    PostIndexer.main(['-offline'])
+    # # 5. build corpus for posts & code snippets (121.614301435)
+    # logger.info('Start to create corpus...')
+    # CreateCorpus.create_corpus(post_folder, corpus_folder)
 
-    # 6. build corpus for posts & code snippets (121.614301435)
-    logger.info('Start to create corpus...')
-    CreateCorpus.create_corpus(post_folder, corpus_folder)
-
-    # 7. extract fqn from library
+    # 6. extract fqn from library
     logger.info('Start to extract FQN from library...')
     ParseLib.extract_fqn(fs_config)
 
@@ -109,7 +112,19 @@ def offline_operation(fs_config):
     logger.info('Finish offline operation!')
     return
 
-
+# time:
+# {
+#     <lib>: {
+#         <cs_name>: {
+#             "lucene_search": 123,
+#             "sim_cal": 123,
+#             "generate_context": 123,
+#             "type_inf": 123,
+#         },
+#         <cs_name>: {...},
+#     }
+#     <lib>: {...},
+# }
 def online_operation_pipline(fs_config, original):
     logger = logging.getLogger(__name__)
     datasets = TS.DATASETS
@@ -129,12 +144,12 @@ def online_operation_pipline(fs_config, original):
     end_time = time.process_time()
     logger.info(f'time spent for searching similar code snippets: {end_time-start_time}')
 
-    # 3 
-    logger.info('Start to retrieve posts from SO...')
-    start_time = time.process_time()
-    GetResPip.retrieve_posts_pipeline(fs_config, datasets, libs, not_finished)
-    end_time = time.process_time()
-    logger.info(f'time spent for searching similar code snippets: {end_time-start_time}')
+    # # 3 
+    # logger.info('Start to retrieve posts from SO...')
+    # start_time = time.process_time()
+    # GetResPip.retrieve_posts_pipeline(fs_config, datasets, libs, not_finished)
+    # end_time = time.process_time()
+    # logger.info(f'time spent for searching similar code snippets: {end_time-start_time}')
 
     # 4 ~ 5
     logger.info('Start to generate questions...')

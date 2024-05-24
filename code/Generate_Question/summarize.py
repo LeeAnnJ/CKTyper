@@ -123,6 +123,7 @@ class TextSummarizer(object):
             self.logger.debug(f'imp_tokens:{imp_tokens}')
             selected = self.select_sentences(body, imp_tokens)
         selected = re.sub(r'<.*?>','',selected,flags=re.DOTALL) # remove tags from body, e.g <p>, <strong>
+        self.logger.debug(f"selected text: {selected}")
         splited_body = self.split_text(selected)
         return splited_body
 

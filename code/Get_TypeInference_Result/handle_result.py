@@ -14,13 +14,18 @@ class ResHandler():
             flag = False
             if node in json_res.keys():
                 ans_list = json_res[node]
-                for ans in ans_list:
-                    ans = ans.replace('()','')
-                    if ans in self.fqn_set:
-                    # if ans.rpartition('.')[0] in self.fqn_set:
-                        flag = True
-                        prev_data.append([node,ans,truth])
-                        break
+                if len(ans_list)>1:
+                    for ans in ans_list:
+                        ans = ans.replace('()','').replace('$','.')
+                        if ans in self.fqn_set:
+                        # if ans.rpartition('.')[0] in self.fqn_set:
+                            flag = True
+                            prev_data.append([node,ans,truth])
+                            break
+                elif len(ans_list)>0:
+                    ans = ans_list[0].replace('()','').replace('$','.')
+                    flag = True
+                    prev_data.append([node,ans,truth])
             if not flag: remain_api.append(dic)
         return remain_api, prev_data
 

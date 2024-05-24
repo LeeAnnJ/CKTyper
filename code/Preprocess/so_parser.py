@@ -61,7 +61,8 @@ def getQuestions(tags):
                         c = tag_qc_dict[tag]
 
                         if c % patch_size == 0:
-                            s = str(c / patch_size)
+                            si = c / patch_size
+                            s = '0'+str(si) if si<10 else str(si)
                             id_dump = os.path.join(tag_qiddir_dict[tag], 'dump_' + s)
                             serializer.dumpObj(id_dump, tag_qids_dict[tag])
                             q_xml = os.path.join(tag_qdir_dict[tag], 'dump_' + s + '.xml')
@@ -128,7 +129,8 @@ def getAnswers(tags):
                         c = tag_ac_dict[tag]
 
                         if c % patch_size == 0:
-                            s = str(c / patch_size)
+                            si = c / patch_size
+                            s = '0'+str(si) if si<10 else str(si)
                             id_dump = os.path.join(tag_aiddir_dict[tag], 'dump_' + s)
                             serializer.dumpObj(id_dump, tag_aids_dict[tag])
                             a_xml = os.path.join(tag_adir_dict[tag], 'dump_' + s + '.xml')

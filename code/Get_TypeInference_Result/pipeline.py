@@ -48,7 +48,7 @@ def generate_question_pipeline(fs_config, datasets, libs, not_finished, original
     api_elements_folder = fs_config['API_ELEMENTS_FOLDER']
     generated_question_folder = fs_config['GENERATED_QUESTOIN_FOLDER']
     fqn_file = fs_config['FQN_FILE']
-    oflag = 'original' if original else 'prompted'
+    time_record_folder = fs_config['TIME_RECORD_FOLDER']
     ques_gen = QuestionGenerator(rcm_top_k)
     reflag = True if len(not_finished)>0 else False
     prompt_list = None
@@ -67,19 +67,25 @@ def generate_question_pipeline(fs_config, datasets, libs, not_finished, original
         api_file = f'{api_elements_folder}/API_elements_{dataset}.json'
         api_dict = utils.load_json(api_file)
         res_folder = f'{generated_question_folder}/{dataset}'
+        time_record_file = f'{time_record_folder}/{dataset}.json'
         if not os.path.exists(res_folder): os.makedirs(res_folder)
         if not original:
             sim_post_file = f'{sim_post_result_folder}/sim_res_{dataset}.json'
             sim_post_dict = utils.load_json(sim_post_file)
+        if os.path.exists(time_record_file): time_record = utils.load_json(time_record_file)
+        else: time_record = {}
 
         for lib in libs:
-            res_file = f'{res_folder}/{oflag}_{lib}.json'
+            res_file = f'{res_folder}/{lib}.json'
             if reflag: question_res = utils.load_json(res_file)
             else: question_res = {}
             input_folder_path = f'{dataset_code_folder}/{dataset}/{lib}'
             code_snippets = os.listdir(input_folder_path)
+            if lib in time_record.keys(): time_lib = time_record[lib]
+            else: time_lib = {}
 
             for cs in code_snippets:
+                start_time = time.time()
                 cs_name = cs.replace('.java','')
                 if reflag and cs_name not in not_finished: continue
                 # load code snippet
@@ -88,18 +94,26 @@ def generate_question_pipeline(fs_config, datasets, libs, not_finished, original
                 # load api elements
                 cs_api_dict = api_dict[cs_name]
                 api_elems = [elem["Node"] for elem in cs_api_dict]
+                if cs_name in time_lib.keys(): time_cs = time_lib[cs_name]
+                else: time_cs = {}
                 # process posts' body & summarize
                 if not original:
                     sim_post_ids = sim_post_dict[lib][cs_name]['topk_sim_postIds'][0:sim_top_k]
                     post_folder = f'{searched_post_folder}/{dataset}/{lib}/{cs_name}'
-                    post_list = [f'{post_folder}/{id}.json' for id in sim_post_ids]
+                    post_list = [f'{post_folder}/{id}.txt' for id in sim_post_ids]
                     prompt_list = prmp_com.generate_prompt_multiple_posts(post_list, summarize, ans, with_comments, api_elems)
                 # generate question
                 question = ques_gen.generate_question(code, api_elems, prompt_list, original)
                 question_res[cs_name]= question
-
+                end_time = time.time()
+                time_cs["generate_context"] = end_time - start_time
+                time_lib[cs_name] = time_cs
+            
+            time_record[lib] = time_lib
             logger.info(f'finish generate question for lib {lib},save to: {res_file}')
             utils.write_json(res_file,question_res)
+        
+        utils.write_json(time_record_file,time_record)
         logger.info(f'finish generate question for dataset {dataset}')
     pass
 
@@ -111,10 +125,10 @@ def get_result_pipline(fs_config, datasets, libs, not_finished, original:bool):
     fqn_file = fs_config['FQN_FILE']
     if original: res_folder = fs_config['RESULT_ORIGINAL_FOLDER']
     else: res_folder = fs_config['RESULT_PROMPTED_FOLDER']
+    time_record_folder = fs_config['TIME_RECORD_FOLDER']
     model_acs = ModelAccesser()
     res_handler = ResHandler(fqn_file)
     res_head = ["Node","ChatGPT Answer","Truth"]
-    otag = 'original' if original else 'prompted'
     reflag = True if len(not_finished)>0 else False
     finished = []
     error_list = []
@@ -122,19 +136,26 @@ def get_result_pipline(fs_config, datasets, libs, not_finished, original:bool):
     for dataset in datasets:
         api_file = f'{api_elements_folder}/API_elements_{dataset}.json'
         api_dict = utils.load_json(api_file)
+        time_record_file = f'{time_record_folder}/{dataset}.json'
+        if os.path.exists(time_record_file): time_record = utils.load_json(time_record_file)
+        else: time_record = {}
         
         for lib in libs:
-            start_time = time.time()
-            question_file = f'{generated_question_folder}/{dataset}/{otag}_{lib}.json'
+            question_file = f'{generated_question_folder}/{dataset}/{lib}.json'
             question_data = utils.load_json(question_file)
             res_lib_folder = f'{res_folder}/{dataset}/{lib}'
             if not os.path.exists(res_lib_folder): os.makedirs(res_lib_folder)
+            if lib in time_record.keys(): time_lib = time_record[lib]
+            else: time_lib = {}
 
             cs_names = question_data.keys()
             for cs_name in cs_names:
+                start_time = time.time()
                 if reflag and cs_name not in not_finished: continue
                 question = question_data[cs_name]
                 cs_api_dict = api_dict[cs_name]
+                if cs_name in time_lib.keys(): time_cs = time_lib[cs_name]
+                else: time_cs = {}
 
                 logger.info(f"get result for: {cs_name}")
                 result_file = f'{res_lib_folder}/{cs_name}.csv'
@@ -166,10 +187,14 @@ def get_result_pipline(fs_config, datasets, libs, not_finished, original:bool):
                     finished.append(cs_name)
                     logger.info(f"save result to: {result_file}")
                     utils.write_csv(result_file,res_data,res_head)
-            
-            end_time = time.time()
-            logger.info(f'get result time for lib {lib}: {end_time - start_time}' )
+                end_time = time.time()
+                time_cs["type_inf"] = end_time - start_time
+                time_lib[cs_name] = time_cs
 
+            time_record[lib] = time_lib
+            logger.info(f'finish get result for lib {lib}')
+        utils.write_json(time_record_file,time_record)
+    
     logger.info(f'finished code snippets: {finished}, {len(finished)} altogether.')
     logger.info(f'not finished code snippets: {error_list}')
     pass

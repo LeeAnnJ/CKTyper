@@ -1,4 +1,4 @@
-import csv
+import re
 import utils
 import logging
 
@@ -14,10 +14,12 @@ def extract_fqn(fs_config):
     for csv_file in csv_files:
         data = utils.read_csv(csv_file)
         for row in data:
-            fqn = row[2].replace('/','.').replace('$','.')
+            fqn = row[2].replace('/','.')
+            fqn = re.sub(r'\$[1-9]+','',fqn,flags=re.DOTALL)
+            fqn = fqn.replace('$','.')
             logger.debug(f"Extracted FQN: {fqn}")
             fqn_list.add(fqn)
-            simple = fqn.split('.')
+            simple = fqn.split('.')[-2:]
             simple_list.update(simple)
             # for s in simple:
             #     if s not in count: count[s] = 1
@@ -25,8 +27,8 @@ def extract_fqn(fs_config):
 
     # top_keys = sorted(count.keys(), key=lambda x:count[x], reverse=True)
     # print("top keys:", top_keys[:30])
-    freq_simple = ['com','google','internal','apache','xml','client','api','core','common','security']
-    simple_list.difference_update(freq_simple)
+    # freq_simple = ['com','google','internal','apache','xml','client','api','core','common','security']
+    # simple_list.difference_update(freq_simple)
     fqn_dict = {
         'fqn_list':fqn_list,
         'simple_list':simple_list

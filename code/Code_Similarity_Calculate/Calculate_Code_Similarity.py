@@ -123,6 +123,7 @@ class SimilarityCalculator(object):
 
         return file_score_dict
 
+
 # Preprocess
 def similarity_preprocess(config):
     logger = logging.getLogger(__name__)
@@ -192,6 +193,7 @@ def cal_similarity_pipeline(fs_config, datasets, libs, lucene_topk,similarity_to
     dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
     eval_path = fs_config['EVAL_PATH']
     sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
+    time_record_folder = fs_config['TIME_RECORD_FOLDER']
     if not os.path.exists(sim_post_result_folder): os.makedirs(sim_post_result_folder)
     similarity_calculator = SimilarityCalculator()
     reflag = True if len(not_finished)>0 else False
@@ -199,17 +201,26 @@ def cal_similarity_pipeline(fs_config, datasets, libs, lucene_topk,similarity_to
     # 4. Load input code snippet
     for dataset in datasets:
         result_file_str = f'{sim_post_result_folder}/sim_res_{dataset}.json'
+        time_record_file = f'{time_record_folder}/{dataset}.json'
         if reflag: sim_result = utils.load_json(result_file_str)
         else: sim_result = {}
+        if os.path.exists(time_record_file): time_record = utils.load_json(time_record_file)
+        else: time_record = {}
+
         for lib in libs:
             if reflag: code_snippets_result = sim_result[lib]
             else: code_snippets_result = {}
             input_folder_path = f'{dataset_code_folder}/{dataset}/{lib}'
             code_snippets = os.listdir(input_folder_path)
+            if lib in time_record.keys(): time_lib = time_record[lib]
+            else: time_lib = {}
 
             for cs in code_snippets:
+                start_time = time.time()
                 cs_name = cs.replace('.java','')
                 if reflag and cs_name not in not_finished: continue
+                if cs_name in time_lib.keys(): time_cs = time_lib[cs_name]
+                else: time_cs = {}
                 input_code_snippet_path = f'{input_folder_path}/{cs}'
                 logger.info(f"calculate similarity for: {input_code_snippet_path}")
                 # 5. Get Lucene top-k code snippets
@@ -219,11 +230,16 @@ def cal_similarity_pipeline(fs_config, datasets, libs, lucene_topk,similarity_to
                 input_code_snippet = utils.load_text(input_code_snippet_path)
                 topk_sim_postIds,sim_score = cal_similarity_singal(input_code_snippet,lucene_topk_dic,similarity_calculator,similarity_topk)
                 code_snippets_result[cs_name] = {"topk_sim_postIds": topk_sim_postIds, "sim_scores": sim_score}
+                end_time = time.time()
+                time_cs["sim_cal"] = end_time - start_time
+                time_lib[cs_name] = time_cs
+
             sim_result[lib] = code_snippets_result
+            time_record[lib] = time_lib
         # 8. Save the result to file
-        logger.info(f'Finish code similarity calculation for dataset {dataset}, start save result...')
         utils.write_json(result_file_str,sim_result)
-        logger.info(f'Finish save result to file:{result_file_str}')
+        utils.write_json(time_record_file,time_record)
+        logger.info(f'Finish code similarity calculation for dataset {dataset}, save result to file:{result_file_str}')
     return
 
 
