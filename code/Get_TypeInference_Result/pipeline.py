@@ -198,3 +198,13 @@ def get_result_pipline(fs_config, datasets, libs, not_finished, original:bool):
     logger.info(f'finished code snippets: {finished}, {len(finished)} altogether.')
     logger.info(f'not finished code snippets: {error_list}')
     pass
+
+if __name__ == '__main__':
+    jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
+    start_time = time.process_time()
+    PostIndexer = jpype.JClass("LucenePostIndexer")
+    PostIndexer.main(['-online','126','../Evaluation/intermediate/'])
+    end_time = time.process_time()
+    jpype.shutdownJVM()
+    print(f"Running time: {end_time-start_time}")
+    pass

@@ -83,7 +83,7 @@ class CodeExtracter(object):
         self.codes_batch.append(code_obj)
         if self.code_id % 50000 == 0:
             si = self.code_id / 50000
-            s = str(si) if si>10 else '0'+str(si)
+            s = '0'+str(si) if si<10 else str(si)
             output_file = os.path.join(self.output_path, f'dump_{s}.xml')
             self.write_objs_to_xml(output_file, self.codes_batch, 'codes')
             self.codes_batch = []
@@ -92,7 +92,7 @@ class CodeExtracter(object):
 
     def append_anwer_code_after_question(self, ques_id):
         parent_id = int(self.cur_ans_elment.get('ParentId'))
-        while parent_id<ques_id:
+        while parent_id<=ques_id:
             self.logger.debug(f"parent_id: {parent_id} ques_id: {ques_id}")
             post_type_id = self.cur_ans_elment.get('PostTypeId')
             body = self.cur_ans_elment.get('Body')

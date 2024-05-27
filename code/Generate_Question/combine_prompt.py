@@ -13,57 +13,37 @@ class PromptCombiner(object):
         self.summarizer = TextSummarizer(level, corpus_fodler, fqn_file)
         pass
 
-    # attach comments after question and answers
-    def add_comments(self, text, comments, sum, api_elems):
-        for com in comments:
-            com_text = self.summarizer.preprocess_body(com["Body"], api_elems)
-            if sum:
-                com_text = self.summarizer.generate_summary_pegasus(com_text)
-            else:
-                com_text = "".join(com_text)
-            if len(com_text)>0: text += com_text
-        return text
+    # # attach comments after question and answers
+    # def add_comments(self, text, comments, sum, api_elems):
+    #     for com in comments:
+    #         com_text = self.summarizer.preprocess_body(com["Body"], api_elems)
+    #         if sum:
+    #             com_text = self.summarizer.generate_summary_pegasus(com_text)
+    #         else:
+    #             com_text = "".join(com_text)
+    #         if len(com_text)>0: text += com_text
+    #     return text
 
-
-    def gen_prompt_single_part(self, part, sum, with_comments, api_elems):
-        body = part["Body"]
-        text = self.summarizer.preprocess_body(body, api_elems)
-        if sum:
-            text = self.summarizer.generate_summary_pegasus(text)
-        else:
-            text = "".join(text)
-        if with_comments: # add comments text
-            comments = part["Comments"]
-            text = self.add_comments(text,comments,sum)
-        return text
 
     # combine code snippet,text in question, answer and comments
-    def gen_prompt_singal_post(self, post, sum, with_ans, with_comments, api_elems):
-        # get question text
-        question = post["Question"]
-        ques_title = question["Title"]
-        ques_text = self.gen_prompt_single_part(question, sum, with_comments, api_elems)
-
-        if with_ans: # get answer texts
-            answers = post["Answers"]
-            ans_texts = ""
-            for answer in answers:
-                ans_text = self.gen_prompt_single_part(answer, sum, with_comments, api_elems)
-                ans_texts += ans_text
-            prompt = ques_title + ques_text + ans_texts
+    def gen_prompt_singal_post(self, body, sum, api_elems):
+        text = self.summarizer.preprocess_body(body, api_elems)
+        if sum:
+            prompt = self.summarizer.generate_summary_pegasus(text)
         else:
-            prompt = ques_title + ques_text
+            prompt = "".join(text)
         self.logger.debug(f'\nsummarize:\n {prompt}\n')
         return prompt
     
+
     # generate context from related posts
     # post_list: list of post file paths
-    def generate_prompt_multiple_posts(self, post_list:list, summarize:bool, ans:bool, with_comments:bool, api_elems=None):
+    def generate_prompt_multiple_posts(self, post_list:list, summarize:bool, api_elems=None):
         prompt_list = []
         for post_file in post_list:
-            post = utils.load_json(post_file)
+            post = utils.load_text(post_file)
             self.logger.info(f"generate prompt for post: {post_file}")
-            prompt = self.gen_prompt_singal_post(post, summarize, ans, with_comments, api_elems)
+            prompt = self.gen_prompt_singal_post(post, summarize, api_elems)
             prompt_list.append(prompt)
         return prompt_list
 

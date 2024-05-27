@@ -165,7 +165,7 @@ def cal_similarity_singal(code_snippet:str, lucene_topk_dic, calculator:Similari
     sorted_file_score_dict = sorted(file_score_dict.items(), key=lambda x: x[1], reverse=True)
     topk_sim_files = [item[0] for item in list(islice(sorted_file_score_dict, sim_topk))]
     sim_score = [item[1] for item in list(islice(sorted_file_score_dict, sim_topk))]
-    topk_sim_postIds = [file.stem.split('_')[1] for file in topk_sim_files]
+    topk_sim_postIds = [file.stem.split('_')[0] for file in topk_sim_files]
     
     # most_similar_code_snippet_path = sorted_file_score_dict[0][0]
     # most_similar_CrystalBLEU_score = sorted_file_score_dict[0][1]
