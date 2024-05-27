@@ -15,8 +15,10 @@ def readIds(ids_dump_path):
     ids = set()
     for name in os.listdir(ids_dump_path):
         id_dump_file = os.path.join(ids_dump_path, name)
-        for _id in serializer.load(id_dump_file):
-            ids.add(_id)
+        part_ids = serializer.load(id_dump_file)
+        ids.update(part_ids)
+        # for _id in serializer.load(id_dump_file):
+        #     ids.add(_id)
     return ids
 
 

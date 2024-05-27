@@ -25,6 +25,11 @@ def write_json(file,data):
         json.dump(data, f, indent=2)
     return
 
+def write_text(file,text):
+    with open(file, 'w') as f:
+        f.write(text)
+    return
+
 def write_csv(file,data,header:list|None):
     with open(file, 'w', newline='') as f:
         writer = csv.writer(f)

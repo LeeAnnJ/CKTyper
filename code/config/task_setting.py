@@ -1,5 +1,9 @@
 DATASETS = ["StatType-SO","Short-SO"] # ["StatType-SO","Short-SO"]
 LIBS = ["android", "gwt", "hibernate", "joda_time", "jdk", "xstream"] # ["android", "gwt", "hibernate", "joda_time", "jdk", "xstream"]
+INDEX_CONF = {
+    "split_QA": False,
+    "split_code": False,
+}
 LUCENE_TOP_K = 15
 SIMILARITY_TOP_K = 5
 RECOMMEND_TOP_K = 5

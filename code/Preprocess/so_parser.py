@@ -1,6 +1,8 @@
-import codecs
 import os
 import time
+import codecs
+import logging
+import datetime
 
 from lxml import etree
 
@@ -11,9 +13,10 @@ from obj.post import Post
 from util.reader import readIds
 from util.writer import writeObjs2xml
 
-patch_size = 50000
+question_patch_size = 50000
+answer_patch_size = 50000
 
-so_tags_dir = os.path.join(conf.so_dir, 'tags')
+so_tags_dir = os.path.join(conf.experiment_dir, 'tags')
 
 if not os.path.exists(so_tags_dir):
     os.makedirs(so_tags_dir)
@@ -23,6 +26,7 @@ def getQuestions(tags):
     """
     Get SO Questions (and their ids) that are tagged with a set of tags.
     """
+    logger = logging.getLogger(__name__)
     tag_qc_dict = {}
     tag_qids_dict = {}
     tag_qiddir_dict = {}
@@ -60,8 +64,8 @@ def getQuestions(tags):
                         tag_qs_dict[tag].append(Post(row))
                         c = tag_qc_dict[tag]
 
-                        if c % patch_size == 0:
-                            si = c / patch_size
+                        if c % question_patch_size == 0:
+                            si = c / question_patch_size
                             s = '0'+str(si) if si<10 else str(si)
                             id_dump = os.path.join(tag_qiddir_dict[tag], 'dump_' + s)
                             serializer.dumpObj(id_dump, tag_qids_dict[tag])
@@ -69,7 +73,7 @@ def getQuestions(tags):
                             writeObjs2xml(q_xml, tag_qs_dict[tag], 'Questions')
                             tag_qids_dict[tag] = []
                             tag_qs_dict[tag] = []
-                            print (tag, ':', c)
+                            logger.info(f'{tag} : {c}')
 
         row.clear()
         while row.getprevious() is not None:
@@ -78,12 +82,12 @@ def getQuestions(tags):
 
     for tag in tags:
         if len(tag_qids_dict[tag]) > 0:
-            s = str(tag_qc_dict[tag] / patch_size + 1)
+            s = str(tag_qc_dict[tag] / question_patch_size + 1)
             id_dump = os.path.join(tag_qiddir_dict[tag], 'dump_' + s)
             serializer.dumpObj(id_dump, tag_qids_dict[tag])
             q_xml = os.path.join(tag_qdir_dict[tag], 'dump_' + s + '.xml')
             writeObjs2xml(q_xml, tag_qs_dict[tag], 'Questions')
-        print (tag, ':', tag_qc_dict[tag])
+        logger.info(f'{tag} : {tag_qc_dict[tag]}')
 
 
 def getAnswers(tags):
@@ -91,6 +95,7 @@ def getAnswers(tags):
     Get SO Answers associated with the Questions that are
     tagged with a set of tags based on their ids.
     """
+    logger = logging.getLogger(__name__)
     tag_qids_dict = {}
     tag_ac_dict = {}
     tag_aids_dict = {}
@@ -128,8 +133,8 @@ def getAnswers(tags):
                         tag_as_dict[tag].append(Post(row))
                         c = tag_ac_dict[tag]
 
-                        if c % patch_size == 0:
-                            si = c / patch_size
+                        if c % answer_patch_size == 0:
+                            si = c / answer_patch_size
                             s = '0'+str(si) if si<10 else str(si)
                             id_dump = os.path.join(tag_aiddir_dict[tag], 'dump_' + s)
                             serializer.dumpObj(id_dump, tag_aids_dict[tag])
@@ -137,7 +142,7 @@ def getAnswers(tags):
                             writeObjs2xml(a_xml, tag_as_dict[tag], 'Answers')
                             tag_aids_dict[tag] = []
                             tag_as_dict[tag] = []
-                            print (tag, ':', c)
+                            logger.info(f'{tag} : {c}')
 
         row.clear()
         while row.getprevious() is not None:
@@ -146,102 +151,107 @@ def getAnswers(tags):
 
     for tag in tags:
         if len(tag_aids_dict[tag]) > 0:
-            s = str(tag_ac_dict[tag] / patch_size + 1)
+            s = str(tag_ac_dict[tag] / answer_patch_size + 1)
             id_dump = os.path.join(tag_aiddir_dict[tag], 'dump_' + s)
             serializer.dumpObj(id_dump, tag_aids_dict[tag])
             a_xml = os.path.join(tag_adir_dict[tag], 'dump_' + s + '.xml')
             writeObjs2xml(a_xml, tag_as_dict[tag], 'Answers')
-        print (tag, ':', tag_ac_dict[tag])
+        logger.info(f'{tag} : {tag_ac_dict[tag]}')
 
 
-def getComments(tags):
-    """
-    Get SO Comments associated with the Questions & Answers that
-    are tagged with a set of tags based on their ids.
-    """
-    tag_qaids_dict = {}
-    tag_commc_dict = {}
-    tag_comms_dict = {}
-    tag_commdir_dict = {}
+# def getComments(tags):
+#     """
+#     Get SO Comments associated with the Questions & Answers that
+#     are tagged with a set of tags based on their ids.
+#     """
+#     logger = logging.getLogger(__name__)
+#     tag_qaids_dict = {}
+#     tag_commc_dict = {}
+#     tag_comms_dict = {}
+#     tag_commdir_dict = {}
 
-    for tag in tags:
+#     for tag in tags:
 
-        tag_commc_dict[tag] = 0
-        tag_comms_dict[tag] = []
-        tag_dir = os.path.join(so_tags_dir, tag)
-        tag_qaids_dict[tag] = readIds(os.path.join(tag_dir, 'question_ids'))
-        tag_qaids_dict[tag] |= readIds(os.path.join(tag_dir, 'answer_ids'))
+#         tag_commc_dict[tag] = 0
+#         tag_comms_dict[tag] = []
+#         tag_dir = os.path.join(so_tags_dir, tag)
+#         tag_qaids_dict[tag] = readIds(os.path.join(tag_dir, 'question_ids'))
+#         tag_qaids_dict[tag] |= readIds(os.path.join(tag_dir, 'answer_ids'))
 
-        tag_commdir = os.path.join(tag_dir, 'comments')
-        if not os.path.exists(tag_commdir):
-            os.makedirs(tag_commdir)
-        tag_commdir_dict[tag] = tag_commdir
+#         tag_commdir = os.path.join(tag_dir, 'comments')
+#         if not os.path.exists(tag_commdir):
+#             os.makedirs(tag_commdir)
+#         tag_commdir_dict[tag] = tag_commdir
 
-    context = etree.iterparse(conf.comments_xml, events=('end',), tag='row')
+#     context = etree.iterparse(conf.comments_xml, events=('end',), tag='row')
 
-    for event, row in context:
-        if event == 'end' and row.tag == 'row':
-            post_id = row.get('PostId')
-            for tag, qaids in tag_qaids_dict.items():
-                if post_id in qaids:
-                    tag_commc_dict[tag] += 1
-                    tag_comms_dict[tag].append(Comment(row))
-                    c = tag_commc_dict[tag]
+#     for event, row in context:
+#         if event == 'end' and row.tag == 'row':
+#             post_id = row.get('PostId')
+#             for tag, qaids in tag_qaids_dict.items():
+#                 if post_id in qaids:
+#                     tag_commc_dict[tag] += 1
+#                     tag_comms_dict[tag].append(Comment(row))
+#                     c = tag_commc_dict[tag]
 
-                    if c % patch_size == 0:
-                        s = str(c / patch_size)
-                        comm_xml = os.path.join(tag_commdir_dict[tag], 'dump_' + s + '.xml')
-                        writeObjs2xml(comm_xml, tag_comms_dict[tag], 'Comments')
-                        tag_comms_dict[tag] = []
-                        print (tag, ':', c)
+#                     if c % patch_size == 0:
+#                         s = str(c / patch_size)
+#                         comm_xml = os.path.join(tag_commdir_dict[tag], 'dump_' + s + '.xml')
+#                         writeObjs2xml(comm_xml, tag_comms_dict[tag], 'Comments')
+#                         tag_comms_dict[tag] = []
+#                         logger.info(f'{tag} : {c}')
 
-        row.clear()
-        while row.getprevious() is not None:
-            del row.getparent()[0]
-    del context
+#         row.clear()
+#         while row.getprevious() is not None:
+#             del row.getparent()[0]
+#     del context
 
-    for tag in tags:
-        if len(tag_comms_dict[tag]) > 0:
-            s = str(tag_commc_dict[tag] / patch_size + 1)
-            comm_xml = os.path.join(tag_commdir_dict[tag], 'dump_' + s + '.xml')
-            writeObjs2xml(comm_xml, tag_comms_dict[tag], 'Comments')
-        print (tag, ':', tag_commc_dict[tag])
+#     for tag in tags:
+#         if len(tag_comms_dict[tag]) > 0:
+#             s = str(tag_commc_dict[tag] / patch_size + 1)
+#             comm_xml = os.path.join(tag_commdir_dict[tag], 'dump_' + s + '.xml')
+#             writeObjs2xml(comm_xml, tag_comms_dict[tag], 'Comments')
+#         logger.info(f'{tag} : {tag_commc_dict[tag]}')
 
 
-def getTagC(tag_c_dump, tag_c_txt):
-    """
-    Get & dump the SO tags' frequencies.
-    """
-    tag_c_dict = {}
-    content = etree.iterparse(conf.tags_xml, events=('end',), tag='row')
-    for event, row in content:
-        if event == 'end' and row.tag == 'row':
-            tag_c_dict[row.get('TagName')] = int(row.get('Count'))
-        row.clear()
-    del content
+# def getTagC(tag_c_dump, tag_c_txt):
+#     """
+#     Get & dump the SO tags' frequencies.
+#     """
+#     tag_c_dict = {}
+#     content = etree.iterparse(conf.tags_xml, events=('end',), tag='row')
+#     for event, row in content:
+#         if event == 'end' and row.tag == 'row':
+#             tag_c_dict[row.get('TagName')] = int(row.get('Count'))
+#         row.clear()
+#     del content
 
-    serializer.dumpObj(tag_c_dump, tag_c_dict)
-    sorted_list = sorted(tag_c_dict.items(), key=lambda x:x[1], reverse=True)
+#     serializer.dumpObj(tag_c_dump, tag_c_dict)
+#     sorted_list = sorted(tag_c_dict.items(), key=lambda x:x[1], reverse=True)
 
-    f = codecs.open(tag_c_txt, 'w', encoding='utf-8')
-    for item in sorted_list:
-        f.write(item[0] + '\t' + str(item[1]) + '\n')
-    f.close()
+#     f = codecs.open(tag_c_txt, 'w', encoding='utf-8')
+#     for item in sorted_list:
+#         f.write(item[0] + '\t' + str(item[1]) + '\n')
+#     f.close()
 
 
 if __name__ == '__main__':
+    now = datetime.datetime.now().strftime('%y%m%d%H%M')
+    log_path = f"../logs/{now}.log"
+    logging.basicConfig(filename=log_path, level=logging.INFO, format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    logger = logging.getLogger(__name__)
 
-    # print ('get questions and their ids ======')
+    # logger.info('get questions and their ids ======')
     # start_time = time.perf_counter()
     # getQuestions(conf.interested_tags)
     # end_time = time.perf_counter()
-    # print ('Running time:', end_time - start_time)
+    # logger.info(f'Running time: {end_time - start_time}')
 
-    # print ('\n\nget answers and their ids ======')
-    # start_time = time.perf_counter()
-    # getAnswers(conf.interested_tags)
-    # end_time = time.perf_counter()
-    # print ('Running time:', end_time - start_time)
+    logger.info('\n\nget answers and their ids ======')
+    start_time = time.perf_counter()
+    getAnswers(conf.interested_tags)
+    end_time = time.perf_counter()
+    logger.info(f'Running time: {end_time - start_time}')
 
     # print ('\n\nget comments ======')
     # start_time = time.perf_counter()
