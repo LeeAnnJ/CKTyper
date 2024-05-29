@@ -1,3 +1,4 @@
+import os
 import sys
 import time
 import jpype
@@ -47,6 +48,8 @@ def read_file_structure():
     fs_config['DATASET_CODE_FOLDER'] = config['resource']['DATASET_CODE_FOLDER']
     fs_config['API_ELEMENTS_FOLDER'] = config['resource']['API_ELEMENTS_FOLDER']
     fs_config['INTER_RECORD_FOLDER'] = config['intermediate']['INTER_RECORD_FOLDER']
+    fs_config['TIME_RECORD_FOLDER'] = config['intermediate']['TIME_RECORD_FOLDER']
+    fs_config['LUCENE_FOLDER'] = config['intermediate']['LUCENE_FOLDER']
     fs_config['SEARCHED_POST_FOLDER'] = config['intermediate']['SEARCHED_POST_FOLDER']
     fs_config['NGRAM_FILE'] = config['intermediate']['NGRAM_FILE']
     fs_config['SIM_POST_RESULT_FOLDER'] = config['intermediate']['SIM_POST_RESULT_FOLDER']
@@ -121,6 +124,7 @@ def offline_operation(fs_config):
 #         <cs_name>: {
 #             "lucene_search": 123,
 #             "sim_cal": 123,
+#             "retrieve_post": 123,
 #             "generate_context": 123,
 #             "type_inf": 123,
 #         },
@@ -137,8 +141,12 @@ def online_operation_pipline(fs_config, original):
     rcm_k = TS.RECOMMEND_TOP_K
     prompt_conf = TS.PROMPT_CONF
     not_finished = TS.NOT_FINISHED
+
     jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
-    
+    time_record_folder = fs_config['TIME_RECORD_FOLDER']
+    if not os.path.exists(time_record_folder):
+        os.makedirs(time_record_folder)
+
     # 1 & 2
     start_time = time.process_time()
     logger.info('Start to search similar code snippets...')
@@ -147,12 +155,12 @@ def online_operation_pipline(fs_config, original):
     end_time = time.process_time()
     logger.info(f'time spent for searching similar code snippets: {end_time-start_time}')
 
-    # # 3 
-    # logger.info('Start to retrieve posts from SO...')
-    # start_time = time.process_time()
-    # GetResPip.retrieve_posts_pipeline(fs_config, datasets, libs, not_finished)
-    # end_time = time.process_time()
-    # logger.info(f'time spent for searching similar code snippets: {end_time-start_time}')
+    # 3 
+    logger.info('Start to retrieve posts from SO...')
+    start_time = time.process_time()
+    GetResPip.retrieve_posts_pipeline(fs_config, datasets, libs, not_finished)
+    end_time = time.process_time()
+    logger.info(f'time spent for retireve code snippets: {end_time-start_time}')
 
     # 4 ~ 5
     logger.info('Start to generate questions...')
@@ -168,8 +176,8 @@ def online_operation_pipline(fs_config, original):
     end_time = time.time()
     logger.info(f'time spent for getting type infrence result: {end_time-start_time}')
 
-    logger.info('Finish online pipline operation!')
     jpype.shutdownJVM()
+    logger.info('Finish online pipline operation!')
     return
 
 

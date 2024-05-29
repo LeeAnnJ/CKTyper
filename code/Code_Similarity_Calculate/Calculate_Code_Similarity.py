@@ -194,6 +194,7 @@ def cal_similarity_pipeline(fs_config, datasets, libs, lucene_topk,similarity_to
     eval_path = fs_config['EVAL_PATH']
     sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
     time_record_folder = fs_config['TIME_RECORD_FOLDER']
+    lucene_folder = fs_config['LUCENE_FOLDER'].replace('topk',f'top{lucene_topk}')
     if not os.path.exists(sim_post_result_folder): os.makedirs(sim_post_result_folder)
     similarity_calculator = SimilarityCalculator()
     reflag = True if len(not_finished)>0 else False
@@ -224,7 +225,7 @@ def cal_similarity_pipeline(fs_config, datasets, libs, lucene_topk,similarity_to
                 input_code_snippet_path = f'{input_folder_path}/{cs}'
                 logger.info(f"calculate similarity for: {input_code_snippet_path}")
                 # 5. Get Lucene top-k code snippets
-                lucene_topk_dic = f'{eval_path}/Lucene_top{lucene_topk}/{dataset}/{lib}/{cs_name}'
+                lucene_topk_dic = f'{lucene_folder}/{dataset}/{lib}/{cs_name}'
                 # logger.debug(f" lucene_topk_dir: {lucene_topk_dic}")
                 # 6. Calculate CrystalBLEU for input code and each lucene code
                 input_code_snippet = utils.load_text(input_code_snippet_path)

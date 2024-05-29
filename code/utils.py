@@ -9,7 +9,7 @@ def load_json(json_file):
     return data
 
 def load_text(file):
-    with open(file, 'r') as f:
+    with open(file, 'r',encoding='utf-8') as f:
         text = f.read()
     return text
 

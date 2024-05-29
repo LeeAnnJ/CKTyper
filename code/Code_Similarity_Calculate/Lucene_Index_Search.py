@@ -9,10 +9,8 @@ import utils
 def lucene_search_pipline(fs_config, datasets, libs, lucene_top_k, not_finished):
     logger = logging.getLogger(__name__)
     dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
-    eval_path = fs_config['EVAL_PATH']
-    searched_post_folder = fs_config['SEARCHED_POST_FOLDER']
     time_record_folder = fs_config['TIME_RECORD_FOLDER']
-    lucene_folder = f'{eval_path}/Lucene_top{lucene_top_k}'
+    lucene_folder = fs_config['LUCENE_FOLDER'].replace('topk',f'top{lucene_top_k}')
     if not os.path.exists(lucene_folder):
         os.makedirs(lucene_folder)
     CodeIndexer = jpype.JClass("LuceneCodeIndexer")

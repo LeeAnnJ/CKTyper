@@ -16,24 +16,41 @@ from Get_TypeInference_Result.call_chatgpt import ModelAccesser_V2 as ModelAcces
 def retrieve_posts_pipeline(fs_config, datasets, libs, not_finished):
     searched_post_folder = fs_config['SEARCHED_POST_FOLDER']
     sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
+    time_record_folder = fs_config['TIME_RECORD_FOLDER']
     PostIndexer = jpype.JClass("LucenePostIndexer")
     reflag = True if len(not_finished)>0 else False
 
     for dataset in datasets:
         sim_res_file = f'{sim_post_result_folder}/sim_res_{dataset}.json'
+        time_record_file = f'{time_record_folder}/{dataset}.json'
         result_json = utils.load_json(sim_res_file)
         dataset_folder = f'{searched_post_folder}/{dataset}'
+        if os.path.exists(time_record_file): time_record = utils.load_json(time_record_file)
+        else: time_record = {}
+
         for lib in libs:
             lib_res = result_json[lib]
             lib_folder = f'{dataset_folder}/{lib}'
             cs_names = lib_res.keys()
+            if lib in time_record.keys(): time_lib = time_record[lib]
+            else: time_lib = {}
+
             for cs_name in cs_names:
                 if reflag and cs_name not in not_finished: continue
+                start_time = time.time()
                 cs_res = lib_res[cs_name]
                 cs_folder = f'{lib_folder}/{cs_name}'
                 topk_sim_postIds = cs_res['topk_sim_postIds']
+                if cs_name in time_lib.keys(): time_cs = time_lib[cs_name]
+                else: time_cs = {}
                 for id in topk_sim_postIds:
                     PostIndexer.main(['-online',id,cs_folder])
+                end_time = time.time()
+                time_cs["retrieve_post"] = end_time - start_time
+                time_lib[cs_name] = time_cs
+
+            time_record[lib] = time_lib
+        utils.write_json(time_record_file,time_record)
     pass
 
 
