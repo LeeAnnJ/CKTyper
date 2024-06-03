@@ -97,22 +97,22 @@ def offline_operation(fs_config):
     # # 2
     # logger.info('Start to extract code snippets from SO posts...')
     
-    # 3. biuld lucene index (986.121735216s)
-    index_conf = TS.INDEX_CONF
-    split_QA = "True" if index_conf["split_QA"] else "False"
-    split_code = "True" if index_conf["split_code"] else "False"
-    CodeIndexer = jpype.JClass("LuceneCodeIndexer")
-    CodeIndexer.main(['-offline',split_QA,split_code])
-    PostIndexer = jpype.JClass("LucenePostIndexer")
-    PostIndexer.main(['-offline',split_QA])
+    # # 3. biuld lucene index (986.121735216s)
+    # index_conf = TS.INDEX_CONF
+    # split_QA = "True" if index_conf["split_QA"] else "False"
+    # split_code = "True" if index_conf["split_code"] else "False"
+    # CodeIndexer = jpype.JClass("LuceneCodeIndexer")
+    # CodeIndexer.main(['-offline',split_QA,split_code])
+    # PostIndexer = jpype.JClass("LucenePostIndexer")
+    # PostIndexer.main(['-offline',split_QA])
 
     # # 5. build corpus for posts & code snippets (121.614301435)
     # logger.info('Start to create corpus...')
     # CreateCorpus.create_corpus(post_folder, corpus_folder)
 
-    # # 6. extract fqn from library
-    # logger.info('Start to extract FQN from library...')
-    # ParseLib.extract_fqn(fs_config)
+    # 6. extract fqn from library
+    logger.info('Start to extract FQN from library...')
+    ParseLib.extract_fqn(fs_config)
 
     jpype.shutdownJVM()
     logger.info('Finish offline operation!')
@@ -243,12 +243,12 @@ def evaluation_operation(fs_config, original:bool):
     logger.info('Start to calculate precision and recall...')
     CalPR.cal_precision_recall_pipline(fs_config, datasets, libs, original)
 
-    # # list wrong answer
-    # CheckAnswer.list_wrong_answer_pipline(fs_config, datasets, libs, original)
+    # list wrong answer
+    CheckAnswer.list_wrong_answer_pipline(fs_config, datasets, libs, original)
     
-    # # list not perfect file
-    # CheckAnswer.list_not_perfect_file(fs_config, datasets)
-    return
+    # list not perfect file
+    not_finished = CheckAnswer.list_not_perfect_file(fs_config, datasets)
+    return not_finished
 
 
 # e.p. python main.py --mode online --pattern singal --original

@@ -39,33 +39,47 @@ and here are some textual descriptions related to this code snippet, you can use
 
 **example:
 
-Please infer the fully qualified names (FQNs) of the given API elements. Given a code snippet, you should recommand 5 most possible FQNs for each API in Json format, and the most possible ones rank first, such as  {'API element': ['<FQN1>','<FQN2>',...], 'API element': ['<FQN1>','<FQN2>', ... ], ...}.
+Please infer the fully qualified names (FQNs) of the given API elements. Given a code snippet, you should provide an answer in Json format, such as  {'API element': '<FQN>' , 'API element': '<FQN>' , ...}.
 Java Code:
 
-public abstract class hibernate_class_48 {
-    private static final long serialVersionUID = 1L;
-    private HibernateUtil gileadHibernateUtil = new HibernateUtil();
-    public hibernate_class_48() {
-        SessionFactory session = null;
-        gileadHibernateUtil.setSessionFactory(session);
-        PersistentBeanManager persistentBeanManager = new PersistentBeanManager();
-        persistentBeanManager.setPersistenceUtil(gileadHibernateUtil);
-        persistentBeanManager.setProxyStore(new StatelessProxyStore());
-    }
-    public String greetServer(String S) {
-        Session session = gileadHibernateUtil.getSessionFactory().openSession();
-        Transaction tr = session.beginTransaction();
-        session.save(S);
-        tr.commit();
-        session.close();
-        return S;
-    }
+public MusicStoreServiceImpl() {
+gileadHibernateUtil.setSessionFactory(com.google.musicstore.util.HibernateUtil.getSessionFactory());
+
+PersistentBeanManager persistentBeanManager = new PersistentBeanManager();
+persistentBeanManager.setPersistenceUtil(gileadHibernateUtil);
+StatelessProxyStore sps = new StatelessProxyStore();
+sps.setProxySerializer(new GwtProxySerialization());
+persistentBeanManager.setProxyStore(sps);
+setBeanManager(persistentBeanManager);
 }
 
-
 API elements:
-['SessionFactory','Session','HibernateUtil','PersistentBeanManager','StatelessProxyStore']
+['gileadHibernateUtil','PersistentBeanManager','StatelessProxyStore','GwtProxySerialization']
 
 and here are some corresponding textual descriptions, you can use these information to infer the FQN of the given API elements:
 
-["I followed this tutorial and decided to use Gilead to avoid writing DTO boilerplate.But with no success yet. I did as tutorial advices:1.Made my POJO on server side extend net.sf.gilead.pojo.java5.LightEntity. public class Attachment extends LightEntity implements Serializable { ... } 2.Made my server-side service implementation extend net.sf.gilead.gwt.PersistentRemoteService. public class LoginServiceImpl extends PersistentRemoteService implements LoginService { ...} 3.Configured beanManager exactly as in tutorial.When I tried to use server-side class, that extends Gilead's LightEntity, I get error as If there were no Gilead, just restricted server code."]
+["I followed this tutorial and decided to use Gilead to avoid writing DTO boilerplate.But with no success yet. I did as tutorial advices:\nMade my POJO on server side extend net.sf.gilead.pojo.java5.LightEntity\npublic class Attachment extends LightEntity implements Serializable { ... }\nMade my server-side service implementation extend net.sf.gilead.gwt.PersistentRemoteService\npublic class LoginServiceImpl extends PersistentRemoteService implements LoginService { ...}\nConfigured beanManager exactly as in tutorial.\nWhen I tried to use server-side class, that extends Gilead's LightEntity, I get error as If there were no Gilead, just restricted server code.\nHere are JARs I included to my build path:","How to setup multiple database connections in gilead, GWT and Hiberante?How could I connect to multiple databases in GWT and Gilead ? I have successfully implemented this for one database as follows:How Could I define the second database here?Thanks"]
+
+
+
+
+Please infer the fully qualified names (FQNs) of the given API elements. Given a code snippet, you should provide an answer in Json format, such as  {'API element': '<FQN>' , 'API element': '<FQN>' , ...}.
+Java Code:
+
+public MusicStoreServiceImpl() {
+gileadHibernateUtil.setSessionFactory(com.google.musicstore.util.HibernateUtil.getSessionFactory());
+
+PersistentBeanManager persistentBeanManager = new PersistentBeanManager();
+persistentBeanManager.setPersistenceUtil(gileadHibernateUtil);
+StatelessProxyStore sps = new StatelessProxyStore();
+sps.setProxySerializer(new GwtProxySerialization());
+persistentBeanManager.setProxyStore(sps);
+setBeanManager(persistentBeanManager);
+}
+
+API elements:
+['gileadHibernateUtil','PersistentBeanManager','StatelessProxyStore','GwtProxySerialization']
+
+and here are some corresponding textual descriptions, you can use these information to infer the FQN of the given API elements:
+
+["I followed this tutorial and decided to use Gilead to avoid writing DTO boilerplate.But with no success yet. I did as tutorial advices:\nMade my POJO on server side extend net.sf.gilead.pojo.java5.LightEntity\npublic class Attachment extends LightEntity implements Serializable { ... }\nMade my server-side service implementation extend net.sf.gilead.gwt.PersistentRemoteService\npublic class LoginServiceImpl extends PersistentRemoteService implements LoginService { ...}\nConfigured beanManager exactly as in tutorial.\nWhen I tried to use server-side class, that extends Gilead's LightEntity, I get error as If there were no Gilead, just restricted server code.\nHere are JARs I included to my build path:","How to setup multiple database connections in gilead, GWT and Hiberante?How could I connect to multiple databases in GWT and Gilead ? I have successfully implemented this for one database as follows:How Could I define the second database here?Thanks"]

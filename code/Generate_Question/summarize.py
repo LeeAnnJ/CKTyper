@@ -136,7 +136,13 @@ class TextSummarizer(object):
             if len(input) > 200:
                 input_ids = self.tokenizer.encode(input, return_tensors="pt", max_length=512, truncation=True)
                 input_ids = input_ids.to(self.model.device)
-                summary_ids = self.model.generate(input_ids, max_length=512, length_penalty=1.0, num_beams=4, early_stopping=True)
+                summary_ids = self.model.generate(input_ids, 
+                    max_length=512, 
+                    length_penalty=0.8,
+                    num_beams=4,
+                    early_stopping=True,
+                    repetition_penalty=1.5,
+                    no_repeat_ngram_size=3)
                 summary += self.tokenizer.decode(summary_ids[0], skip_special_tokens=True) + " "
             else:
                 summary += input + " "

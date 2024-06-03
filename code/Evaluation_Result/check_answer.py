@@ -14,7 +14,7 @@ def list_not_perfect_file(fs_config, datasets):
         for line in data:
             not_finished.add(line[0])
     print("Not perfect file: ", not_finished)
-    pass
+    return list(not_finished)
 
 def list_wrong_answer_pipline(fs_config, datasets, libs, original:bool):
     logger = logging.getLogger(__name__)

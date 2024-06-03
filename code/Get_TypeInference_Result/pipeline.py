@@ -118,7 +118,7 @@ def generate_question_pipeline(fs_config, datasets, libs, not_finished, original
                     sim_post_ids = sim_post_dict[lib][cs_name]['topk_sim_postIds'][0:sim_top_k]
                     post_folder = f'{searched_post_folder}/{dataset}/{lib}/{cs_name}'
                     post_list = [f'{post_folder}/{id}.txt' for id in sim_post_ids]
-                    prompt_list = prmp_com.generate_prompt_multiple_posts(post_list, summarize, ans, with_comments, api_elems)
+                    prompt_list = prmp_com.generate_prompt_multiple_posts(post_list, summarize,api_elems)
                 # generate question
                 question = ques_gen.generate_question(code, api_elems, prompt_list, original)
                 question_res[cs_name]= question
