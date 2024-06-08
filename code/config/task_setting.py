@@ -9,8 +9,6 @@ SIMILARITY_TOP_K = 10
 RECOMMEND_TOP_K = 5
 PROMPT_CONF = {
     "summarize": True, # summarize text
-    "with_ans": False, # with post's answer
-    "with_comments": False, # with comments
     "text_filter_level": 2 # 0-ALL, 1-TEXT or 2-API
 }
 NOT_FINISHED = []

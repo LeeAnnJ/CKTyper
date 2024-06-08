@@ -13,7 +13,7 @@ import Code_Similarity_Calculate.Calculate_Code_Similarity as SimCal
 import Code_Similarity_Calculate.Lucene_Index_Search as CodeSearch
 import Get_TypeInference_Result.pipeline as GetResPip
 import Get_TypeInference_Result.singal as GetResSin
-from Evaluation_Result import precision_recall as CalPR, check_answer as CheckAnswer
+from Evaluation_Result import precision_recall as CalPR, check_answer as CheckAnswer, stat_significance as StatSig, process_time as PTime
 from Preprocess import create_corpus as CreateCorpus, parse_lib as ParseLib
 
 log_level = {
@@ -33,6 +33,8 @@ def set_arg_parser():
     parser.add_argument('--pattern', type=str, help='singal or pipeline')
     parser.add_argument('--original', action='store_true', help='original or prompted')
     parser.add_argument('--source_path', type=str, help='code snippet path')
+    # evaluation mode
+    parser.add_argument('--operation',type=str, default='precision', help='evaluation operation:precision,check_wrong,stat_sig,process_time')
     return parser
 
 
@@ -47,6 +49,7 @@ def read_file_structure():
     fs_config['POST_LUCENE_INDEX'] = config['resource']['POST_LUCENE_INDEX']
     fs_config['DATASET_CODE_FOLDER'] = config['resource']['DATASET_CODE_FOLDER']
     fs_config['API_ELEMENTS_FOLDER'] = config['resource']['API_ELEMENTS_FOLDER']
+    fs_config['BASELINE_RESULT'] = config['resource']['BASELINE_RESULT']
     fs_config['INTER_RECORD_FOLDER'] = config['intermediate']['INTER_RECORD_FOLDER']
     fs_config['TIME_RECORD_FOLDER'] = config['intermediate']['TIME_RECORD_FOLDER']
     fs_config['LUCENE_FOLDER'] = config['intermediate']['LUCENE_FOLDER']
@@ -92,7 +95,7 @@ def offline_operation(fs_config):
     post_folder = fs_config['POST_DUMP_DIC']
     corpus_folder = fs_config['CORPUS_FOLDER']
     post_dump_dic = fs_config['POST_DUMP_DIC']
-    jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
+    # jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
     
     # # 2
     # logger.info('Start to extract code snippets from SO posts...')
@@ -114,11 +117,11 @@ def offline_operation(fs_config):
     logger.info('Start to extract FQN from library...')
     ParseLib.extract_fqn(fs_config)
 
-    jpype.shutdownJVM()
+    # jpype.shutdownJVM()
     logger.info('Finish offline operation!')
     return
 
-# time:
+# time record:
 # {
 #     <lib>: {
 #         <cs_name>: {
@@ -234,20 +237,34 @@ def online_operation_singal(fs_config, source_path, original:bool=False):
     return
 
 
-def evaluation_operation(fs_config, original:bool):
+# operation: precision, check_wrong, stat_sig, process_time
+def evaluation_operation(fs_config, operation, original:bool):
     logger = logging.getLogger(__name__)
     datasets = TS.DATASETS
     libs = TS.LIBS
+    not_finished = []
+    ops = operation.split('+')
     
-    # calculate precision and recall 
-    logger.info('Start to calculate precision and recall...')
-    CalPR.cal_precision_recall_pipline(fs_config, datasets, libs, original)
+    # calculate precision and recall
+    if 'precision' in ops:
+        logger.info('Start to calculate precision and recall...')
+        CalPR.cal_precision_recall_pipline(fs_config, datasets, libs, original)
 
-    # list wrong answer
-    CheckAnswer.list_wrong_answer_pipline(fs_config, datasets, libs, original)
-    
-    # list not perfect file
-    not_finished = CheckAnswer.list_not_perfect_file(fs_config, datasets)
+    # list wrong answer & not perfect file
+    if 'check_wrong' in ops:
+        CheckAnswer.list_wrong_answer_pipline(fs_config, datasets, libs, original)
+        not_finished = CheckAnswer.list_not_perfect_file(fs_config, datasets)
+
+    # calculate statistical significance
+    if 'stat_sig' in ops:
+        logger.info('Start to calculate statistical significance...')
+        StatSig.cal_statistical_significance(fs_config)
+
+    # calculate average process time
+    if 'process_time' in ops:
+        logger.info('Start to calculate average process time...')
+        PTime.cal_average_process_time(fs_config)
+
     return not_finished
 
 
@@ -287,10 +304,10 @@ if __name__ == '__main__':
             print('Invalid online_pattern: {}'.format(pattern))
             sys.exit(1)
     elif mode == 'evaluation':
-        print("start evaluation mode...")
-        start_time = time.process_time()
-        evaluation_operation(fs_config, args.original)
-        end_time = time.process_time()
+        # print("start evaluation mode...")
+        start_time = time.time()
+        evaluation_operation(fs_config, args.operation, args.original)
+        end_time = time.time()
         print ('Evaluation processing time:', end_time - start_time)
     else:
         print('Invalid mode: {}'.format(mode))

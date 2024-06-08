@@ -75,8 +75,6 @@ def generate_question_pipeline(fs_config, datasets, libs, not_finished, original
         sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
         corpus_folder = fs_config['CORPUS_FOLDER']
         summarize = prompt_conf['summarize']
-        ans = prompt_conf['with_ans']
-        with_comments = prompt_conf['with_comments']
         level = prompt_conf['text_filter_level']
         prmp_com = PromptCombiner(level, corpus_folder, fqn_file)
 

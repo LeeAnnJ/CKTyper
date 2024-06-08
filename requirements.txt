@@ -1,9 +1,12 @@
+lxml
 nltk
-crystalbleu
+scipy
 re_gpt
-JPype1
-sentencepiece
 openai
+JPype1
+matplotlib
+crystalbleu
+sentencepiece
 transformers
 torch
 torchvision
