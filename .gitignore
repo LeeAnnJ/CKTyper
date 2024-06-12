@@ -2,6 +2,7 @@ data/*
 Evaluation/*
 code/config/chatgpt_conf.py
 .vscode
+.idea
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -5,16 +5,13 @@ import jpype
 import logging
 import argparse
 import datetime
-import configparser
 
 import utils
-import config.task_setting as TS
-import Code_Similarity_Calculate.Calculate_Code_Similarity as SimCal
-import Code_Similarity_Calculate.Lucene_Index_Search as CodeSearch
-import Get_TypeInference_Result.pipeline as GetResPip
-import Get_TypeInference_Result.singal as GetResSin
-from Evaluation_Result import precision_recall as CalPR, check_answer as CheckAnswer, stat_significance as StatSig, process_time as PTime
-from Preprocess import create_corpus as CreateCorpus, parse_lib as ParseLib
+from Offline_Processing import ParseSO, ParseLib, extract_code_from_post
+from Online_Processing import SearchCode, GenQues, GetResPipe, GetResSig
+from config import task_setting as TS, fs_config, so_pro_conf
+from Evaluation_Result import CalPR, CheckAnswer, StatSig, ProTime
+
 
 log_level = {
     'info': logging.INFO,
@@ -27,7 +24,7 @@ log_level = {
 def set_arg_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('--log_level', type=str, default='info', help='log level: info, debug, warning, error, critical')
-    parser.add_argument('--log_file',action='store_true', help='store log file or not')
+    parser.add_argument('--log_file', action='store_true', help='store log file or not')
     parser.add_argument('--mode', type=str, help='offline, online, preparation or evaluation')
     # online mode
     parser.add_argument('--pattern', type=str, help='singal or pipeline')
@@ -38,86 +35,72 @@ def set_arg_parser():
     return parser
 
 
-def read_file_structure():
-    fs_config = {}
-    config = configparser.ConfigParser()
-    config.read('./config/file_structure.ini')
-    fs_config['EXP_PATH'] = config['resource']['EXP_PATH']
-    fs_config['POST_DUMP_DIC'] = config['resource']['POST_DUMP_DIC']
-    fs_config['SO_CODE_FOLDER'] = config['resource']['SO_CODE_FOLDER']
-    fs_config['CODE_LUCENE_INDEX'] = config['resource']['CODE_LUCENE_INDEX']
-    fs_config['POST_LUCENE_INDEX'] = config['resource']['POST_LUCENE_INDEX']
-    fs_config['DATASET_CODE_FOLDER'] = config['resource']['DATASET_CODE_FOLDER']
-    fs_config['API_ELEMENTS_FOLDER'] = config['resource']['API_ELEMENTS_FOLDER']
-    fs_config['BASELINE_RESULT'] = config['resource']['BASELINE_RESULT']
-    fs_config['INTER_RECORD_FOLDER'] = config['intermediate']['INTER_RECORD_FOLDER']
-    fs_config['TIME_RECORD_FOLDER'] = config['intermediate']['TIME_RECORD_FOLDER']
-    fs_config['LUCENE_FOLDER'] = config['intermediate']['LUCENE_FOLDER']
-    fs_config['SEARCHED_POST_FOLDER'] = config['intermediate']['SEARCHED_POST_FOLDER']
-    fs_config['NGRAM_FILE'] = config['intermediate']['NGRAM_FILE']
-    fs_config['SIM_POST_RESULT_FOLDER'] = config['intermediate']['SIM_POST_RESULT_FOLDER']
-    fs_config['GENERATED_QUESTOIN_FOLDER'] = config['intermediate']['GENERATED_QUESTOIN_FOLDER']
-    fs_config['CORPUS_FOLDER'] = config['intermediate']['CORPUS_FOLDER']
-    fs_config['FQN_FILE'] = config['intermediate']['FQN_FILE']
-    fs_config['EVAL_PATH'] = config['result']['EVAL_PATH']
-    fs_config['RESULT_ORIGINAL_FOLDER'] = config['result']['RESULT_ORIGINAL_FOLDER']
-    fs_config['RESULT_PROMPTED_FOLDER'] = config['result']['RESULT_PROMPTED_FOLDER']
-    fs_config['RESULT_SINGAL'] = config['result']['RESULT_SINGAL']
-    return fs_config
-
-
 # offline mode:
 # 1. dump SO posts & preprocess SO posts with 'java' tag
 # 2. extract code snippets from posts
 # 3. build lucene index (post+code)
-# 4. build n-gram for SO code snippets
-# 5. build corpus for posts & code snippets
-# 6. extract fqn from library
+# 4. extract fqn from library
+# 5. extract ngrams' frequencies from SO code
 
 # online mode:
-# 1. load given code snippet
-# 2. search similar snippets, get corresponding post ids
-#   2.1 by lucene index similarity
-#   2.2 calculate code similarity
-# 3. retrieve posts from SO posts dataset
-# 4. process posts' body & summarize
-# 5. generate question for given post
-#  5.1 load code snippet
-#  5.2 load api elements
-# 6. call chatgpt, get results
-# 7. save results in a csv file
+# 1. search similar snippets, get corresponding post ids
+#   1.1 by lucene index similarity
+#   1.2 calculate code similarity
+# 2. generate context for similar code snippets
+#   2.1 retrieve posts from SO posts dataset
+#   2.2 process posts' body & summarize
+# 3. generate question & get results from chatgpt
+#   3.1 generate question for given post
+#   3.2 call chatgpt, get results
+# 4. save results in a csv file
 
 # evaluation:
 # . calculate precision for each code snippet, each lib and each dataset
 
 def offline_operation(fs_config):
     logger = logging.getLogger(__name__)
-    post_folder = fs_config['POST_DUMP_DIC']
-    corpus_folder = fs_config['CORPUS_FOLDER']
-    post_dump_dic = fs_config['POST_DUMP_DIC']
-    # jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
-    
-    # # 2
-    # logger.info('Start to extract code snippets from SO posts...')
-    
-    # # 3. biuld lucene index (986.121735216s)
-    # index_conf = TS.INDEX_CONF
-    # split_QA = "True" if index_conf["split_QA"] else "False"
-    # split_code = "True" if index_conf["split_code"] else "False"
-    # CodeIndexer = jpype.JClass("LuceneCodeIndexer")
-    # CodeIndexer.main(['-offline',split_QA,split_code])
-    # PostIndexer = jpype.JClass("LucenePostIndexer")
-    # PostIndexer.main(['-offline',split_QA])
+    jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
 
-    # # 5. build corpus for posts & code snippets (121.614301435)
-    # logger.info('Start to create corpus...')
-    # CreateCorpus.create_corpus(post_folder, corpus_folder)
+    # 1. extract SO posts with 'java' tag from SO data
+    logger.info("Start to filter SO posts with \"java\" tag ...")
+    start_time = time.time()
+    logger.info('get questions and their ids ======')
+    ParseSO.getQuestions(so_pro_conf)
+    logger.info('\n\nget answers and their ids ======')
+    ParseSO.getAnswers(so_pro_conf)
+    end_time = time.time()
+    logger.info(f"Running time for filter SO posts with \"java\" tag: {end_time - start_time}")
 
-    # 6. extract fqn from library
-    logger.info('Start to extract FQN from library...')
+    # 2 extract code snippets from posts
+    logger.info('Start to extract code snippets from SO posts...')
+    start_time = time.time()
+    extract_code_from_post(fs_config)
+    end_time = time.time()
+    logger.info(f'Running time for extract codes: {end_time - start_time}')
+    
+    # 3. biuld lucene index
+    logger.info('Start to build lucene index...')
+    start_time = time.time()
+    index_conf = TS.INDEX_CONF
+    split_QA = "True" if index_conf["split_QA"] else "False"
+    split_code = "True" if index_conf["split_code"] else "False"
+    CodeIndexer = jpype.JClass("LuceneCodeIndexer")
+    CodeIndexer.main(['-offline', split_QA, split_code])
+    PostIndexer = jpype.JClass("LucenePostIndexer")
+    PostIndexer.main(['-offline', split_QA])
+    end_time = time.time()
+    logger.info(f'Running time for build lucene index: {end_time - start_time}')
+
+    # 4. extract fqn from library
+    logger.info('Start to extract FQN from API library...')
+    start_time = time.time()
     ParseLib.extract_fqn(fs_config)
+    # PreNgram.similarity_preprocess(fs_config)
+    end_time = time.time()
+    logger.info(f'Running time for creat FQN set: {end_time - start_time}')
 
-    # jpype.shutdownJVM()
+
+    jpype.shutdownJVM()
     logger.info('Finish offline operation!')
     return
 
@@ -150,32 +133,30 @@ def online_operation_pipline(fs_config, original):
     if not os.path.exists(time_record_folder):
         os.makedirs(time_record_folder)
 
-    # 1 & 2
+    # 1
     start_time = time.process_time()
     logger.info('Start to search similar code snippets...')
-    CodeSearch.lucene_search_pipline(fs_config, datasets, libs, lcn_k, not_finished)
-    SimCal.cal_similarity_pipeline(fs_config, datasets, libs, lcn_k, sim_k, not_finished)
+    SearchCode.lucene_search_pipline(fs_config, datasets, libs, lcn_k, not_finished)
+    SearchCode.cal_similarity_pipeline(fs_config, datasets, libs, lcn_k, sim_k, not_finished)
     end_time = time.process_time()
     logger.info(f'time spent for searching similar code snippets: {end_time-start_time}')
 
-    # 3 
+    # 2
     logger.info('Start to retrieve posts from SO...')
     start_time = time.process_time()
-    GetResPip.retrieve_posts_pipeline(fs_config, datasets, libs, not_finished)
+    GenQues.retrieve_posts_pipeline(fs_config, datasets, libs, not_finished)
     end_time = time.process_time()
     logger.info(f'time spent for retireve code snippets: {end_time-start_time}')
-
-    # 4 ~ 5
     logger.info('Start to generate questions...')
     start_time = time.process_time()
-    GetResPip.generate_question_pipeline(fs_config, datasets, libs, not_finished, original, sim_k, rcm_k, prompt_conf)
+    GenQues.generate_question_pipeline(fs_config, datasets, libs, not_finished, original, sim_k, rcm_k, prompt_conf)
     end_time = time.process_time()
     logger.info(f'time spent for generating questions: {end_time-start_time}')
 
-    # 6 ~ 7
+    # 3
     logger.info('Start to get type infrence result...')
     start_time = time.time()
-    GetResPip.get_result_pipline(fs_config, datasets, libs, not_finished, original)
+    GetResPipe.get_result_pipline(fs_config, datasets, libs, not_finished, original)
     end_time = time.time()
     logger.info(f'time spent for getting type infrence result: {end_time-start_time}')
 
@@ -208,13 +189,11 @@ def online_operation_singal(fs_config, source_path, original:bool=False):
 
     if original:
         # 5. generate question for given post
-        question = GetResSin.generate_question_pipeline(code_snippet, api_elements, original)
+        question = GenQues.generate_question_signal(code_snippet, api_elements, original)
     else:
-        text_level = TS.TEXT_FILTER_LEVEL
         prompt_conf = TS.PROMPT_CONF
         res_data['prompt_conf'] = prompt_conf
-        res_data['prompt_conf']['text_level'] = text_level
-        sim_post_folder,sim_posts_ids,sim_score = GetResSin.get_sim_posts_singal(source_path, code_snippet, lucene_top_k, sim_top_k, res_folder)
+        sim_post_folder, sim_posts_ids, sim_score = SearchCode.get_sim_posts_singal(source_path, code_snippet, lucene_top_k, sim_top_k, res_folder)
         # 4. process posts' body & summarize
         logger.info(f'process posts and summarize...')
         post_list = [f'{sim_post_folder}/{id}.json' for id in sim_posts_ids]
@@ -223,11 +202,11 @@ def online_operation_singal(fs_config, source_path, original:bool=False):
             'sim_score': sim_score,
         }
         # 5. generate question for given post
-        question = GetResSin.generate_question_pipeline(code_snippet, api_elements, original, post_list, prompt_conf, text_level)
+        question = GenQues.generate_question_signal(code_snippet, api_elements, original, post_list, prompt_conf)
 
     res_data['question'] = question
     logger.info('Start to get type infrence result...')
-    infere_result = GetResSin.get_result_singal(question,api_elements)
+    infere_result = GetResSig.get_result_singal(question, api_elements)
     res_data['inference_result'] = infere_result
     res_file = f'{res_folder}/result.json'
     logger.info(f'save result to:{res_file}')
@@ -238,7 +217,7 @@ def online_operation_singal(fs_config, source_path, original:bool=False):
 
 
 # operation: precision, check_wrong, stat_sig, process_time
-def evaluation_operation(fs_config, operation, original:bool):
+def evaluation_operation(fs_config, operation, original: bool):
     logger = logging.getLogger(__name__)
     datasets = TS.DATASETS
     libs = TS.LIBS
@@ -263,7 +242,7 @@ def evaluation_operation(fs_config, operation, original:bool):
     # calculate average process time
     if 'process_time' in ops:
         logger.info('Start to calculate average process time...')
-        PTime.cal_average_process_time(fs_config)
+        ProTime.cal_average_process_time(fs_config)
 
     return not_finished
 
@@ -272,7 +251,6 @@ def evaluation_operation(fs_config, operation, original:bool):
 if __name__ == '__main__':
     parser = set_arg_parser()
     args = parser.parse_args()
-    fs_config = read_file_structure()
 
     if args.log_file:
         now = datetime.datetime.now().strftime('%y%m%d%H%M')
@@ -284,10 +262,7 @@ if __name__ == '__main__':
     mode = args.mode
     if mode == 'offline':
         print("start offline mode...")
-        start_time = time.process_time()
         offline_operation(fs_config)
-        end_time = time.process_time()
-        print ('offline mode processing time:', end_time - start_time)
         pass
     elif mode == 'online':
         pattern = args.pattern

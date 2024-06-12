@@ -3,6 +3,7 @@ import utils
 import logging
 import matplotlib.pyplot as plt
 
+
 def count_lines(filename):
     with open(filename, 'r') as f:
         lines = f.readlines()

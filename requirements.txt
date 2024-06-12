@@ -1,7 +1,6 @@
 lxml
 nltk
 scipy
-re_gpt
 openai
 JPype1
 matplotlib

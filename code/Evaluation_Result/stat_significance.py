@@ -1,5 +1,4 @@
 import os
-import logging
 from scipy.stats import mannwhitneyu
 
 import utils
