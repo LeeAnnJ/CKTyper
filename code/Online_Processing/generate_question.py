@@ -78,15 +78,14 @@ def retrieve_posts_pipeline(fs_config, datasets, libs, not_finished):
 #   "<cs_name>":"<question>",
 #   "<cs_name>": "xxx"
 # }
-def generate_question_pipeline(fs_config, datasets, libs, not_finished, original: bool, sim_top_k: int | None,
-                               rcm_top_k: int, prompt_conf: dict | None):
+def generate_question_pipeline(fs_config, datasets, libs, not_finished, original: bool, sim_top_k: int | None, prompt_conf: dict | None):
     logger = logging.getLogger(__name__)
     dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
     api_elements_folder = fs_config['API_ELEMENTS_FOLDER']
     generated_question_folder = fs_config['GENERATED_QUESTOIN_FOLDER']
     fqn_file = fs_config['FQN_FILE']
     time_record_folder = fs_config['TIME_RECORD_FOLDER']
-    ques_gen = QuestionGenerator(rcm_top_k)
+    ques_gen = QuestionGenerator()
     reflag = True if len(not_finished) > 0 else False
     prompt_list = None
 

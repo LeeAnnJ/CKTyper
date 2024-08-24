@@ -7,7 +7,7 @@ from Online_Processing.obj.handle_result import ResHandler
 from Online_Processing.obj.call_chatgpt import ModelAccesser_V2 as ModelAccesser
 
 
-def get_result_pipline(fs_config, datasets, libs, not_finished, original:bool):
+def get_result_pipline(fs_config, datasets, libs, not_finished, original:bool, rcm_top_k):
     logger = logging.getLogger(__name__)
     api_elements_folder = fs_config['API_ELEMENTS_FOLDER']
     generated_question_folder = fs_config['GENERATED_QUESTOIN_FOLDER']
@@ -41,7 +41,7 @@ def get_result_pipline(fs_config, datasets, libs, not_finished, original:bool):
             for cs_name in cs_names:
                 start_time = time.time()
                 if reflag and cs_name not in not_finished: continue
-                question = question_data[cs_name]
+                question = question_data[cs_name].replace("[k]", str(rcm_top_k))
                 cs_api_dict = api_dict[cs_name]
                 if cs_name in time_lib.keys(): time_cs = time_lib[cs_name]
                 else: time_cs = {}

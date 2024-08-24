@@ -12,11 +12,14 @@ class TextSummarizer(object):
     logger = logging.getLogger(__name__)
     model_name = ENV.SUM_MODEL_NAME
     size = ENV.MAX_BATCH_SIZE
-    max_text_len = ENV.AVERAGE_WORD_LENGTH*size
     code_token_number = ENV.CODE_TOKEN_NUMBER
     sentence_number = ENV.SENTENCE_NUMBER
 
     def __init__(self, level, corpus_folder, fqn_file) -> None:
+        average_word_len = 6
+        self.max_text_len = self.size*average_word_len
+        self.max_output = round(self.max_text_len*(ENV.SUMMARIZATION_RATIO+0.05)/average_word_len)
+        self.min_output = round(self.max_text_len*(ENV.SUMMARIZATION_RATIO-0.05)/average_word_len)
         # load model and tokenizer
         self.model = PegasusForConditionalGeneration.from_pretrained(self.model_name)
         self.tokenizer = PegasusTokenizer.from_pretrained(self.model_name)
@@ -24,9 +27,9 @@ class TextSummarizer(object):
         # device = torch.device(f'cuda' if torch.cuda.is_available() else "cpu")
         print(device)
         self.model.to(device)
-        # load corpus
-        self.code_corpus = utils.read_pickle(f'{corpus_folder}/code_corpus.pkl')
-        self.post_corpus = utils.read_pickle(f'{corpus_folder}/post_corpus.pkl')
+        # # load corpus
+        # self.code_corpus = utils.read_pickle(f'{corpus_folder}/code_corpus.pkl')
+        # self.post_corpus = utils.read_pickle(f'{corpus_folder}/post_corpus.pkl')
         self.fqn_set = utils.read_pickle(fqn_file)['simple_list']
         self.text_level = level
         pass
@@ -40,12 +43,12 @@ class TextSummarizer(object):
         for sentence in sentences:
             part += sentence+" "
             part_len += len(sentence)
-            if part_len > self.size:
+            if part_len > self.max_text_len:
                 splited_body.append(part)
                 part = ""
                 part_len = 0
         if len(part)>0:
-            if len(part)<self.size/2 and len(splited_body)>0:
+            if len(part)<self.max_text_len/2 and len(splited_body)>0:
                 splited_body[-1] += part
             else: splited_body.append(part)
         return splited_body
@@ -113,8 +116,10 @@ class TextSummarizer(object):
                 if '\n' not in pre_code: continue
                 if self.text_level >=2: codes.append(pre_code) # save codes for calculating important api
                 body = body.replace(pre_code, '') # remove codes from body
-        selected = body
-        if self.text_level >=2:
+        if self.text_level==1: selected = '\n'.join(codes)
+        else: selected = body
+
+        if self.text_level >=3:
             imp_tokens = self.cal_import_tokens(codes, api_elems)
             self.logger.debug(f'imp_tokens:{imp_tokens}')
             selected = self.select_sentences(body, imp_tokens)
@@ -132,8 +137,9 @@ class TextSummarizer(object):
                 input_ids = self.tokenizer.encode(input, return_tensors="pt", max_length=512, truncation=True)
                 input_ids = input_ids.to(self.model.device)
                 summary_ids = self.model.generate(input_ids, 
-                    max_length=512, 
-                    length_penalty=0.8,
+                    max_length=self.max_output,
+                    min_length=self.min_output,
+                    length_penalty=1.0,
                     num_beams=4,
                     early_stopping=True,
                     repetition_penalty=1.5,
@@ -149,7 +155,8 @@ if __name__ == '__main__':
     text = '''
     '''
     api_elems = ["DApp", "summer", "API"]
-    summarizer = TextSummarizer("../data/corpus/", "", "")
+    summarizer = TextSummarizer(3,"../data/corpus/", "")
     res = summarizer.preprocess_body(text, 2, api_elems)
+    abs = summarizer.generate_summary_pegasus(res)
     print(res)
     pass

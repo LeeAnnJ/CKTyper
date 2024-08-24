@@ -61,22 +61,22 @@ def offline_operation(fs_config):
     logger = logging.getLogger(__name__)
     jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
 
-    # 1. extract SO posts with 'java' tag from SO data
-    logger.info("Start to filter SO posts with \"java\" tag ...")
-    start_time = time.time()
-    logger.info('get questions and their ids ======')
-    ParseSO.getQuestions(so_pro_conf)
-    logger.info('\n\nget answers and their ids ======')
-    ParseSO.getAnswers(so_pro_conf)
-    end_time = time.time()
-    logger.info(f"Running time for filter SO posts with \"java\" tag: {end_time - start_time}")
+    # # 1. extract SO posts with 'java' tag from SO data
+    # logger.info("Start to filter SO posts with \"java\" tag ...")
+    # start_time = time.time()
+    # logger.info('get questions and their ids ======')
+    # ParseSO.getQuestions(so_pro_conf)
+    # logger.info('\n\nget answers and their ids ======')
+    # ParseSO.getAnswers(so_pro_conf)
+    # end_time = time.time()
+    # logger.info(f"Running time for filter SO posts with \"java\" tag: {end_time - start_time}")
 
-    # 2 extract code snippets from posts
-    logger.info('Start to extract code snippets from SO posts...')
-    start_time = time.time()
-    extract_code_from_post(fs_config)
-    end_time = time.time()
-    logger.info(f'Running time for extract codes: {end_time - start_time}')
+    # # 2 extract code snippets from posts
+    # logger.info('Start to extract code snippets from SO posts...')
+    # start_time = time.time()
+    # extract_code_from_post(fs_config)
+    # end_time = time.time()
+    # logger.info(f'Running time for extract codes: {end_time - start_time}')
     
     # 3. biuld lucene index
     logger.info('Start to build lucene index...')
@@ -86,19 +86,18 @@ def offline_operation(fs_config):
     split_code = "True" if index_conf["split_code"] else "False"
     CodeIndexer = jpype.JClass("LuceneCodeIndexer")
     CodeIndexer.main(['-offline', split_QA, split_code])
-    PostIndexer = jpype.JClass("LucenePostIndexer")
-    PostIndexer.main(['-offline', split_QA])
+    # PostIndexer = jpype.JClass("LucenePostIndexer")
+    # PostIndexer.main(['-offline', split_QA])
     end_time = time.time()
     logger.info(f'Running time for build lucene index: {end_time - start_time}')
 
-    # 4. extract fqn from library
-    logger.info('Start to extract FQN from API library...')
-    start_time = time.time()
-    ParseLib.extract_fqn(fs_config)
-    # PreNgram.similarity_preprocess(fs_config)
-    end_time = time.time()
-    logger.info(f'Running time for creat FQN set: {end_time - start_time}')
-
+    # # 4. extract fqn from library
+    # logger.info('Start to extract FQN from API library...')
+    # start_time = time.time()
+    # ParseLib.extract_fqn(fs_config)
+    # # PreNgram.similarity_preprocess(fs_config)
+    # end_time = time.time()
+    # logger.info(f'Running time for creat FQN set: {end_time - start_time}')
 
     jpype.shutdownJVM()
     logger.info('Finish offline operation!')
@@ -149,14 +148,14 @@ def online_operation_pipline(fs_config, original):
     logger.info(f'time spent for retireve code snippets: {end_time-start_time}')
     logger.info('Start to generate questions...')
     start_time = time.process_time()
-    GenQues.generate_question_pipeline(fs_config, datasets, libs, not_finished, original, sim_k, rcm_k, prompt_conf)
+    GenQues.generate_question_pipeline(fs_config, datasets, libs, not_finished, original, sim_k, prompt_conf)
     end_time = time.process_time()
     logger.info(f'time spent for generating questions: {end_time-start_time}')
 
     # 3
     logger.info('Start to get type infrence result...')
     start_time = time.time()
-    GetResPipe.get_result_pipline(fs_config, datasets, libs, not_finished, original)
+    GetResPipe.get_result_pipline(fs_config, datasets, libs, not_finished, original, rcm_k)
     end_time = time.time()
     logger.info(f'time spent for getting type infrence result: {end_time-start_time}')
 

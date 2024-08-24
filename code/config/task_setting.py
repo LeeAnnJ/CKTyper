@@ -6,9 +6,9 @@ INDEX_CONF = {
 }
 LUCENE_TOP_K = 50
 SIMILARITY_TOP_K = 10
-RECOMMEND_TOP_K = 5
+RECOMMEND_TOP_K = 3
 PROMPT_CONF = {
     "summarize": True,  # summarize text
-    "text_filter_level": 2  # 0-ALL, 1-TEXT or 2-API
+    "text_filter_level": 3  # 0-Full, 1-CS, 2-Desc or 3-APISens
 }
 NOT_FINISHED = []

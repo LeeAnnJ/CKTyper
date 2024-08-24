@@ -1,7 +1,7 @@
 # select text summarization model
 SUM_MODEL_NAME = "../../pegasus-xsum" # "google/pegasus-xsum"
-CUDADEVICE = 1
+CUDADEVICE = 0
 MAX_BATCH_SIZE = 512
-AVERAGE_WORD_LENGTH = 2
+SUMMARIZATION_RATIO = 0.3
 CODE_TOKEN_NUMBER = 3
 SENTENCE_NUMBER = 3

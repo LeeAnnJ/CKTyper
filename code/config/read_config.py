@@ -37,6 +37,7 @@ def read_file_structure():
     fs_config['SIM_POST_RESULT_FOLDER'] = config['intermediate']['SIM_POST_RESULT_FOLDER']
     fs_config['GENERATED_QUESTOIN_FOLDER'] = config['intermediate']['GENERATED_QUESTOIN_FOLDER']
     fs_config['FQN_FILE'] = config['intermediate']['FQN_FILE']
+    fs_config['CORPUS_FOLDER'] = config['intermediate']['CORPUS_FOLDER']
     fs_config['EVAL_PATH'] = config['result']['EVAL_PATH']
     fs_config['RESULT_ORIGINAL_FOLDER'] = config['result']['RESULT_ORIGINAL_FOLDER']
     fs_config['RESULT_PROMPTED_FOLDER'] = config['result']['RESULT_PROMPTED_FOLDER']
