@@ -1,4 +1,5 @@
 import os
+import math
 import utils
 import logging
 import matplotlib.pyplot as plt
@@ -61,6 +62,9 @@ def cal_average_process_time(fs_config):
     time_record_folder = fs_config['TIME_RECORD_FOLDER']
     dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
     list_dir(time_record_folder)
+    if not os.path.exists(f"{time_record_folder}/average"):
+        os.makedirs(f"{time_record_folder}/average")
+    time_list = []
 
     for dataset in datasets:
         avg_time = {}
@@ -130,14 +134,24 @@ def cal_average_process_time(fs_config):
         fig_title = f'Average processing time of {dataset}'
         draw_time_graph(x_data, y_data, color[dataset], fig_title, fig_path)
 
-        avg_time["dataset_average"] = dataset_sum/dataset_count
+        dataset_average = dataset_sum/dataset_count
+        avg_time["dataset_average"] = dataset_average
         y_data = sorted(y_data)
         avg_time["dataset_median"] = y_data[len(y_data)//2]
         avg_time["dataset_min"] = y_data[0]
         avg_time["dataset_max"] = y_data[-1]
+        variance = sum((y - dataset_average) ** 2 for y in y_data) / len(y_data)
+        avg_time["dataset_std"] = math.sqrt(variance)
+        time_list += y_data
 
         res_file = f"{time_record_folder}/average/average_time_{dataset}.json"
         utils.write_json(res_file, avg_time)
         logger.info(f"Average processing time of {dataset} has saved to {res_file}")
+    
+    sum_avg = sum(time_list)/len(time_list)
+    median = time_list[len(time_list)//2]
+    variance = sum((t - dataset_average) ** 2 for t in time_list) / len(time_list)
+    sum_std = math.sqrt(variance)
+    logger.info(f"Average processing time of all datasets: {sum_avg}, median: {median}, std: {sum_std}")
 
     

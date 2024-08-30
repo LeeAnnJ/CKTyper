@@ -47,50 +47,51 @@ def get_SnR_and_MLM_stat(res_folder,libs):
 def cal_statistical_significance(fs_config):
     datasets = ["StatType-SO","Short-SO"]
     libs = ["android", "gwt", "hibernate", "joda_time", "jdk", "xstream"]
+    eval_path = fs_config['EVAL_PATH']
     baseline_folder = fs_config['BASELINE_RESULT']
-    CKTyper_folder = fs_config["RESULT_PROMPTED_FOLDER"]
+    RQ3_folder = f"{eval_path}/RQ3/"
     origin_folder = fs_config["RESULT_ORIGINAL_FOLDER"]
     eval_path = fs_config['EVAL_PATH']
     p_values = {
         "CKTyper v.s.":{},
-        "ChatGPT_RAG v.s.":{},
-        "CKTyper_noRAG v.s.":{},
     }
 
     for dataset in datasets:
-        CKTyper_res_folder = f"{CKTyper_folder}/{dataset}"
+        CKTyper_res_folder = f"{RQ3_folder}CKTyper/{dataset}"
         iJTyper_folder = f"{baseline_folder}/iJTyper/{dataset}"
         SnR_and_MLM_folder = f"{baseline_folder}/SnR+MLMTyper/{dataset}"
-        ChatGPT_folder = f"{origin_folder}/no_RAG/{dataset}"
-        ChatGPT_RAG_folder = f"{origin_folder}/RAG/{dataset}"
-        CKTyper_noRAG_folder = CKTyper_res_folder.replace("RAG","no_RAG")
+        ChatGPT_folder = f"{origin_folder}/{dataset}"
+        CKTyper_TypeFilter_folder = f"{RQ3_folder}CKTyper-TypeFilter/{dataset}"
+        CKTyper_CKGG_folder = f"{RQ3_folder}CKTyper-CKGG/{dataset}"
+        CKTyper_S_NER_folder = f"{RQ3_folder}CKTyper-S-NER/{dataset}"
 
         CKTyper_stat = get_CKTyper_stat(CKTyper_res_folder, libs)
         iJTyper_stat = get_iJTyper_stat(iJTyper_folder)
         SnR_acc_stat, SnR_rcl_stat, MLM_stat = get_SnR_and_MLM_stat(SnR_and_MLM_folder, libs)
         ChatGPT_stat = get_CKTyper_stat(ChatGPT_folder, libs)
-        ChatGPT_RAG_stat = get_CKTyper_stat(ChatGPT_RAG_folder, libs)
-        CKTyper_noRAG_stat = get_CKTyper_stat(CKTyper_noRAG_folder, libs)
+        CKTyper_CKGG_stat = get_CKTyper_stat(CKTyper_CKGG_folder, libs)
+        CKTyper_TypeFilter_stat = get_CKTyper_stat(CKTyper_TypeFilter_folder, libs)
+        CKTyper_S_NER_stat = get_CKTyper_stat(CKTyper_S_NER_folder, libs)
         
         _, iJTyper_p = mannwhitneyu(CKTyper_stat, iJTyper_stat)
         _, SnR_acc_p = mannwhitneyu(CKTyper_stat, SnR_acc_stat)
         _, SnR_rcl_p = mannwhitneyu(CKTyper_stat, SnR_rcl_stat)
         _, MLMTyper_p = mannwhitneyu(CKTyper_stat, MLM_stat)
         _, ChatGPT_p = mannwhitneyu(CKTyper_stat, ChatGPT_stat)
-        _, ChatGPT_RAG_p = mannwhitneyu(CKTyper_stat, ChatGPT_RAG_stat)
-        _, CKTyper_noRAG_p = mannwhitneyu(CKTyper_stat, CKTyper_noRAG_stat)
+        _, CKTyper_CKGG_p = mannwhitneyu(CKTyper_stat, CKTyper_CKGG_stat)
+        _, CKTyper_TypeFilter_p = mannwhitneyu(CKTyper_stat, CKTyper_TypeFilter_stat)
+        _, CKTyper_S_NER_p = mannwhitneyu(CKTyper_stat, CKTyper_S_NER_stat)
         CKTyper_dataset_dict = {
             "iJTyper": iJTyper_p,
             "SnR_acc": SnR_acc_p,
             "SnR_rcl": SnR_rcl_p,
             "MLMTyper": MLMTyper_p,
             "ChatGPT": ChatGPT_p,
-            "ChatGPT_RAG": ChatGPT_RAG_p,
-            "CKTyper_noRAG": CKTyper_noRAG_p
+            "CKTyper-CKGG": CKTyper_CKGG_p,
+            "CKTyper_TypeFilter": CKTyper_TypeFilter_p,
+            "CKTyper_S_NER": CKTyper_S_NER_p
         }
         p_values["CKTyper v.s."][dataset] = CKTyper_dataset_dict
-        _, p_values["ChatGPT_RAG v.s."][dataset] = mannwhitneyu(ChatGPT_RAG_stat, ChatGPT_stat)
-        _, p_values["CKTyper_noRAG v.s."][dataset] = mannwhitneyu(CKTyper_noRAG_stat, ChatGPT_stat)
     
     res_file = f"{eval_path}/statistical_significance.json"
     utils.write_json(res_file, p_values)

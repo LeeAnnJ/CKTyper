@@ -3,8 +3,8 @@ import time
 import logging
 
 import utils
-from Online_Processing.obj.handle_result import ResHandler
-from Online_Processing.obj.call_chatgpt import ModelAccesser_V2 as ModelAccesser
+from Online_Processing.obj import ResHandler
+from Online_Processing.obj import ModelAccesser
 
 
 def get_result_pipline(fs_config, datasets, libs, not_finished, original:bool, rcm_top_k):
