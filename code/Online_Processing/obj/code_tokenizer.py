@@ -4,10 +4,6 @@ This is a tokenizer for programming-specific or software-specific texts in Stack
 Such text is both social, e.g., people use ungrammatical and informal language in comments,
 and domain-specific, e.g., printf() should be recognized as one token rather than 3 tokens printf, '(' and ')'.
 
-Acknowledgement goes to Brendan O'Connor, Kevin Gimpel and Daniel Mills,
-who are the authors of a Twitter tokenizer. This tokenizer modifies their Twitter one.
-
-
 general philosophy is to throw as little out as possible.
 development philosophy: every time you change a rule, do a diff of this
 program's output on ~100k tweets.  if you iterate through many possible rules
@@ -167,7 +163,7 @@ assert '-' != '―'
 Separators = regex_or('--+', '―')
 Decorations = r' [  ♫   ]+ '.replace(' ','')
 
-EmbeddedApostrophe = r"\S+'\w+"  # \S -> \w, by Deheng
+EmbeddedApostrophe = r"\S+'\w+"  # \S -> \w,
 
 Hashtag = r'#[a-zA-Z0-9_]+'
 
@@ -187,10 +183,10 @@ ProtectThese = [
     Separators,
     Decorations,
     EmbeddedApostrophe,
-    API,  # Deheng
-    PunctSeq,  # Deheng
-    plural,   # Deheng
-    ProgrammingOperators  # Deheng
+    API,
+    PunctSeq,
+    plural,
+    ProgrammingOperators
 ]
 Protect_RE = mycompile(regex_or(*ProtectThese))
 
@@ -235,11 +231,11 @@ def unicodify(s, encoding='utf8', *args):
   return str(s)
 
 def tokenize(tweet):
-  #tweet = re.sub(u'—', ' ', tweet) # Deheng
-  #tweet = tweet.replace('\x97', ' ') # Deheng
+  #tweet = re.sub(u'—', ' ', tweet)
+  #tweet = tweet.replace('\x97', ' ')
   text = unicodify(tweet)
-  text = re.sub(u'—', ' ', text) # Deheng
-  text = re.sub('(?<=\w)/(\s|$)', ' ', text) # Deheng
+  text = re.sub(u'—', ' ', text)
+  text = re.sub('(?<=\w)/(\s|$)', ' ', text)
   text = squeeze_whitespace(text)
   # Convert HTML escape sequences into their actual characters (so that the tokenizer and emoticon finder are not fooled).
   text = re.sub(r'&lt;', '<', text)
@@ -302,7 +298,6 @@ def squeeze_whitespace(s):
   new_string = WS_RE.sub(" ",s)
   return new_string.strip()
 
-# fun: copy and paste outta http://en.wikipedia.org/wiki/Smart_quotes
 #EdgePunct      = r"""[  ' " “ ” ‘ ’ * < > « » { } ( \) [ \]  ]""".replace(' ','')
 # Removed < and > because they were causing problems with <3 emoticons
 EdgePunct      = r"""[  ' " “ ” ‘ ’ * « » { } ( \) [ \]  ]""".replace(' ','')

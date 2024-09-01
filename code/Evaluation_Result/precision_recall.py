@@ -30,7 +30,7 @@ def cal_precision_recall_singal(result_file):
             wrong += 1
         res_data.append(res_line)
     if (correct+wrong)==0: precision = 0
-    else: precision = correct / (correct + wrong)
+    else: precision = correct / total # correct / (correct + wrong)
     recall = correct / total
     res_data.append([f'Total: {total}', f'Correct: {correct}', f'Wrong:  {wrong}', f'Precision: {precision}', f'Recall: {recall}'])
     utils.write_csv(result_file, res_data, head)
@@ -72,9 +72,9 @@ def cal_precision_recall_pipline(fs_config, datasets, libs, original:bool):
                 lib_statistic.append([cs_name]+cs_statistic)
 
             if (lib_correct+lib_wrong)==0: lib_precision = 0
-            else: lib_precision = lib_correct / (lib_correct + lib_wrong)
+            else: lib_precision = lib_correct / lib_total # (lib_correct + lib_wrong)
             lib_recall = lib_correct / lib_total
-            lib_info = [lib_total, lib_correct,lib_wrong, lib_precision, lib_recall]
+            lib_info = [lib_total, lib_correct, lib_wrong, lib_precision, lib_recall]
             lib_statistic.append(["Sum"]+lib_info)
             lib_res_file = f'{lib_folder}/{lib}_sum.csv'
             logger.info(f"Save precision & recall for lib: {lib}")
@@ -85,7 +85,7 @@ def cal_precision_recall_pipline(fs_config, datasets, libs, original:bool):
             dataset_wrong += lib_wrong
             dataset_statistic.append([lib]+lib_info)
 
-        dataset_precision = dataset_correct / (dataset_correct + dataset_wrong)
+        dataset_precision = dataset_correct / dataset_total # (dataset_correct + dataset_wrong)
         dataset_recall = dataset_correct / dataset_total
         dataset_statistic.append(["Sum",dataset_total, dataset_correct, dataset_wrong, dataset_precision, dataset_recall])
         dataset_res_file = f'{dataset_folder}/{dataset}_sum.csv'

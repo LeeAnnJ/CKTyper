@@ -121,8 +121,7 @@ def online_operation_pipline(fs_config, original):
     logger = logging.getLogger(__name__)
     datasets = TS.DATASETS
     libs = TS.LIBS
-    lcn_k = TS.LUCENE_TOP_K
-    sim_k = TS.SIMILARITY_TOP_K
+    retrieval_conf = TS.RETRIEVAL_CONF
     rcm_k = TS.RECOMMEND_TOP_K
     prompt_conf = TS.PROMPT_CONF
     not_finished = TS.NOT_FINISHED
@@ -135,8 +134,8 @@ def online_operation_pipline(fs_config, original):
     # 1
     start_time = time.process_time()
     logger.info('Start to search similar code snippets...')
-    SearchCode.lucene_search_pipline(fs_config, datasets, libs, lcn_k, not_finished)
-    SearchCode.cal_similarity_pipeline(fs_config, datasets, libs, lcn_k, sim_k, not_finished)
+    # SearchCode.lucene_search_pipline(fs_config, datasets, libs, retrieval_conf["lucene_top_n"], not_finished)
+    SearchCode.cal_similarity_pipeline(fs_config, datasets, libs, retrieval_conf, not_finished)
     end_time = time.process_time()
     logger.info(f'time spent for searching similar code snippets: {end_time-start_time}')
 
@@ -146,18 +145,18 @@ def online_operation_pipline(fs_config, original):
     GenQues.retrieve_posts_pipeline(fs_config, datasets, libs, not_finished)
     end_time = time.process_time()
     logger.info(f'time spent for retireve code snippets: {end_time-start_time}')
-    logger.info('Start to generate questions...')
-    start_time = time.process_time()
-    GenQues.generate_question_pipeline(fs_config, datasets, libs, not_finished, original, sim_k, prompt_conf)
-    end_time = time.process_time()
-    logger.info(f'time spent for generating questions: {end_time-start_time}')
+    # logger.info('Start to generate questions...')
+    # start_time = time.process_time()
+    # GenQues.generate_question_pipeline(fs_config, datasets, libs, not_finished, original, retrieval_conf["similarity_top_n"], prompt_conf)
+    # end_time = time.process_time()
+    # logger.info(f'time spent for generating questions: {end_time-start_time}')
 
-    # 3
-    logger.info('Start to get type infrence result...')
-    start_time = time.time()
-    GetResPipe.get_result_pipline(fs_config, datasets, libs, not_finished, original, rcm_k)
-    end_time = time.time()
-    logger.info(f'time spent for getting type infrence result: {end_time-start_time}')
+    # # 3
+    # logger.info('Start to get type infrence result...')
+    # start_time = time.time()
+    # GetResPipe.get_result_pipline(fs_config, datasets, libs, not_finished, original, rcm_k)
+    # end_time = time.time()
+    # logger.info(f'time spent for getting type infrence result: {end_time-start_time}')
 
     jpype.shutdownJVM()
     logger.info('Finish online pipline operation!')

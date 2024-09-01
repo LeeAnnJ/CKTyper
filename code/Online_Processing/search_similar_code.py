@@ -84,6 +84,17 @@ def cal_similarity_singal(code_snippet:str, lucene_topk_dic, calculator:Similari
     return topk_sim_postIds, sim_score
 
 
+# output: a list of top-k similar postIds & similarity, e.g. ['122','123'],[1.0,0.9,0.9]
+def select_topn_cs(lucene_topk_dic, sim_topk):
+    lucene_list = os.listdir(lucene_topk_dic)
+    lucene_score_list = [item.split('_') for item in lucene_list]
+    lucene_score_list = [[item[0], float(item[1].replace(".java",""))] for item in lucene_score_list]
+    sorted_list = sorted(lucene_score_list, key=lambda x:x[1], reverse=True)
+    topk_sim_postIds = [item[0] for item in sorted_list[0:sim_topk]]
+    sim_score = [item[1] for item in sorted_list[0:sim_topk]]
+    return topk_sim_postIds, sim_score
+
+
 # sim_result:
 # {
 #   "<lib>": {
@@ -95,12 +106,16 @@ def cal_similarity_singal(code_snippet:str, lucene_topk_dic, calculator:Similari
 #   },
 #   "<lib>": {...}
 # }
-def cal_similarity_pipeline(fs_config, datasets, libs, lucene_topk,similarity_topk, not_finished):
+def cal_similarity_pipeline(fs_config, datasets, libs, retrieval_conf, not_finished):
     logger = logging.getLogger(__name__)
+    lucene_topn = retrieval_conf["lucene_top_n"]
+    calculate_CrystalBLEU = retrieval_conf["calculate_CrystalBLEU"]
+    similarity_topn = retrieval_conf["similarity_top_n"]
+
     dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
     sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
     time_record_folder = fs_config['TIME_RECORD_FOLDER']
-    lucene_folder = fs_config['LUCENE_FOLDER'].replace('topk',f'top{lucene_topk}')
+    lucene_folder = fs_config['LUCENE_FOLDER'].replace('topk',f'top{lucene_topn}')
     ngram_file = fs_config['NGRAM_FILE']
     if not os.path.exists(sim_post_result_folder): os.makedirs(sim_post_result_folder)
     similarity_calculator = SimilarityCalculator(ngram_file)
@@ -135,8 +150,11 @@ def cal_similarity_pipeline(fs_config, datasets, libs, lucene_topk,similarity_to
                 lucene_topk_dic = f'{lucene_folder}/{dataset}/{lib}/{cs_name}'
                 # logger.debug(f" lucene_topk_dir: {lucene_topk_dic}")
                 # 6. Calculate CrystalBLEU for input code and each lucene code
-                input_code_snippet = utils.load_text(input_code_snippet_path)
-                topk_sim_postIds,sim_score = cal_similarity_singal(input_code_snippet,lucene_topk_dic,similarity_calculator,similarity_topk)
+                if calculate_CrystalBLEU:
+                    input_code_snippet = utils.load_text(input_code_snippet_path)
+                    topk_sim_postIds, sim_score = cal_similarity_singal(input_code_snippet,lucene_topk_dic,similarity_calculator,similarity_topn)
+                else:
+                    topk_sim_postIds, sim_score = select_topn_cs(lucene_topk_dic, similarity_topn)
                 code_snippets_result[cs_name] = {"topk_sim_postIds": topk_sim_postIds, "sim_scores": sim_score}
                 end_time = time.time()
                 time_cs["sim_cal"] = end_time - start_time

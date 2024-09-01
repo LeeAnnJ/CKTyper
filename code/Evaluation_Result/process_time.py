@@ -116,7 +116,8 @@ def cal_average_process_time(fs_config):
                 cs_sum = 0
                 for key in avg_time[lib][cs]:
                     if key == "lines": continue
-                    avg_time[lib][cs][key] /= count[lib][cs][key]
+                    if count[lib][cs][key] > 0:
+                        avg_time[lib][cs][key] /= count[lib][cs][key]
                     cs_sum += avg_time[lib][cs][key]
                 avg_time[lib][cs]["average_sum"] = cs_sum
                 y_data.append(cs_sum)

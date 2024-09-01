@@ -4,8 +4,11 @@ INDEX_CONF = {
     "split_QA": False,
     "split_code": False,
 }
-LUCENE_TOP_K = 50
-SIMILARITY_TOP_K = 10
+RETRIEVAL_CONF = {
+    "lucene_top_n": 50,
+    "calculate_CrystalBLEU": False,
+    "similarity_top_n": 10
+}
 RECOMMEND_TOP_K = 3
 PROMPT_CONF = {
     "summarize": True,  # summarize text

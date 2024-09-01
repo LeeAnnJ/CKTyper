@@ -64,7 +64,10 @@ def cal_statistical_significance(fs_config):
         CKTyper_TypeFilter_folder = f"{RQ3_folder}CKTyper-TypeFilter/{dataset}"
         CKTyper_CKGG_folder = f"{RQ3_folder}CKTyper-CKGG/{dataset}"
         CKTyper_S_NER_folder = f"{RQ3_folder}CKTyper-S-NER/{dataset}"
-
+        CKTyper_Full_folder = f"{RQ3_folder}CKTyper-Full/{dataset}"
+        CKTyper_CS_folder = f"{RQ3_folder}CKTyper-CS/{dataset}"
+        CKTyper_Desc_folder = f"{RQ3_folder}CKTyper-Desc/{dataset}"
+        
         CKTyper_stat = get_CKTyper_stat(CKTyper_res_folder, libs)
         iJTyper_stat = get_iJTyper_stat(iJTyper_folder)
         SnR_acc_stat, SnR_rcl_stat, MLM_stat = get_SnR_and_MLM_stat(SnR_and_MLM_folder, libs)
@@ -72,6 +75,9 @@ def cal_statistical_significance(fs_config):
         CKTyper_CKGG_stat = get_CKTyper_stat(CKTyper_CKGG_folder, libs)
         CKTyper_TypeFilter_stat = get_CKTyper_stat(CKTyper_TypeFilter_folder, libs)
         CKTyper_S_NER_stat = get_CKTyper_stat(CKTyper_S_NER_folder, libs)
+        CKTyper_Full_stat = get_CKTyper_stat(CKTyper_Full_folder,libs)
+        CKTyper_CS_stat = get_CKTyper_stat(CKTyper_CS_folder,libs)
+        CKTyper_Desc_stat = get_CKTyper_stat(CKTyper_Desc_folder,libs)
         
         _, iJTyper_p = mannwhitneyu(CKTyper_stat, iJTyper_stat)
         _, SnR_acc_p = mannwhitneyu(CKTyper_stat, SnR_acc_stat)
@@ -81,6 +87,10 @@ def cal_statistical_significance(fs_config):
         _, CKTyper_CKGG_p = mannwhitneyu(CKTyper_stat, CKTyper_CKGG_stat)
         _, CKTyper_TypeFilter_p = mannwhitneyu(CKTyper_stat, CKTyper_TypeFilter_stat)
         _, CKTyper_S_NER_p = mannwhitneyu(CKTyper_stat, CKTyper_S_NER_stat)
+        _, CKTyper_FUll_p = mannwhitneyu(CKTyper_stat, CKTyper_Full_stat)
+        _, CKTyper_CS_p = mannwhitneyu(CKTyper_stat, CKTyper_CS_stat)
+        _, CKTyper_Desc_p = mannwhitneyu(CKTyper_stat, CKTyper_Desc_stat)
+
         CKTyper_dataset_dict = {
             "iJTyper": iJTyper_p,
             "SnR_acc": SnR_acc_p,
@@ -89,7 +99,10 @@ def cal_statistical_significance(fs_config):
             "ChatGPT": ChatGPT_p,
             "CKTyper-CKGG": CKTyper_CKGG_p,
             "CKTyper_TypeFilter": CKTyper_TypeFilter_p,
-            "CKTyper_S_NER": CKTyper_S_NER_p
+            "CKTyper_S_NER": CKTyper_S_NER_p,
+            "CKTyper_Full": CKTyper_FUll_p,
+            "CKTyper_CS": CKTyper_CS_p,
+            "CKTyper_Desc": CKTyper_Desc_p,
         }
         p_values["CKTyper v.s."][dataset] = CKTyper_dataset_dict
     
