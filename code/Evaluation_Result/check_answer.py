@@ -14,10 +14,9 @@ def list_not_perfect_file(fs_config, datasets):
     print("Not perfect file: ", not_finished)
     return list(not_finished)
 
-def list_wrong_answer_pipline(fs_config, datasets, libs, original:bool):
+def list_wrong_answer_pipline(fs_config, datasets, libs):
     logger = logging.getLogger(__name__)
-    if original: res_folder = fs_config['RESULT_ORIGINAL_FOLDER']
-    else: res_folder = fs_config['RESULT_PROMPTED_FOLDER']
+    res_folder = fs_config['INFERENCE_RESULT_FOLDER']
     record_folder = f"{fs_config['INTER_RECORD_FOLDER']}/wrong_answer"
     if not os.path.exists(record_folder): os.makedirs(record_folder)
     head = ["CS_name","Node","ans","truth"]

@@ -15,7 +15,7 @@ class TextSummarizer(object):
     code_token_number = ENV.CODE_TOKEN_NUMBER
     sentence_number = ENV.SENTENCE_NUMBER
 
-    def __init__(self, level, corpus_folder, fqn_file) -> None:
+    def __init__(self, level, fqn_file) -> None:
         average_word_len = 6
         self.max_text_len = self.size*average_word_len
         self.max_output = round(self.max_text_len*(ENV.SUMMARIZATION_RATIO+0.05)/average_word_len)
@@ -27,9 +27,6 @@ class TextSummarizer(object):
         # device = torch.device(f'cuda' if torch.cuda.is_available() else "cpu")
         print(device)
         self.model.to(device)
-        # # load corpus
-        # self.code_corpus = utils.read_pickle(f'{corpus_folder}/code_corpus.pkl')
-        # self.post_corpus = utils.read_pickle(f'{corpus_folder}/post_corpus.pkl')
         self.fqn_set = utils.read_pickle(fqn_file)['simple_list']
         self.text_level = level
         pass
@@ -53,22 +50,6 @@ class TextSummarizer(object):
             else: splited_body.append(part)
         return splited_body
 
-    def cal_import_tokens(self, codes, api_elems)->list[str]:
-        imp_tokens = api_elems.copy()
-        # code_tokens = []
-        # # calculate tf-idf for each token in code
-        # for code in codes:
-        #     tokens = Tokenizer.tokenize(code)
-        #     code_tokens.extend([[token, self.code_corpus.tf_idf(token,code)] for token in tokens])
-        # code_tokens = sorted(code_tokens, key=lambda x:x[1], reverse=True)
-        # # add most important tokens to imp_tokens
-        # count = 0
-        # for token in code_tokens:
-        #     if token[0] not in imp_tokens:
-        #         imp_tokens.append(token[0])
-        #         count += 1
-        #     if count >= self.code_token_number: break
-        return imp_tokens
 
     def judge_api(self, token) -> bool:
         if "()" in token: return True
@@ -82,28 +63,10 @@ class TextSummarizer(object):
         # print(len(sentences))
         for sentence in sentences:
             sen_tokens = tokenize(sentence)
-            # if any(word in sentence for word in imp_tokens) or any(self.judge_api(token) for token in sen_tokens) or len(re.findall(r'<code>(.*?)</code>', sentence))>0:
             if any(word in sentence for word in imp_tokens) or any (token in self.fqn_set for token in sen_tokens):
                 selected += sentence + " "
             body_tokens.append(sen_tokens)
 
-        # if len(selected)==0:
-        #     token_tf_idf = []
-        #     for i in range(len(body_tokens)):
-        #         sen_token = body_tokens[i]
-        #         token_tf_idf.extend( [[token,i,self.post_corpus.tf_idf(token,body)] for token in sen_token])
-        #     token_tf_idf = sorted(token_tf_idf, key=lambda x:x[2], reverse=True)
-        #     count = 0
-        #     selected_idx = []
-        #     for token in token_tf_idf:
-        #         if token[1] not in selected_idx:
-        #             # print(token)
-        #             selected_idx.append(token[1])
-        #             count += 1
-        #         if count >= self.sentence_number: break
-        #     for idx in sorted(selected_idx):
-        #         selected += sentences[idx]
-        # self.logger.debug(f"selected sentences: {selected}")
         return selected
 
     # remove code and tags from body, and split text into small pieces
@@ -120,9 +83,8 @@ class TextSummarizer(object):
         else: selected = body
 
         if self.text_level >=3:
-            imp_tokens = self.cal_import_tokens(codes, api_elems)
-            self.logger.debug(f'imp_tokens:{imp_tokens}')
-            selected = self.select_sentences(body, imp_tokens)
+            self.logger.debug(f'imp_tokens:{api_elems}')
+            selected = self.select_sentences(body, api_elems)
         selected = re.sub(r'<.*?>','',selected,flags=re.DOTALL) # remove tags from body, e.g <p>, <strong>
         self.logger.debug(f"selected text: {selected}")
         splited_body = self.split_text(selected)
@@ -155,7 +117,7 @@ if __name__ == '__main__':
     text = '''
     '''
     api_elems = ["DApp", "summer", "API"]
-    summarizer = TextSummarizer(3,"../data/corpus/", "")
+    summarizer = TextSummarizer(3, "")
     res = summarizer.preprocess_body(text, 2, api_elems)
     abs = summarizer.generate_summary_pegasus(res)
     print(res)

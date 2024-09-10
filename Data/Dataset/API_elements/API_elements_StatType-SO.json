@@ -1,0 +1,6450 @@
+{
+    "Android01": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "TextView",
+            "Truth": "android.widget.TextView"
+        }
+    ],
+    "Android02": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        }
+    ],
+    "Android03": [
+        {
+            "Node": "ItemizedOverlay",
+            "Truth": "com.google.android.maps.ItemizedOverlay"
+        },
+        {
+            "Node": "OverlayItem",
+            "Truth": "com.google.android.maps.OverlayItem"
+        },
+        {
+            "Node": "Drawable",
+            "Truth": "android.graphics.drawable.Drawable"
+        },
+        {
+            "Node": "GeoPoint",
+            "Truth": "com.google.android.maps.GeoPoint"
+        }
+    ],
+    "Android04": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "TextView",
+            "Truth": "android.widget.TextView"
+        }
+    ],
+    "Android05": [
+        {
+            "Node": "TabHost",
+            "Truth": "android.widget.TabHost"
+        },
+        {
+            "Node": "TabSpec",
+            "Truth": "android.widget.TabHost.TabSpec"
+        },
+        {
+            "Node": "Drawable",
+            "Truth": "android.graphics.drawable.Drawable"
+        }
+    ],
+    "Android06": [
+        {
+            "Node": "LinearLayout",
+            "Truth": "android.widget.LinearLayout"
+        },
+        {
+            "Node": "Gravity",
+            "Truth": "android.view.Gravity"
+        }
+    ],
+    "Android07": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "ArrayAdapter",
+            "Truth": "android.widget.ArrayAdapter"
+        },
+        {
+            "Node": "View",
+            "Truth": "android.view.View"
+        }
+    ],
+    "Android08": [
+        {
+            "Node": "InetAddress",
+            "Truth": "java.net.InetAddress"
+        },
+        {
+            "Node": "Inet4Address",
+            "Truth": "java.net.Inet4Address"
+        },
+        {
+            "Node": "Log",
+            "Truth": "android.util.Log"
+        },
+        {
+            "Node": "Socket",
+            "Truth": "java.net.Socket"
+        },
+        {
+            "Node": "UnknownHostException",
+            "Truth": "java.net.UnknownHostException"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        }
+    ],
+    "Android09": [
+        {
+            "Node": "Timer",
+            "Truth": "java.util.Timer"
+        },
+        {
+            "Node": "TextView",
+            "Truth": "android.widget.TextView"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "TimerTask",
+            "Truth": "java.util.TimerTask"
+        }
+    ],
+    "Android10": [
+        {
+            "Node": "Chronometer",
+            "Truth": "android.widget.Chronometer"
+        },
+        {
+            "Node": "SystemClock",
+            "Truth": "android.os.SystemClock"
+        },
+        {
+            "Node": "Log",
+            "Truth": "android.util.Log"
+        }
+    ],
+    "Android11": [
+        {
+            "Node": "MyLocationOverlay",
+            "Truth": "com.google.android.maps.MyLocationOverlay"
+        },
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        },
+        {
+            "Node": "MapView",
+            "Truth": "com.google.android.maps.MapView"
+        },
+        {
+            "Node": "Canvas",
+            "Truth": "android.graphics.Canvas"
+        },
+        {
+            "Node": "Location",
+            "Truth": "android.location.Location"
+        },
+        {
+            "Node": "GeoPoint",
+            "Truth": "com.google.android.maps.GeoPoint"
+        }
+    ],
+    "Android12": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "LinearLayout",
+            "Truth": "android.widget.LinearLayout"
+        },
+        {
+            "Node": "TextView",
+            "Truth": "android.widget.TextView"
+        },
+        {
+            "Node": "Color",
+            "Truth": "android.graphics.Color"
+        }
+    ],
+    "Android13": [
+        {
+            "Node": "Uri",
+            "Truth": "android.net.Uri"
+        },
+        {
+            "Node": "Bitmap",
+            "Truth": "android.graphics.Bitmap"
+        },
+        {
+            "Node": "Media",
+            "Truth": "android.provider.MediaStore.Images.Media"
+        },
+        {
+            "Node": "FileNotFoundException",
+            "Truth": "java.io.FileNotFoundException"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "ByteArrayOutputStream",
+            "Truth": "java.io.ByteArrayOutputStream"
+        },
+        {
+            "Node": "new ByteArrayOutputStream()",
+            "Truth": "java.io.ByteArrayOutputStream"
+        },
+        {
+            "Node": "ByteArrayInputStream",
+            "Truth": "java.io.ByteArrayInputStream"
+        },
+        {
+            "Node": "ContentResolver",
+            "Truth": "android.content.ContentResolver"
+        }
+    ],
+    "Android14": [
+        {
+            "Node": "URL",
+            "Truth": "java.net.URL"
+        },
+        {
+            "Node": "HttpURLConnection",
+            "Truth": "java.net.HttpURLConnection"
+        },
+        {
+            "Node": "FileOutputStream",
+            "Truth": "java.io.FileOutputStream"
+        },
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "InputStream",
+            "Truth": "java.io.InputStream"
+        },
+        {
+            "Node": "MalformedURLException",
+            "Truth": "java.net.MalformedURLException"
+        },
+        {
+            "Node": "ProtocolException",
+            "Truth": "java.net.ProtocolException"
+        },
+        {
+            "Node": "FileNotFoundException",
+            "Truth": "java.io.FileNotFoundException"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        }
+    ],
+    "Android15": [
+        {
+            "Node": "Intent",
+            "Truth": "android.content.Intent"
+        },
+        {
+            "Node": "Uri",
+            "Truth": "android.net.Uri"
+        }
+    ],
+    "Android16": [
+        {
+            "Node": "SeekBar",
+            "Truth": "android.widget.SeekBar"
+        },
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        },
+        {
+            "Node": "AttributeSet",
+            "Truth": "android.util.AttributeSet"
+        },
+        {
+            "Node": "Canvas",
+            "Truth": "android.graphics.Canvas"
+        },
+        {
+            "Node": "MotionEvent",
+            "Truth": "android.view.MotionEvent"
+        },
+        {
+            "Node": "Log",
+            "Truth": "android.util.Log"
+        }
+    ],
+    "Android17": [
+        {
+            "Node": "HttpClient",
+            "Truth": "org.apache.http.client.HttpClient"
+        },
+        {
+            "Node": "new DefaultHttpClient()",
+            "Truth": "org.apache.http.impl.client.DefaultHttpClient"
+        },
+        {
+            "Node": "HttpGet",
+            "Truth": "org.apache.http.client.methods.HttpGet"
+        },
+        {
+            "Node": "URI",
+            "Truth": "java.net.URI"
+        },
+        {
+            "Node": "HttpResponse",
+            "Truth": "org.apache.http.HttpResponse"
+        },
+        {
+            "Node": "Log",
+            "Truth": "android.util.Log"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "URISyntaxException",
+            "Truth": "java.net.URISyntaxException"
+        },
+        {
+            "Node": "HttpEntity",
+            "Truth": "org.apache.http.HttpEntity"
+        },
+        {
+            "Node": "InputStreamReader",
+            "Truth": "java.io.InputStreamReader"
+        }
+    ],
+    "Android18": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "OnClickListener",
+            "Truth": "android.content.DialogInterface.OnClickListener"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "DialogInterface",
+            "Truth": "android.content.DialogInterface"
+        },
+        {
+            "Node": "Intent",
+            "Truth": "android.content.Intent"
+        }
+    ],
+    "Android19": [
+        {
+            "Node": "View",
+            "Truth": "android.view.View"
+        },
+        {
+            "Node": "ViewGroup",
+            "Truth": "android.view.ViewGroup"
+        },
+        {
+            "Node": "ImageView",
+            "Truth": "android.widget.ImageView"
+        },
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        }
+    ],
+    "Android20": [
+        {
+            "Node": "View",
+            "Truth": "android.view.View"
+        },
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        },
+        {
+            "Node": "TextView",
+            "Truth": "android.widget.TextView"
+        },
+        {
+            "Node": "ScaleAnimation",
+            "Truth": "android.view.animation.ScaleAnimation"
+        }
+    ],
+    "Android21": [
+        {
+            "Node": "ImageButton",
+            "Truth": "android.widget.ImageButton"
+        },
+        {
+            "Node": "LinearLayout",
+            "Truth": "android.widget.LinearLayout"
+        },
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        }
+    ],
+    "Android22": [
+        {
+            "Node": "ListActivity",
+            "Truth": "android.app.ListActivity"
+        },
+        {
+            "Node": "ListAdapter",
+            "Truth": "android.widget.ListAdapter"
+        },
+        {
+            "Node": "TextView",
+            "Truth": "android.widget.TextView"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "Cursor",
+            "Truth": "android.database.Cursor"
+        },
+        {
+            "Node": "People",
+            "Truth": "android.provider.Contacts.People"
+        },
+        {
+            "Node": "SimpleCursorAdapter",
+            "Truth": "android.widget.SimpleCursorAdapter"
+        },
+        {
+            "Node": "ListView",
+            "Truth": "android.widget.ListView"
+        },
+        {
+            "Node": "View",
+            "Truth": "android.view.View"
+        },
+        {
+            "Node": "Intent",
+            "Truth": "android.content.Intent"
+        },
+        {
+            "Node": "Note",
+            "Truth": "android.provider.ContactsContract.CommonDataKinds.Note"
+        }
+    ],
+    "Android23": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "ImageView",
+            "Truth": "android.widget.ImageView"
+        },
+        {
+            "Node": "Random",
+            "Truth": "java.util.Random"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "new Random()",
+            "Truth": "java.util.Random"
+        },
+        {
+            "Node": "ListView",
+            "Truth": "android.widget.ListView"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "ArrayAdapter",
+            "Truth": "android.widget.ArrayAdapter"
+        },
+        {
+            "Node": "Bitmap",
+            "Truth": "android.graphics.Bitmap"
+        },
+        {
+            "Node": "URL",
+            "Truth": "java.net.URL"
+        },
+        {
+            "Node": "MalformedURLException",
+            "Truth": "java.net.MalformedURLException"
+        },
+        {
+            "Node": "HttpURLConnection",
+            "Truth": "java.net.HttpURLConnection"
+        },
+        {
+            "Node": "BitmapFactory",
+            "Truth": "android.graphics.BitmapFactory"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        }
+    ],
+    "Android24": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "LocationManager",
+            "Truth": "android.location.LocationManager"
+        },
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Iterator",
+            "Truth": "java.util.Iterator"
+        },
+        {
+            "Node": "Log",
+            "Truth": "android.util.Log"
+        }
+    ],
+    "Android25": [
+        {
+            "Node": "ListActivity",
+            "Truth": "android.app.ListActivity"
+        },
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "SQLiteDatabase",
+            "Truth": "android.database.sqlite.SQLiteDatabase"
+        }
+    ],
+    "Android26": [
+        {
+            "Node": "ScrollView",
+            "Truth": "android.widget.ScrollView"
+        },
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        },
+        {
+            "Node": "MotionEvent",
+            "Truth": "android.view.MotionEvent"
+        },
+        {
+            "Node": "KeyEvent",
+            "Truth": "android.view.KeyEvent"
+        },
+        {
+            "Node": "View",
+            "Truth": "android.view.View"
+        },
+        {
+            "Node": "OnTouchListener",
+            "Truth": "android.view.View.OnTouchListener"
+        }
+    ],
+    "Android27": [
+        {
+            "Node": "BaseAdapter",
+            "Truth": "android.widget.BaseAdapter"
+        },
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        },
+        {
+            "Node": "View",
+            "Truth": "android.view.View"
+        },
+        {
+            "Node": "ViewGroup",
+            "Truth": "android.view.ViewGroup"
+        },
+        {
+            "Node": "TextView",
+            "Truth": "android.widget.TextView"
+        }
+    ],
+    "Android28": [
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        }
+    ],
+    "Android29": [
+        {
+            "Node": "Service",
+            "Truth": "android.app.Service"
+        },
+        {
+            "Node": "IBinder",
+            "Truth": "android.os.IBinder"
+        },
+        {
+            "Node": "Intent",
+            "Truth": "android.content.Intent"
+        },
+        {
+            "Node": "PowerManager",
+            "Truth": "android.os.PowerManager"
+        },
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        }
+    ],
+    "Android30": [
+        {
+            "Node": "HttpHost",
+            "Truth": "org.apache.http.HttpHost"
+        },
+        {
+            "Node": "new HttpHost",
+            "Truth": "org.apache.http.HttpHost"
+        },
+        {
+            "Node": "HttpGet",
+            "Truth": "org.apache.http.client.methods.HttpGet"
+        },
+        {
+            "Node": "new HttpGet",
+            "Truth": "org.apache.http.client.methods.HttpGet"
+        },
+        {
+            "Node": "HttpEntity",
+            "Truth": "org.apache.http.HttpEntity"
+        },
+        {
+            "Node": "HttpClient",
+            "Truth": "org.apache.http.client.HttpClient"
+        },
+        {
+            "Node": "new DefaultHttpClient()",
+            "Truth": "org.apache.http.impl.client.DefaultHttpClient"
+        },
+        {
+            "Node": "HttpResponse",
+            "Truth": "org.apache.http.HttpResponse"
+        },
+        {
+            "Node": "EntityUtils",
+            "Truth": "org.apache.http.util.EntityUtils"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        }
+    ],
+    "Android31": [
+        {
+            "Node": "PowerManager",
+            "Truth": "android.os.PowerManager"
+        },
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        }
+    ],
+    "Android32": [
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "Environment",
+            "Truth": "android.os.Environment"
+        },
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "MediaRecorder",
+            "Truth": "android.media.MediaRecorder"
+        },
+        {
+            "Node": "new MediaRecorder()",
+            "Truth": "android.media.MediaRecorder"
+        }
+    ],
+    "Android33": [
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        },
+        {
+            "Node": "Camera",
+            "Truth": "android.hardware.Camera"
+        },
+        {
+            "Node": "Parameters",
+            "Truth": "android.hardware.Camera.Parameters"
+        },
+        {
+            "Node": "PixelFormat",
+            "Truth": "android.graphics.PixelFormat"
+        },
+        {
+            "Node": "SurfaceHolder",
+            "Truth": "android.view.SurfaceHolder"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        }
+    ],
+    "Android34": [
+        {
+            "Node": "TabActivity",
+            "Truth": "android.app.TabActivity"
+        },
+        {
+            "Node": "TabContentFactory",
+            "Truth": "android.widget.TabHost.TabContentFactory"
+        },
+        {
+            "Node": "OnTabChangeListener",
+            "Truth": "android.widget.TabHost.OnTabChangeListener"
+        },
+        {
+            "Node": "OnClickListener",
+            "Truth": "android.view.View.OnClickListener"
+        },
+        {
+            "Node": "ListView",
+            "Truth": "android.widget.ListView"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "TabHost",
+            "Truth": "android.widget.TabHost"
+        },
+        {
+            "Node": "View",
+            "Truth": "android.view.View"
+        },
+        {
+            "Node": "Log",
+            "Truth": "android.util.Log"
+        }
+    ],
+    "Android35": [
+        {
+            "Node": "MediaRecorder",
+            "Truth": "android.media.MediaRecorder"
+        },
+        {
+            "Node": "new MediaRecorder()",
+            "Truth": "android.media.MediaRecorder"
+        },
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        }
+    ],
+    "Android36": [
+        {
+            "Node": "SQLiteDatabase",
+            "Truth": "android.database.sqlite.SQLiteDatabase"
+        },
+        {
+            "Node": "ContentValues",
+            "Truth": "android.content.ContentValues"
+        },
+        {
+            "Node": "new ContentValues()",
+            "Truth": "android.content.ContentValues"
+        }
+    ],
+    "Android37": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "ProgressDialog",
+            "Truth": "android.app.ProgressDialog"
+        },
+        {
+            "Node": "Message",
+            "Truth": "android.os.Message"
+        },
+        {
+            "Node": "new Message()",
+            "Truth": "android.os.Message"
+        },
+        {
+            "Node": "Handler",
+            "Truth": "android.os.Handler"
+        }
+    ],
+    "Android38": [
+        {
+            "Node": "DataOutputStream",
+            "Truth": "java.io.DataOutputStream"
+        },
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "FileInputStream",
+            "Truth": "java.io.FileInputStream"
+        },
+        {
+            "Node": "URL",
+            "Truth": "java.net.URL"
+        },
+        {
+            "Node": "HttpURLConnection",
+            "Truth": "java.net.HttpURLConnection"
+        },
+        {
+            "Node": "MalformedURLException",
+            "Truth": "java.net.MalformedURLException"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "DataInputStream",
+            "Truth": "java.io.DataInputStream"
+        },
+        {
+            "Node": "InputStream",
+            "Truth": "java.io.InputStream"
+        }
+    ],
+    "Android39": [
+        {
+            "Node": "MapActivity",
+            "Truth": "com.google.android.maps.MapActivity"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "MapView",
+            "Truth": "com.google.android.maps.MapView"
+        },
+        {
+            "Node": "MapController",
+            "Truth": "com.google.android.maps.MapController"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Overlay",
+            "Truth": "com.google.android.maps.Overlay"
+        },
+        {
+            "Node": "MyLocationOverlay",
+            "Truth": "com.google.android.maps.MyLocationOverlay"
+        }
+    ],
+    "Android40": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "SlidingDrawer",
+            "Truth": "android.widget.SlidingDrawer"
+        },
+        {
+            "Node": "ImageView",
+            "Truth": "android.widget.ImageView"
+        },
+        {
+            "Node": "OnClickListener",
+            "Truth": "android.view.View.OnClickListener"
+        }
+    ],
+    "Android41": [
+        {
+            "Node": "View",
+            "Truth": "android.view.View"
+        },
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        },
+        {
+            "Node": "Color",
+            "Truth": "android.graphics.Color"
+        },
+        {
+            "Node": "TextView",
+            "Truth": "android.widget.TextView"
+        }
+    ],
+    "Android42": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "OnErrorListener",
+            "Truth": "android.media.MediaPlayer.OnErrorListener"
+        },
+        {
+            "Node": "OnBufferingUpdateListener",
+            "Truth": "android.media.MediaPlayer.OnBufferingUpdateListener"
+        },
+        {
+            "Node": "OnCompletionListener",
+            "Truth": "android.media.MediaPlayer.OnCompletionListener"
+        },
+        {
+            "Node": "OnPreparedListener",
+            "Truth": "android.media.MediaPlayer.OnPreparedListener"
+        },
+        {
+            "Node": "MediaPlayer",
+            "Truth": "android.media.MediaPlayer"
+        },
+        {
+            "Node": "SurfaceView",
+            "Truth": "android.view.SurfaceView"
+        },
+        {
+            "Node": "SurfaceHolder",
+            "Truth": "android.view.SurfaceHolder"
+        },
+        {
+            "Node": "Button",
+            "Truth": "android.widget.Button"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "PixelFormat",
+            "Truth": "android.graphics.PixelFormat"
+        },
+        {
+            "Node": "ActivityInfo",
+            "Truth": "android.content.pm.ActivityInfo"
+        },
+        {
+            "Node": "new MediaPlayer()",
+            "Truth": "android.media.MediaPlayer"
+        },
+        {
+            "Node": "Log",
+            "Truth": "android.util.Log"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "URL",
+            "Truth": "java.net.URL"
+        },
+        {
+            "Node": "URLConnection",
+            "Truth": "java.net.URLConnection"
+        },
+        {
+            "Node": "InputStream",
+            "Truth": "java.io.InputStream"
+        },
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "FileOutputStream",
+            "Truth": "java.io.FileOutputStream"
+        },
+        {
+            "Node": "Intent",
+            "Truth": "android.content.Intent"
+        }
+    ],
+    "Android43": [
+        {
+            "Node": "HttpHost",
+            "Truth": "org.apache.http.HttpHost"
+        },
+        {
+            "Node": "HttpGet",
+            "Truth": "org.apache.http.client.methods.HttpGet"
+        },
+        {
+            "Node": "HttpEntity",
+            "Truth": "org.apache.http.HttpEntity"
+        },
+        {
+            "Node": "HttpClient",
+            "Truth": "org.apache.http.client.HttpClient"
+        },
+        {
+            "Node": "new DefaultHttpClient()",
+            "Truth": "org.apache.http.impl.client.DefaultHttpClient"
+        },
+        {
+            "Node": "HttpResponse",
+            "Truth": "org.apache.http.HttpResponse"
+        },
+        {
+            "Node": "EntityUtils",
+            "Truth": "org.apache.http.util.EntityUtils"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        }
+    ],
+    "Android44": [
+        {
+            "Node": "Service",
+            "Truth": "android.app.Service"
+        },
+        {
+            "Node": "IBinder",
+            "Truth": "android.os.IBinder"
+        },
+        {
+            "Node": "Intent",
+            "Truth": "android.content.Intent"
+        }
+    ],
+    "Android45": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "IntentFilter",
+            "Truth": "android.content.IntentFilter"
+        },
+        {
+            "Node": "new IntentFilter()",
+            "Truth": "android.content.IntentFilter"
+        },
+        {
+            "Node": "Intent",
+            "Truth": "android.content.Intent"
+        },
+        {
+            "Node": "MalformedMimeTypeException",
+            "Truth": "android.content.IntentFilter.MalformedMimeTypeException"
+        },
+        {
+            "Node": "Log",
+            "Truth": "android.util.Log"
+        },
+        {
+            "Node": "BroadcastReceiver",
+            "Truth": "android.content.BroadcastReceiver"
+        }
+    ],
+    "Android46": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "EditText",
+            "Truth": "android.widget.EditText"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "Button",
+            "Truth": "android.widget.Button"
+        }
+    ],
+    "Android47": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "DefaultHttpClient",
+            "Truth": "org.apache.http.impl.client.DefaultHttpClient"
+        },
+        {
+            "Node": "new DefaultHttpClient()",
+            "Truth": "org.apache.http.impl.client.DefaultHttpClient"
+        },
+        {
+            "Node": "HttpGet",
+            "Truth": "org.apache.http.client.methods.HttpGet"
+        },
+        {
+            "Node": "TextView",
+            "Truth": "android.widget.TextView"
+        },
+        {
+            "Node": "ClientProtocolException",
+            "Truth": "org.apache.http.client.ClientProtocolException"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        }
+    ],
+    "Android48": [
+        {
+            "Node": "Camera",
+            "Truth": "android.hardware.Camera"
+        },
+        {
+            "Node": "PictureCallback",
+            "Truth": "android.hardware.Camera.PictureCallback"
+        }
+    ],
+    "Android49": [
+        {
+            "Node": "LinearLayout",
+            "Truth": "android.widget.LinearLayout"
+        },
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        },
+        {
+            "Node": "AttributeSet",
+            "Truth": "android.util.AttributeSet"
+        },
+        {
+            "Node": "LayoutInflater",
+            "Truth": "android.view.LayoutInflater"
+        },
+        {
+            "Node": "Gravity",
+            "Truth": "android.view.Gravity"
+        }
+    ],
+    "Android50": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "EditText",
+            "Truth": "android.widget.EditText"
+        },
+        {
+            "Node": "TextView",
+            "Truth": "android.widget.TextView"
+        },
+        {
+            "Node": "Button",
+            "Truth": "android.widget.Button"
+        }
+    ],
+    "Class_1": [
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "Graphics",
+            "Truth": "java.awt.Graphics"
+        },
+        {
+            "Node": "FileOutputStream",
+            "Truth": "java.io.FileOutputStream"
+        },
+        {
+            "Node": "WindowAdapter",
+            "Truth": "java.awt.event.WindowAdapter"
+        },
+        {
+            "Node": "Container",
+            "Truth": "java.awt.Container"
+        },
+        {
+            "Node": "Dimension",
+            "Truth": "java.awt.Dimension"
+        },
+        {
+            "Node": "BufferedImage",
+            "Truth": "java.awt.image.BufferedImage"
+        },
+        {
+            "Node": "ObjectInputStream",
+            "Truth": "java.io.ObjectInputStream"
+        },
+        {
+            "Node": "FileInputStream",
+            "Truth": "java.io.FileInputStream"
+        },
+        {
+            "Node": "Applet",
+            "Truth": "java.applet.Applet"
+        }
+    ],
+    "Class_10": [
+        {
+            "Node": "NumberFormat",
+            "Truth": "java.text.NumberFormat"
+        },
+        {
+            "Node": "Locale",
+            "Truth": "java.util.Locale"
+        }
+    ],
+    "Class_11": [
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "FileWriter",
+            "Truth": "java.io.FileWriter"
+        },
+        {
+            "Node": "BufferedWriter",
+            "Truth": "java.io.BufferedWriter"
+        },
+        {
+            "Node": "JFileChooser",
+            "Truth": "javax.swing.JFileChooser"
+        },
+        {
+            "Node": "new JFileChooser()",
+            "Truth": "javax.swing.JFileChooser"
+        }
+    ],
+    "Class_12": [
+        {
+            "Node": "Calendar",
+            "Truth": "java.util.Calendar"
+        },
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "SimpleDateFormat",
+            "Truth": "java.text.SimpleDateFormat"
+        },
+        {
+            "Node": "GregorianCalendar",
+            "Truth": "java.util.GregorianCalendar"
+        },
+        {
+            "Node": "ParseException",
+            "Truth": "java.text.ParseException"
+        },
+        {
+            "Node": "DateFormat",
+            "Truth": "java.text.DateFormat"
+        }
+    ],
+    "Class_13": [
+        {
+            "Node": "JFrame",
+            "Truth": "javax.swing.JFrame"
+        },
+        {
+            "Node": "JTextArea",
+            "Truth": "javax.swing.JTextArea"
+        },
+        {
+            "Node": "SwingUtilities",
+            "Truth": "javax.swing.SwingUtilities"
+        },
+        {
+            "Node": "UIManager",
+            "Truth": "javax.swing.UIManager"
+        }
+    ],
+    "Class_14": [
+        {
+            "Node": "Method",
+            "Truth": "java.lang.reflect.Method"
+        }
+    ],
+    "Class_15": [
+        {
+            "Node": "HashMap",
+            "Truth": "java.util.HashMap"
+        }
+    ],
+    "Class_16": [
+        {
+            "Node": "Preferences",
+            "Truth": "java.util.prefs.Preferences"
+        },
+        {
+            "Node": "Method",
+            "Truth": "java.lang.reflect.Method"
+        },
+        {
+            "Node": "InvocationTargetException",
+            "Truth": "java.lang.reflect.InvocationTargetException"
+        },
+        {
+            "Node": "Map",
+            "Truth": "java.util.Map"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "HashMap",
+            "Truth": "java.util.HashMap"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        }
+    ],
+    "Class_17": [
+        {
+            "Node": "SimpleDateFormat",
+            "Truth": "java.text.SimpleDateFormat"
+        },
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "ParseException",
+            "Truth": "java.text.ParseException"
+        },
+        {
+            "Node": "TemporalAccessor",
+            "Truth": "java.time.temporal.TemporalAccessor"
+        },
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "java.time.format.DateTimeFormatter"
+        }
+    ],
+    "Class_18": [
+        {
+            "Node": "Array",
+            "Truth": "java.lang.reflect.Array"
+        },
+        {
+            "Node": "Field[]",
+            "Truth": "java.lang.reflect.Field[]"
+        }
+    ],
+    "Class_19": [
+        {
+            "Node": "Random",
+            "Truth": "java.util.Random"
+        },
+        {
+            "Node": "ThreadLocalRandom",
+            "Truth": "java.util.concurrent.ThreadLocalRandom"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "Collection",
+            "Truth": "java.util.Collection"
+        },
+        {
+            "Node": "Iterator",
+            "Truth": "java.util.Iterator"
+        }
+    ],
+    "Class_2": [
+        {
+            "Node": "JFrame",
+            "Truth": "javax.swing.JFrame"
+        },
+        {
+            "Node": "JPanel",
+            "Truth": "javax.swing.JPanel"
+        },
+        {
+            "Node": "BorderLayout",
+            "Truth": "java.awt.BorderLayout"
+        },
+        {
+            "Node": "TitledBorder",
+            "Truth": "javax.swing.border.TitledBorder"
+        },
+        {
+            "Node": "FlowLayout",
+            "Truth": "java.awt.FlowLayout"
+        },
+        {
+            "Node": "UIManager",
+            "Truth": "javax.swing.UIManager"
+        },
+        {
+            "Node": "JComboBox",
+            "Truth": "javax.swing.JComboBox"
+        },
+        {
+            "Node": "JCheckBox",
+            "Truth": "javax.swing.JCheckBox"
+        },
+        {
+            "Node": "ActionListener",
+            "Truth": "java.awt.event.ActionListener"
+        },
+        {
+            "Node": "GridLayout",
+            "Truth": "java.awt.GridLayout"
+        },
+        {
+            "Node": "JButton",
+            "Truth": "javax.swing.JButton"
+        },
+        {
+            "Node": "JScrollPane",
+            "Truth": "javax.swing.JScrollPane"
+        },
+        {
+            "Node": "DefaultTableModel",
+            "Truth": "javax.swing.table.DefaultTableModel"
+        },
+        {
+            "Node": "JTable",
+            "Truth": "javax.swing.JTable"
+        },
+        {
+            "Node": "Dimension",
+            "Truth": "java.awt.Dimension"
+        },
+        {
+            "Node": "new GridBagLayout()",
+            "Truth": "java.awt.GridBagLayout"
+        },
+        {
+            "Node": "BufferedImage",
+            "Truth": "java.awt.image.BufferedImage"
+        },
+        {
+            "Node": "Graphics2D",
+            "Truth": "java.awt.Graphics2D"
+        },
+        {
+            "Node": "GradientPaint",
+            "Truth": "java.awt.GradientPaint"
+        },
+        {
+            "Node": "Color",
+            "Truth": "java.awt.Color"
+        },
+        {
+            "Node": "ImageIcon",
+            "Truth": "javax.swing.ImageIcon"
+        },
+        {
+            "Node": "JLabel",
+            "Truth": "javax.swing.JLabel"
+        },
+        {
+            "Node": "JSplitPane",
+            "Truth": "javax.swing.JSplitPane"
+        },
+        {
+            "Node": "SwingUtilities",
+            "Truth": "javax.swing.SwingUtilities"
+        }
+    ],
+    "Class_20": [
+        {
+            "Node": "DataInputStream",
+            "Truth": "java.io.DataInputStream"
+        },
+        {
+            "Node": "BufferedInputStream",
+            "Truth": "java.io.BufferedInputStream"
+        },
+        {
+            "Node": "DataOutputStream",
+            "Truth": "java.io.DataOutputStream"
+        },
+        {
+            "Node": "BufferedOutputStream",
+            "Truth": "java.io.BufferedOutputStream"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "FileOutputStream",
+            "Truth": "java.io.FileOutputStream"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "FileInputStream",
+            "Truth": "java.io.FileInputStream"
+        }
+    ],
+    "Class_21": [
+        {
+            "Node": "BufferedImage",
+            "Truth": "java.awt.image.BufferedImage"
+        },
+        {
+            "Node": "Component",
+            "Truth": "java.awt.Component"
+        },
+        {
+            "Node": "JFrame",
+            "Truth": "javax.swing.JFrame"
+        },
+        {
+            "Node": "JMenuItem",
+            "Truth": "javax.swing.JMenuItem"
+        },
+        {
+            "Node": "KeyStroke",
+            "Truth": "javax.swing.KeyStroke"
+        },
+        {
+            "Node": "KeyEvent",
+            "Truth": "java.awt.event.KeyEvent"
+        },
+        {
+            "Node": "InputEvent",
+            "Truth": "java.awt.event.InputEvent"
+        },
+        {
+            "Node": "ActionListener",
+            "Truth": "java.awt.event.ActionListener"
+        },
+        {
+            "Node": "JMenu",
+            "Truth": "javax.swing.JMenu"
+        },
+        {
+            "Node": "JMenuBar",
+            "Truth": "javax.swing.JMenuBar"
+        },
+        {
+            "Node": "new JMenuBar()",
+            "Truth": "javax.swing.JMenuBar"
+        },
+        {
+            "Node": "JPanel",
+            "Truth": "javax.swing.JPanel"
+        },
+        {
+            "Node": "BorderLayout",
+            "Truth": "java.awt.BorderLayout"
+        },
+        {
+            "Node": "TitledBorder",
+            "Truth": "javax.swing.border.TitledBorder"
+        },
+        {
+            "Node": "JScrollPane",
+            "Truth": "javax.swing.JScrollPane"
+        },
+        {
+            "Node": "new JTree()",
+            "Truth": "javax.swing.JTree"
+        },
+        {
+            "Node": "JTextArea",
+            "Truth": "javax.swing.JTextArea"
+        },
+        {
+            "Node": "SwingUtilities",
+            "Truth": "javax.swing.SwingUtilities"
+        }
+    ],
+    "Class_22": [
+        {
+            "Node": "JFrame",
+            "Truth": "javax.swing.JFrame"
+        },
+        {
+            "Node": "JProgressBar",
+            "Truth": "javax.swing.JProgressBar"
+        },
+        {
+            "Node": "JLabel",
+            "Truth": "javax.swing.JLabel"
+        },
+        {
+            "Node": "new GridLayout",
+            "Truth": "java.awt.GridLayout"
+        },
+        {
+            "Node": "new PropertyChangeListener()",
+            "Truth": "java.beans.PropertyChangeListener"
+        },
+        {
+            "Node": "SwingWorker",
+            "Truth": "javax.swing.SwingWorker"
+        },
+        {
+            "Node": "DecimalFormat",
+            "Truth": "java.text.DecimalFormat"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "EventQueue",
+            "Truth": "java.awt.EventQueue"
+        },
+        {
+            "Node": "Container",
+            "Truth": "java.awt.Container"
+        }
+    ],
+    "Class_3": [
+        {
+            "Node": "DecimalFormat",
+            "Truth": "java.text.DecimalFormat"
+        },
+        {
+            "Node": "DecimalFormatSymbols",
+            "Truth": "java.text.DecimalFormatSymbols"
+        },
+        {
+            "Node": "Locale",
+            "Truth": "java.util.Locale"
+        },
+        {
+            "Node": "RoundingMode",
+            "Truth": "java.math.RoundingMode"
+        },
+        {
+            "Node": "ParseException",
+            "Truth": "java.text.ParseException"
+        }
+    ],
+    "Class_4": [
+        {
+            "Node": "Pattern",
+            "Truth": "java.util.regex.Pattern"
+        },
+        {
+            "Node": "Matcher",
+            "Truth": "java.util.regex.Matcher"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        }
+    ],
+    "Class_5": [
+        {
+            "Node": "Map",
+            "Truth": "java.util.Map"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "LinkedList",
+            "Truth": "java.util.LinkedList"
+        },
+        {
+            "Node": "Collections",
+            "Truth": "java.util.Collections"
+        },
+        {
+            "Node": "Comparator",
+            "Truth": "java.util.Comparator"
+        },
+        {
+            "Node": "LinkedHashMap",
+            "Truth": "java.util.LinkedHashMap"
+        },
+        {
+            "Node": "HashMap",
+            "Truth": "java.util.HashMap"
+        },
+        {
+            "Node": "TreeMap",
+            "Truth": "java.util.TreeMap"
+        }
+    ],
+    "Class_6": [
+        {
+            "Node": "EventQueue",
+            "Truth": "java.awt.EventQueue"
+        },
+        {
+            "Node": "JFrame",
+            "Truth": "javax.swing.JFrame"
+        },
+        {
+            "Node": "new JFrame()",
+            "Truth": "javax.swing.JFrame"
+        },
+        {
+            "Node": "JPanel",
+            "Truth": "javax.swing.JPanel"
+        },
+        {
+            "Node": "new BorderLayout()",
+            "Truth": "java.awt.BorderLayout"
+        },
+        {
+            "Node": "JLabel",
+            "Truth": "javax.swing.JLabel"
+        },
+        {
+            "Node": "new JLabel",
+            "Truth": "javax.swing.JLabel"
+        },
+        {
+            "Node": "BorderLayout",
+            "Truth": "java.awt.BorderLayout"
+        },
+        {
+            "Node": "JButton",
+            "Truth": "javax.swing.JButton"
+        }
+    ],
+    "Class_7": [
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "Comparator",
+            "Truth": "java.util.Comparator"
+        },
+        {
+            "Node": "SimpleDateFormat",
+            "Truth": "java.text.SimpleDateFormat"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "ParseException",
+            "Truth": "java.text.ParseException"
+        },
+        {
+            "Node": "Collections",
+            "Truth": "java.util.Collections"
+        }
+    ],
+    "Class_9": [
+        {
+            "Node": "Connection",
+            "Truth": "java.sql.Connection"
+        },
+        {
+            "Node": "Properties",
+            "Truth": "java.util.Properties"
+        },
+        {
+            "Node": "new Properties()",
+            "Truth": "java.util.Properties"
+        },
+        {
+            "Node": "DriverManager",
+            "Truth": "java.sql.DriverManager"
+        },
+        {
+            "Node": "SQLException",
+            "Truth": "java.sql.SQLException"
+        }
+    ],
+    "gwt_class_1": [
+        {
+            "Node": "Composite",
+            "Truth": "com.google.gwt.user.client.ui.Composite"
+        },
+        {
+            "Node": "MouseDownHandler",
+            "Truth": "com.google.gwt.event.dom.client.MouseDownHandler"
+        },
+        {
+            "Node": "AbsolutePanel",
+            "Truth": "com.google.gwt.user.client.ui.AbsolutePanel"
+        },
+        {
+            "Node": "new AbsolutePanel()",
+            "Truth": "com.google.gwt.user.client.ui.AbsolutePanel"
+        },
+        {
+            "Node": "MouseDownEvent",
+            "Truth": "com.google.gwt.event.dom.client.MouseDownEvent"
+        }
+    ],
+    "gwt_class_10": [
+        {
+            "Node": "FormPanel",
+            "Truth": "com.google.gwt.user.client.ui.FormPanel"
+        },
+        {
+            "Node": "new FormPanel()",
+            "Truth": "com.google.gwt.user.client.ui.FormPanel"
+        },
+        {
+            "Node": "VerticalPanel",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "new VerticalPanel()",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "Label",
+            "Truth": "com.google.gwt.user.client.ui.Label"
+        },
+        {
+            "Node": "TextBox",
+            "Truth": "com.google.gwt.user.client.ui.TextBox"
+        },
+        {
+            "Node": "new TextBox()",
+            "Truth": "com.google.gwt.user.client.ui.TextBox"
+        },
+        {
+            "Node": "Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "ClickListener",
+            "Truth": "com.google.gwt.user.client.ui.ClickListener"
+        }
+    ],
+    "gwt_class_11": [
+        {
+            "Node": "EntryPoint",
+            "Truth": "com.google.gwt.core.client.EntryPoint"
+        },
+        {
+            "Node": "HorizontalPanel",
+            "Truth": "com.google.gwt.user.client.ui.HorizontalPanel"
+        },
+        {
+            "Node": "Label",
+            "Truth": "com.google.gwt.user.client.ui.Label"
+        },
+        {
+            "Node": "new HorizontalPanel()",
+            "Truth": "com.google.gwt.user.client.ui.HorizontalPanel"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        }
+    ],
+    "gwt_class_12": [
+        {
+            "Node": "EntryPoint",
+            "Truth": "com.google.gwt.core.client.EntryPoint"
+        },
+        {
+            "Node": "AbsolutePanel",
+            "Truth": "com.google.gwt.user.client.ui.AbsolutePanel"
+        },
+        {
+            "Node": "new AbsolutePanel()",
+            "Truth": "com.google.gwt.user.client.ui.AbsolutePanel"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        },
+        {
+            "Node": "Label",
+            "Truth": "com.google.gwt.user.client.ui.Label"
+        },
+        {
+            "Node": "TextBox",
+            "Truth": "com.google.gwt.user.client.ui.TextBox"
+        },
+        {
+            "Node": "new TextBox()",
+            "Truth": "com.google.gwt.user.client.ui.TextBox"
+        },
+        {
+            "Node": "VerticalPanel",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "new VerticalPanel()",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        }
+    ],
+    "gwt_class_13": [
+        {
+            "Node": "EntryPoint",
+            "Truth": "com.google.gwt.core.client.EntryPoint"
+        },
+        {
+            "Node": "AbsolutePanel",
+            "Truth": "com.google.gwt.user.client.ui.AbsolutePanel"
+        },
+        {
+            "Node": "new AbsolutePanel()",
+            "Truth": "com.google.gwt.user.client.ui.AbsolutePanel"
+        },
+        {
+            "Node": "Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "new Button()",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "ClickListener",
+            "Truth": "com.google.gwt.user.client.ui.ClickListener"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        }
+    ],
+    "gwt_class_14": [
+        {
+            "Node": "RequestBuilder",
+            "Truth": "com.google.gwt.http.client.RequestBuilder"
+        },
+        {
+            "Node": "RequestCallback",
+            "Truth": "com.google.gwt.http.client.RequestCallback"
+        },
+        {
+            "Node": "Window",
+            "Truth": "com.google.gwt.user.client.Window"
+        }
+    ],
+    "gwt_class_15": [
+        {
+            "Node": "RequestBuilder",
+            "Truth": "com.google.gwt.http.client.RequestBuilder"
+        },
+        {
+            "Node": "URL",
+            "Truth": "com.google.gwt.http.client.URL"
+        },
+        {
+            "Node": "Request",
+            "Truth": "com.google.gwt.http.client.Request"
+        },
+        {
+            "Node": "RequestCallback",
+            "Truth": "com.google.gwt.http.client.RequestCallback"
+        },
+        {
+            "Node": "RequestException",
+            "Truth": "com.google.gwt.http.client.RequestException"
+        }
+    ],
+    "gwt_class_16": [
+        {
+            "Node": "RequestBuilder",
+            "Truth": "com.google.gwt.http.client.RequestBuilder"
+        },
+        {
+            "Node": "RequestCallback",
+            "Truth": "com.google.gwt.http.client.RequestCallback"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        },
+        {
+            "Node": "HTML",
+            "Truth": "com.google.gwt.user.client.ui.HTML"
+        }
+    ],
+    "gwt_class_17": [
+        {
+            "Node": "Image",
+            "Truth": "com.google.gwt.user.client.ui.Image"
+        },
+        {
+            "Node": "Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "DockPanel",
+            "Truth": "com.google.gwt.user.client.ui.DockPanel"
+        },
+        {
+            "Node": "HTML",
+            "Truth": "com.google.gwt.user.client.ui.HTML"
+        },
+        {
+            "Node": "add()",
+            "Truth": "com.google.gwt.user.client.ui.DockPanel.add()"
+        },
+        {
+            "Node": "WEST",
+            "Truth": "com.google.gwt.user.client.ui.DockPanel.WEST"
+        },
+        {
+            "Node": "CENTER",
+            "Truth": "com.google.gwt.user.client.ui.DockPanel.CENTER"
+        },
+        {
+            "Node": "VerticalPanel",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "EAST",
+            "Truth": "com.google.gwt.user.client.ui.DockPanel.EAST"
+        },
+        {
+            "Node": "create()",
+            "Truth": "com.google.gwt.core.client.GWT.create()"
+        },
+        {
+            "Node": "AbstractImagePrototype",
+            "Truth": "com.google.gwt.user.client.ui.AbstractImagePrototype"
+        },
+        {
+            "Node": "applyTo()",
+            "Truth": "com.google.gwt.user.client.ui.AbstractImagePrototype.applyTo()"
+        },
+        {
+            "Node": "ImageBundle",
+            "Truth": "com.google.gwt.user.client.ui.ImageBundle"
+        }
+    ],
+    "gwt_class_18": [
+        {
+            "Node": "Composite",
+            "Truth": "com.google.gwt.user.client.ui.Composite"
+        },
+        {
+            "Node": "GWT",
+            "Truth": "com.google.gwt.core.client.GWT"
+        },
+        {
+            "Node": "UiBinder",
+            "Truth": "com.google.gwt.uibinder.client.UiBinder"
+        },
+        {
+            "Node": "Widget",
+            "Truth": "com.google.gwt.user.client.ui.Widget"
+        }
+    ],
+    "gwt_class_19": [
+        {
+            "Node": "VerticalPanel",
+            "Truth": "com.extjs.gxt.ui.client.widget.VerticalPanel"
+        },
+        {
+            "Node": "Button",
+            "Truth": "com.extjs.gxt.ui.client.widget.button.Button"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        }
+    ],
+    "gwt_class_2": [
+        {
+            "Node": "EntryPoint",
+            "Truth": "com.google.gwt.core.client.EntryPoint"
+        },
+        {
+            "Node": "FormPanel",
+            "Truth": "com.google.gwt.user.client.ui.FormPanel"
+        },
+        {
+            "Node": "new FormPanel()",
+            "Truth": "com.google.gwt.user.client.ui.FormPanel"
+        },
+        {
+            "Node": "VerticalPanel",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "new VerticalPanel()",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "TextBox",
+            "Truth": "com.google.gwt.user.client.ui.TextBox"
+        },
+        {
+            "Node": "new TextBox()",
+            "Truth": "com.google.gwt.user.client.ui.TextBox"
+        },
+        {
+            "Node": "ListBox",
+            "Truth": "com.google.gwt.user.client.ui.ListBox"
+        },
+        {
+            "Node": "new ListBox()",
+            "Truth": "com.google.gwt.user.client.ui.ListBox"
+        },
+        {
+            "Node": "FileUpload",
+            "Truth": "com.google.gwt.user.client.ui.FileUpload"
+        },
+        {
+            "Node": "new FileUpload()",
+            "Truth": "com.google.gwt.user.client.ui.FileUpload"
+        },
+        {
+            "Node": "Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "ClickHandler",
+            "Truth": "com.google.gwt.event.dom.client.ClickHandler"
+        },
+        {
+            "Node": "DecoratorPanel",
+            "Truth": "com.google.gwt.user.client.ui.DecoratorPanel"
+        },
+        {
+            "Node": "new DecoratorPanel()",
+            "Truth": "com.google.gwt.user.client.ui.DecoratorPanel"
+        }
+    ],
+    "gwt_class_20": [
+        {
+            "Node": "EntryPoint",
+            "Truth": "com.google.gwt.core.client.EntryPoint"
+        },
+        {
+            "Node": "Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "ClickHandler",
+            "Truth": "com.google.gwt.event.dom.client.ClickHandler"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        }
+    ],
+    "gwt_class_21": [
+        {
+            "Node": "PopupPanel",
+            "Truth": "com.google.gwt.user.client.ui.PopupPanel"
+        },
+        {
+            "Node": "Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "Widget",
+            "Truth": "com.google.gwt.user.client.ui.Widget"
+        },
+        {
+            "Node": "VerticalPanel",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "new VerticalPanel()",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        }
+    ],
+    "gwt_class_22": [
+        {
+            "Node": "Composite",
+            "Truth": "com.google.gwt.user.client.ui.Composite"
+        },
+        {
+            "Node": "GWT",
+            "Truth": "com.google.gwt.core.client.GWT"
+        },
+        {
+            "Node": "UiBinder",
+            "Truth": "com.google.gwt.uibinder.client.UiBinder"
+        },
+        {
+            "Node": "VerticalPanel",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "UiField",
+            "Truth": "com.google.gwt.uibinder.client.UiField"
+        },
+        {
+            "Node": "Label",
+            "Truth": "com.google.gwt.user.client.ui.Label"
+        },
+        {
+            "Node": "Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "UiHandler",
+            "Truth": "com.google.gwt.uibinder.client.UiHandler"
+        },
+        {
+            "Node": "ClickEvent",
+            "Truth": "com.google.gwt.event.dom.client.ClickEvent"
+        }
+    ],
+    "gwt_class_23": [
+        {
+            "Node": "UUID",
+            "Truth": "java.util.UUID"
+        },
+        {
+            "Node": "RequestBuilder",
+            "Truth": "com.google.gwt.http.client.RequestBuilder"
+        },
+        {
+            "Node": "RequestCallback",
+            "Truth": "com.google.gwt.http.client.RequestCallback"
+        },
+        {
+            "Node": "RequestException",
+            "Truth": "com.google.gwt.http.client.RequestException"
+        }
+    ],
+    "gwt_class_24": [
+        {
+            "Node": "Composite",
+            "Truth": "com.google.gwt.user.client.ui.Composite"
+        },
+        {
+            "Node": "ClickHandler",
+            "Truth": "com.google.gwt.event.dom.client.ClickHandler"
+        },
+        {
+            "Node": "HasClickHandlers",
+            "Truth": "com.google.gwt.event.dom.client.HasClickHandlers"
+        },
+        {
+            "Node": "HandlerRegistration",
+            "Truth": "com.google.gwt.event.shared.HandlerRegistration"
+        },
+        {
+            "Node": "ClickEvent",
+            "Truth": "com.google.gwt.event.dom.client.ClickEvent"
+        },
+        {
+            "Node": "DOM",
+            "Truth": "com.google.gwt.user.client.DOM"
+        },
+        {
+            "Node": "Widget",
+            "Truth": "com.google.gwt.user.client.ui.Widget"
+        }
+    ],
+    "gwt_class_25": [
+        {
+            "Node": "Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "TextBox",
+            "Truth": "com.google.gwt.user.client.ui.TextBox"
+        },
+        {
+            "Node": "new TextBox()",
+            "Truth": "com.google.gwt.user.client.ui.TextBox"
+        },
+        {
+            "Node": "Label",
+            "Truth": "com.google.gwt.user.client.ui.Label"
+        },
+        {
+            "Node": "new Label()",
+            "Truth": "com.google.gwt.user.client.ui.Label"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        },
+        {
+            "Node": "DialogBox",
+            "Truth": "com.google.gwt.user.client.ui.DialogBox"
+        },
+        {
+            "Node": "new DialogBox()",
+            "Truth": "com.google.gwt.user.client.ui.DialogBox"
+        },
+        {
+            "Node": "HTML",
+            "Truth": "com.google.gwt.user.client.ui.HTML"
+        },
+        {
+            "Node": "new HTML()",
+            "Truth": "com.google.gwt.user.client.ui.HTML"
+        },
+        {
+            "Node": "VerticalPanel",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "new VerticalPanel()",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "ClickHandler",
+            "Truth": "com.google.gwt.event.dom.client.ClickHandler"
+        },
+        {
+            "Node": "KeyUpHandler",
+            "Truth": "com.google.gwt.event.dom.client.KeyUpHandler"
+        },
+        {
+            "Node": "ClickEvent",
+            "Truth": "com.google.gwt.event.dom.client.ClickEvent"
+        },
+        {
+            "Node": "KeyUpEvent",
+            "Truth": "com.google.gwt.event.dom.client.KeyUpEvent"
+        },
+        {
+            "Node": "KeyCodes",
+            "Truth": "com.google.gwt.event.dom.client.KeyCodes"
+        }
+    ],
+    "gwt_class_26": [
+        {
+            "Node": "FormPanel",
+            "Truth": "com.google.gwt.user.client.ui.FormPanel"
+        },
+        {
+            "Node": "new FormPanel()",
+            "Truth": "com.google.gwt.user.client.ui.FormPanel"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        },
+        {
+            "Node": "VerticalPanel",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "new VerticalPanel()",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "TextBox",
+            "Truth": "com.google.gwt.user.client.ui.TextBox"
+        },
+        {
+            "Node": "new TextBox()",
+            "Truth": "com.google.gwt.user.client.ui.TextBox"
+        },
+        {
+            "Node": "Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "ClickListener",
+            "Truth": "com.google.gwt.user.client.ui.ClickListener"
+        },
+        {
+            "Node": "FormHandler",
+            "Truth": "com.google.gwt.user.client.ui.FormHandler"
+        }
+    ],
+    "gwt_class_27": [
+        {
+            "Node": "Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        },
+        {
+            "Node": "NodeList",
+            "Truth": "com.google.gwt.dom.client.NodeList"
+        },
+        {
+            "Node": "Document",
+            "Truth": "com.google.gwt.dom.client.Document"
+        },
+        {
+            "Node": "GWT",
+            "Truth": "com.google.gwt.core.client.GWT"
+        }
+    ],
+    "gwt_class_28": [
+        {
+            "Node": "EntryPoint",
+            "Truth": "com.google.gwt.core.client.EntryPoint"
+        },
+        {
+            "Node": "RequestBuilder",
+            "Truth": "com.google.gwt.http.client.RequestBuilder"
+        },
+        {
+            "Node": "RequestException",
+            "Truth": "com.google.gwt.http.client.RequestException"
+        },
+        {
+            "Node": "Window",
+            "Truth": "com.google.gwt.user.client.Window"
+        },
+        {
+            "Node": "RequestCallback",
+            "Truth": "com.google.gwt.http.client.RequestCallback"
+        },
+        {
+            "Node": "Request",
+            "Truth": "com.google.gwt.http.client.Request"
+        },
+        {
+            "Node": "Response",
+            "Truth": "com.google.gwt.http.client.Response"
+        }
+    ],
+    "gwt_class_29": [
+        {
+            "Node": "JsonpRequestBuilder",
+            "Truth": "com.google.gwt.jsonp.client.JsonpRequestBuilder"
+        },
+        {
+            "Node": "new JsonpRequestBuilder()",
+            "Truth": "com.google.gwt.jsonp.client.JsonpRequestBuilder"
+        },
+        {
+            "Node": "AsyncCallback",
+            "Truth": "com.google.gwt.user.client.rpc.AsyncCallback"
+        },
+        {
+            "Node": "Article",
+            "Truth": "org.apache.commons.net.nntp.Article"
+        },
+        {
+            "Node": "Window",
+            "Truth": "com.google.gwt.user.client.Window"
+        }
+    ],
+    "gwt_class_3": [
+        {
+            "Node": "EntryPoint",
+            "Truth": "com.google.gwt.core.client.EntryPoint"
+        },
+        {
+            "Node": "TextBox",
+            "Truth": "com.google.gwt.user.client.ui.TextBox"
+        },
+        {
+            "Node": "new TextBox()",
+            "Truth": "com.google.gwt.user.client.ui.TextBox"
+        },
+        {
+            "Node": "Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        },
+        {
+            "Node": "new Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "AsyncCallback",
+            "Truth": "com.google.gwt.user.client.rpc.AsyncCallback"
+        }
+    ],
+    "gwt_class_30": [
+        {
+            "Node": "TextBox",
+            "Truth": "com.google.gwt.user.client.ui.TextBox"
+        },
+        {
+            "Node": "new TextBox()",
+            "Truth": "com.google.gwt.user.client.ui.TextBox"
+        },
+        {
+            "Node": "DialogBox",
+            "Truth": "com.google.gwt.user.client.ui.DialogBox"
+        },
+        {
+            "Node": "new DialogBox()",
+            "Truth": "com.google.gwt.user.client.ui.DialogBox"
+        },
+        {
+            "Node": "Grid",
+            "Truth": "com.google.gwt.user.client.ui.Grid"
+        },
+        {
+            "Node": "HTML",
+            "Truth": "com.google.gwt.user.client.ui.HTML"
+        }
+    ],
+    "gwt_class_31": [
+        {
+            "Node": "RequestException",
+            "Truth": "com.google.gwt.http.client.RequestException"
+        },
+        {
+            "Node": "RequestBuilder",
+            "Truth": "com.google.gwt.http.client.RequestBuilder"
+        },
+        {
+            "Node": "URL",
+            "Truth": "com.google.gwt.http.client.URL"
+        },
+        {
+            "Node": "RequestCallback",
+            "Truth": "com.google.gwt.http.client.RequestCallback"
+        }
+    ],
+    "gwt_class_32": [
+        {
+            "Node": "RequestBuilder",
+            "Truth": "com.google.gwt.http.client.RequestBuilder"
+        },
+        {
+            "Node": "URL",
+            "Truth": "com.google.gwt.http.client.URL"
+        },
+        {
+            "Node": "Request",
+            "Truth": "com.google.gwt.http.client.Request"
+        },
+        {
+            "Node": "RequestCallback",
+            "Truth": "com.google.gwt.http.client.RequestCallback"
+        },
+        {
+            "Node": "RequestException",
+            "Truth": "com.google.gwt.http.client.RequestException"
+        }
+    ],
+    "gwt_class_33": [
+        {
+            "Node": "EntryPoint",
+            "Truth": "com.google.gwt.core.client.EntryPoint"
+        },
+        {
+            "Node": "DockPanel",
+            "Truth": "com.google.gwt.user.client.ui.DockPanel"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "new ArrayList()",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        },
+        {
+            "Node": "new DockPanel()",
+            "Truth": "com.google.gwt.user.client.ui.DockPanel"
+        },
+        {
+            "Node": "HorizontalPanel",
+            "Truth": "com.google.gwt.user.client.ui.HorizontalPanel"
+        },
+        {
+            "Node": "new HorizontalPanel()",
+            "Truth": "com.google.gwt.user.client.ui.HorizontalPanel"
+        },
+        {
+            "Node": "Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "VerticalPanel",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "new VerticalPanel()",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "HTML",
+            "Truth": "com.google.gwt.user.client.ui.HTML"
+        },
+        {
+            "Node": "RadioButton",
+            "Truth": "com.google.gwt.user.client.ui.RadioButton"
+        },
+        {
+            "Node": "Grid",
+            "Truth": "com.google.gwt.user.client.ui.Grid"
+        },
+        {
+            "Node": "CheckBox",
+            "Truth": "com.google.gwt.user.client.ui.CheckBox"
+        },
+        {
+            "Node": "new CheckBox()",
+            "Truth": "com.google.gwt.user.client.ui.CheckBox"
+        },
+        {
+            "Node": "ClickListener",
+            "Truth": "com.google.gwt.user.client.ui.ClickListener"
+        },
+        {
+            "Node": "Widget",
+            "Truth": "com.google.gwt.user.client.ui.Widget"
+        },
+        {
+            "Node": "Iterator",
+            "Truth": "java.util.Iterator"
+        }
+    ],
+    "gwt_class_34": [
+        {
+            "Node": "FormPanel",
+            "Truth": "com.google.gwt.user.client.ui.FormPanel"
+        },
+        {
+            "Node": "Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "DOM",
+            "Truth": "com.google.gwt.user.client.DOM"
+        },
+        {
+            "Node": "ClickHandler",
+            "Truth": "com.google.gwt.event.dom.client.ClickHandler"
+        },
+        {
+            "Node": "HandlerRegistration",
+            "Truth": "com.google.gwt.event.shared.HandlerRegistration"
+        }
+    ],
+    "gwt_class_35": [
+        {
+            "Node": "Animation",
+            "Truth": "com.google.gwt.animation.client.Animation"
+        },
+        {
+            "Node": "FlowPanel",
+            "Truth": "com.google.gwt.user.client.ui.FlowPanel"
+        },
+        {
+            "Node": "Element",
+            "Truth": "com.google.gwt.dom.client.Element"
+        },
+        {
+            "Node": "new FlowPanel()",
+            "Truth": "com.google.gwt.user.client.ui.FlowPanel"
+        },
+        {
+            "Node": "GWT",
+            "Truth": "com.google.gwt.core.client.GWT"
+        },
+        {
+            "Node": "Unit",
+            "Truth": "com.google.gwt.dom.client.Style.Unit"
+        }
+    ],
+    "gwt_class_36": [
+        {
+            "Node": "AbsolutePanel",
+            "Truth": "com.google.gwt.user.client.ui.AbsolutePanel"
+        },
+        {
+            "Node": "new AbsolutePanel()",
+            "Truth": "com.google.gwt.user.client.ui.AbsolutePanel"
+        },
+        {
+            "Node": "SimplePanel",
+            "Truth": "com.google.gwt.user.client.ui.SimplePanel"
+        },
+        {
+            "Node": "new SimplePanel()",
+            "Truth": "com.google.gwt.user.client.ui.SimplePanel"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        }
+    ],
+    "gwt_class_37": [
+        {
+            "Node": "EntryPoint",
+            "Truth": "com.google.gwt.core.client.EntryPoint"
+        },
+        {
+            "Node": "RequestException",
+            "Truth": "com.google.gwt.http.client.RequestException"
+        },
+        {
+            "Node": "RequestBuilder",
+            "Truth": "com.google.gwt.http.client.RequestBuilder"
+        },
+        {
+            "Node": "URL",
+            "Truth": "com.google.gwt.http.client.URL"
+        },
+        {
+            "Node": "RequestCallback",
+            "Truth": "com.google.gwt.http.client.RequestCallback"
+        },
+        {
+            "Node": "JsArray",
+            "Truth": "com.google.gwt.core.client.JsArray"
+        },
+        {
+            "Node": "Widget",
+            "Truth": "com.google.gwt.user.client.ui.Widget"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        },
+        {
+            "Node": "new HTML",
+            "Truth": "com.google.gwt.user.client.ui.HTML"
+        }
+    ],
+    "gwt_class_38": [
+        {
+            "Node": "Composite",
+            "Truth": "com.google.gwt.user.client.ui.Composite"
+        },
+        {
+            "Node": "VerticalPanel",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "Hyperlink",
+            "Truth": "com.google.gwt.user.client.ui.Hyperlink"
+        },
+        {
+            "Node": "new VerticalPanel()",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "Widget",
+            "Truth": "com.google.gwt.user.client.ui.Widget"
+        },
+        {
+            "Node": "HasClickHandlers",
+            "Truth": "com.google.gwt.event.dom.client.HasClickHandlers"
+        }
+    ],
+    "gwt_class_39": [
+        {
+            "Node": "RemoteServiceServlet",
+            "Truth": "com.google.gwt.user.server.rpc.RemoteServiceServlet"
+        },
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "HttpServletResponse",
+            "Truth": "javax.servlet.http.HttpServletResponse"
+        },
+        {
+            "Node": "ServletOutputStream",
+            "Truth": "javax.servlet.ServletOutputStream"
+        },
+        {
+            "Node": "ServletContext",
+            "Truth": "javax.servlet.ServletContext"
+        },
+        {
+            "Node": "DataInputStream",
+            "Truth": "java.io.DataInputStream"
+        },
+        {
+            "Node": "FileInputStream",
+            "Truth": "java.io.FileInputStream"
+        }
+    ],
+    "gwt_class_4": [
+        {
+            "Node": "Composite",
+            "Truth": "com.google.gwt.user.client.ui.Composite"
+        },
+        {
+            "Node": "VerticalSplitPanel",
+            "Truth": "com.google.gwt.user.client.ui.VerticalSplitPanel"
+        },
+        {
+            "Node": "new VerticalSplitPanel()",
+            "Truth": "com.google.gwt.user.client.ui.VerticalSplitPanel"
+        },
+        {
+            "Node": "new HTML",
+            "Truth": "com.google.gwt.user.client.ui.HTML"
+        }
+    ],
+    "gwt_class_40": [
+        {
+            "Node": "HorizontalPanel",
+            "Truth": "com.google.gwt.user.client.ui.HorizontalPanel"
+        },
+        {
+            "Node": "new HorizontalPanel()",
+            "Truth": "com.google.gwt.user.client.ui.HorizontalPanel"
+        },
+        {
+            "Node": "Label",
+            "Truth": "com.google.gwt.user.client.ui.Label"
+        },
+        {
+            "Node": "LayoutContainer",
+            "Truth": "com.extjs.gxt.ui.client.widget.LayoutContainer"
+        },
+        {
+            "Node": "new LayoutContainer()",
+            "Truth": "com.extjs.gxt.ui.client.widget.LayoutContainer"
+        }
+    ],
+    "gwt_class_41": [
+        {
+            "Node": "Composite",
+            "Truth": "com.google.gwt.user.client.ui.Composite"
+        },
+        {
+            "Node": "Element",
+            "Truth": "com.google.gwt.dom.client.Element"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        },
+        {
+            "Node": "VerticalPanel",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "new VerticalPanel()",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "Label",
+            "Truth": "com.google.gwt.user.client.ui.Label"
+        },
+        {
+            "Node": "Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "ClickHandler",
+            "Truth": "com.google.gwt.event.dom.client.ClickHandler"
+        }
+    ],
+    "gwt_class_42": [
+        {
+            "Node": "EntryPoint",
+            "Truth": "com.google.gwt.core.client.EntryPoint"
+        },
+        {
+            "Node": "RequestException",
+            "Truth": "com.google.gwt.http.client.RequestException"
+        },
+        {
+            "Node": "RequestBuilder",
+            "Truth": "com.google.gwt.http.client.RequestBuilder"
+        },
+        {
+            "Node": "URL",
+            "Truth": "com.google.gwt.http.client.URL"
+        },
+        {
+            "Node": "RequestCallback",
+            "Truth": "com.google.gwt.http.client.RequestCallback"
+        }
+    ],
+    "gwt_class_43": [
+        {
+            "Node": "Composite",
+            "Truth": "com.google.gwt.user.client.ui.Composite"
+        },
+        {
+            "Node": "ClickHandler",
+            "Truth": "com.google.gwt.event.dom.client.ClickHandler"
+        },
+        {
+            "Node": "MouseOutHandler",
+            "Truth": "com.google.gwt.event.dom.client.MouseOutHandler"
+        },
+        {
+            "Node": "Label",
+            "Truth": "com.google.gwt.user.client.ui.Label"
+        },
+        {
+            "Node": "HorizontalPanel",
+            "Truth": "com.google.gwt.user.client.ui.HorizontalPanel"
+        },
+        {
+            "Node": "ClickEvent",
+            "Truth": "com.google.gwt.event.dom.client.ClickEvent"
+        },
+        {
+            "Node": "Widget",
+            "Truth": "com.google.gwt.user.client.ui.Widget"
+        },
+        {
+            "Node": "MouseOutEvent",
+            "Truth": "com.google.gwt.event.dom.client.MouseOutEvent"
+        }
+    ],
+    "gwt_class_44": [
+        {
+            "Node": "ResizeComposite",
+            "Truth": "com.google.gwt.user.client.ui.ResizeComposite"
+        },
+        {
+            "Node": "AsyncCallback",
+            "Truth": "com.google.gwt.user.client.rpc.AsyncCallback"
+        },
+        {
+            "Node": "GWT",
+            "Truth": "com.google.gwt.core.client.GWT"
+        },
+        {
+            "Node": "RunAsyncCallback",
+            "Truth": "com.google.gwt.core.client.RunAsyncCallback"
+        },
+        {
+            "Node": "DockLayoutPanel",
+            "Truth": "com.google.gwt.user.client.ui.DockLayoutPanel"
+        },
+        {
+            "Node": "Unit",
+            "Truth": "com.google.gwt.dom.client.Style.Unit"
+        },
+        {
+            "Node": "Label",
+            "Truth": "com.google.gwt.user.client.ui.Label"
+        }
+    ],
+    "gwt_class_45": [
+        {
+            "Node": "EntryPoint",
+            "Truth": "com.google.gwt.core.client.EntryPoint"
+        },
+        {
+            "Node": "Label",
+            "Truth": "com.google.gwt.user.client.ui.Label"
+        },
+        {
+            "Node": "new Label",
+            "Truth": "com.google.gwt.user.client.ui.Label"
+        },
+        {
+            "Node": "Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "new Button",
+            "Truth": "com.google.gwt.user.client.ui.Button"
+        },
+        {
+            "Node": "new ClickHandler()",
+            "Truth": "com.google.gwt.event.dom.client.ClickHandler"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        }
+    ],
+    "gwt_class_46": [
+        {
+            "Node": "VerticalPanel",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "new VerticalPanel()",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "DialogBox",
+            "Truth": "com.google.gwt.user.client.ui.DialogBox"
+        },
+        {
+            "Node": "new DialogBox()",
+            "Truth": "com.google.gwt.user.client.ui.DialogBox"
+        },
+        {
+            "Node": "HTML",
+            "Truth": "com.google.gwt.user.client.ui.HTML"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        }
+    ],
+    "gwt_class_47": [
+        {
+            "Node": "EntryPoint",
+            "Truth": "com.google.gwt.core.client.EntryPoint"
+        },
+        {
+            "Node": "Unit",
+            "Truth": "com.google.gwt.dom.client.Style.Unit"
+        },
+        {
+            "Node": "Widget",
+            "Truth": "com.google.gwt.user.client.ui.Widget"
+        },
+        {
+            "Node": "HTML",
+            "Truth": "com.google.gwt.user.client.ui.HTML"
+        },
+        {
+            "Node": "LayoutPanel",
+            "Truth": "com.google.gwt.user.client.ui.LayoutPanel"
+        },
+        {
+            "Node": "new LayoutPanel()",
+            "Truth": "com.google.gwt.user.client.ui.LayoutPanel"
+        },
+        {
+            "Node": "RootLayoutPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootLayoutPanel"
+        }
+    ],
+    "gwt_class_48": [
+        {
+            "Node": "EntryPoint",
+            "Truth": "com.google.gwt.core.client.EntryPoint"
+        },
+        {
+            "Node": "TabBar",
+            "Truth": "com.google.gwt.user.client.ui.TabBar"
+        },
+        {
+            "Node": "new TabBar()",
+            "Truth": "com.google.gwt.user.client.ui.TabBar"
+        },
+        {
+            "Node": "SelectionHandler",
+            "Truth": "com.google.gwt.event.logical.shared.SelectionHandler"
+        },
+        {
+            "Node": "BeforeSelectionHandler",
+            "Truth": "com.google.gwt.event.logical.shared.BeforeSelectionHandler"
+        }
+    ],
+    "gwt_class_49": [
+        {
+            "Node": "BodyElement",
+            "Truth": "com.google.gwt.dom.client.BodyElement"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "new ArrayList()",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "Document",
+            "Truth": "com.google.gwt.dom.client.Document"
+        },
+        {
+            "Node": "Element",
+            "Truth": "com.google.gwt.user.client.Element"
+        },
+        {
+            "Node": "DOM",
+            "Truth": "com.google.gwt.user.client.DOM"
+        }
+    ],
+    "gwt_class_5": [
+        {
+            "Node": "JsArray",
+            "Truth": "com.google.gwt.core.client.JsArray"
+        },
+        {
+            "Node": "JsArrayInteger",
+            "Truth": "com.google.gwt.core.client.JsArrayInteger"
+        }
+    ],
+    "gwt_class_50": [
+        {
+            "Node": "ComplexPanel",
+            "Truth": "com.google.gwt.user.client.ui.ComplexPanel"
+        },
+        {
+            "Node": "HasText",
+            "Truth": "com.google.gwt.user.client.ui.HasText"
+        },
+        {
+            "Node": "HasHTML",
+            "Truth": "com.google.gwt.user.client.ui.HasHTML"
+        },
+        {
+            "Node": "HasClickHandlers",
+            "Truth": "com.google.gwt.event.dom.client.HasClickHandlers"
+        },
+        {
+            "Node": "HasKeyDownHandlers",
+            "Truth": "com.google.gwt.event.dom.client.HasKeyDownHandlers"
+        },
+        {
+            "Node": "HasBlurHandlers",
+            "Truth": "com.google.gwt.event.dom.client.HasBlurHandlers"
+        },
+        {
+            "Node": "HandlerRegistration",
+            "Truth": "com.google.gwt.event.shared.HandlerRegistration"
+        },
+        {
+            "Node": "DOM",
+            "Truth": "com.google.gwt.user.client.DOM"
+        },
+        {
+            "Node": "Widget",
+            "Truth": "com.google.gwt.user.client.ui.Widget"
+        },
+        {
+            "Node": "ClickHandler",
+            "Truth": "com.google.gwt.event.dom.client.ClickHandler"
+        },
+        {
+            "Node": "ClickEvent",
+            "Truth": "com.google.gwt.event.dom.client.ClickEvent"
+        },
+        {
+            "Node": "KeyDownHandler",
+            "Truth": "com.google.gwt.event.dom.client.KeyDownHandler"
+        },
+        {
+            "Node": "KeyDownEvent",
+            "Truth": "com.google.gwt.event.dom.client.KeyDownEvent"
+        },
+        {
+            "Node": "BlurHandler",
+            "Truth": "com.google.gwt.event.dom.client.BlurHandler"
+        },
+        {
+            "Node": "BlurEvent",
+            "Truth": "com.google.gwt.event.dom.client.BlurEvent"
+        }
+    ],
+    "gwt_class_6": [
+        {
+            "Node": "Widget",
+            "Truth": "com.google.gwt.user.client.ui.Widget"
+        },
+        {
+            "Node": "Element",
+            "Truth": "com.google.gwt.user.client.Element"
+        },
+        {
+            "Node": "DOM",
+            "Truth": "com.google.gwt.user.client.DOM"
+        }
+    ],
+    "gwt_class_7": [
+        {
+            "Node": "EntryPoint",
+            "Truth": "com.google.gwt.core.client.EntryPoint"
+        },
+        {
+            "Node": "Panel",
+            "Truth": "com.google.gwt.user.client.ui.Panel"
+        },
+        {
+            "Node": "Timer",
+            "Truth": "com.google.gwt.user.client.Timer"
+        },
+        {
+            "Node": "Table",
+            "Truth": "com.extjs.gxt.ui.client.widget.table.Table"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        },
+        {
+            "Node": "new VerticalPanel()",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        }
+    ],
+    "gwt_class_8": [
+        {
+            "Node": "RequestException",
+            "Truth": "com.google.gwt.http.client.RequestException"
+        },
+        {
+            "Node": "RequestBuilder",
+            "Truth": "com.google.gwt.http.client.RequestBuilder"
+        },
+        {
+            "Node": "RequestCallback",
+            "Truth": "com.google.gwt.http.client.RequestCallback"
+        }
+    ],
+    "gwt_class_9": [
+        {
+            "Node": "VerticalPanel",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "new VerticalPanel()",
+            "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
+        },
+        {
+            "Node": "Command",
+            "Truth": "com.google.gwt.user.client.Command"
+        },
+        {
+            "Node": "MenuBar",
+            "Truth": "com.google.gwt.user.client.ui.MenuBar"
+        },
+        {
+            "Node": "new MenuBar()",
+            "Truth": "com.google.gwt.user.client.ui.MenuBar"
+        }
+    ],
+    "HibernateUtil": [
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "new AnnotationConfiguration()",
+            "Truth": "org.hibernate.cfg.AnnotationConfiguration"
+        }
+    ],
+    "hibernate_class_1": [
+        {
+            "Node": "UserDAO",
+            "Truth": "library.dao.UserDAO"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "AnnotationConfiguration",
+            "Truth": "org.hibernate.cfg.AnnotationConfiguration"
+        },
+        {
+            "Node": "new AnnotationConfiguration()",
+            "Truth": "org.hibernate.cfg.AnnotationConfiguration"
+        },
+        {
+            "Node": "addAnnotatedClass()",
+            "Truth": "org.hibernate.cfg.AnnotationConfiguration.addAnnotatedClass()"
+        },
+        {
+            "Node": "class",
+            "Truth": "library.model.User.class"
+        },
+        {
+            "Node": "configure()",
+            "Truth": "org.hibernate.cfg.AnnotationConfiguration.configure()"
+        },
+        {
+            "Node": "buildSessionFactory()",
+            "Truth": "org.hibernate.cfg.AnnotationConfiguration.buildSessionFactory()"
+        },
+        {
+            "Node": "User",
+            "Truth": "library.model.User"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "openSession()",
+            "Truth": "org.hibernate.SessionFactory.openSession()"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        },
+        {
+            "Node": "getTransaction()",
+            "Truth": "org.hibernate.Session.getTransaction()"
+        },
+        {
+            "Node": "begin()",
+            "Truth": "org.hibernate.Transaction.begin()"
+        },
+        {
+            "Node": "saveOrUpdate()",
+            "Truth": "org.hibernate.Session.saveOrUpdate()"
+        },
+        {
+            "Node": "commit()",
+            "Truth": "org.hibernate.Transaction.commit()"
+        },
+        {
+            "Node": "rollback()",
+            "Truth": "org.hibernate.Transaction.rollback()"
+        },
+        {
+            "Node": "close()",
+            "Truth": "org.hibernate.Session.close()"
+        }
+    ],
+    "hibernate_class_10": [
+        {
+            "Node": "Serializable",
+            "Truth": "java.io.Serializable"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        }
+    ],
+    "hibernate_class_11": [
+        {
+            "Node": "Entity",
+            "Truth": "javax.persistence.Entity"
+        },
+        {
+            "Node": "Table",
+            "Truth": "javax.persistence.Table"
+        },
+        {
+            "Node": "Serializable",
+            "Truth": "java.io.Serializable"
+        },
+        {
+            "Node": "Id",
+            "Truth": "javax.persistence.Id"
+        },
+        {
+            "Node": "Column",
+            "Truth": "javax.persistence.Column"
+        }
+    ],
+    "hibernate_class_12": [
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "FacesContext",
+            "Truth": "javax.faces.context.FacesContext"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        }
+    ],
+    "hibernate_class_13": [
+        {
+            "Node": "Entity",
+            "Truth": "javax.persistence.Entity"
+        },
+        {
+            "Node": "Table",
+            "Truth": "javax.persistence.Table"
+        },
+        {
+            "Node": "Serializable",
+            "Truth": "java.io.Serializable"
+        },
+        {
+            "Node": "Id",
+            "Truth": "javax.persistence.Id"
+        },
+        {
+            "Node": "Column",
+            "Truth": "javax.persistence.Column"
+        },
+        {
+            "Node": "ManyToOne",
+            "Truth": "javax.persistence.ManyToOne"
+        },
+        {
+            "Node": "JoinColumn",
+            "Truth": "javax.persistence.JoinColumn"
+        },
+        {
+            "Node": "ForeignKey",
+            "Truth": "org.hibernate.annotations.ForeignKey"
+        },
+        {
+            "Node": "ManyToMany",
+            "Truth": "javax.persistence.ManyToMany"
+        },
+        {
+            "Node": "JoinTable",
+            "Truth": "javax.persistence.JoinTable"
+        },
+        {
+            "Node": "Collection",
+            "Truth": "java.util.Collection"
+        },
+        {
+            "Node": "Permission",
+            "Truth": "java.security.Permission"
+        },
+        {
+            "Node": "OneToMany",
+            "Truth": "javax.persistence.OneToMany"
+        },
+        {
+            "Node": "IndexColumn",
+            "Truth": "org.hibernate.annotations.IndexColumn"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Version",
+            "Truth": "javax.persistence.Version"
+        }
+    ],
+    "hibernate_class_14": [
+        {
+            "Node": "Entity",
+            "Truth": "javax.persistence.Entity"
+        },
+        {
+            "Node": "Table",
+            "Truth": "javax.persistence.Table"
+        },
+        {
+            "Node": "Serializable",
+            "Truth": "java.io.Serializable"
+        },
+        {
+            "Node": "Id",
+            "Truth": "javax.persistence.Id"
+        },
+        {
+            "Node": "Column",
+            "Truth": "javax.persistence.Column"
+        },
+        {
+            "Node": "ManyToOne",
+            "Truth": "javax.persistence.ManyToOne"
+        },
+        {
+            "Node": "JoinColumn",
+            "Truth": "javax.persistence.JoinColumn"
+        },
+        {
+            "Node": "ForeignKey",
+            "Truth": "org.hibernate.annotations.ForeignKey"
+        },
+        {
+            "Node": "ManyToMany",
+            "Truth": "javax.persistence.ManyToMany"
+        },
+        {
+            "Node": "Collection",
+            "Truth": "java.util.Collection"
+        },
+        {
+            "Node": "Item",
+            "Truth": "org.hibernate.test.cache.Item"
+        },
+        {
+            "Node": "User",
+            "Truth": "library.model.User"
+        }
+    ],
+    "hibernate_class_15": [
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "Blob",
+            "Truth": "java.sql.Blob"
+        },
+        {
+            "Node": "Hibernate",
+            "Truth": "org.hibernate.Hibernate"
+        },
+        {
+            "Node": "ByteArrayOutputStream",
+            "Truth": "java.io.ByteArrayOutputStream"
+        },
+        {
+            "Node": "new ByteArrayOutputStream()",
+            "Truth": "java.io.ByteArrayOutputStream"
+        },
+        {
+            "Node": "SQLException",
+            "Truth": "java.sql.SQLException"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "InputStream",
+            "Truth": "java.io.InputStream"
+        }
+    ],
+    "hibernate_class_16": [
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Event",
+            "Truth": "java.awt.Event"
+        }
+    ],
+    "hibernate_class_17": [
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "NamingException",
+            "Truth": "javax.naming.NamingException"
+        },
+        {
+            "Node": "Configuration",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "ShardConfiguration",
+            "Truth": "org.hibernate.shards.cfg.ShardConfiguration"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "ShardStrategyFactory",
+            "Truth": "org.hibernate.shards.strategy.ShardStrategyFactory"
+        },
+        {
+            "Node": "ShardedConfiguration",
+            "Truth": "org.hibernate.shards.ShardedConfiguration"
+        },
+        {
+            "Node": "ConfigurationToShardConfigurationAdapter",
+            "Truth": "org.hibernate.shards.cfg.ConfigurationToShardConfigurationAdapter"
+        }
+    ],
+    "hibernate_class_18": [
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "Configuration",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        }
+    ],
+    "hibernate_class_19": [
+        {
+            "Node": "Entity",
+            "Truth": "javax.persistence.Entity"
+        },
+        {
+            "Node": "Id",
+            "Truth": "javax.persistence.Id"
+        },
+        {
+            "Node": "GeneratedValue",
+            "Truth": "javax.persistence.GeneratedValue"
+        },
+        {
+            "Node": "Column",
+            "Truth": "javax.persistence.Column"
+        }
+    ],
+    "hibernate_class_2": [
+        {
+            "Node": "Entity",
+            "Truth": "org.hibernate.annotations.Entity"
+        },
+        {
+            "Node": "Cache",
+            "Truth": "org.hibernate.annotations.Cache"
+        },
+        {
+            "Node": "Serializable",
+            "Truth": "java.io.Serializable"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Id",
+            "Truth": "javax.persistence.Id"
+        },
+        {
+            "Node": "Column",
+            "Truth": "javax.persistence.Column"
+        },
+        {
+            "Node": "ManyToOne",
+            "Truth": "javax.persistence.ManyToOne"
+        },
+        {
+            "Node": "OneToMany",
+            "Truth": "javax.persistence.OneToMany"
+        },
+        {
+            "Node": "JoinColumn",
+            "Truth": "javax.persistence.JoinColumn"
+        }
+    ],
+    "hibernate_class_20": [
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "new AnnotationConfiguration()",
+            "Truth": "org.hibernate.cfg.AnnotationConfiguration"
+        }
+    ],
+    "hibernate_class_21": [
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        }
+    ],
+    "hibernate_class_22": [
+        {
+            "Node": "JSONObject",
+            "Truth": "org.json.JSONObject"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "new JSONObject()",
+            "Truth": "org.json.JSONObject"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "Query",
+            "Truth": "org.hibernate.Query"
+        }
+    ],
+    "hibernate_class_23": [
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Configuration",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "new AnnotationConfiguration()",
+            "Truth": "org.hibernate.cfg.AnnotationConfiguration"
+        },
+        {
+            "Node": "HibernateException",
+            "Truth": "org.hibernate.HibernateException"
+        }
+    ],
+    "hibernate_class_24": [
+        {
+            "Node": "InvocationHandler",
+            "Truth": "java.lang.reflect.InvocationHandler"
+        },
+        {
+            "Node": "Configuration",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "Method",
+            "Truth": "java.lang.reflect.Method"
+        }
+    ],
+    "hibernate_class_25": [
+        {
+            "Node": "Entity",
+            "Truth": "javax.persistence.Entity"
+        },
+        {
+            "Node": "Id",
+            "Truth": "javax.persistence.Id"
+        },
+        {
+            "Node": "GeneratedValue",
+            "Truth": "javax.persistence.GeneratedValue"
+        },
+        {
+            "Node": "OneToOne",
+            "Truth": "javax.persistence.OneToOne"
+        },
+        {
+            "Node": "Fetch",
+            "Truth": "org.hibernate.annotations.Fetch"
+        }
+    ],
+    "hibernate_class_26": [
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Query",
+            "Truth": "org.hibernate.Query"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "AnnotationConfiguration",
+            "Truth": "org.hibernate.cfg.AnnotationConfiguration"
+        },
+        {
+            "Node": "new AnnotationConfiguration()",
+            "Truth": "org.hibernate.cfg.AnnotationConfiguration"
+        },
+        {
+            "Node": "SchemaExport",
+            "Truth": "org.hibernate.tool.hbm2ddl.SchemaExport"
+        },
+        {
+            "Node": "Id",
+            "Truth": "javax.persistence.Id"
+        },
+        {
+            "Node": "GeneratedValue",
+            "Truth": "javax.persistence.GeneratedValue"
+        },
+        {
+            "Node": "OneToOne",
+            "Truth": "javax.persistence.OneToOne"
+        },
+        {
+            "Node": "Fetch",
+            "Truth": "org.hibernate.annotations.Fetch"
+        },
+        {
+            "Node": "Entity",
+            "Truth": "javax.persistence.Entity"
+        }
+    ],
+    "hibernate_class_27": [
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Query",
+            "Truth": "org.hibernate.Query"
+        }
+    ],
+    "hibernate_class_28": [
+        {
+            "Node": "Entity",
+            "Truth": "javax.persistence.Entity"
+        },
+        {
+            "Node": "Serializable",
+            "Truth": "java.io.Serializable"
+        },
+        {
+            "Node": "Id",
+            "Truth": "javax.persistence.Id"
+        },
+        {
+            "Node": "GeneratedValue",
+            "Truth": "javax.persistence.GeneratedValue"
+        },
+        {
+            "Node": "ManyToOne",
+            "Truth": "javax.persistence.ManyToOne"
+        },
+        {
+            "Node": "JoinColumn",
+            "Truth": "javax.persistence.JoinColumn"
+        },
+        {
+            "Node": "User",
+            "Truth": "library.model.User"
+        },
+        {
+            "Node": "OneToMany",
+            "Truth": "javax.persistence.OneToMany"
+        },
+        {
+            "Node": "IndexColumn",
+            "Truth": "org.hibernate.annotations.IndexColumn"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "Column",
+            "Truth": "javax.persistence.Column"
+        }
+    ],
+    "hibernate_class_29": [
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Criteria",
+            "Truth": "org.hibernate.Criteria"
+        },
+        {
+            "Node": "Projections",
+            "Truth": "org.hibernate.criterion.Projections"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        }
+    ],
+    "hibernate_class_3": [
+        {
+            "Node": "Dialect",
+            "Truth": "org.hibernate.dialect.Dialect"
+        },
+        {
+            "Node": "Types",
+            "Truth": "java.sql.Types"
+        },
+        {
+            "Node": "VarArgsSQLFunction",
+            "Truth": "org.hibernate.dialect.function.VarArgsSQLFunction"
+        },
+        {
+            "Node": "Hibernate",
+            "Truth": "org.hibernate.Hibernate"
+        },
+        {
+            "Node": "SQLFunctionTemplate",
+            "Truth": "org.hibernate.dialect.function.SQLFunctionTemplate"
+        },
+        {
+            "Node": "StandardSQLFunction",
+            "Truth": "org.hibernate.dialect.function.StandardSQLFunction"
+        }
+    ],
+    "hibernate_class_30": [
+        {
+            "Node": "Entity",
+            "Truth": "javax.persistence.Entity"
+        },
+        {
+            "Node": "Table",
+            "Truth": "javax.persistence.Table"
+        },
+        {
+            "Node": "NamedQueries",
+            "Truth": "org.hibernate.annotations.NamedQueries"
+        },
+        {
+            "Node": "Serializable",
+            "Truth": "java.io.Serializable"
+        },
+        {
+            "Node": "Basic",
+            "Truth": "javax.persistence.Basic"
+        },
+        {
+            "Node": "Column",
+            "Truth": "javax.persistence.Column"
+        },
+        {
+            "Node": "Id",
+            "Truth": "javax.persistence.Id"
+        }
+    ],
+    "hibernate_class_31": [
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Query",
+            "Truth": "org.hibernate.Query"
+        }
+    ],
+    "hibernate_class_32": [
+        {
+            "Node": "Entity",
+            "Truth": "javax.persistence.Entity"
+        },
+        {
+            "Node": "Table",
+            "Truth": "javax.persistence.Table"
+        },
+        {
+            "Node": "Id",
+            "Truth": "javax.persistence.Id"
+        },
+        {
+            "Node": "GeneratedValue",
+            "Truth": "javax.persistence.GeneratedValue"
+        }
+    ],
+    "hibernate_class_33": [
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Configuration",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        }
+    ],
+    "hibernate_class_34": [
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        }
+    ],
+    "hibernate_class_35": [
+        {
+            "Node": "BasicConfigurator",
+            "Truth": "org.apache.log4j.BasicConfigurator"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        },
+        {
+            "Node": "Query",
+            "Truth": "org.hibernate.Query"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Iterator",
+            "Truth": "java.util.Iterator"
+        },
+        {
+            "Node": "HibernateException",
+            "Truth": "org.hibernate.HibernateException"
+        }
+    ],
+    "hibernate_class_36": [
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        }
+    ],
+    "hibernate_class_37": [
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "new AnnotationConfiguration()",
+            "Truth": "org.hibernate.cfg.AnnotationConfiguration"
+        },
+        {
+            "Node": "HibernateException",
+            "Truth": "org.hibernate.HibernateException"
+        }
+    ],
+    "hibernate_class_38": [
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        }
+    ],
+    "hibernate_class_39": [
+        {
+            "Node": "Transactional",
+            "Truth": "org.springframework.transaction.annotation.Transactional"
+        },
+        {
+            "Node": "Serializable",
+            "Truth": "java.io.Serializable"
+        },
+        {
+            "Node": "GenericDao",
+            "Truth": "org.appfuse.dao.GenericDao"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Map",
+            "Truth": "java.util.Map"
+        },
+        {
+            "Node": "SearchException",
+            "Truth": "org.appfuse.dao.SearchException"
+        }
+    ],
+    "hibernate_class_4": [
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "Configuration",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "HibernateException",
+            "Truth": "org.hibernate.HibernateException"
+        }
+    ],
+    "hibernate_class_40": [
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "Query",
+            "Truth": "org.hibernate.Query"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Iterator",
+            "Truth": "java.util.Iterator"
+        }
+    ],
+    "hibernate_class_41": [
+        {
+            "Node": "List",
+            "Truth": "org.hibernate.mapping.List"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        },
+        {
+            "Node": "Criteria",
+            "Truth": "org.hibernate.Criteria"
+        },
+        {
+            "Node": "Restrictions",
+            "Truth": "org.hibernate.criterion.Restrictions"
+        }
+    ],
+    "hibernate_class_42": [
+        {
+            "Node": "Log",
+            "Truth": "org.apache.commons.logging.Log"
+        },
+        {
+            "Node": "LogFactory",
+            "Truth": "org.apache.commons.logging.LogFactory"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "new InitialContext()",
+            "Truth": "javax.naming.InitialContext"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Example",
+            "Truth": "org.hibernate.criterion.Example"
+        }
+    ],
+    "hibernate_class_43": [
+        {
+            "Node": "Logger",
+            "Truth": "org.apache.log4j.Logger"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Configuration",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "Properties",
+            "Truth": "java.util.Properties"
+        },
+        {
+            "Node": "new Properties()",
+            "Truth": "java.util.Properties"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        }
+    ],
+    "hibernate_class_44": [
+        {
+            "Node": "DispatchAction",
+            "Truth": "org.apache.struts.actions.DispatchAction"
+        },
+        {
+            "Node": "ActionForward",
+            "Truth": "org.apache.struts.action.ActionForward"
+        },
+        {
+            "Node": "ActionMapping",
+            "Truth": "org.apache.struts.action.ActionMapping"
+        },
+        {
+            "Node": "ActionForm",
+            "Truth": "org.apache.struts.action.ActionForm"
+        },
+        {
+            "Node": "HttpServletRequest",
+            "Truth": "javax.servlet.http.HttpServletRequest"
+        },
+        {
+            "Node": "HttpServletResponse",
+            "Truth": "javax.servlet.http.HttpServletResponse"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        },
+        {
+            "Node": "HttpSession",
+            "Truth": "javax.servlet.http.HttpSession"
+        },
+        {
+            "Node": "Query",
+            "Truth": "org.hibernate.Query"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "new ArrayList()",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "Iterator",
+            "Truth": "java.util.Iterator"
+        },
+        {
+            "Node": "Set",
+            "Truth": "java.util.Set"
+        },
+        {
+            "Node": "new HashSet()",
+            "Truth": "java.util.HashSet"
+        }
+    ],
+    "hibernate_class_45": [
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "new AnnotationConfiguration()",
+            "Truth": "org.hibernate.cfg.AnnotationConfiguration"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        }
+    ],
+    "hibernate_class_46": [
+        {
+            "Node": "HibernateException",
+            "Truth": "org.hibernate.HibernateException"
+        },
+        {
+            "Node": "JDBCException",
+            "Truth": "org.hibernate.JDBCException"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "CacheMode",
+            "Truth": "org.hibernate.CacheMode"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        }
+    ],
+    "hibernate_class_47": [
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        }
+    ],
+    "hibernate_class_48": [
+        {
+            "Node": "HibernateUtil",
+            "Truth": "net.sf.gilead.core.hibernate.HibernateUtil"
+        },
+        {
+            "Node": "new HibernateUtil()",
+            "Truth": "net.sf.gilead.core.hibernate.HibernateUtil"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "PersistentBeanManager",
+            "Truth": "net.sf.gilead.core.PersistentBeanManager"
+        },
+        {
+            "Node": "new PersistentBeanManager()",
+            "Truth": "net.sf.gilead.core.PersistentBeanManager"
+        },
+        {
+            "Node": "new StatelessProxyStore()",
+            "Truth": "net.sf.gilead.core.store.stateless.StatelessProxyStore"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        }
+    ],
+    "hibernate_class_49": [
+        {
+            "Node": "Entity",
+            "Truth": "javax.persistence.Entity"
+        },
+        {
+            "Node": "Serializable",
+            "Truth": "java.io.Serializable"
+        },
+        {
+            "Node": "Version",
+            "Truth": "javax.persistence.Version"
+        },
+        {
+            "Node": "NaturalId",
+            "Truth": "org.hibernate.annotations.NaturalId"
+        }
+    ],
+    "hibernate_class_5": [
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        }
+    ],
+    "hibernate_class_50": [
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Name",
+            "Truth": "java.util.jar.Attributes.Name"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        }
+    ],
+    "hibernate_class_6": [
+        {
+            "Node": "MalformedURLException",
+            "Truth": "java.net.MalformedURLException"
+        },
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "Configuration",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        },
+        {
+            "Node": "EntityMode",
+            "Truth": "org.hibernate.EntityMode"
+        },
+        {
+            "Node": "SAXReader",
+            "Truth": "org.dom4j.io.SAXReader"
+        },
+        {
+            "Node": "new SAXReader()",
+            "Truth": "org.dom4j.io.SAXReader"
+        },
+        {
+            "Node": "Document",
+            "Truth": "org.dom4j.Document"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Iterator",
+            "Truth": "java.util.Iterator"
+        },
+        {
+            "Node": "HibernateException",
+            "Truth": "org.hibernate.HibernateException"
+        },
+        {
+            "Node": "DocumentException",
+            "Truth": "org.dom4j.DocumentException"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "SchemaExport",
+            "Truth": "org.hibernate.tool.hbm2ddl.SchemaExport"
+        }
+    ],
+    "hibernate_class_7": [
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "new AnnotationConfiguration()",
+            "Truth": "org.hibernate.cfg.AnnotationConfiguration"
+        }
+    ],
+    "hibernate_class_8": [
+        {
+            "Node": "MappedSuperclass",
+            "Truth": "javax.persistence.MappedSuperclass"
+        },
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "Transient",
+            "Truth": "javax.persistence.Transient"
+        },
+        {
+            "Node": "new Date()",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "AssertTrue",
+            "Truth": "org.hibernate.validator.AssertTrue"
+        },
+        {
+            "Node": "Temporal",
+            "Truth": "javax.persistence.Temporal"
+        },
+        {
+            "Node": "NotNull",
+            "Truth": "org.hibernate.validator.NotNull"
+        },
+        {
+            "Node": "Column",
+            "Truth": "javax.persistence.Column"
+        }
+    ],
+    "hibernate_class_9": [
+        {
+            "Node": "Serializable",
+            "Truth": "java.io.Serializable"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        }
+    ],
+    "JodaTime01": [
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "ISODateTimeFormat",
+            "Truth": "org.joda.time.format.ISODateTimeFormat"
+        },
+        {
+            "Node": "TimeZone",
+            "Truth": "java.util.TimeZone"
+        },
+        {
+            "Node": "DateTimeZone",
+            "Truth": "org.joda.time.DateTimeZone"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        },
+        {
+            "Node": "new DateTime()",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime02": [
+        {
+            "Node": "DateMidnight",
+            "Truth": "org.joda.time.DateMidnight"
+        },
+        {
+            "Node": "DateTimeZone",
+            "Truth": "org.joda.time.DateTimeZone"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime03": [
+        {
+            "Node": "Interval",
+            "Truth": "org.joda.time.Interval"
+        },
+        {
+            "Node": "PeriodFormatter",
+            "Truth": "org.joda.time.format.PeriodFormatter"
+        },
+        {
+            "Node": "new PeriodFormatterBuilder()",
+            "Truth": "org.joda.time.format.PeriodFormatterBuilder"
+        }
+    ],
+    "JodaTime04": [
+        {
+            "Node": "ReadableInstant[]",
+            "Truth": "org.joda.time.ReadableInstant[]"
+        },
+        {
+            "Node": "Period",
+            "Truth": "org.joda.time.Period"
+        }
+    ],
+    "JodaTime05": [
+        {
+            "Node": "DateTimeZone",
+            "Truth": "org.joda.time.DateTimeZone"
+        },
+        {
+            "Node": "Chronology",
+            "Truth": "org.joda.time.Chronology"
+        },
+        {
+            "Node": "GJChronology",
+            "Truth": "org.joda.time.chrono.GJChronology"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime06": [
+        {
+            "Node": "Duration",
+            "Truth": "org.joda.time.Duration"
+        },
+        {
+            "Node": "PeriodType",
+            "Truth": "org.joda.time.PeriodType"
+        },
+        {
+            "Node": "new PeriodFormatterBuilder()",
+            "Truth": "org.joda.time.format.PeriodFormatterBuilder"
+        }
+    ],
+    "JodaTime07": [
+        {
+            "Node": "DateFormat",
+            "Truth": "java.text.DateFormat"
+        },
+        {
+            "Node": "SimpleDateFormat",
+            "Truth": "java.text.SimpleDateFormat"
+        },
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "new Date()",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "Calendar",
+            "Truth": "java.util.Calendar"
+        },
+        {
+            "Node": "ParseException",
+            "Truth": "java.text.ParseException"
+        },
+        {
+            "Node": "Days",
+            "Truth": "org.joda.time.Days"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime08": [
+        {
+            "Node": "TimeUnit",
+            "Truth": "java.util.concurrent.TimeUnit"
+        },
+        {
+            "Node": "Period",
+            "Truth": "org.joda.time.Period"
+        },
+        {
+            "Node": "PeriodType",
+            "Truth": "org.joda.time.PeriodType"
+        }
+    ],
+    "JodaTime09": [
+        {
+            "Node": "TimeZone",
+            "Truth": "java.util.TimeZone"
+        },
+        {
+            "Node": "DateTimeZone",
+            "Truth": "org.joda.time.DateTimeZone"
+        }
+    ],
+    "JodaTime10": [
+        {
+            "Node": "Serializable",
+            "Truth": "java.io.Serializable"
+        },
+        {
+            "Node": "DateTimeZone",
+            "Truth": "org.joda.time.DateTimeZone"
+        },
+        {
+            "Node": "ISOChronology",
+            "Truth": "org.joda.time.chrono.ISOChronology"
+        },
+        {
+            "Node": "ObjectOutputStream",
+            "Truth": "java.io.ObjectOutputStream"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "ObjectInputStream",
+            "Truth": "java.io.ObjectInputStream"
+        }
+    ],
+    "JodaTime11": [
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "DateTimeFormat",
+            "Truth": "org.joda.time.format.DateTimeFormat"
+        },
+        {
+            "Node": "SimpleDateFormat",
+            "Truth": "java.text.SimpleDateFormat"
+        },
+        {
+            "Node": "ParseException",
+            "Truth": "java.text.ParseException"
+        }
+    ],
+    "JodaTime12": [
+        {
+            "Node": "SimpleDateFormat",
+            "Truth": "java.text.SimpleDateFormat"
+        },
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        },
+        {
+            "Node": "ParseException",
+            "Truth": "java.text.ParseException"
+        }
+    ],
+    "JodaTime13": [
+        {
+            "Node": "Test",
+            "Truth": "org.junit.Test"
+        },
+        {
+            "Node": "PeriodFormatter",
+            "Truth": "org.joda.time.format.PeriodFormatter"
+        },
+        {
+            "Node": "new PeriodFormatterBuilder()",
+            "Truth": "org.joda.time.format.PeriodFormatterBuilder"
+        },
+        {
+            "Node": "Period",
+            "Truth": "org.joda.time.Period"
+        }
+    ],
+    "JodaTime14": [
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "DateTimeFormat",
+            "Truth": "org.joda.time.format.DateTimeFormat"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime15": [
+        {
+            "Node": "MutableDateTime",
+            "Truth": "org.joda.time.MutableDateTime"
+        },
+        {
+            "Node": "new MutableDateTime()",
+            "Truth": "org.joda.time.MutableDateTime"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime16":[
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        },
+        {
+            "Node": "Period",
+            "Truth": "org.joda.time.Period"
+        },
+        {
+            "Node": "PeriodFormatter",
+            "Truth": "org.joda.time.format.PeriodFormatter"
+        },
+        {
+            "Node": "new PeriodFormatterBuilder()",
+            "Truth": "org.joda.time.format.PeriodFormatterBuilder()"
+        },
+        {
+            "Node": "print()",
+            "Truth": "org.joda.time.format.PeriodFormatter.print()"
+        }
+    ],
+    "JodaTime17": [
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "DateTimeFormat",
+            "Truth": "org.joda.time.format.DateTimeFormat"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime18": [
+        {
+            "Node": "DateTimeZone",
+            "Truth": "org.joda.time.DateTimeZone"
+        },
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "new DateTimeFormatterBuilder()",
+            "Truth": "org.joda.time.format.DateTimeFormatterBuilder"
+        }
+    ],
+    "JodaTime19": [
+        {
+            "Node": "Instant",
+            "Truth": "org.joda.time.Instant"
+        },
+        {
+            "Node": "new Date()",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "Interval",
+            "Truth": "org.joda.time.Interval"
+        },
+        {
+            "Node": "ReadableInstant",
+            "Truth": "org.joda.time.ReadableInstant"
+        }
+    ],
+    "JodaTime20": [
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "DateTimeFormat",
+            "Truth": "org.joda.time.format.DateTimeFormat"
+        },
+        {
+            "Node": "DateTimeZone",
+            "Truth": "org.joda.time.DateTimeZone"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime21": [
+        {
+            "Node": "DateFormat",
+            "Truth": "java.text.DateFormat"
+        },
+        {
+            "Node": "SimpleDateFormat",
+            "Truth": "java.text.SimpleDateFormat"
+        },
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "ParseException",
+            "Truth": "java.text.ParseException"
+        },
+        {
+            "Node": "LocalDateTime",
+            "Truth": "org.joda.time.LocalDateTime"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        },
+        {
+            "Node": "DateTimeZone",
+            "Truth": "org.joda.time.DateTimeZone"
+        }
+    ],
+    "JodaTime22": [
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "ParseException",
+            "Truth": "java.text.ParseException"
+        },
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "DateTimeFormat",
+            "Truth": "org.joda.time.format.DateTimeFormat"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime23": [
+        {
+            "Node": "LocalDate",
+            "Truth": "org.joda.time.LocalDate"
+        },
+        {
+            "Node": "DateTimeConstants",
+            "Truth": "org.joda.time.DateTimeConstants"
+        }
+    ],
+    "JodaTime24": [
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        },
+        {
+            "Node": "Period",
+            "Truth": "org.joda.time.Period"
+        },
+        {
+            "Node": "PeriodType",
+            "Truth": "org.joda.time.PeriodType"
+        },
+        {
+            "Node": "PeriodFormat",
+            "Truth": "org.joda.time.format.PeriodFormat"
+        }
+    ],
+    "JodaTime25": [
+        {
+            "Node": "LocalDateTime",
+            "Truth": "org.joda.time.LocalDateTime"
+        },
+        {
+            "Node": "Days",
+            "Truth": "org.joda.time.Days"
+        },
+        {
+            "Node": "DateMidnight",
+            "Truth": "org.joda.time.DateMidnight"
+        }
+    ],
+    "JodaTime26": [
+        {
+            "Node": "Duration",
+            "Truth": "org.joda.time.Duration"
+        },
+        {
+            "Node": "Period",
+            "Truth": "org.joda.time.Period"
+        }
+    ],
+    "JodaTime27": [
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime28": [
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "DateTimeFormat",
+            "Truth": "org.joda.time.format.DateTimeFormat"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "LocalDate",
+            "Truth": "org.joda.time.LocalDate"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "Days",
+            "Truth": "org.joda.time.Days"
+        }
+    ],
+    "JodaTime29": [
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        },
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "new DateTimeFormatter[20]",
+            "Truth": "org.joda.time.format.DateTimeFormatter[]"
+        }
+    ],
+    "JodaTime30": [
+        {
+            "Node": "DateTimeZone",
+            "Truth": "org.joda.time.DateTimeZone"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime31": [
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        },
+        {
+            "Node": "Weeks",
+            "Truth": "org.joda.time.Weeks"
+        }
+    ],
+    "JodaTime32": [
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime33": [
+        {
+            "Node": "PeriodFormatter",
+            "Truth": "org.joda.time.format.PeriodFormatter"
+        },
+        {
+            "Node": "new PeriodFormatterBuilder()",
+            "Truth": "org.joda.time.format.PeriodFormatterBuilder"
+        },
+        {
+            "Node": "Period",
+            "Truth": "org.joda.time.Period"
+        }
+    ],
+    "JodaTime34": [
+        {
+            "Node": "Locale",
+            "Truth": "java.util.Locale"
+        },
+        {
+            "Node": "PeriodFormatter",
+            "Truth": "org.joda.time.format.PeriodFormatter"
+        },
+        {
+            "Node": "PeriodFormat",
+            "Truth": "org.joda.time.format.PeriodFormat"
+        },
+        {
+            "Node": "Period",
+            "Truth": "org.joda.time.Period"
+        }
+    ],
+    "JodaTime35": [
+        {
+            "Node": "PeriodFormatter",
+            "Truth": "org.joda.time.format.PeriodFormatter"
+        },
+        {
+            "Node": "new PeriodFormatterBuilder()",
+            "Truth": "org.joda.time.format.PeriodFormatterBuilder"
+        },
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "ReadablePeriod",
+            "Truth": "org.joda.time.ReadablePeriod"
+        },
+        {
+            "Node": "new Period",
+            "Truth": "org.joda.time.Period"
+        },
+        {
+            "Node": "new DateTime",
+            "Truth": "org.joda.time.DateTime"
+        },
+        {
+            "Node": "new DateTime()",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime36": [
+        {
+            "Node": "PeriodFormatter",
+            "Truth": "org.joda.time.format.PeriodFormatter"
+        },
+        {
+            "Node": "new PeriodFormatterBuilder()",
+            "Truth": "org.joda.time.format.PeriodFormatterBuilder"
+        },
+        {
+            "Node": "ISOPeriodFormat",
+            "Truth": "org.joda.time.format.ISOPeriodFormat"
+        },
+        {
+            "Node": "Period",
+            "Truth": "org.joda.time.Period"
+        }
+    ],
+    "JodaTime37": [
+        {
+            "Node": "DateTimeZone",
+            "Truth": "org.joda.time.DateTimeZone"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime38": [
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "DateTimeFormat",
+            "Truth": "org.joda.time.format.DateTimeFormat"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime39": [
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        },
+        {
+            "Node": "new DateTime()",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime40": [
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "Days",
+            "Truth": "org.joda.time.Days"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime41": [
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        },
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "DateTimeFormat",
+            "Truth": "org.joda.time.format.DateTimeFormat"
+        }
+    ],
+    "JodaTime42": [
+        {
+            "Node": "LocalDate",
+            "Truth": "org.joda.time.LocalDate"
+        }
+    ],
+    "JodaTime43": [
+        {
+            "Node": "DateTimeParser[]",
+            "Truth": "org.joda.time.format.DateTimeParser[]"
+        },
+        {
+            "Node": "DateTimeFormat",
+            "Truth": "org.joda.time.format.DateTimeFormat"
+        },
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "new DateTimeFormatterBuilder()",
+            "Truth": "org.joda.time.format.DateTimeFormatterBuilder"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime44": [
+        {
+            "Node": "PeriodFormatter",
+            "Truth": "org.joda.time.format.PeriodFormatter"
+        },
+        {
+            "Node": "new PeriodFormatterBuilder()",
+            "Truth": "org.joda.time.format.PeriodFormatterBuilder"
+        },
+        {
+            "Node": "Period",
+            "Truth": "org.joda.time.Period"
+        }
+    ],
+    "JodaTime45": [
+        {
+            "Node": "Provider",
+            "Truth": "org.joda.time.tz.Provider"
+        },
+        {
+            "Node": "Set",
+            "Truth": "java.util.Set"
+        },
+        {
+            "Node": "HashSet",
+            "Truth": "java.util.HashSet"
+        },
+        {
+            "Node": "DateTimeZone",
+            "Truth": "org.joda.time.DateTimeZone"
+        },
+        {
+            "Node": "TimeZone",
+            "Truth": "java.util.TimeZone"
+        },
+        {
+            "Node": "new Date()",
+            "Truth": "java.util.Date"
+        }
+    ],
+    "JodaTime46": [
+        {
+            "Node": "DateTimeZone",
+            "Truth": "org.joda.time.DateTimeZone"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime47": [
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "DateTimeFormat",
+            "Truth": "org.joda.time.format.DateTimeFormat"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime48": [
+        {
+            "Node": "MillisProvider",
+            "Truth": "org.joda.time.DateTimeUtils.MillisProvider"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "JodaTime49": [
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "DateTimeFormat",
+            "Truth": "org.joda.time.format.DateTimeFormat"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        },
+        {
+            "Node": "LocalDate",
+            "Truth": "org.joda.time.LocalDate"
+        }
+    ],
+    "JodaTime50": [
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "xstream_class_1": [
+        {
+            "Node": "Converter",
+            "Truth": "com.thoughtworks.xstream.converters.Converter"
+        },
+        {
+            "Node": "HierarchicalStreamReader",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamReader"
+        },
+        {
+            "Node": "UnmarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.UnmarshallingContext"
+        },
+        {
+            "Node": "HierarchicalStreamWriter",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamWriter"
+        },
+        {
+            "Node": "MarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.MarshallingContext"
+        }
+    ],
+    "xstream_class_10": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "StringWriter",
+            "Truth": "java.io.StringWriter"
+        },
+        {
+            "Node": "new StringWriter()",
+            "Truth": "java.io.StringWriter"
+        },
+        {
+            "Node": "PrettyPrintWriter",
+            "Truth": "com.thoughtworks.xstream.io.xml.PrettyPrintWriter"
+        }
+    ],
+    "xstream_class_11": [
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new XStream()",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "ClassAliasingMapper",
+            "Truth": "com.thoughtworks.xstream.mapper.ClassAliasingMapper"
+        },
+        {
+            "Node": "CollectionConverter",
+            "Truth": "com.thoughtworks.xstream.converters.collections.CollectionConverter"
+        }
+    ],
+    "xstream_class_12": [
+        {
+            "Node": "Converter",
+            "Truth": "com.thoughtworks.xstream.converters.Converter"
+        },
+        {
+            "Node": "HierarchicalStreamWriter",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamWriter"
+        },
+        {
+            "Node": "MarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.MarshallingContext"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "HierarchicalStreamReader",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamReader"
+        },
+        {
+            "Node": "UnmarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.UnmarshallingContext"
+        }
+    ],
+    "xstream_class_13": [
+        {
+            "Node": "ClassAliasingMapper",
+            "Truth": "com.thoughtworks.xstream.mapper.ClassAliasingMapper"
+        },
+        {
+            "Node": "Mapper",
+            "Truth": "com.thoughtworks.xstream.mapper.Mapper"
+        }
+    ],
+    "xstream_class_14": [
+        {
+            "Node": "AbstractSingleValueConverter",
+            "Truth": "com.thoughtworks.xstream.converters.basic.AbstractSingleValueConverter"
+        }
+    ],
+    "xstream_class_15": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new XStream()",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "CollectionConverter",
+            "Truth": "com.thoughtworks.xstream.converters.collections.CollectionConverter"
+        }
+    ],
+    "xstream_class_16": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        }
+    ],
+    "xstream_class_17": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new XStream()",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "XStreamAlias",
+            "Truth": "com.thoughtworks.xstream.annotations.XStreamAlias"
+        },
+        {
+            "Node": "Converter",
+            "Truth": "com.thoughtworks.xstream.converters.Converter"
+        },
+        {
+            "Node": "HierarchicalStreamWriter",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamWriter"
+        },
+        {
+            "Node": "MarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.MarshallingContext"
+        },
+        {
+            "Node": "HierarchicalStreamReader",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamReader"
+        },
+        {
+            "Node": "UnmarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.UnmarshallingContext"
+        }
+    ],
+    "xstream_class_18": [
+        {
+            "Node": "Converter",
+            "Truth": "com.thoughtworks.xstream.converters.Converter"
+        },
+        {
+            "Node": "Map",
+            "Truth": "java.util.Map"
+        },
+        {
+            "Node": "HierarchicalStreamWriter",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamWriter"
+        },
+        {
+            "Node": "MarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.MarshallingContext"
+        },
+        {
+            "Node": "HierarchicalStreamReader",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamReader"
+        },
+        {
+            "Node": "UnmarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.UnmarshallingContext"
+        },
+        {
+            "Node": "HashMap",
+            "Truth": "java.util.HashMap"
+        }
+    ],
+    "xstream_class_19": [
+        {
+            "Node": "Converter",
+            "Truth": "com.thoughtworks.xstream.converters.Converter"
+        },
+        {
+            "Node": "HierarchicalStreamWriter",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamWriter"
+        },
+        {
+            "Node": "MarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.MarshallingContext"
+        },
+        {
+            "Node": "HierarchicalStreamReader",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamReader"
+        },
+        {
+            "Node": "UnmarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.UnmarshallingContext"
+        }
+    ],
+    "xstream_class_2": [
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new DomDriver()",
+            "Truth": "com.thoughtworks.xstream.io.xml.DomDriver"
+        },
+        {
+            "Node": "FileReader",
+            "Truth": "java.io.FileReader"
+        },
+        {
+            "Node": "BufferedReader",
+            "Truth": "java.io.BufferedReader"
+        }
+    ],
+    "xstream_class_20": [
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new XStream()",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "InputStream",
+            "Truth": "java.io.InputStream"
+        },
+        {
+            "Node": "Reader",
+            "Truth": "java.io.Reader"
+        },
+        {
+            "Node": "InputStreamReader",
+            "Truth": "java.io.InputStreamReader"
+        },
+        {
+            "Node": "Charset",
+            "Truth": "java.nio.charset.Charset"
+        }
+    ],
+    "xstream_class_21": [
+        {
+            "Node": "Converter",
+            "Truth": "com.thoughtworks.xstream.converters.Converter"
+        },
+        {
+            "Node": "Map",
+            "Truth": "java.util.Map"
+        },
+        {
+            "Node": "Mapper",
+            "Truth": "com.thoughtworks.xstream.mapper.Mapper"
+        },
+        {
+            "Node": "ReflectionProvider",
+            "Truth": "com.thoughtworks.xstream.converters.reflection.ReflectionProvider"
+        },
+        {
+            "Node": "HierarchicalStreamWriter",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamWriter"
+        },
+        {
+            "Node": "MarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.MarshallingContext"
+        },
+        {
+            "Node": "ReflectionConverter",
+            "Truth": "com.thoughtworks.xstream.converters.reflection.ReflectionConverter"
+        },
+        {
+            "Node": "HierarchicalStreamReader",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamReader"
+        },
+        {
+            "Node": "UnmarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.UnmarshallingContext"
+        }
+    ],
+    "xstream_class_22": [
+        {
+            "Node": "XStreamAlias",
+            "Truth": "com.thoughtworks.xstream.annotations.XStreamAlias"
+        },
+        {
+            "Node": "XStreamImplicit",
+            "Truth": "com.thoughtworks.xstream.annotations.XStreamImplicit"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new XStream()",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "XStreamConverter",
+            "Truth": "com.thoughtworks.xstream.annotations.XStreamConverter"
+        }
+    ],
+    "xstream_class_23": [
+        {
+            "Node": "XStreamAlias",
+            "Truth": "com.thoughtworks.xstream.annotations.XStreamAlias"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new XppDriver()",
+            "Truth": "com.thoughtworks.xstream.io.xml.XppDriver"
+        },
+        {
+            "Node": "JavaBeanConverter",
+            "Truth": "com.thoughtworks.xstream.converters.javabean.JavaBeanConverter"
+        }
+    ],
+    "xstream_class_24": [
+        {
+            "Node": "ReflectionConverter",
+            "Truth": "com.thoughtworks.xstream.converters.reflection.ReflectionConverter"
+        },
+        {
+            "Node": "Mapper",
+            "Truth": "com.thoughtworks.xstream.mapper.Mapper"
+        },
+        {
+            "Node": "ReflectionProvider",
+            "Truth": "com.thoughtworks.xstream.converters.reflection.ReflectionProvider"
+        },
+        {
+            "Node": "HierarchicalStreamWriter",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamWriter"
+        },
+        {
+            "Node": "MarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.MarshallingContext"
+        },
+        {
+            "Node": "HierarchicalStreamReader",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamReader"
+        },
+        {
+            "Node": "UnmarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.UnmarshallingContext"
+        }
+    ],
+    "xstream_class_25": [
+        {
+            "Node": "XStreamAlias",
+            "Truth": "com.thoughtworks.xstream.annotations.XStreamAlias"
+        },
+        {
+            "Node": "XStreamConverter",
+            "Truth": "com.thoughtworks.xstream.annotations.XStreamConverter"
+        }
+    ],
+    "xstream_class_26": [
+        {
+            "Node": "SingleValueConverter",
+            "Truth": "com.thoughtworks.xstream.converters.SingleValueConverter"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Collection",
+            "Truth": "java.util.Collection"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        }
+    ],
+    "xstream_class_27": [
+        {
+            "Node": "Converter",
+            "Truth": "com.thoughtworks.xstream.converters.Converter"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "HierarchicalStreamWriter",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamWriter"
+        },
+        {
+            "Node": "MarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.MarshallingContext"
+        },
+        {
+            "Node": "WordUtils",
+            "Truth": "org.apache.commons.lang.WordUtils"
+        },
+        {
+            "Node": "Content",
+            "Truth": "org.apache.http.client.fluent.Content"
+        },
+        {
+            "Node": "HierarchicalStreamReader",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamReader"
+        },
+        {
+            "Node": "UnmarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.UnmarshallingContext"
+        }
+    ],
+    "xstream_class_28": [
+        {
+            "Node": "Converter",
+            "Truth": "com.thoughtworks.xstream.converters.Converter"
+        },
+        {
+            "Node": "Map",
+            "Truth": "java.util.Map"
+        },
+        {
+            "Node": "HierarchicalStreamWriter",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamWriter"
+        },
+        {
+            "Node": "MarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.MarshallingContext"
+        },
+        {
+            "Node": "HierarchicalStreamReader",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamReader"
+        },
+        {
+            "Node": "UnmarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.UnmarshallingContext"
+        },
+        {
+            "Node": "HashMap",
+            "Truth": "java.util.HashMap"
+        }
+    ],
+    "xstream_class_29": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new DomDriver()",
+            "Truth": "com.thoughtworks.xstream.io.xml.DomDriver"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        }
+    ],
+    "xstream_class_3": [
+        {
+            "Node": "JettisonMappedXmlDriver",
+            "Truth": "com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver"
+        },
+        {
+            "Node": "new JettisonMappedXmlDriver()",
+            "Truth": "com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "new ArrayList()",
+            "Truth": "java.util.ArrayList"
+        }
+    ],
+    "xstream_class_30": [
+        {
+            "Node": "Converter",
+            "Truth": "com.thoughtworks.xstream.converters.Converter"
+        },
+        {
+            "Node": "HierarchicalStreamWriter",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamWriter"
+        },
+        {
+            "Node": "MarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.MarshallingContext"
+        },
+        {
+            "Node": "HierarchicalStreamReader",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamReader"
+        },
+        {
+            "Node": "UnmarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.UnmarshallingContext"
+        }
+    ],
+    "xstream_class_31": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new XStream()",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "XStreamAlias",
+            "Truth": "com.thoughtworks.xstream.annotations.XStreamAlias"
+        }
+    ],
+    "xstream_class_32": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new HibernateProxyConverter()",
+            "Truth": "com.thoughtworks.xstream.hibernate.converter.HibernateProxyConverter"
+        },
+        {
+            "Node": "HibernatePersistentCollectionConverter",
+            "Truth": "com.thoughtworks.xstream.hibernate.converter.HibernatePersistentCollectionConverter"
+        },
+        {
+            "Node": "HibernatePersistentMapConverter",
+            "Truth": "com.thoughtworks.xstream.hibernate.converter.HibernatePersistentMapConverter"
+        },
+        {
+            "Node": "HibernatePersistentSortedMapConverter",
+            "Truth": "com.thoughtworks.xstream.hibernate.converter.HibernatePersistentSortedMapConverter"
+        },
+        {
+            "Node": "HibernatePersistentSortedSetConverter",
+            "Truth": "com.thoughtworks.xstream.hibernate.converter.HibernatePersistentSortedSetConverter"
+        }
+    ],
+    "xstream_class_33": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new DomDriver()",
+            "Truth": "com.thoughtworks.xstream.io.xml.DomDriver"
+        },
+        {
+            "Node": "ActionMessage",
+            "Truth": "flex.messaging.io.amf.ActionMessage"
+        },
+        {
+            "Node": "MessageHeader",
+            "Truth": "flex.messaging.io.amf.MessageHeader"
+        },
+        {
+            "Node": "MessageBody",
+            "Truth": "flex.messaging.io.amf.MessageBody"
+        },
+        {
+            "Node": "RemotingMessage",
+            "Truth": "flex.messaging.messages.RemotingMessage"
+        },
+        {
+            "Node": "CommandMessage",
+            "Truth": "flex.messaging.messages.CommandMessage"
+        },
+        {
+            "Node": "AcknowledgeMessage",
+            "Truth": "flex.messaging.messages.AcknowledgeMessage"
+        },
+        {
+            "Node": "ErrorMessage",
+            "Truth": "flex.messaging.messages.ErrorMessage"
+        },
+        {
+            "Node": "ASObject",
+            "Truth": "flex.messaging.io.amf.ASObject"
+        },
+        {
+            "Node": "AsyncMessage",
+            "Truth": "flex.messaging.messages.AsyncMessage"
+        },
+        {
+            "Node": "CommandMessageExt",
+            "Truth": "flex.messaging.messages.CommandMessageExt"
+        },
+        {
+            "Node": "AcknowledgeMessageExt",
+            "Truth": "flex.messaging.messages.AcknowledgeMessageExt"
+        },
+        {
+            "Node": "Mapper",
+            "Truth": "com.thoughtworks.xstream.mapper.Mapper"
+        }
+    ],
+    "xstream_class_34": [
+        {
+            "Node": "XStreamAlias",
+            "Truth": "com.thoughtworks.xstream.annotations.XStreamAlias"
+        },
+        {
+            "Node": "ParameterHolder",
+            "Truth": "com.cloudbees.api.config.ParameterHolder"
+        },
+        {
+            "Node": "XStreamImplicit",
+            "Truth": "com.thoughtworks.xstream.annotations.XStreamImplicit"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "ResourceSettings",
+            "Truth": "com.cloudbees.api.config.ResourceSettings"
+        },
+        {
+            "Node": "Environment",
+            "Truth": "com.cloudbees.api.config.Environment"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "Iterator",
+            "Truth": "java.util.Iterator"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        }
+    ],
+    "xstream_class_35": [
+        {
+            "Node": "SingleValueConverter",
+            "Truth": "com.thoughtworks.xstream.converters.SingleValueConverter"
+        },
+        {
+            "Node": "Test",
+            "Truth": "org.junit.Test"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new XStream()",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "Mapper",
+            "Truth": "com.thoughtworks.xstream.mapper.Mapper"
+        },
+        {
+            "Node": "ReflectionProvider",
+            "Truth": "com.thoughtworks.xstream.converters.reflection.ReflectionProvider"
+        },
+        {
+            "Node": "ConverterLookup",
+            "Truth": "com.thoughtworks.xstream.converters.ConverterLookup"
+        },
+        {
+            "Node": "Converter",
+            "Truth": "com.thoughtworks.xstream.converters.Converter"
+        },
+        {
+            "Node": "MapperWrapper",
+            "Truth": "com.thoughtworks.xstream.mapper.MapperWrapper"
+        }
+    ],
+    "xstream_class_36": [
+        {
+            "Node": "Map",
+            "Truth": "java.util.Map"
+        },
+        {
+            "Node": "HashMap",
+            "Truth": "java.util.HashMap"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new StaxDriver()",
+            "Truth": "com.thoughtworks.xstream.io.xml.StaxDriver"
+        }
+    ],
+    "xstream_class_37": [
+        {
+            "Node": "Converter",
+            "Truth": "com.thoughtworks.xstream.converters.Converter"
+        },
+        {
+            "Node": "HierarchicalStreamWriter",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamWriter"
+        },
+        {
+            "Node": "MarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.MarshallingContext"
+        },
+        {
+            "Node": "HierarchicalStreamReader",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamReader"
+        },
+        {
+            "Node": "UnmarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.UnmarshallingContext"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        }
+    ],
+    "xstream_class_38": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new XStream()",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "XStreamAlias",
+            "Truth": "com.thoughtworks.xstream.annotations.XStreamAlias"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        }
+    ],
+    "xstream_class_39": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        }
+    ],
+    "xstream_class_4": [
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new XStream()",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        }
+    ],
+    "xstream_class_40": [
+        {
+            "Node": "Converter",
+            "Truth": "com.thoughtworks.xstream.converters.Converter"
+        },
+        {
+            "Node": "HierarchicalStreamWriter",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamWriter"
+        },
+        {
+            "Node": "MarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.MarshallingContext"
+        },
+        {
+            "Node": "HierarchicalStreamReader",
+            "Truth": "com.thoughtworks.xstream.io.HierarchicalStreamReader"
+        },
+        {
+            "Node": "UnmarshallingContext",
+            "Truth": "com.thoughtworks.xstream.converters.UnmarshallingContext"
+        }
+    ],
+    "xstream_class_41": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new StaxDriver()",
+            "Truth": "com.thoughtworks.xstream.io.xml.StaxDriver"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        }
+    ],
+    "xstream_class_42": [
+        {
+            "Node": "XStreamAlias",
+            "Truth": "com.thoughtworks.xstream.annotations.XStreamAlias"
+        },
+        {
+            "Node": "XStreamImplicit",
+            "Truth": "com.thoughtworks.xstream.annotations.XStreamImplicit"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        }
+    ],
+    "xstream_class_43": [
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new DomDriver()",
+            "Truth": "com.thoughtworks.xstream.io.xml.DomDriver"
+        }
+    ],
+    "xstream_class_44": [
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "FileOutputStream",
+            "Truth": "java.io.FileOutputStream"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new XStream()",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        }
+    ],
+    "xstream_class_5": [
+        {
+            "Node": "FileNotFoundException",
+            "Truth": "java.io.FileNotFoundException"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new DomDriver()",
+            "Truth": "com.thoughtworks.xstream.io.xml.DomDriver"
+        },
+        {
+            "Node": "PrintWriter",
+            "Truth": "java.io.PrintWriter"
+        }
+    ],
+    "xstream_class_6": [
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "DomDriver",
+            "Truth": "com.thoughtworks.xstream.io.xml.DomDriver"
+        },
+        {
+            "Node": "OutputStream",
+            "Truth": "java.io.OutputStream"
+        },
+        {
+            "Node": "FileOutputStream",
+            "Truth": "java.io.FileOutputStream"
+        }
+    ],
+    "xstream_class_7": [
+        {
+            "Node": "XStreamAsAttribute",
+            "Truth": "com.thoughtworks.xstream.annotations.XStreamAsAttribute"
+        }
+    ],
+    "xstream_class_8": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "TextView",
+            "Truth": "android.widget.TextView"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "SoapObject",
+            "Truth": "org.ksoap2.serialization.SoapObject"
+        },
+        {
+            "Node": "SoapSerializationEnvelope",
+            "Truth": "org.ksoap2.serialization.SoapSerializationEnvelope"
+        },
+        {
+            "Node": "SoapEnvelope",
+            "Truth": "org.ksoap2.SoapEnvelope"
+        },
+        {
+            "Node": "HttpTransportSE",
+            "Truth": "org.ksoap2.transport.HttpTransportSE"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new DomDriver()",
+            "Truth": "com.thoughtworks.xstream.io.xml.DomDriver"
+        }
+    ],
+    "xstream_class_9": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new DomDriver()",
+            "Truth": "com.thoughtworks.xstream.io.xml.DomDriver"
+        },
+        {
+            "Node": "FileInputStream",
+            "Truth": "java.io.FileInputStream"
+        },
+        {
+            "Node": "FileNotFoundException",
+            "Truth": "java.io.FileNotFoundException"
+        }
+    ]
+}

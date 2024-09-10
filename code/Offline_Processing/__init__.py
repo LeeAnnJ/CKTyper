@@ -1,3 +1,4 @@
 import Offline_Processing.parse_so_data as ParseSO
+import Offline_Processing.build_lucene_index as BuildIndex
 import Offline_Processing.parse_lib as ParseLib
 from Offline_Processing.extract_code import extract_code_from_post

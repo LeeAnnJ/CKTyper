@@ -3,6 +3,10 @@ import logging
 
 import utils
 
+
+# csv file can be downloaded from https://anonymous.4open.science/r/iJTyper-0A4D/Code/ours/sql_csv
+# if you want to extract FQN from your own API library, you can use ~/code/Java/SnR-target to Parse jar files.
+# instruction can be found in https://zenodo.org/records/5843327
 def extract_fqn(fs_config):
     csv_files = ["../data/from_iJTyper/sql_csv/mvn_class.csv", "../data/from_iJTyper/sql_csv/mvn_interface.csv"]
     res_file = fs_config['FQN_FILE']

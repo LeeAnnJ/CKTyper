@@ -50,7 +50,6 @@ def cal_statistical_significance(fs_config):
     eval_path = fs_config['EVAL_PATH']
     baseline_folder = fs_config['BASELINE_RESULT']
     RQ3_folder = f"{eval_path}/RQ3/"
-    origin_folder = fs_config["RESULT_ORIGINAL_FOLDER"]
     eval_path = fs_config['EVAL_PATH']
     p_values = {
         "CKTyper v.s.":{},
@@ -60,7 +59,7 @@ def cal_statistical_significance(fs_config):
         CKTyper_res_folder = f"{RQ3_folder}CKTyper/{dataset}"
         iJTyper_folder = f"{baseline_folder}/iJTyper/{dataset}"
         SnR_and_MLM_folder = f"{baseline_folder}/SnR+MLMTyper/{dataset}"
-        ChatGPT_folder = f"{origin_folder}/{dataset}"
+        ChatGPT_folder = f"{RQ3_folder}/ChatGPT/{dataset}"
         CKTyper_TypeFilter_folder = f"{RQ3_folder}CKTyper-TypeFilter/{dataset}"
         CKTyper_CKGG_folder = f"{RQ3_folder}CKTyper-CKGG/{dataset}"
         CKTyper_S_NER_folder = f"{RQ3_folder}CKTyper-S-NER/{dataset}"

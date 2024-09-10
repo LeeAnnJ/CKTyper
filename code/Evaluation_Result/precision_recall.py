@@ -38,10 +38,9 @@ def cal_precision_recall_singal(result_file):
 
 
 # save total data for every lib & dataset
-def cal_precision_recall_pipline(fs_config, datasets, libs, original:bool):
+def cal_precision_recall_pipline(fs_config, datasets, libs):
     logger = logging.getLogger(__name__)
-    if original: res_folder = fs_config['RESULT_ORIGINAL_FOLDER']
-    else: res_folder = fs_config['RESULT_PROMPTED_FOLDER']
+    res_folder = fs_config['INFERENCE_RESULT_FOLDER']
     header = ["name","total", "correct", "wrong", "precision", "recall"]
     infos = []
     for dataset in datasets:

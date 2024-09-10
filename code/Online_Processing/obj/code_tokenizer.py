@@ -18,8 +18,6 @@ import re,sys
 """ emoticon recognition via patterns.  tested on english-language twitter, but
 probably works for other social media dialects. """
 
-__author__ = "Brendan O'Connor (brenocon.com, brenocon@gmail.com)"
-"Modified for part-of-speech tagging by Kevin Gimpel (kgimpel@cs.cmu.edu) and Daniel Mills (dpmills@cs.cmu.edu)"
 
 #from __future__ import print_function
 import re,sys

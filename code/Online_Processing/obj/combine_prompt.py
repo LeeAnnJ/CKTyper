@@ -5,9 +5,9 @@ from Online_Processing.obj import TextSummarizer
 
 class PromptCombiner(object):
 
-    def __init__(self, level, corpus_fodler, fqn_file) -> None:
+    def __init__(self, level, fqn_file) -> None:
         self.logger = logging.getLogger(__name__)
-        self.summarizer = TextSummarizer(level, corpus_fodler, fqn_file)
+        self.summarizer = TextSummarizer(level, fqn_file)
         pass
 
     # # attach comments after question and answers

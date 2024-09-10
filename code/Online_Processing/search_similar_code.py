@@ -11,11 +11,11 @@ from Online_Processing.obj import SimilarityCalculator
 
 
 # rertieve posts form SO dataset by lucene index
-def lucene_search_pipline(fs_config, datasets, libs, lucene_top_k, not_finished):
+def lucene_search_pipline(fs_config, datasets, libs, lucene_top_n, not_finished):
     logger = logging.getLogger(__name__)
     dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
     time_record_folder = fs_config['TIME_RECORD_FOLDER']
-    lucene_folder = fs_config['LUCENE_FOLDER'].replace('topk', f'top{lucene_top_k}')
+    lucene_folder = fs_config['LUCENE_FOLDER'].replace('topk', f'top{lucene_top_n}')
     if not os.path.exists(lucene_folder):
         os.makedirs(lucene_folder)
     CodeIndexer = jpype.JClass("LuceneCodeIndexer")
@@ -47,7 +47,7 @@ def lucene_search_pipline(fs_config, datasets, libs, lucene_top_k, not_finished)
                     time_cs = {}
                 logger.info(f'search similar code snippets for {cs}...')
                 cs_path = f'{input_folder_path}/{cs}'
-                CodeIndexer.main(['-online', cs_path, f'{lucene_top_k}', cs_folder])
+                CodeIndexer.main(['-online', cs_path, f'{lucene_top_n}', cs_folder])
                 end_time = time.time()
                 time_cs["lucene_search"] = end_time - start_time
                 time_lib[cs_name] = time_cs
@@ -113,17 +113,17 @@ def cal_similarity_pipeline(fs_config, datasets, libs, retrieval_conf, not_finis
     similarity_topn = retrieval_conf["similarity_top_n"]
 
     dataset_code_folder = fs_config['DATASET_CODE_FOLDER']
-    sim_post_result_folder = fs_config['SIM_POST_RESULT_FOLDER']
+    sim_cs_score_folder = fs_config['SIM_CS_SCORE_FOLDER']
     time_record_folder = fs_config['TIME_RECORD_FOLDER']
     lucene_folder = fs_config['LUCENE_FOLDER'].replace('topk',f'top{lucene_topn}')
     ngram_file = fs_config['NGRAM_FILE']
-    if not os.path.exists(sim_post_result_folder): os.makedirs(sim_post_result_folder)
+    if not os.path.exists(sim_cs_score_folder): os.makedirs(sim_cs_score_folder)
     similarity_calculator = SimilarityCalculator(ngram_file)
     reflag = True if len(not_finished)>0 else False
 
-    # 4. Load input code snippet
+    # Load input code snippet
     for dataset in datasets:
-        result_file_str = f'{sim_post_result_folder}/sim_res_{dataset}.json'
+        result_file_str = f'{sim_cs_score_folder}/sim_res_{dataset}.json'
         time_record_file = f'{time_record_folder}/{dataset}.json'
         if reflag: sim_result = utils.load_json(result_file_str)
         else: sim_result = {}
@@ -146,10 +146,11 @@ def cal_similarity_pipeline(fs_config, datasets, libs, retrieval_conf, not_finis
                 else: time_cs = {}
                 input_code_snippet_path = f'{input_folder_path}/{cs}'
                 logger.info(f"calculate similarity for: {input_code_snippet_path}")
-                # 5. Get Lucene top-k code snippets
+                # Get Lucene top-k code snippets
                 lucene_topk_dic = f'{lucene_folder}/{dataset}/{lib}/{cs_name}'
                 # logger.debug(f" lucene_topk_dir: {lucene_topk_dic}")
-                # 6. Calculate CrystalBLEU for input code and each lucene code
+                
+                #  Calculate CrystalBLEU for input code and each lucene code
                 if calculate_CrystalBLEU:
                     input_code_snippet = utils.load_text(input_code_snippet_path)
                     topk_sim_postIds, sim_score = cal_similarity_singal(input_code_snippet,lucene_topk_dic,similarity_calculator,similarity_topn)
@@ -162,7 +163,7 @@ def cal_similarity_pipeline(fs_config, datasets, libs, retrieval_conf, not_finis
 
             sim_result[lib] = code_snippets_result
             time_record[lib] = time_lib
-        # 8. Save the result to file
+        # Save the result to file
         utils.write_json(result_file_str,sim_result)
         utils.write_json(time_record_file,time_record)
         logger.info(f'Finish code similarity calculation for dataset {dataset}, save result to file:{result_file_str}')
@@ -177,13 +178,13 @@ def get_sim_posts_singal(cs_path, code_snippet, lucene_top_k, sim_top_k, res_fol
     lucene_posts_dic = f'{res_folder}/Lucene_top{lucene_top_k}'
     sim_post_folder = f'{res_folder}/searched_posts/'
 
-    # 2. search similar snippets by lucene index
+    # search similar snippets by lucene index
     logger.info(f'search similar code snippets...')
     CodeIndexer.main(['-online', cs_path, f'{lucene_top_k}', lucene_posts_dic])
     # calculate similarity, get corresponding post ids
     logger.info(f'calculate code similarity...')
     sim_posts_ids, sim_score = cal_similarity_singal(code_snippet, lucene_posts_dic, calculator, sim_top_k)
-    # 3. retrieve posts from SO posts dataset
+    # retrieve posts from SO posts dataset
     logger.info(f'retrieve posts from SO...')
     for post_id in sim_posts_ids:
         PostIndexer.main(['-online', post_id, sim_post_folder])

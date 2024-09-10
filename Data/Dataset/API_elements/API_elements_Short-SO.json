@@ -1,0 +1,1534 @@
+{
+    "ad1": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "InputMethodManager",
+            "Truth": "sun.awt.im.InputMethodManager"
+        },
+        {
+            "Node": "View",
+            "Truth": "android.view.View"
+        }
+    ],
+    "ad10": [
+        {
+            "Node": "Bitmap",
+            "Truth": "android.graphics.Bitmap"
+        },
+        {
+            "Node": "View",
+            "Truth": "android.view.View"
+        },
+        {
+            "Node": "Canvas",
+            "Truth": "android.graphics.Canvas"
+        }
+    ],
+    "ad12": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "Resources",
+            "Truth": "android.content.res.Resources"
+        },
+        {
+            "Node": "Configuration",
+            "Truth": "android.content.res.Configuration"
+        }
+    ],
+    "ad13": [
+        {
+            "Node": "View",
+            "Truth": "android.view.View"
+        },
+        {
+            "Node": "InputMethodManager",
+            "Truth": "android.view.inputmethod.InputMethodManager"
+        },
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        }
+    ],
+    "ad14": [
+        {
+            "Node": "InputMethodManager",
+            "Truth": "android.view.inputmethod.InputMethodManager"
+        },
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        }
+    ],
+    "ad15": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "TextView",
+            "Truth": "android.widget.TextView"
+        },
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        }
+    ],
+    "ad16": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "InputMethodManager",
+            "Truth": "android.view.inputmethod.InputMethodManager"
+        },
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        }
+    ],
+    "ad17": [
+        {
+            "Node": "TextView",
+            "Truth": "android.widget.TextView"
+        },
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        }
+    ],
+    "ad18": [
+        {
+            "Node": "Intent",
+            "Truth": "android.content.Intent"
+        }
+    ],
+    "ad19": [
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "Intent",
+            "Truth": "android.content.Intent"
+        }
+    ],
+    "ad2": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "InputMethodManager",
+            "Truth": "android.view.inputmethod.InputMethodManager"
+        },
+        {
+            "Node": "View",
+            "Truth": "android.view.View"
+        }
+    ],
+    "ad20": [
+        {
+            "Node": "SimpleDateFormat",
+            "Truth": "java.text.SimpleDateFormat"
+        },
+        {
+            "Node": "Locale",
+            "Truth": "java.util.Locale"
+        },
+        {
+            "Node": "new Date()",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "Instant",
+            "Truth": "org.joda.time.Instant"
+        }
+    ],
+    "ad3": [
+        {
+            "Node": "Intent",
+            "Truth": "android.content.Intent"
+        },
+        {
+            "Node": "Uri",
+            "Truth": "android.net.Uri"
+        }
+    ],
+    "ad4": [
+        {
+            "Node": "Context",
+            "Truth": "android.content.Context"
+        },
+        {
+            "Node": "View",
+            "Truth": "android.view.View"
+        },
+        {
+            "Node": "InputMethodManager",
+            "Truth": "android.view.inputmethod.InputMethodManager"
+        },
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        }
+    ],
+    "ad5": [
+        {
+            "Node": "Bundle",
+            "Truth": "android.os.Bundle"
+        },
+        {
+            "Node": "new Bundle()",
+            "Truth": "android.os.Bundle"
+        }
+    ],
+    "ad6": [
+        {
+            "Node": "DisplayMetrics",
+            "Truth": "android.util.DisplayMetrics"
+        },
+        {
+            "Node": "new DisplayMetrics()",
+            "Truth": "android.util.DisplayMetrics"
+        }
+    ],
+    "ad7": [
+        {
+            "Node": "RELEASE",
+            "Truth": "android.os.Build.VERSION.RELEASE"
+        },
+        {
+            "Node": "SDK_INT",
+            "Truth": "android.os.Build.VERSION.SDK_INT"
+        }
+    ],
+    "ad8": [
+        {
+            "Node": "Activity",
+            "Truth": "android.app.Activity"
+        },
+        {
+            "Node": "Locale",
+            "Truth": "java.util.Locale"
+        },
+        {
+            "Node": "Resources",
+            "Truth": "android.content.res.Resources"
+        }
+    ],
+    "ad9": [
+        {
+            "Node": "Locale",
+            "Truth": "java.util.Locale"
+        },
+        {
+            "Node": "Configuration",
+            "Truth": "android.content.res.Configuration"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "android.content.res.Configuration"
+        }
+    ],
+    "gt1": [
+        {
+            "Node": "Logger",
+            "Truth": "java.util.logging.Logger"
+        },
+        {
+            "Node": "Level",
+            "Truth": "java.util.logging.Level"
+        }
+    ],
+    "gt10": [
+        {
+            "Node": "HorizontalSplitPanel",
+            "Truth": "com.google.gwt.user.client.ui.HorizontalSplitPanel"
+        },
+        {
+            "Node": "new HorizontalSplitPanel()",
+            "Truth": "com.google.gwt.user.client.ui.HorizontalSplitPanel"
+        },
+        {
+            "Node": "DecoratorPanel",
+            "Truth": "com.google.gwt.user.client.ui.DecoratorPanel"
+        },
+        {
+            "Node": "new DecoratorPanel()",
+            "Truth": "com.google.gwt.user.client.ui.DecoratorPanel"
+        },
+        {
+            "Node": "RootPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootPanel"
+        }
+    ],
+    "gt11": [
+        {
+            "Node": "Logger",
+            "Truth": "java.util.logging.Logger"
+        },
+        {
+            "Node": "Level",
+            "Truth": "java.util.logging.Level"
+        }
+    ],
+    "gt12": [
+        {
+            "Node": "Labeled",
+            "Truth": "javafx.scene.control.Labeled"
+        },
+        {
+            "Node": "History",
+            "Truth": "com.google.gwt.user.client.History"
+        }
+    ],
+    "gt13": [
+        {
+            "Node": "ValueChangeEvent",
+            "Truth": "com.google.gwt.event.logical.shared.ValueChangeEvent"
+        },
+        {
+            "Node": "History",
+            "Truth": "com.google.gwt.user.client.History"
+        }
+    ],
+    "gt14": [
+        {
+            "Node": "RootLayoutPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootLayoutPanel"
+        },
+        {
+            "Node": "DockLayoutPanel",
+            "Truth": "com.google.gwt.user.client.ui.DockLayoutPanel"
+        }
+    ],
+    "gt15": [
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "new Date()",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "CalendarUtil",
+            "Truth": "com.google.gwt.user.datepicker.client.CalendarUtil"
+        }
+    ],
+    "gt16": [
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "setDate()",
+            "Truth": "java.util.Date.setDate()"
+        },
+        {
+            "Node": "getDate()",
+            "Truth": "java.util.Date.getDate()"
+        }
+    ],
+    "gt17": [
+        {
+            "Node": "EventHandler",
+            "Truth": "com.google.gwt.event.shared.EventHandler"
+        },
+        {
+            "Node": "GwtEvent",
+            "Truth": "com.google.gwt.event.shared.GwtEvent"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Category",
+            "Truth": "com.google.gwt.junit.client.Category"
+        },
+        {
+            "Node": "Type",
+            "Truth": "com.google.gwt.event.shared.GwtEvent.Type"
+        }
+    ],
+    "gt18": [
+        {
+            "Node": "Formatter",
+            "Truth": "java.util.Formatter"
+        },
+        {
+            "Node": "new Formatter()",
+            "Truth": "java.util.Formatter"
+        }
+    ],
+    "gt2": [
+        {
+            "Node": "ValueChangeEvent",
+            "Truth": "com.google.gwt.event.logical.shared.ValueChangeEvent"
+        },
+        {
+            "Node": "History",
+            "Truth": "com.google.gwt.user.client.History"
+        }
+    ],
+    "gt20": [
+        {
+            "Node": "EntryPoint",
+            "Truth": "com.google.gwt.core.client.EntryPoint"
+        },
+        {
+            "Node": "Window",
+            "Truth": "com.google.gwt.user.client.Window"
+        }
+    ],
+    "gt3": [
+        {
+            "Node": "RootLayoutPanel",
+            "Truth": "com.google.gwt.user.client.ui.RootLayoutPanel"
+        },
+        {
+            "Node": "DockLayoutPanel",
+            "Truth": "com.google.gwt.user.client.ui.DockLayoutPanel"
+        }
+    ],
+    "gt4": [
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "new Date()",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "CalendarUtil",
+            "Truth": "com.google.gwt.user.datepicker.client.CalendarUtil"
+        }
+    ],
+    "gt5": [
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        }
+    ],
+    "gt6": [
+        {
+            "Node": "new BigInteger()",
+            "Truth": "java.math.BigInteger()"
+        }
+    ],
+    "gt7": [
+        {
+            "Node": "Pattern",
+            "Truth": "java.util.regex.Pattern"
+        },
+        {
+            "Node": "Matcher",
+            "Truth": "java.util.regex.Matcher"
+        }
+    ],
+    "gt8": [
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "SimpleDateFormat",
+            "Truth": "java.text.SimpleDateFormat"
+        }
+    ],
+    "gt9": [
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "DateTimeFormat",
+            "Truth": "com.google.gwt.i18n.client.DateTimeFormat"
+        }
+    ],
+    "hb1": [
+        {
+            "Node": "Configuration",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        }
+    ],
+    "hb10": [
+        {
+            "Node": "SpringApplication",
+            "Truth": "org.springframework.boot.SpringApplication"
+        },
+        {
+            "Node": "Application",
+            "Truth": "javafx.application.Application"
+        }
+    ],
+    "hb11": [
+        {
+            "Node": "Configuration",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        }
+    ],
+    "hb12": [
+        {
+            "Node": "Type",
+            "Truth": "org.hibernate.annotations.Type"
+        },
+        {
+            "Node": "Mapping",
+            "Truth": "org.hibernate.engine.Mapping"
+        },
+        {
+            "Node": "QueryException",
+            "Truth": "org.hibernate.QueryException"
+        }
+    ],
+    "hb13": [
+        {
+            "Node": "Type",
+            "Truth": "org.hibernate.annotations.Type"
+        },
+        {
+            "Node": "HibernateException",
+            "Truth": "org.hibernate.HibernateException"
+        },
+        {
+            "Node": "Hibernate",
+            "Truth": "org.hibernate.Hibernate"
+        }
+    ],
+    "hb14": [
+        {
+            "Node": "List",
+            "Truth": "org.hibernate.mapping.List"
+        },
+        {
+            "Node": "SimpleValue",
+            "Truth": "org.hibernate.mapping.SimpleValue"
+        }
+    ],
+    "hb15": [
+        {
+            "Node": "OneToMany",
+            "Truth": "javax.persistence.OneToMany"
+        },
+        {
+            "Node": "Set",
+            "Truth": "java.util.Set"
+        }
+    ],
+    "hb16": [
+        {
+            "Node": "OneToMany",
+            "Truth": "javax.persistence.OneToMany"
+        },
+        {
+            "Node": "Column",
+            "Truth": "javax.persistence.Column"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        }
+    ],
+    "hb17": [
+        {
+            "Node": "Appender",
+            "Truth": "org.apache.log4j.Appender"
+        },
+        {
+            "Node": "Type",
+            "Truth": "org.hibernate.annotations.Type"
+        },
+        {
+            "Node": "TypeFactory",
+            "Truth": "org.hibernate.type.TypeFactory"
+        },
+        {
+            "Node": "SerializableType",
+            "Truth": "org.hibernate.type.SerializableType"
+        }
+    ],
+    "hb18": [
+        {
+            "Node": "List",
+            "Truth": "org.hibernate.mapping.List"
+        },
+        {
+            "Node": "SimpleValue",
+            "Truth": "org.hibernate.mapping.SimpleValue"
+        }
+    ],
+    "hb19": [
+        {
+            "Node": "Type",
+            "Truth": "org.hibernate.annotations.Type"
+        },
+        {
+            "Node": "TypeFactory",
+            "Truth": "org.hibernate.type.TypeFactory"
+        },
+        {
+            "Node": "SerializableType",
+            "Truth": "org.hibernate.type.SerializableType"
+        }
+    ],
+    "hb2": [
+        {
+            "Node": "Entity",
+            "Truth": "javax.persistence.Entity"
+        },
+        {
+            "Node": "OneToMany",
+            "Truth": "javax.persistence.OneToMany"
+        },
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        }
+    ],
+    "hb20": [
+        {
+            "Node": "HibernateUtil",
+            "Truth": "net.sf.gilead.core.hibernate.HibernateUtil"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        },
+        {
+            "Node": "FragmentManager",
+            "Truth": "android.app.FragmentManager"
+        }
+    ],
+    "hb3": [
+        {
+            "Node": "Serializable",
+            "Truth": "java.io.Serializable"
+        },
+        {
+            "Node": "Before",
+            "Truth": "org.junit.Before"
+        },
+        {
+            "Node": "Configuration",
+            "Truth": "org.hibernate.cfg.Configuration.Configuration"
+        }
+    ],
+    "hb4": [
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        }
+    ],
+    "hb5": [
+        {
+            "Node": "Test",
+            "Truth": "org.junit.Test"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        },
+        {
+            "Node": "Transaction",
+            "Truth": "org.hibernate.Transaction"
+        }
+    ],
+    "hb6": [
+        {
+            "Node": "Configuration",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        }
+    ],
+    "hb7": [
+        {
+            "Node": "Configuration",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "new Configuration()",
+            "Truth": "org.hibernate.cfg.Configuration"
+        },
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        }
+    ],
+    "hb8": [
+        {
+            "Node": "SessionFactory",
+            "Truth": "org.hibernate.SessionFactory"
+        },
+        {
+            "Node": "Session",
+            "Truth": "org.hibernate.Session"
+        }
+    ],
+    "hb9": [
+        {
+            "Node": "HibernateException",
+            "Truth": "org.hibernate.HibernateException"
+        },
+        {
+            "Node": "TransactionException",
+            "Truth": "org.hibernate.TransactionException"
+        }
+    ],
+    "jdk1": [
+        {
+            "Node": "IntBinaryOperator",
+            "Truth": "java.util.function.IntBinaryOperator"
+        }
+    ],
+    "jdk10": [
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "FileInputStream",
+            "Truth": "java.io.FileInputStream"
+        },
+        {
+            "Node": "FileNotFoundException",
+            "Truth": "java.io.FileNotFoundException"
+        }
+    ],
+    "jdk14": [
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "Desktop",
+            "Truth": "java.awt.Desktop"
+        },
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        }
+    ],
+    "jdk15": [
+        {
+            "Node": "toString()",
+            "Truth": "java.util.Arrays.toString()"
+        }
+    ],
+    "jdk16": [
+        {
+            "Node": "SimpleDateFormat",
+            "Truth": "java.text.SimpleDateFormat"
+        }
+    ],
+    "jdk17": [
+        {
+            "Node": "InputStream",
+            "Truth": "java.io.InputStream"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "Reader",
+            "Truth": "java.io.Reader"
+        },
+        {
+            "Node": "InputStreamReader",
+            "Truth": "java.io.InputStreamReader"
+        },
+        {
+            "Node": "StandardCharsets",
+            "Truth": "java.nio.charset.StandardCharsets"
+        }
+    ],
+    "jdk18": [
+        {
+            "Node": "InputStream",
+            "Truth": "java.io.InputStream"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "StringWriter",
+            "Truth": "java.io.StringWriter"
+        },
+        {
+            "Node": "new StringWriter()",
+            "Truth": "java.io.StringWriter"
+        },
+        {
+            "Node": "IOUtils",
+            "Truth": "org.apache.commons.io.IOUtils"
+        }
+    ],
+    "jdk2": [
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        }
+    ],
+    "jdk20": [
+        {
+            "Node": "InputStream",
+            "Truth": "java.io.InputStream"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "BufferedInputStream",
+            "Truth": "java.io.BufferedInputStream"
+        },
+        {
+            "Node": "ByteArrayOutputStream",
+            "Truth": "java.io.ByteArrayOutputStream"
+        },
+        {
+            "Node": "new ByteArrayOutputStream()",
+            "Truth": "java.io.ByteArrayOutputStream"
+        }
+    ],
+    "jdk3": [
+        {
+            "Node": "ParseException",
+            "Truth": "java.text.ParseException"
+        },
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "java.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "LocalDateTime",
+            "Truth": "java.time.LocalDateTime"
+        },
+        {
+            "Node": "ZonedDateTime",
+            "Truth": "java.time.ZonedDateTime"
+        },
+        {
+            "Node": "ZoneId",
+            "Truth": "java.time.ZoneId"
+        }
+    ],
+    "jdk4": [
+        {
+            "Node": "ParseException",
+            "Truth": "java.text.ParseException"
+        },
+        {
+            "Node": "SimpleDateFormat",
+            "Truth": "java.text.SimpleDateFormat"
+        },
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        }
+    ],
+    "jdk5": [
+        {
+            "Node": "MalformedURLException",
+            "Truth": "java.net.MalformedURLException"
+        },
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "URLClassLoader",
+            "Truth": "java.net.URLClassLoader"
+        },
+        {
+            "Node": "new URL[]",
+            "Truth": "java.net.URL"
+        }
+    ],
+    "jdk6": [
+        {
+            "Node": "new PropertyPermission()",
+            "Truth": "java.util.PropertyPermission()"
+        }
+    ],
+    "jdk7": [
+        {
+            "Node": "ParseException",
+            "Truth": "java.text.ParseException"
+        },
+        {
+            "Node": "SimpleDateFormat",
+            "Truth": "java.text.SimpleDateFormat"
+        },
+        {
+            "Node": "TimeZone",
+            "Truth": "java.util.TimeZone"
+        },
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        }
+    ],
+    "jdk8": [
+        {
+            "Node": "DecimalFormat",
+            "Truth": "java.text.DecimalFormat"
+        },
+        {
+            "Node": "DecimalFormatSymbols",
+            "Truth": "java.text.DecimalFormatSymbols"
+        },
+        {
+            "Node": "Locale",
+            "Truth": "java.util.Locale"
+        }
+    ],
+    "jdk9": [
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "java.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "new DateTimeFormatterBuilder()",
+            "Truth": "java.time.format.DateTimeFormatterBuilder"
+        },
+        {
+            "Node": "ChronoField",
+            "Truth": "java.time.temporal.ChronoField"
+        }
+    ],
+    "jt1": [
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "DateTimeFormat",
+            "Truth": "org.joda.time.format.DateTimeFormat"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "jt10": [
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        },
+        {
+            "Node": "Seconds",
+            "Truth": "org.joda.time.Seconds"
+        }
+    ],
+    "jt11": [
+        {
+            "Node": "DateTimeZone",
+            "Truth": "org.joda.time.DateTimeZone"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "jt12": [
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        },
+        {
+            "Node": "Days",
+            "Truth": "org.joda.time.Days"
+        },
+        {
+            "Node": "LocalDate",
+            "Truth": "org.joda.time.LocalDate"
+        }
+    ],
+    "jt13": [
+        {
+            "Node": "ZoneId",
+            "Truth": "java.time.ZoneId"
+        },
+        {
+            "Node": "of()",
+            "Truth": "java.time.ZoneId.of()"
+        },
+        {
+            "Node": "ZonedDateTime",
+            "Truth": "java.time.ZonedDateTime"
+        },
+        {
+            "Node": "now()",
+            "Truth": "java.time.ZonedDateTime.now()"
+        }
+    ],
+    "jt14": [
+        {
+            "Node": "ZoneId",
+            "Truth": "java.time.ZoneId"
+        },
+        {
+            "Node": "ZonedDateTime",
+            "Truth": "java.time.ZonedDateTime"
+        }
+    ],
+    "jt15": [
+        {
+            "Node": "Calendar",
+            "Truth": "java.util.Calendar"
+        },
+        {
+            "Node": "TimeZone",
+            "Truth": "java.util.TimeZone"
+        }
+    ],
+    "jt16": [
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "jt17": [
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "DateTimeFormat",
+            "Truth": "org.joda.time.format.DateTimeFormat"
+        },
+        {
+            "Node": "Locale",
+            "Truth": "java.util.Locale"
+        },
+        {
+            "Node": "ISOChronology",
+            "Truth": "org.joda.time.chrono.ISOChronology"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "jt18": [
+        {
+            "Node": "ParseException",
+            "Truth": "java.text.ParseException"
+        },
+        {
+            "Node": "SimpleDateFormat",
+            "Truth": "java.text.SimpleDateFormat"
+        },
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        }
+    ],
+    "jt19": [
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "java.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "ofPattern()",
+            "Truth": "java.time.format.DateTimeFormatter.ofPattern()"
+        },
+        {
+            "Node": "LocalDateTime",
+            "Truth": "java.time.LocalDateTime"
+        },
+        {
+            "Node": "parse()",
+            "Truth": "java.time.LocalDateTime.parse()"
+        }
+    ],
+    "jt2": [
+        {
+            "Node": "Date",
+            "Truth": "java.util.Date"
+        },
+        {
+            "Node": "Days",
+            "Truth": "org.joda.time.Days"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "jt20": [
+        {
+            "Node": "MutableDateTime",
+            "Truth": "org.joda.time.MutableDateTime"
+        }
+    ],
+    "jt3": [
+        {
+            "Node": "LocalDateTime",
+            "Truth": "java.time.LocalDateTime"
+        },
+        {
+            "Node": "ZonedDateTime",
+            "Truth": "java.time.ZonedDateTime"
+        },
+        {
+            "Node": "ZoneId",
+            "Truth": "java.time.ZoneId"
+        },
+        {
+            "Node": "Instant",
+            "Truth": "java.time.Instant"
+        }
+    ],
+    "jt4": [
+        {
+            "Node": "Period",
+            "Truth": "org.joda.time.Period"
+        },
+        {
+            "Node": "Instant",
+            "Truth": "org.joda.time.Instant"
+        },
+        {
+            "Node": "Duration",
+            "Truth": "org.joda.time.Duration"
+        }
+    ],
+    "jt5": [
+        {
+            "Node": "ZoneId",
+            "Truth": "java.time.ZoneId"
+        },
+        {
+            "Node": "ZonedDateTime",
+            "Truth": "java.time.ZonedDateTime"
+        }
+    ],
+    "jt6": [
+        {
+            "Node": "DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
+        },
+        {
+            "Node": "DateTimeFormat",
+            "Truth": "org.joda.time.format.DateTimeFormat"
+        },
+        {
+            "Node": "DateTime",
+            "Truth": "org.joda.time.DateTime"
+        }
+    ],
+    "jt7": [
+        {
+            "Node": "Calendar",
+            "Truth": "java.util.Calendar"
+        }
+    ],
+    "jt8": [
+        {
+            "Node": "getInstance()",
+            "Truth": "java.util.Calendar.getInstance()"
+        }
+    ],
+    "jt9": [
+        {
+            "Node": "LocalDate",
+            "Truth": "java.time.LocalDate"
+        },
+        {
+            "Node": "ZonedDateTime",
+            "Truth": "java.time.ZonedDateTime"
+        },
+        {
+            "Node": "ZoneId",
+            "Truth": "java.time.ZoneId"
+        },
+        {
+            "Node": "OffsetDateTime",
+            "Truth": "java.time.OffsetDateTime"
+        }
+    ],
+    "xt1": [
+        {
+            "Node": "XmlFriendlyNameCoder",
+            "Truth": "com.thoughtworks.xstream.io.xml.XmlFriendlyNameCoder"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "Dom4JDriver",
+            "Truth": "com.thoughtworks.xstream.io.xml.Dom4JDriver"
+        }
+    ],
+    "xt10": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new StaxDriver()",
+            "Truth": "com.thoughtworks.xstream.io.xml.StaxDriver"
+        },
+        {
+            "Node": "toXML()",
+            "Truth": "com.thoughtworks.xstream.XStream.toXML()"
+        },
+        {
+            "Node": "messages",
+            "Truth": "com.sun.org.apache.xml.internal.serializer.utils.Messages"
+        },
+        {
+            "Node": "StringWriter",
+            "Truth": "java.io.StringWriter"
+        },
+        {
+            "Node": "new StringWriter()",
+            "Truth": "java.io.StringWriter"
+        }
+    ],
+    "xt11": [
+        {
+            "Node": "ByteArrayOutputStream",
+            "Truth": "java.io.ByteArrayOutputStream"
+        },
+        {
+            "Node": "new ByteArrayOutputStream()",
+            "Truth": "java.io.ByteArrayOutputStream"
+        },
+        {
+            "Node": "Node",
+            "Truth": "org.w3c.dom.Node"
+        },
+        {
+            "Node": "Source",
+            "Truth": "javax.xml.transform.Source"
+        },
+        {
+            "Node": "DOMSource",
+            "Truth": "javax.xml.transform.dom.DOMSource"
+        }
+    ],
+    "xt12": [
+        {
+            "Node": "ByteArrayOutputStream",
+            "Truth": "java.io.ByteArrayOutputStream"
+        },
+        {
+            "Node": "new ByteArrayOutputStream()",
+            "Truth": "java.io.ByteArrayOutputStream"
+        },
+        {
+            "Node": "Transformer",
+            "Truth": "javax.xml.transform.Transformer"
+        },
+        {
+            "Node": "TransformerFactory",
+            "Truth": "javax.xml.transform.TransformerFactory"
+        },
+        {
+            "Node": "TransformerConfigurationException",
+            "Truth": "javax.xml.transform.TransformerConfigurationException"
+        }
+    ],
+    "xt13": [
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "ByteArrayOutputStream",
+            "Truth": "java.io.ByteArrayOutputStream"
+        },
+        {
+            "Node": "new ByteArrayOutputStream()",
+            "Truth": "java.io.ByteArrayOutputStream"
+        },
+        {
+            "Node": "XMLWriter",
+            "Truth": "org.dom4j.io.XMLWriter"
+        },
+        {
+            "Node": "OutputFormat",
+            "Truth": "org.dom4j.io.OutputFormat"
+        }
+    ],
+    "xt14": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new DomDriver()",
+            "Truth": "com.thoughtworks.xstream.io.xml.DomDriver"
+        }
+    ],
+    "xt15": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new DomDriver()",
+            "Truth": "com.thoughtworks.xstream.io.xml.DomDriver"
+        }
+    ],
+    "xt16": [
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "DocumentBuilderFactory",
+            "Truth": "javax.xml.parsers.DocumentBuilderFactory"
+        }
+    ],
+    "xt17": [
+        {
+            "Node": "ParserConfigurationException",
+            "Truth": "javax.xml.parsers.ParserConfigurationException"
+        },
+        {
+            "Node": "IOException",
+            "Truth": "java.io.IOException"
+        },
+        {
+            "Node": "SAXException",
+            "Truth": "org.xml.sax.SAXException"
+        },
+        {
+            "Node": "File",
+            "Truth": "java.io.File"
+        },
+        {
+            "Node": "DocumentBuilderFactory",
+            "Truth": "javax.xml.parsers.DocumentBuilderFactory"
+        },
+        {
+            "Node": "DocumentBuilder",
+            "Truth": "javax.xml.parsers.DocumentBuilder"
+        }
+    ],
+    "xt18": [
+        {
+            "Node": "XPathFactory",
+            "Truth": "javax.xml.xpath.XPathFactory"
+        },
+        {
+            "Node": "XPath",
+            "Truth": "javax.xml.xpath.XPath"
+        }
+    ],
+    "xt19": [
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        }
+    ],
+    "xt2": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "DomDriver",
+            "Truth": "com.thoughtworks.xstream.io.xml.DomDriver"
+        },
+        {
+            "Node": "new NoNameCoder()",
+            "Truth": "com.thoughtworks.xstream.io.naming.NoNameCoder"
+        }
+    ],
+    "xt20": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new XStream()",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "ClassAliasingMapper",
+            "Truth": "com.thoughtworks.xstream.mapper.ClassAliasingMapper"
+        },
+        {
+            "Node": "Test",
+            "Truth": "junit.framework.Test"
+        },
+        {
+            "Node": "CollectionConverter",
+            "Truth": "com.thoughtworks.xstream.converters.collections.CollectionConverter"
+        }
+    ],
+    "xt3": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new XStream()",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "StringWriter",
+            "Truth": "java.io.StringWriter"
+        },
+        {
+            "Node": "new StringWriter()",
+            "Truth": "java.io.StringWriter"
+        }
+    ],
+    "xt4": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new JettisonMappedXmlDriver()",
+            "Truth": "com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver"
+        },
+        {
+            "Node": "Entity[]",
+            "Truth": "javax.swing.text.html.parser.Entity[]"
+        }
+    ],
+    "xt5": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new XStream()",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "Properties",
+            "Truth": "java.util.Properties"
+        }
+    ],
+    "xt6": [
+        {
+            "Node": "JettisonMappedXmlDriver",
+            "Truth": "com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver"
+        },
+        {
+            "Node": "new JettisonMappedXmlDriver()",
+            "Truth": "com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver"
+        },
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        }
+    ],
+    "xt7": [
+        {
+            "Node": "XStream",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        },
+        {
+            "Node": "new XStream()",
+            "Truth": "com.thoughtworks.xstream.XStream"
+        }
+    ],
+    "xt8": [
+        {
+            "Node": "List",
+            "Truth": "java.util.List"
+        },
+        {
+            "Node": "Comment",
+            "Truth": "javax.xml.stream.events.Comment"
+        },
+        {
+            "Node": "ArrayList",
+            "Truth": "java.util.ArrayList"
+        }
+    ],
+    "xt9": [
+        {
+            "Node": "ByteArrayOutputStream",
+            "Truth": "java.io.ByteArrayOutputStream"
+        },
+        {
+            "Node": "new ByteArrayOutputStream()",
+            "Truth": "java.io.ByteArrayOutputStream"
+        },
+        {
+            "Node": "Result",
+            "Truth": "javax.xml.transform.Result"
+        },
+        {
+            "Node": "StreamResult",
+            "Truth": "javax.xml.transform.stream.StreamResult"
+        },
+        {
+            "Node": "Transformer",
+            "Truth": "javax.xml.transform.Transformer"
+        },
+        {
+            "Node": "TransformerFactory",
+            "Truth": "javax.xml.transform.TransformerFactory"
+        },
+        {
+            "Node": "TransformerConfigurationException",
+            "Truth": "javax.xml.transform.TransformerConfigurationException"
+        }
+    ]
+}

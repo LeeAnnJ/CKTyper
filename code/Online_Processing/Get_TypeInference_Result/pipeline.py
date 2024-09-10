@@ -7,13 +7,12 @@ from Online_Processing.obj import ResHandler
 from Online_Processing.obj import ModelAccesser
 
 
-def get_result_pipline(fs_config, datasets, libs, not_finished, original:bool, rcm_top_k):
+def LLM_type_inference_pipline(fs_config, datasets, libs, not_finished, rcm_top_k):
     logger = logging.getLogger(__name__)
     api_elements_folder = fs_config['API_ELEMENTS_FOLDER']
     generated_question_folder = fs_config['GENERATED_QUESTOIN_FOLDER']
     fqn_file = fs_config['FQN_FILE']
-    if original: res_folder = fs_config['RESULT_ORIGINAL_FOLDER']
-    else: res_folder = fs_config['RESULT_PROMPTED_FOLDER']
+    res_folder = fs_config['INFERENCE_RESULT_FOLDER']
     time_record_folder = fs_config['TIME_RECORD_FOLDER']
     model_acs = ModelAccesser()
     res_handler = ResHandler(fqn_file)
