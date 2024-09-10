@@ -8,7 +8,9 @@ The experimental data of CKTyper is in `~/Data`
 CKTyper
 |—— Code
 |    |—— config
-|    |—— LuceneIndexr
+|    |—— Java
+|    |    |—— LuceneIndexer
+|    |    └—— Snr-LibraryParser
 |    |—— Offline_Processing
 |    |—— Online_Processing
 |    └—— Evaluation_Result
