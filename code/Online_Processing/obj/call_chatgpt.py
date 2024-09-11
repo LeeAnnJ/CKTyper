@@ -15,7 +15,7 @@ class ModelAccesser_V2(object):
     logger = logging.getLogger(__name__)
     accounts = None
     gpt = None
-    system_prompt = None # "You are a ?"
+    system_prompt = None
     base_message = []
     
     def __init__(self) -> None:
