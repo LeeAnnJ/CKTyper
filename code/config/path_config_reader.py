@@ -21,7 +21,7 @@ class SOProcessConfig:
 def read_file_structure():
     fs_config = {}
     config = configparser.ConfigParser()
-    config.read('./config/file_structure.ini')
+    config.read('./config/path_config.ini')
     fs_config['POST_DUMP_DIC'] = config['resource']['POST_DUMP_DIC']
     fs_config['SO_CODE_FOLDER'] = config['resource']['SO_CODE_FOLDER']
     fs_config['CODE_LUCENE_INDEX'] = config['resource']['CODE_LUCENE_INDEX']
@@ -36,7 +36,7 @@ def read_file_structure():
     fs_config['NGRAM_FILE'] = config['intermediate']['NGRAM_FILE']
     fs_config['SIM_CS_SCORE_FOLDER'] = config['intermediate']['SIM_CS_SCORE_FOLDER']
     fs_config['GENERATED_QUESTOIN_FOLDER'] = config['intermediate']['GENERATED_QUESTOIN_FOLDER']
-    fs_config['FQN_FILE'] = config['intermediate']['FQN_FILE']
+    fs_config['API_DICT_FILE'] = config['intermediate']['API_DICT_FILE']
     fs_config['EVAL_PATH'] = config['result']['EVAL_PATH']
     fs_config['INFERENCE_RESULT_FOLDER'] = config['result']['INFERENCE_RESULT_FOLDER']
     # fs_config['RESULT_SINGAL'] = config['result']['RESULT_SINGAL']

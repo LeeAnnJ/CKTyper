@@ -7,7 +7,7 @@ from pathlib import Path
 from itertools import islice
 
 import utils
-from Online.obj import SimilarityCalculator
+from Online.obj import CSsimCalculator
 
 
 # rertieve posts form SO dataset by lucene index
@@ -60,7 +60,7 @@ def lucene_search_pipline(fs_config, datasets, libs, lucene_top_n, not_finished)
 
 # lucene_topk_dic: the folder path of lucene top-k code snippets
 # output: a list of top-k similar postIds & similarity, e.g. ['122','123'],[1.0,0.9,0.9]
-def cal_similarity_singal(code_snippet:str, lucene_topk_dic, calculator:SimilarityCalculator, sim_topk):
+def cal_similarity_singal(code_snippet:str, lucene_topk_dic, calculator:CSsimCalculator, sim_topk):
     # 6. Calculate CrystalBLEU for input code and each lucene code
     # start_time = time.process_time()
     lucene_topk_paths = Path(lucene_topk_dic).iterdir()
@@ -118,7 +118,7 @@ def cal_similarity_pipeline(fs_config, datasets, libs, retrieval_conf, not_finis
     lucene_folder = fs_config['LUCENE_FOLDER'].replace('topk',f'top{lucene_topn}')
     ngram_file = fs_config['NGRAM_FILE']
     if not os.path.exists(sim_cs_score_folder): os.makedirs(sim_cs_score_folder)
-    similarity_calculator = SimilarityCalculator(ngram_file)
+    similarity_calculator = CSsimCalculator(ngram_file)
     reflag = True if len(not_finished)>0 else False
 
     # Load input code snippet
@@ -174,7 +174,7 @@ def get_sim_posts_singal(cs_path, code_snippet, lucene_top_k, sim_top_k, res_fol
     logger = logging.getLogger(__name__)
     PostIndexer = jpype.JClass("LucenePostIndexer")
     CodeIndexer = jpype.JClass("LuceneCodeIndexer")
-    calculator = SimilarityCalculator()
+    calculator = CSsimCalculator()
     lucene_posts_dic = f'{res_folder}/Lucene_top{lucene_top_k}'
     sim_post_folder = f'{res_folder}/searched_posts/'
 

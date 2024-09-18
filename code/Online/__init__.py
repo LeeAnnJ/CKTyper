@@ -1,4 +1,3 @@
-import Online.search_similar_code as SearchCode
-import Online.context_generation as GenCKC
-import Online.Get_TypeInference_Result.pipeline as GetResPipe
-import Online.Get_TypeInference_Result.singal as GetResSig
+import Online.SimCS_retriever as RetrieveCode
+import Online.CKC_generator as GenCKC
+import Online.type_infer as TypeInfer

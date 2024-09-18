@@ -1,6 +1,6 @@
 import json
 
-class QuestionGenerator:
+class PromptGenerator:
     frame_file = "./Online_Processing/obj/question_for_ChatGPT.json"
 
     def __init__(self) -> None:

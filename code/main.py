@@ -8,7 +8,7 @@ import datetime
 
 from config import CKTyper_setting as TS
 from Offline import SO_parser, BuildIndex, ParseLib, extract_code_from_post
-from Online import SearchCode, GenCKC, GetResPipe #, GetResSig
+from Online import RetrieveCode, GenCKC, TypeInfer
 from config import fs_config, so_pro_conf
 from Evaluation import CalPR, StatSign, ExecTime
 
@@ -130,8 +130,8 @@ def online_operation_pipline(fs_config):
     # 1. Two-Phase Similar CS Retrieval
     start_time = time.process_time()
     logger.info('Start to search similar code snippets...')
-    SearchCode.lucene_search_pipline(fs_config, datasets, libs, retrieval_conf["lucene_top_n"], not_finished)
-    SearchCode.cal_similarity_pipeline(fs_config, datasets, libs, retrieval_conf, not_finished)
+    RetrieveCode.lucene_search_pipline(fs_config, datasets, libs, retrieval_conf["lucene_top_n"], not_finished)
+    RetrieveCode.cal_similarity_pipeline(fs_config, datasets, libs, retrieval_conf, not_finished)
     end_time = time.process_time()
     logger.info(f'time spent for searching similar code snippets: {end_time-start_time}')
 
@@ -150,7 +150,7 @@ def online_operation_pipline(fs_config):
     # 3. Type Inference Using A LLM
     logger.info('Start to get type infrence result...')
     start_time = time.time()
-    GetResPipe.LLM_type_inference_pipline(fs_config, datasets, libs, not_finished, rcm_k)
+    TypeInfer.LLM_type_inference_pipline(fs_config, datasets, libs, not_finished, rcm_k)
     end_time = time.time()
     logger.info(f'time spent for getting type infrence result: {end_time-start_time}')
 

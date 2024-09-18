@@ -4,16 +4,18 @@ from crystalbleu import corpus_bleu
 import utils
 
 
-class SimilarityCalculator(object):
+class CSsimCalculator(object):
     def __init__(self, ngram_file) -> None:
         self.trivially_shared_ngrams = utils.read_pickle(ngram_file)
         pass
-
-    # Calculate CrystalBLEU for input code and each lucene code
-    # input_code_snippet: string
-    # lucene_topk_paths: list of Path
-    # return: dict of {lucene_topk_path: crystalBLEU_score}
+    
     def cal_crystalBLEU_similarity(self, input_code_snippet, lucene_topk_paths):
+        '''
+        Calculate CrystalBLEU for input code and each lucene code.
+        `input_code_snippet`: string
+        `lucene_topk_paths`: list of Path
+        return: dict of {lucene_topk_path: crystalBLEU_score}
+        '''
         input_code_tokenized = word_tokenize(input_code_snippet)
         file_score_dict = {}
 

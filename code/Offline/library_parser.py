@@ -9,7 +9,7 @@ import utils
 # instruction can be found in https://zenodo.org/records/5843327
 def extract_fqn(fs_config):
     csv_files = ["../data/from_iJTyper/sql_csv/mvn_class.csv", "../data/from_iJTyper/sql_csv/mvn_interface.csv"]
-    res_file = fs_config['FQN_FILE']
+    res_file = fs_config['API_DICT_FILE']
     logger = logging.getLogger(__name__)
     fqn_list = set()
     simple_list = set()
