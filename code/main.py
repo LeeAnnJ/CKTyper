@@ -6,10 +6,11 @@ import logging
 import argparse
 import datetime
 
-from Offline_Processing import ParseSO, BuildIndex, ParseLib, extract_code_from_post
-from Online_Processing import SearchCode, GenCKC, GetResPipe #, GetResSig
-from config import task_setting as TS, fs_config, so_pro_conf
-from Evaluation_Result import CalPR, CheckAnswer, StatSig, ProTime
+from config import CKTyper_setting as TS
+from Offline import SO_parser, BuildIndex, ParseLib, extract_code_from_post
+from Online import SearchCode, GenCKC, GetResPipe #, GetResSig
+from config import fs_config, so_pro_conf
+from Evaluation import CalPR, StatSign, ExecTime
 
 
 log_level = {
@@ -63,9 +64,9 @@ def offline_operation(fs_config):
     logger.info("Start to filter SO posts with \"java\" tag ...")
     start_time = time.time()
     logger.info('get questions and their ids ======')
-    ParseSO.getQuestions(so_pro_conf)
+    SO_parser.getQuestions(so_pro_conf)
     logger.info('\n\nget answers and their ids ======')
-    ParseSO.getAnswers(so_pro_conf)
+    SO_parser.getAnswers(so_pro_conf)
     end_time = time.time()
     logger.info(f"Running time for filter SO posts with \"java\" tag: {end_time - start_time}")
 
@@ -177,20 +178,20 @@ def evaluation_operation(fs_config, operation):
         logger.info('Start to calculate precision and recall...')
         CalPR.cal_precision_recall_pipline(fs_config, datasets, libs)
 
-    # list wrong answer & not perfect file
-    if 'check_wrong' in ops:
-        CheckAnswer.list_wrong_answer_pipline(fs_config, datasets, libs)
-        not_finished = CheckAnswer.list_not_perfect_file(fs_config, datasets)
+    # # list wrong answer & not perfect file
+    # if 'check_wrong' in ops:
+    #     CheckAnswer.list_wrong_answer_pipline(fs_config, datasets, libs)
+    #     not_finished = CheckAnswer.list_not_perfect_file(fs_config, datasets)
 
     # calculate statistical significance
     if 'stat_sig' in ops:
         logger.info('Start to calculate statistical significance...')
-        StatSig.cal_statistical_significance(fs_config)
+        StatSign.cal_statistical_significance(fs_config)
 
     # calculate average process time
     if 'process_time' in ops:
         logger.info('Start to calculate average process time...')
-        ProTime.cal_average_process_time(fs_config)
+        ExecTime.cal_average_process_time(fs_config)
 
     return not_finished
 

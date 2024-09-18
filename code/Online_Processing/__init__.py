@@ -1,4 +1,0 @@
-import Online_Processing.search_similar_code as SearchCode
-import Online_Processing.context_generation as GenCKC
-import Online_Processing.Get_TypeInference_Result.pipeline as GetResPipe
-import Online_Processing.Get_TypeInference_Result.singal as GetResSig
