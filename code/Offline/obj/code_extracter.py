@@ -37,6 +37,8 @@ class CodeExtracter(object):
     cur_ans_elment = None
     code_id = 1
     ans_traverser = XmlTraverser('row')
+    # regular expression for removing comments
+    rev_cmt = r'(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|((//|#).*?\n)'
 
     def __init__(self, post_path, output_dir):
         self.question_dir = Path(f'{post_path}/questions/')
@@ -134,6 +136,8 @@ class CodeExtracter(object):
                 codes = self.extract_code_from_body(body)
                 for code in codes:
                     if '\n' not in code[0:-1]: continue  # filtered out single row code
+                    # remove "//", "#" and "/* */" comments
+                    code = re.sub(self.rev_cmt, '', code, flags=re.DOTALL)
                     code_obj = {
                         'CodeId': str(self.code_id),
                         'RowId': row_id,
