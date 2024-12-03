@@ -8,6 +8,21 @@ from time import sleep
 from config import chatgpt_conf as Conf
 
 
+# todo： add model: Llama、DeepSeek、Claude
+# class BaseModelAccesser(object):
+#     account_num = 0
+#     cur_account_num = 0
+#     accounts = None
+#     model_name = ""
+#     model = None
+#     base_message = []
+
+#     def __init__(self) -> None:
+#         if Conf.PROXY_URL: # Set the http_proxy and https_proxy environment variable
+#             os.environ['http_proxy'] = Conf.PROXY_URL
+#             os.environ['https_proxy'] = Conf.PROXY_URL
+#         pass
+
 # offical openai api
 class ModelAccesser_V2(object):
     account_num = 0
