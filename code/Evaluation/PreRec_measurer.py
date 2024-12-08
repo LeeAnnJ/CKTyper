@@ -1,4 +1,5 @@
 import os
+import re
 import logging
 
 import utils
@@ -20,6 +21,13 @@ def cal_precision_recall_singal(result_file):
         ans = line[1]
         truth = line[2]
         total += 1
+        
+        # # TODO: add pending logic for python
+        # truth = re.sub(r'\[.*\]', '', truth, flags=re.DOTALL)
+        # truth = truth.split('.')[-1].lower()
+        # res_line[2] = truth
+        # ans = re.sub(r'\[.*\]', '', ans, flags=re.DOTALL)
+        # if ans.lower().endswith(truth):
         if ans == truth:
             res_line.append("1")
             correct += 1

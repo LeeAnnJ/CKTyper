@@ -29,8 +29,13 @@ CKTyper
    - Cuda 12.1
    - PyTorch 2.2.1+cu121
 2. Run `pip install -r requirements.txt`.
-3. Get your API keys from [openai](https://platform.openai.com/api-keys) to access ChatGPT.
-4. Complete the settings for all files in the `config` folder, specific instructions can be found in [`~/code/config/note.md`](./code/config/note.md)
+3. Download `punkt_tab` from NLTK downloader:
+```python
+import nltk
+nltk.download('punkt_tab')
+```
+4. Get your API keys from [openai](https://platform.openai.com/api-keys) to access ChatGPT.
+5. Complete the settings for all files in the `config` folder, specific instructions can be found in [`~/code/config/note.md`](./code/config/note.md)
 
 ## Running CKTyper
 1. cd into `~/code`

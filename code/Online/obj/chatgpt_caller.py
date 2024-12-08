@@ -65,7 +65,9 @@ class ModelAccesser_V2(object):
             try:
                 complication = self.gpt.chat.completions.create(
                     model=self.model,
-                    messages=messages
+                    temperature = 0,
+                    messages=messages,
+                    response_format = { "type": "json_object" }
                 )
                 response = complication.choices[0].message.content
                 self.logger.debug(f"recieved a response:{response}")
@@ -115,14 +117,14 @@ class ModelAccesser_V2(object):
         return res_obj
 
 
-    def get_result(self,prompt:str):
+    def get_result(self, prompt:str):
         time = 1
         response = self.ask_question(prompt)
         result_json = self.handle_response(response)
         while result_json is None:
             if time >= self.account_num:
                 raise Exception('failed to get result for prompt, please check your question and configuration.')
-            self.logger.warn(f'no json object found in response: "{response}", try switching account...')
+            self.logger.warning(f'no json object found in response: "{response}", try switching account...')
             sleep(10)
             self.change_account()
             response = self.ask_question(prompt)

@@ -1423,8 +1423,8 @@
             "Truth": "java.lang.reflect.Array"
         },
         {
-            "Node": "Field[]",
-            "Truth": "java.lang.reflect.Field[]"
+            "Node": "Field",
+            "Truth": "java.lang.reflect.Field"
         }
     ],
     "Class_19": [
@@ -1843,6 +1843,7 @@
             "Truth": "java.util.Collections"
         }
     ],
+    "Class_8": [],
     "Class_9": [
         {
             "Node": "Connection",
@@ -2087,36 +2088,12 @@
             "Truth": "com.google.gwt.user.client.ui.HTML"
         },
         {
-            "Node": "add()",
-            "Truth": "com.google.gwt.user.client.ui.DockPanel.add()"
-        },
-        {
-            "Node": "WEST",
-            "Truth": "com.google.gwt.user.client.ui.DockPanel.WEST"
-        },
-        {
-            "Node": "CENTER",
-            "Truth": "com.google.gwt.user.client.ui.DockPanel.CENTER"
-        },
-        {
             "Node": "VerticalPanel",
             "Truth": "com.google.gwt.user.client.ui.VerticalPanel"
         },
         {
-            "Node": "EAST",
-            "Truth": "com.google.gwt.user.client.ui.DockPanel.EAST"
-        },
-        {
-            "Node": "create()",
-            "Truth": "com.google.gwt.core.client.GWT.create()"
-        },
-        {
             "Node": "AbstractImagePrototype",
             "Truth": "com.google.gwt.user.client.ui.AbstractImagePrototype"
-        },
-        {
-            "Node": "applyTo()",
-            "Truth": "com.google.gwt.user.client.ui.AbstractImagePrototype.applyTo()"
         },
         {
             "Node": "ImageBundle",
@@ -2519,10 +2496,6 @@
         {
             "Node": "AsyncCallback",
             "Truth": "com.google.gwt.user.client.rpc.AsyncCallback"
-        },
-        {
-            "Node": "Article",
-            "Truth": "org.apache.commons.net.nntp.Article"
         },
         {
             "Node": "Window",
@@ -3037,7 +3010,7 @@
             "Truth": "com.google.gwt.user.client.ui.Label"
         },
         {
-            "Node": "new Label",
+            "Node": "new Label()",
             "Truth": "com.google.gwt.user.client.ui.Label"
         },
         {
@@ -3045,7 +3018,7 @@
             "Truth": "com.google.gwt.user.client.ui.Button"
         },
         {
-            "Node": "new Button",
+            "Node": "new Button()",
             "Truth": "com.google.gwt.user.client.ui.Button"
         },
         {
@@ -3261,10 +3234,6 @@
             "Truth": "com.google.gwt.user.client.Timer"
         },
         {
-            "Node": "Table",
-            "Truth": "com.extjs.gxt.ui.client.widget.table.Table"
-        },
-        {
             "Node": "RootPanel",
             "Truth": "com.google.gwt.user.client.ui.RootPanel"
         },
@@ -3321,10 +3290,6 @@
     ],
     "hibernate_class_1": [
         {
-            "Node": "UserDAO",
-            "Truth": "library.dao.UserDAO"
-        },
-        {
             "Node": "SessionFactory",
             "Truth": "org.hibernate.SessionFactory"
         },
@@ -3337,60 +3302,12 @@
             "Truth": "org.hibernate.cfg.AnnotationConfiguration"
         },
         {
-            "Node": "addAnnotatedClass()",
-            "Truth": "org.hibernate.cfg.AnnotationConfiguration.addAnnotatedClass()"
-        },
-        {
-            "Node": "class",
-            "Truth": "library.model.User.class"
-        },
-        {
-            "Node": "configure()",
-            "Truth": "org.hibernate.cfg.AnnotationConfiguration.configure()"
-        },
-        {
-            "Node": "buildSessionFactory()",
-            "Truth": "org.hibernate.cfg.AnnotationConfiguration.buildSessionFactory()"
-        },
-        {
-            "Node": "User",
-            "Truth": "library.model.User"
-        },
-        {
             "Node": "Session",
             "Truth": "org.hibernate.Session"
         },
         {
-            "Node": "openSession()",
-            "Truth": "org.hibernate.SessionFactory.openSession()"
-        },
-        {
             "Node": "Transaction",
             "Truth": "org.hibernate.Transaction"
-        },
-        {
-            "Node": "getTransaction()",
-            "Truth": "org.hibernate.Session.getTransaction()"
-        },
-        {
-            "Node": "begin()",
-            "Truth": "org.hibernate.Transaction.begin()"
-        },
-        {
-            "Node": "saveOrUpdate()",
-            "Truth": "org.hibernate.Session.saveOrUpdate()"
-        },
-        {
-            "Node": "commit()",
-            "Truth": "org.hibernate.Transaction.commit()"
-        },
-        {
-            "Node": "rollback()",
-            "Truth": "org.hibernate.Transaction.rollback()"
-        },
-        {
-            "Node": "close()",
-            "Truth": "org.hibernate.Session.close()"
         }
     ],
     "hibernate_class_10": [
@@ -3561,10 +3478,6 @@
         {
             "Node": "Item",
             "Truth": "org.hibernate.test.cache.Item"
-        },
-        {
-            "Node": "User",
-            "Truth": "library.model.User"
         }
     ],
     "hibernate_class_15": [
@@ -3925,10 +3838,6 @@
             "Truth": "javax.persistence.JoinColumn"
         },
         {
-            "Node": "User",
-            "Truth": "library.model.User"
-        },
-        {
             "Node": "OneToMany",
             "Truth": "javax.persistence.OneToMany"
         },
@@ -4189,10 +4098,6 @@
             "Truth": "java.io.Serializable"
         },
         {
-            "Node": "GenericDao",
-            "Truth": "org.appfuse.dao.GenericDao"
-        },
-        {
             "Node": "SessionFactory",
             "Truth": "org.hibernate.SessionFactory"
         },
@@ -4211,10 +4116,6 @@
         {
             "Node": "Map",
             "Truth": "java.util.Map"
-        },
-        {
-            "Node": "SearchException",
-            "Truth": "org.appfuse.dao.SearchException"
         }
     ],
     "hibernate_class_4": [
@@ -4715,8 +4616,8 @@
     ],
     "JodaTime04": [
         {
-            "Node": "ReadableInstant[]",
-            "Truth": "org.joda.time.ReadableInstant[]"
+            "Node": "ReadableInstant",
+            "Truth": "org.joda.time.ReadableInstant"
         },
         {
             "Node": "Period",
@@ -4936,11 +4837,7 @@
         },
         {
             "Node": "new PeriodFormatterBuilder()",
-            "Truth": "org.joda.time.format.PeriodFormatterBuilder()"
-        },
-        {
-            "Node": "print()",
-            "Truth": "org.joda.time.format.PeriodFormatter.print()"
+            "Truth": "org.joda.time.format.PeriodFormatterBuilder"
         }
     ],
     "JodaTime17": [
@@ -5161,8 +5058,8 @@
             "Truth": "org.joda.time.format.DateTimeFormatter"
         },
         {
-            "Node": "new DateTimeFormatter[20]",
-            "Truth": "org.joda.time.format.DateTimeFormatter[]"
+            "Node": "new DateTimeFormatter",
+            "Truth": "org.joda.time.format.DateTimeFormatter"
         }
     ],
     "JodaTime30": [
@@ -5345,8 +5242,8 @@
     ],
     "JodaTime43": [
         {
-            "Node": "DateTimeParser[]",
-            "Truth": "org.joda.time.format.DateTimeParser[]"
+            "Node": "DateTimeParser",
+            "Truth": "org.joda.time.format.DateTimeParser"
         },
         {
             "Node": "DateTimeFormat",
@@ -5892,7 +5789,7 @@
         },
         {
             "Node": "WordUtils",
-            "Truth": "org.apache.commons.lang.WordUtils"
+            "Truth": "org.apache.commons.lang3.text.WordUtils"
         },
         {
             "Node": "Content",

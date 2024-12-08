@@ -55,11 +55,13 @@ def LLM_type_inference_pipline(fs_config, datasets, libs, not_finished, rcm_top_
                 while 0 < remain_len < prev_num:
                     try: 
                         res_json = model_acs.get_result(question)
+                        logger.debug(f"get response res json: {res_json}")
                     except:
                         get_response = False 
                         break
                     # handle result
                     remain_api, res_data = res_handler.combine_res_data(remain_api, res_json, res_data)
+                    logger.debug(f"after handle: {res_data}")
                     prev_num = remain_len
                     remain_len = len(remain_api)
                     # logger.debug("res_data len: ",len(res_data),"remain_api_len: ",remain_len,"prev_num: ",prev_num)
@@ -69,7 +71,7 @@ def LLM_type_inference_pipline(fs_config, datasets, libs, not_finished, rcm_top_
                     error_list.append(cs_name)
                     continue
                 else:
-                    logger.debug("res_data len: ", len(res_data))
+                    logger.debug(f"res_data len: {len(res_data)}, {res_data}")
                     res_data = res_handler.handle_remain_api(remain_api, res_data)
                     # save result
                     finished.append(cs_name)

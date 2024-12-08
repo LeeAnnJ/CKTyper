@@ -7,15 +7,14 @@ Two different ways for obtaining the current directory path:
 see: https://blog.csdn.net/cyjs1988/article/details/77839238/
 """
 class SOProcessConfig:
-    def __init__(self):
-        config = configparser.ConfigParser()
-        config.read('./config/file_structure.ini')
-        self.so_dir = config['resource']['SO_DATA_STORAGE']  # local dir that hosts SO data
+    def __init__(self, fs_config, ts_config):
+        self.so_dir = fs_config['SO_CODE_FOLDER']
         self.experiment_dir = f"{self.so_dir}/../SOData"
         self.so_tags_dir = os.path.join(self.experiment_dir, 'tags')
         self.posts_xml = os.path.join(self.so_dir, "Posts.xml")
-        # self.comments_xml = os.path.join(self.so_dir, "Posts.xml")
-        self.interested_tags = ["java"]
+        # self.comments_xml = os.path.join(self.so_dir, "Comments.xml")
+        lang = ts_config.LANGUAGES
+        self.interested_tags = [lang]
 
 
 def read_file_structure():

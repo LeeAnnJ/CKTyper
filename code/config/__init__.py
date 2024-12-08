@@ -3,6 +3,6 @@ import config.CKTyper_setting as CKTyper_setting
 import config.chatgpt_conf as chatgpt_conf
 import config.PEGUSUS_env as PEGUSUS_env
 
-so_pro_conf = SOProcessConfig()
 
 fs_config = read_file_structure()
+so_pro_conf = SOProcessConfig(fs_config, CKTyper_setting)

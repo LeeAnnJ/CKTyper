@@ -9,7 +9,6 @@ from itertools import islice
 import utils
 from Online.obj import CSsimCalculator
 
-
 # rertieve posts form SO dataset by lucene index
 def lucene_search_pipline(fs_config, datasets, libs, lucene_top_n, not_finished):
     logger = logging.getLogger(__name__)
@@ -38,7 +37,7 @@ def lucene_search_pipline(fs_config, datasets, libs, lucene_top_n, not_finished)
 
             for cs in code_snippets:
                 start_time = time.time()
-                cs_name = cs.replace('.java', '')
+                cs_name = cs.split('.')[0]
                 if reflag and cs_name not in not_finished: continue
                 cs_folder = f'{lucene_folder}/{dataset}/{lib}/{cs_name}'
                 if cs_name in time_lib.keys():
@@ -88,7 +87,7 @@ def cal_similarity_singal(code_snippet:str, lucene_topk_dic, calculator:CSsimCal
 def select_topn_cs(lucene_topk_dic, sim_topk):
     lucene_list = os.listdir(lucene_topk_dic)
     lucene_score_list = [item.split('_') for item in lucene_list]
-    lucene_score_list = [[item[0], float(item[1].replace(".java",""))] for item in lucene_score_list]
+    lucene_score_list = [[item[0], float(item[1].split('.')[0])] for item in lucene_score_list]
     sorted_list = sorted(lucene_score_list, key=lambda x:x[1], reverse=True)
     topk_sim_postIds = [item[0] for item in sorted_list[0:sim_topk]]
     sim_score = [item[1] for item in sorted_list[0:sim_topk]]
@@ -140,22 +139,22 @@ def cal_similarity_pipeline(fs_config, datasets, libs, retrieval_conf, not_finis
 
             for cs in code_snippets:
                 start_time = time.time()
-                cs_name = cs.replace('.java','')
+                cs_name = cs.split('.')[0]
                 if reflag and cs_name not in not_finished: continue
                 if cs_name in time_lib.keys(): time_cs = time_lib[cs_name]
                 else: time_cs = {}
                 input_code_snippet_path = f'{input_folder_path}/{cs}'
                 logger.info(f"calculate similarity for: {input_code_snippet_path}")
                 # Get Lucene top-k code snippets
-                lucene_topk_dic = f'{lucene_folder}/{dataset}/{lib}/{cs_name}'
+                lucene_topk_dir = f'{lucene_folder}/{dataset}/{lib}/{cs_name}'
                 # logger.debug(f" lucene_topk_dir: {lucene_topk_dic}")
                 
                 #  Calculate CrystalBLEU for input code and each lucene code
                 if calculate_CrystalBLEU:
                     input_code_snippet = utils.load_text(input_code_snippet_path)
-                    topk_sim_postIds, sim_score = cal_similarity_singal(input_code_snippet,lucene_topk_dic,similarity_calculator,similarity_topn)
+                    topk_sim_postIds, sim_score = cal_similarity_singal(input_code_snippet,lucene_topk_dir,similarity_calculator,similarity_topn)
                 else:
-                    topk_sim_postIds, sim_score = select_topn_cs(lucene_topk_dic, similarity_topn)
+                    topk_sim_postIds, sim_score = select_topn_cs(lucene_topk_dir, similarity_topn)
                 code_snippets_result[cs_name] = {"topk_sim_postIds": topk_sim_postIds, "sim_scores": sim_score}
                 end_time = time.time()
                 time_cs["sim_cal"] = end_time - start_time

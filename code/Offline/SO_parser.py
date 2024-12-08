@@ -39,6 +39,7 @@ def getQuestions(conf):
     tag_tagstr_dict = {}
 
     for tag in tags:
+        logger.info(f'interested tag: {tag}')
 
         tag_qc_dict[tag] = 0
         tag_qids_dict[tag] = []

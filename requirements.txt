@@ -6,7 +6,7 @@ JPype1
 matplotlib
 crystalbleu
 sentencepiece
-transformers
-torch
-torchvision
-torchaudio 
+# transformers
+# torch
+# torchvision
+# torchaudio 

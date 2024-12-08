@@ -7,26 +7,28 @@ from pathlib import Path
 
 class XmlTraverser:
     current = None
-    root = None
 
     def __init__(self, target_tag) -> None:
         self.target_tag = target_tag
+        self._iter = None
         pass
 
     def read_file(self, xml_file):
-        self.tree = ET.parse(xml_file)
-        self.root = self.tree.getroot()
-        self.iter = (elem for elem in self.root.iter() if elem.tag == self.target_tag)
-        self.current = next(self.iter)
-        return self.current
+        self._iter = etree.iterparse(xml_file, events=('start','end',), tag=self.target_tag)
+        for event, elem in self._iter:
+            if event == 'start':
+                self.current = elem
+                return elem
 
     def get_next_element(self):
-        try:
-            self.current = next(self.iter)
-            return self.current
-        except StopIteration:
-            self.current = None
-            return None
+        if self._iter:
+            for event, elem in self._iter:
+                if event == 'start':
+                    self.current = elem
+                    return elem
+                elif event == 'end':
+                    elem.clear()
+        return None
 
 
 class CodeExtracter(object):
@@ -48,8 +50,6 @@ class CodeExtracter(object):
         output_dir_path.mkdir(parents=True, exist_ok=True)
         pass
 
-    def extract_code_from_body(self, body):
-        return re.findall(r'<code>(.*?)</code>', body, re.DOTALL)
 
     def write_objs_to_xml(self, xml_file, objs, objs_name):
         root = etree.Element(objs_name)
@@ -63,7 +63,7 @@ class CodeExtracter(object):
 
     def parse_ans_file(self):
         ans_file = self.answer_file_list[self.cur_ans_file]
-        self.logger.info(f"Processing question file: {ans_file}")
+        self.logger.info(f"Processing ans file: {ans_file}")
         self.cur_ans_elment = self.ans_traverser.read_file(ans_file)
         self.cur_ans_file += 1
 
@@ -75,6 +75,23 @@ class CodeExtracter(object):
             self.cur_ans_elment = elment
         else:
             self.cur_ans_elment = None
+
+    
+    def extract_code_from_body(self, body, row_id, parent_id, post_type_id):
+        codes = re.findall(r'<code>(.*?)</code>', body, re.DOTALL)
+        for code in codes:
+            if '\n' not in code[0:-1]: continue  # filtered out single row code
+            # remove "//", "#" and "/* */" comments
+            code = re.sub(self.rev_cmt, '', code, flags=re.DOTALL)
+            code_obj = {
+                'CodeId': str(self.code_id),
+                'RowId': row_id,
+                'ParentId': parent_id,
+                'PostTypeId': post_type_id,
+                'Code': code
+            }
+            self.add_code_to_batch(code_obj)
+    # return re.findall(r'<code>(.*?)</code>', body, re.DOTALL)
 
     def add_code_to_batch(self, code_obj):
         self.codes_batch.append(code_obj)
@@ -94,17 +111,7 @@ class CodeExtracter(object):
             post_type_id = self.cur_ans_elment.get('PostTypeId')
             body = self.cur_ans_elment.get('Body')
             row_id = self.cur_ans_elment.get('Id')
-            codes = self.extract_code_from_body(body)
-            for code in codes:
-                if '\n' not in code[0:-1]: continue  # filtered out single row code
-                code_obj = {
-                    'CodeId': str(self.code_id),
-                    'RowId': row_id,
-                    'ParentId': str(parent_id),
-                    'PostTypeId': post_type_id,
-                    'Code': code
-                }
-                self.add_code_to_batch(code_obj)
+            self.extract_code_from_body(body, row_id, parent_id, post_type_id)
             self.get_next_answer()
             if self.cur_ans_elment is None: break
             parent_id = int(self.cur_ans_elment.get('ParentId'))
@@ -133,19 +140,7 @@ class CodeExtracter(object):
                 body = elem.get('Body')
                 row_id = elem.get('Id')
                 parent_id = row_id
-                codes = self.extract_code_from_body(body)
-                for code in codes:
-                    if '\n' not in code[0:-1]: continue  # filtered out single row code
-                    # remove "//", "#" and "/* */" comments
-                    code = re.sub(self.rev_cmt, '', code, flags=re.DOTALL)
-                    code_obj = {
-                        'CodeId': str(self.code_id),
-                        'RowId': row_id,
-                        'ParentId': parent_id,
-                        'PostTypeId': post_type_id,
-                        'Code': code
-                    }
-                    self.add_code_to_batch(code_obj)
+                self.extract_code_from_body(body, row_id, parent_id, post_type_id)
                 if self.cur_ans_elment is not None:
                     self.append_anwer_code_after_question(int(parent_id))
                 elem.clear()

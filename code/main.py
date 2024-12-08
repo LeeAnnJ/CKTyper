@@ -11,6 +11,7 @@ from Offline import SO_parser, BuildIndex, ParseLib, extract_code_from_post
 from Online import RetrieveCode, GenCKC, TypeInfer
 from config import fs_config, so_pro_conf
 from Evaluation import CalPR, StatSign, ExecTime
+from Evaluation import CheckAnswer
 
 
 log_level = {
@@ -58,17 +59,18 @@ def set_arg_parser():
 
 def offline_operation(fs_config):
     logger = logging.getLogger(__name__)
-    jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
+    jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./Java/LuceneIndexer/LuceneIndexer.jar")
 
     # 1. extract SO posts with 'java' tag from SO data
-    logger.info("Start to filter SO posts with \"java\" tag ...")
+    # todo: add "language" parameter to filter SO posts with specific language
+    logger.info("Start to filter SO posts ...")
     start_time = time.time()
     logger.info('get questions and their ids ======')
     SO_parser.getQuestions(so_pro_conf)
     logger.info('\n\nget answers and their ids ======')
     SO_parser.getAnswers(so_pro_conf)
     end_time = time.time()
-    logger.info(f"Running time for filter SO posts with \"java\" tag: {end_time - start_time}")
+    logger.info(f"Running time for filter SO posts: {end_time - start_time}")
 
     # 2. extract code snippets from posts
     logger.info('Start to extract code snippets from SO posts...')
@@ -122,7 +124,7 @@ def online_operation_pipline(fs_config):
     prompt_conf = TS.PROMPT_CONF
     not_finished = TS.NOT_FINISHED
 
-    jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./LuceneIndexer/LuceneIndexer.jar")
+    jpype.startJVM(jpype.getDefaultJVMPath(), '-Xmx4g', "-Djava.class.path=./Java/LuceneIndexer/LuceneIndexer.jar")
     time_record_folder = fs_config['TIME_RECORD_FOLDER']
     if not os.path.exists(time_record_folder):
         os.makedirs(time_record_folder)
@@ -178,10 +180,10 @@ def evaluation_operation(fs_config, operation):
         logger.info('Start to calculate precision and recall...')
         CalPR.cal_precision_recall_pipline(fs_config, datasets, libs)
 
-    # # list wrong answer & not perfect file
-    # if 'check_wrong' in ops:
-    #     CheckAnswer.list_wrong_answer_pipline(fs_config, datasets, libs)
-    #     not_finished = CheckAnswer.list_not_perfect_file(fs_config, datasets)
+    # list wrong answer & not perfect file
+    if 'check_wrong' in ops:
+        CheckAnswer.list_wrong_answer_pipline(fs_config, datasets, libs)
+        not_finished = CheckAnswer.list_not_perfect_file(fs_config, datasets)
 
     # calculate statistical significance
     if 'stat_sig' in ops:

@@ -6,7 +6,7 @@
         },
         {
             "Node": "InputMethodManager",
-            "Truth": "sun.awt.im.InputMethodManager"
+            "Truth": "android.view.inputmethod.InputMethodManager"
         },
         {
             "Node": "View",
@@ -27,6 +27,7 @@
             "Truth": "android.graphics.Canvas"
         }
     ],
+    "ad11": [],
     "ad12": [
         {
             "Node": "Activity",
@@ -148,7 +149,7 @@
         },
         {
             "Node": "Instant",
-            "Truth": "org.joda.time.Instant"
+            "Truth": "java.time.Instant"
         }
     ],
     "ad3": [
@@ -199,16 +200,7 @@
             "Truth": "android.util.DisplayMetrics"
         }
     ],
-    "ad7": [
-        {
-            "Node": "RELEASE",
-            "Truth": "android.os.Build.VERSION.RELEASE"
-        },
-        {
-            "Node": "SDK_INT",
-            "Truth": "android.os.Build.VERSION.SDK_INT"
-        }
-    ],
+    "ad7": [],
     "ad8": [
         {
             "Node": "Activity",
@@ -327,14 +319,6 @@
         {
             "Node": "Date",
             "Truth": "java.util.Date"
-        },
-        {
-            "Node": "setDate()",
-            "Truth": "java.util.Date.setDate()"
-        },
-        {
-            "Node": "getDate()",
-            "Truth": "java.util.Date.getDate()"
         }
     ],
     "gt17": [
@@ -369,6 +353,7 @@
             "Truth": "java.util.Formatter"
         }
     ],
+    "gt19": [],
     "gt2": [
         {
             "Node": "ValueChangeEvent",
@@ -422,7 +407,7 @@
     "gt6": [
         {
             "Node": "new BigInteger()",
-            "Truth": "java.math.BigInteger()"
+            "Truth": "java.math.BigInteger"
         }
     ],
     "gt7": [
@@ -640,7 +625,7 @@
         },
         {
             "Node": "Configuration",
-            "Truth": "org.hibernate.cfg.Configuration.Configuration"
+            "Truth": "org.hibernate.cfg.Configuration"
         }
     ],
     "hb4": [
@@ -743,6 +728,9 @@
             "Truth": "java.io.FileNotFoundException"
         }
     ],
+    "jdk11": [],
+    "jdk12": [],
+    "jdk13": [],
     "jdk14": [
         {
             "Node": "IOException",
@@ -757,12 +745,7 @@
             "Truth": "java.io.File"
         }
     ],
-    "jdk15": [
-        {
-            "Node": "toString()",
-            "Truth": "java.util.Arrays.toString()"
-        }
-    ],
+    "jdk15": [],
     "jdk16": [
         {
             "Node": "SimpleDateFormat",
@@ -813,6 +796,7 @@
             "Truth": "org.apache.commons.io.IOUtils"
         }
     ],
+    "jdk19": [],
     "jdk2": [
         {
             "Node": "File",
@@ -891,14 +875,14 @@
             "Truth": "java.net.URLClassLoader"
         },
         {
-            "Node": "new URL[]",
+            "Node": "new URL",
             "Truth": "java.net.URL"
         }
     ],
     "jdk6": [
         {
             "Node": "new PropertyPermission()",
-            "Truth": "java.util.PropertyPermission()"
+            "Truth": "java.util.PropertyPermission"
         }
     ],
     "jdk7": [
@@ -1001,16 +985,8 @@
             "Truth": "java.time.ZoneId"
         },
         {
-            "Node": "of()",
-            "Truth": "java.time.ZoneId.of()"
-        },
-        {
             "Node": "ZonedDateTime",
             "Truth": "java.time.ZonedDateTime"
-        },
-        {
-            "Node": "now()",
-            "Truth": "java.time.ZonedDateTime.now()"
         }
     ],
     "jt14": [
@@ -1081,16 +1057,8 @@
             "Truth": "java.time.format.DateTimeFormatter"
         },
         {
-            "Node": "ofPattern()",
-            "Truth": "java.time.format.DateTimeFormatter.ofPattern()"
-        },
-        {
             "Node": "LocalDateTime",
             "Truth": "java.time.LocalDateTime"
-        },
-        {
-            "Node": "parse()",
-            "Truth": "java.time.LocalDateTime.parse()"
         }
     ],
     "jt2": [
@@ -1175,12 +1143,7 @@
             "Truth": "java.util.Calendar"
         }
     ],
-    "jt8": [
-        {
-            "Node": "getInstance()",
-            "Truth": "java.util.Calendar.getInstance()"
-        }
-    ],
+    "jt8": [],
     "jt9": [
         {
             "Node": "LocalDate",
@@ -1221,14 +1184,6 @@
         {
             "Node": "new StaxDriver()",
             "Truth": "com.thoughtworks.xstream.io.xml.StaxDriver"
-        },
-        {
-            "Node": "toXML()",
-            "Truth": "com.thoughtworks.xstream.XStream.toXML()"
-        },
-        {
-            "Node": "messages",
-            "Truth": "com.sun.org.apache.xml.internal.serializer.utils.Messages"
         },
         {
             "Node": "StringWriter",
@@ -1445,8 +1400,8 @@
             "Truth": "com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver"
         },
         {
-            "Node": "Entity[]",
-            "Truth": "javax.swing.text.html.parser.Entity[]"
+            "Node": "Entity",
+            "Truth": "javax.swing.text.html.parser.Entity"
         }
     ],
     "xt5": [

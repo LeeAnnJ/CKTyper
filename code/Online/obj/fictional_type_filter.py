@@ -1,3 +1,4 @@
+import re
 import utils
 
 class ResHandler:
@@ -13,11 +14,15 @@ class ResHandler:
             node = dic["Node"]
             truth = dic["Truth"]
             flag = False
-            if node in json_res.keys():
-                ans_list = json_res[node]
+            dealed_node = re.sub(r'\(.*\)', '', node, flags=re.DOTALL)
+            if node in json_res.keys() or dealed_node in json_res.keys():
+                ans_list = json_res[node] if node in json_res.keys() else json_res[dealed_node]
                 if len(ans_list) > 1:
                     for ans in ans_list:
                         ans = ans.replace('()', '').replace('$', '.')
+                        # flag = True
+                        # prev_data.append([node, ans, truth])
+                        # break
                         if ans in self.fqn_set:
                         # if ans.rpartition('.')[0] in self.fqn_set:
                             flag = True

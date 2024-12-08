@@ -239,7 +239,7 @@ def generate_CKcontext_pipeline(fs_config, datasets, libs, not_finished, sim_top
     ques_gen = PromptGenerator()
     reflag = True if len(not_finished) > 0 else False
     prompt_list = None
-    original = prompt_conf["add_context"]
+    original = not prompt_conf["add_context"]
 
     if not original:
         searched_post_folder = fs_config['SEARCHED_POST_FOLDER']
@@ -277,18 +277,24 @@ def generate_CKcontext_pipeline(fs_config, datasets, libs, not_finished, sim_top
 
             for cs in code_snippets:
                 start_time = time.time()
-                cs_name = cs.replace('.java', '')
+                cs_name = cs.split('.')[0]
                 if reflag and cs_name not in not_finished: continue
                 # load code snippet
                 logger.info(f"generate question for: {cs_name}")
                 code = utils.load_text(f'{input_folder_path}/{cs}')
+                
                 # load api elements
                 cs_api_dict = api_dict[cs_name]
+                if len(cs_api_dict) == 0:
+                    logger.warning(f'{cs_name} has no api elements, skip...')
+                    continue
                 api_elems = [elem["Node"] for elem in cs_api_dict]
+                
                 if cs_name in time_lib.keys():
                     time_cs = time_lib[cs_name]
                 else:
                     time_cs = {}
+                
                 # process posts' body & summarize
                 if not original:
                     sim_post_ids = sim_post_dict[lib][cs_name]['topk_sim_postIds'][0:sim_top_k]
