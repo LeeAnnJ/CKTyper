@@ -73,6 +73,6 @@ This method was proposed in [`SnR: Constraint-Based Type Inference for Incomplet
 The source code is from [https://zenodo.org/record/5843327](https://zenodo.org/record/5843327).
 
 ### iJTyper
-This method was proposed in [iJTyper: An Iterative Type Inference Framework for Java by Integrating Constraint- and Statistically-based Methods](https://arxiv.org/abs/2402.09995)
+This method was proposed in [`iJTyper: An effective type inference framework for incomplete java codes by integrating constraint- and statistics-based methods`](https://www.sciencedirect.com/science/article/pii/S0957417425035870)
 
-The source code is from [https://anonymous.4open.science/r/iJTyper-0A4D/README.md](https://anonymous.4open.science/r/iJTyper-0A4D/README.md)
+The source code is from https:[//github.com/zhxchen-se/iJTyper](https://github.com/zhxchen-se/iJTyper)
