@@ -7,11 +7,11 @@ MODEL = 'gpt-3.5-turbo-0125' #gpt-4o-mini-2024-07-18' or 'gpt-3.5-turbo-0125'
 ACCOUNTS = [
     {
         "api_key": "sk-xxxx",
-        "base_url": "https://your.gpt.proxy.base_url" # or None
+        "base_url": "https://your.llm.api.base_url" # or None
     },
     {
         "api_key": "sk-xxxx",
-        "base_url": "https://your.gpt.proxy.base_url"
+        "base_url": "https://your.llm.api.base_url"
 
     }
 ]

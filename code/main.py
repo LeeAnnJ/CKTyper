@@ -180,11 +180,6 @@ def evaluation_operation(fs_config, operation):
         logger.info('Start to calculate precision and recall...')
         CalPR.cal_precision_recall_pipline(fs_config, datasets, libs)
 
-    # list wrong answer & not perfect file
-    if 'check_wrong' in ops:
-        CheckAnswer.list_wrong_answer_pipline(fs_config, datasets, libs)
-        not_finished = CheckAnswer.list_not_perfect_file(fs_config, datasets)
-
     # calculate statistical significance
     if 'stat_sig' in ops:
         logger.info('Start to calculate statistical significance...')
