@@ -11,7 +11,6 @@ from Offline import SO_parser, BuildIndex, ParseLib, extract_code_from_post
 from Online import RetrieveCode, GenCKC, TypeInfer
 from config import fs_config, so_pro_conf
 from Evaluation import CalPR, StatSign, ExecTime
-from Evaluation import CheckAnswer
 
 
 log_level = {
